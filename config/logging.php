@@ -127,6 +127,11 @@ return [
             'path' => storage_path('logs/laravel.log'),
         ],
 
+        'google_log' => [
+            'driver' => 'stack',
+            'path' => storage_path('logs/google/log.log'),
+            'level' => 'debug',
+        ],
     ],
 
 ];
