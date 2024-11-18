@@ -13,11 +13,17 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->uuid('uuid');
+            $table->string('name', 50)->nullable();
+            $table->string('email', 100)->unique();
+            $table->string('password', 255)->nullable();
+            $table->tinyInteger('status')->default(1)->comment('1: Hoạt động, 0: Bị khoá không thể thao tác, login');
+            $table->enum('role', ['admin', 'buyer', 'seller'])->default('buyer');
+            $table->decimal('seller_vnd', 10, 2)->default(0)->comment('Số dư có thể mua nick');
+            $table->decimal('buyer_vnd', 10, 2)->default(0)->comment('Số dư có thể rút');
+            $table->integer('buyer_exchange_rate')->default(0)->comment('Tỉ lệ đổi tiền từ buyer_vnd -> buyer');
+            $table->integer('seller_exchange_rate')->default(0)->comment('Tỉ lệ đổi tiền từ seller_vnd -> seller');
+            $table->integer('profit_rate')->default(70)->comment('Tỉ lệ nhận tiền của ctv khi bán nick');
             $table->timestamps();
         });
 
