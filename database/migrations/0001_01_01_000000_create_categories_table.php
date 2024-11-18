@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('title')->nullable()->comment('SEO');
             $table->tinyInteger('status')->default(0)->comment('Danh mục ẩn => nick thuộc danh mục khong thể giao dịch, không thể vào trang detail');
             $table->text('noti')->nullable()->comment('Hiển thị trên mỗi trang của danh mục');
-            $table->text('image')->nullable()->comment('Ảnh thu nhỏ');
+            $table->string('image')->nullable()->comment('Ảnh thu nhỏ');
             $table->timestamps();
         });
     }
