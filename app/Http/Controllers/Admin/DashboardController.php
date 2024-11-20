@@ -32,8 +32,6 @@ class DashboardController extends Controller
             DB::raw('COUNT(CASE WHEN status = 2 THEN 1 END) as total_sold')
         ])->first();
 
-
-
         $accountTransaction = AccountTransaction::select([
             DB::raw('SUM(price) as total_price'),
             DB::raw('SUM(seller_profit) as total_seller_profit'),
