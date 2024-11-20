@@ -14,11 +14,11 @@ Route::get('/detail', [App\Http\Controllers\HomeController::class, 'detail'])->n
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('/', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
-    Route::get('/bank-transaction', [AdminBankTransactionController::class, 'index'])->name('bank.tran.list');
-    Route::get('/bank-transaction/create', [AdminBankTransactionController::class, 'create'])->name('bank.tran.create');
-    Route::post('/bank-transaction', [AdminBankTransactionController::class, 'store'])->name('bank.tran.store');
+    Route::get('/bank-transactionss', [AdminBankTransactionController::class, 'index'])->name('bank.tran.list');
+    Route::get('/bank-transactions/create', [AdminBankTransactionController::class, 'create'])->name('bank.tran.create');
+    Route::post('/bank-transactions', [AdminBankTransactionController::class, 'store'])->name('bank.tran.store');
 
-    Route::get('/card-transaction', [AdminCardTransactionController::class, 'index'])->name('card.tran.list');
+    Route::get('/card-transactions', [AdminCardTransactionController::class, 'index'])->name('card.tran.list');
 
     Route::get('/users', [AdminUserController::class, 'index'])->name('user.list');
 })->middleware(IsAdmin::class);
