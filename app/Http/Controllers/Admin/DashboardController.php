@@ -60,12 +60,12 @@ class DashboardController extends Controller
         // Số dư buyer
         $buyerVnd = $balance->total_buyer_vnd;
         // Số dư seller
-        $sellerVnd = $balance->total_buyer_vnd;
+        $sellerVnd = $balance->total_seller_vnd;
         
         // Tổng nick đang ẩn
         $totalHideNicks = $account->total_hiden;
         // Tổng số nick còn lại
-        $totalRemainingNicks = $account->total_hiden;
+        $totalRemainingNicks = $account->total_available;
         // Tổng số nick đã bán
         $totalNumberOfNicksSold = $account->total_sold;
 
