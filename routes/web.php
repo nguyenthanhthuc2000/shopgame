@@ -14,7 +14,7 @@ Route::get('/detail', [App\Http\Controllers\HomeController::class, 'detail'])->n
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('/', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
-    Route::get('/bank-transactionss', [AdminBankTransactionController::class, 'index'])->name('bank.tran.list');
+    Route::get('/bank-transactions', [AdminBankTransactionController::class, 'index'])->name('bank.tran.list');
     Route::get('/bank-transactions/create', [AdminBankTransactionController::class, 'create'])->name('bank.tran.create');
     Route::post('/bank-transactions', [AdminBankTransactionController::class, 'store'])->name('bank.tran.store');
 
