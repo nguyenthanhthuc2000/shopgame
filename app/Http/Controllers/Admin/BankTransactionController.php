@@ -9,7 +9,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\Admin\BankTransactionRequest;
 
-class AdminBankTransactionController extends Controller
+class BankTransactionController extends Controller
 {
     /**
      * Danh sách cộng / trừ tiền

@@ -10,7 +10,7 @@ use App\Models\Account;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
 
-class AdminController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Trang dashboard

@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin\CardTransaction;
 
-class AdminCardTransactionController extends Controller
+class CardTransactionController extends Controller
 {
     /**
      * Danh sách nạp thẻ cào
