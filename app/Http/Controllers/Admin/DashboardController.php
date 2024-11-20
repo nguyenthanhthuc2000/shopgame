@@ -32,9 +32,7 @@ class DashboardController extends Controller
             DB::raw('COUNT(CASE WHEN status = 2 THEN 1 END) as total_sold')
         ])->first();
 
-        $accountTransactionToday = AccountTransaction::select([
-            DB::raw('SUM(price) as total_price'),
-        ])->where('order_status', AccountTransaction::ORDER_SUCCESS)->whereDate('created_at', Carbon::today())->first();
+
 
         $accountTransaction = AccountTransaction::select([
             DB::raw('SUM(price) as total_price'),
@@ -45,7 +43,9 @@ class DashboardController extends Controller
         $bankAmount = CardTransaction::where('type', BankTransaction::INCREASE_TYPE)->sum('amount');
 
         // Doanh thu bán nick hôm nay - card
-        $todayRevenueCard = $accountTransactionToday->total_price;
+        $todayRevenueCard = AccountTransaction::where('order_status', AccountTransaction::ORDER_SUCCESS)
+            ->whereDate('created_at', Carbon::today())
+            ->sum('price');
 
         // Doanh thu bán nick all - card
         $todayRevenueCardAll = $accountTransaction->total_price;
