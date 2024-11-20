@@ -10,95 +10,13 @@
                 <div class="col-lg-7">
                     <div class="game-images">
                         <div class="nick-avatar_photo" id="detail-avatar_photo">
-                            <div class="swiper swiper-initialized swiper-horizontal swiper-pointer-events">
-                                <div class="swiper-wrapper" id="swiper-wrapper-55f7de3c6dd66aac" aria-live="polite"
-                                    style="transform: translate3d(0px, 0px, 0px);">
-                                    <div class="swiper-slide swiper-slide-active" role="group" aria-label="1 / 8"
-                                        style="width: 635px;">
-                                        <div class="preview-avatar_photo__item">
-                                            <span class="ratio ratio-1x1">
-                                                <img src="https://nick24s.com/storage/nicks/8346/501871-Screenshot 2024-11-18 220032.png"
-                                                    class="img-fluid object-fit-cover" alt="">
-                                            </span>
-                                            <a href="https://nick24s.com/storage/nicks/8346/501871-Screenshot 2024-11-18 220032.png"
-                                                data-index="01" data-fancybox="game-images" class="stretched-link"></a>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide swiper-slide-next" role="group" aria-label="2 / 8"
-                                        style="width: 635px;">
-                                        <div class="preview-avatar_photo__item">
-                                            <span class="ratio ratio-1x1">
-                                                <img src="https://nick24s.com/storage/nicks/8346/screenshot-2024-11-18-220032-673b56b21b919.png"
-                                                    class="img-fluid object-fit-cover" alt="">
-                                            </span>
-                                            <a href="https://nick24s.com/storage/nicks/8346/screenshot-2024-11-18-220032-673b56b21b919.png"
-                                                data-index="316191" data-fancybox="game-images" class="stretched-link"></a>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide" role="group" aria-label="3 / 8" style="width: 635px;">
-                                        <div class="preview-avatar_photo__item">
-                                            <span class="ratio ratio-1x1">
-                                                <img src="https://nick24s.com/storage/nicks/8346/screenshot-2024-11-18-220036-673b56b29d721.png"
-                                                    class="img-fluid object-fit-cover" alt="">
-                                            </span>
-                                            <a href="https://nick24s.com/storage/nicks/8346/screenshot-2024-11-18-220036-673b56b29d721.png"
-                                                data-index="316192" data-fancybox="game-images" class="stretched-link"></a>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide" role="group" aria-label="4 / 8" style="width: 635px;">
-                                        <div class="preview-avatar_photo__item">
-                                            <span class="ratio ratio-1x1">
-                                                <img src="https://nick24s.com/storage/nicks/8346/screenshot-2024-11-18-220039-673b56b34d762.png"
-                                                    class="img-fluid object-fit-cover" alt="">
-                                            </span>
-                                            <a href="https://nick24s.com/storage/nicks/8346/screenshot-2024-11-18-220039-673b56b34d762.png"
-                                                data-index="316193" data-fancybox="game-images" class="stretched-link"></a>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide" role="group" aria-label="5 / 8" style="width: 635px;">
-                                        <div class="preview-avatar_photo__item">
-                                            <span class="ratio ratio-1x1">
-                                                <img src="https://nick24s.com/storage/nicks/8346/screenshot-2024-11-18-220041-673b56b3b4c2d.png"
-                                                    class="img-fluid object-fit-cover" alt="">
-                                            </span>
-                                            <a href="https://nick24s.com/storage/nicks/8346/screenshot-2024-11-18-220041-673b56b3b4c2d.png"
-                                                data-index="316194" data-fancybox="game-images" class="stretched-link"></a>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide" role="group" aria-label="6 / 8" style="width: 635px;">
-                                        <div class="preview-avatar_photo__item">
-                                            <span class="ratio ratio-1x1">
-                                                <img src="https://nick24s.com/storage/nicks/8346/screenshot-2024-11-18-220044-673b56b48e19c.png"
-                                                    class="img-fluid object-fit-cover" alt="">
-                                            </span>
-                                            <a href="https://nick24s.com/storage/nicks/8346/screenshot-2024-11-18-220044-673b56b48e19c.png"
-                                                data-index="316195" data-fancybox="game-images" class="stretched-link"></a>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide" role="group" aria-label="7 / 8" style="width: 635px;">
-                                        <div class="preview-avatar_photo__item">
-                                            <span class="ratio ratio-1x1">
-                                                <img src="https://nick24s.com/storage/nicks/8346/screenshot-2024-11-18-220046-673b56b552a68.png"
-                                                    class="img-fluid object-fit-cover" alt="">
-                                            </span>
-                                            <a href="https://nick24s.com/storage/nicks/8346/screenshot-2024-11-18-220046-673b56b552a68.png"
-                                                data-index="316196" data-fancybox="game-images"
-                                                class="stretched-link"></a>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide" role="group" aria-label="8 / 8" style="width: 635px;">
-                                        <div class="preview-avatar_photo__item">
-                                            <span class="ratio ratio-1x1">
-                                                <img src="https://nick24s.com/storage/nicks/8346/screenshot-2024-11-18-220048-673b56b5c2813.png"
-                                                    class="img-fluid object-fit-cover" alt="">
-                                            </span>
-                                            <a href="https://nick24s.com/storage/nicks/8346/screenshot-2024-11-18-220048-673b56b5c2813.png"
-                                                data-index="316197" data-fancybox="game-images"
-                                                class="stretched-link"></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+                            <div class="preview-avatar_photo__item">
+                                <span class="ratio ratio-1x1">
+                                    <img src="https://nick24s.com/storage/nicks/8346/501871-Screenshot 2024-11-18 220032.png"
+                                        class="img-fluid object-fit-cover" alt="">
+                                </span>
+                                <a href="https://nick24s.com/storage/nicks/8346/501871-Screenshot 2024-11-18 220032.png"
+                                    data-index="01" data-fancybox="game-images" class="stretched-link"></a>
                             </div>
                         </div>
                         <div class="game-images_thumb" id="detail-avatar_thumb">

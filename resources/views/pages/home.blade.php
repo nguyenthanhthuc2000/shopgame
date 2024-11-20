@@ -1,24 +1,3 @@
-@php
-    $accountsList = [
-        [
-            'image' => '',
-            'account_name' => 'account',
-            'account_price' => '1',
-        ],
-        [
-            'image' => '',
-            'account_name' => 'account',
-            'account_price' => '1',
-        ],
-        [
-            'image' => '',
-            'account_name' => 'account',
-            'account_price' => '1',
-        ],
-    ];
-
-@endphp
-
 @extends('layouts.app')
 
 @section('title', 'Trang chủ')
@@ -83,12 +62,11 @@
             </div>
 
             <div class="row">
-                <div class="col-lg-4 col-md-6 text-center">
-                    @foreach ($accountsList as $account)
-                        @component('components.product-card', $account)
-                        @endforeach
+                @foreach ($accountsList as $account)
+                    <div class="col-lg-4 col-md-6 text-center">
+                        @include('components.product-card', $account)
                     </div>
-                </div>
+                @endforeach
             </div>
 
             <div class="row">
@@ -97,7 +75,7 @@
                 </div>
             </div>
         </div>
-        </div>
+    </div>
 
-        {{-- endproduct section --}}
-    @endsection
+    {{-- endproduct section --}}
+@endsection

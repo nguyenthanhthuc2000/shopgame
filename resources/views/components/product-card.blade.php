@@ -1,8 +1,9 @@
 <div class="single-product-item">
     <div class="product-image">
-        <a href="5G0ld.html"><img src="assets/img/NickAvatar2D/5G0ld-bia.png" alt=""></a>
+        <a href="5G0ld.html"><img src="{{ $account['account_image'] ?? '' }}" alt=""></a>
     </div>
-    <h3><b>Tên Nick :</b> 5G0ld</h3>
-    <p class="product-price"> 750.000 VND </p>
-    <a href="5G0ld.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Mua Ngay</a>
+    <h3><b>Tên Nick :</b> {{ $account['account_name'] ?? '' }}</h3>
+    <p class="product-price"> {{ $account['account_price'] ?? '' }} VND </p>
+    <a href="{{ route('accounts.show', $account['id']) }}" class="cart-btn"><i class="fas fa-shopping-cart"></i> Chi
+        tiết</a>
 </div>

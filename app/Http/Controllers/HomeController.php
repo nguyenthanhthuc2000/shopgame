@@ -20,7 +20,27 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('pages.home');
+        $accountsList = [
+            [
+                'id' => 1,
+                'account_image' => 'https://avatarqn.com/assets/img/NickAvatar2D/5G0ld-bia.png',
+                'account_name' => 'account',
+                'account_price' => '750',
+            ],
+            [
+                'id' => 2,
+                'account_image' => 'https://avatarqn.com/assets/img/NickAvatar2D/5G0ld-bia.png',
+                'account_name' => 'account 2',
+                'account_price' => '250',
+            ],
+            [
+                'id' => 3,
+                'account_image' => 'https://avatarqn.com/assets/img/NickAvatar2D/5G0ld-bia.png',
+                'account_name' => 'account 3',
+                'account_price' => '150',
+            ],
+        ];
+        return view('pages.home', compact('accountsList'));
     }
     public function card()
     {
