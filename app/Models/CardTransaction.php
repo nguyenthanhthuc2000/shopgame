@@ -69,5 +69,10 @@ class CardTransaction extends Model
         self::IS_ERROR_TRANSACTION => 'Thất bại',
     ];
 
-    const HISTORY_PERPAGE = 10;
+    const HISTORY_PERPAGE = 15;
+
+    public function user()
+    {
+        return $this->hasOne(User::class);
+    }
 }

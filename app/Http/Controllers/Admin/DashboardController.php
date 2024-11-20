@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\AccountTransaction;
+use App\Models\CardTransaction;
+use App\Models\Admin\BankTransaction;
 use App\Models\User;
 use App\Models\Account;
 use Illuminate\Support\Facades\DB;
@@ -24,31 +26,36 @@ class DashboardController extends Controller
             DB::raw('SUM(seller_vnd) as total_seller_vnd')
         ])->first();
 
-        $account = Account::select(
+        $account = Account::select([
             DB::raw('COUNT(CASE WHEN status = 1 THEN 1 END) as total_available'),
             DB::raw('COUNT(CASE WHEN status = 0 THEN 1 END) as total_hiden'),
             DB::raw('COUNT(CASE WHEN status = 2 THEN 1 END) as total_sold')
-        )->first();
+        ])->first();
 
         $accountTransactionToday = AccountTransaction::select([
             DB::raw('SUM(price) as total_price'),
-            DB::raw('SUM(profit) as total_profit')
-        ])->whereDate('created_at', Carbon::today())->first();
+        ])->where('order_status', AccountTransaction::ORDER_SUCCESS)->whereDate('created_at', Carbon::today())->first();
 
         $accountTransaction = AccountTransaction::select([
             DB::raw('SUM(price) as total_price'),
-            DB::raw('SUM(profit) as total_profit')
-        ])->first();
+            DB::raw('SUM(seller_profit) as total_seller_profit'),
+        ])->where('order_status', AccountTransaction::ORDER_SUCCESS)->where('order_status', )->first();
+
+        $cardAmount = CardTransaction::where('status', CardTransaction::IS_SUCCESS_TRANSACTION)->sum('amount');
+        $bankAmount = CardTransaction::where('type', BankTransaction::INCREASE_TYPE)->sum('amount');
 
         // Doanh thu bán nick hôm nay - card
         $todayRevenueCard = $accountTransactionToday->total_price;
-        // Lợi nhuận bán nick hôm nay - vnd
-        $todayRevenueCardProcessed = $accountTransactionToday->total_profit;
 
         // Doanh thu bán nick all - card
         $todayRevenueCardAll = $accountTransaction->total_price;
-        // Lợi nhuận bán nick all - vnd
-        $todayRevenueCardProcessedAll = $accountTransaction->total_profit;
+
+        // Tổng doanh thu vnd của CTV
+        $totalPartnerRevenue = $accountTransaction->total_seller_profit;
+        // Tổng doanh thu vnd: (TSR + ATM)
+        $totalRevenue = $cardAmount + $bankAmount;
+        // Tổng lợi nhuận vnd: (TSR + ATM) - CTV
+        $totalProfit = $totalRevenue - $totalPartnerRevenue;
 
         // Số dư buyer
         $buyerVnd = $balance->total_buyer_vnd;
@@ -56,7 +63,7 @@ class DashboardController extends Controller
         $sellerVnd = $balance->total_buyer_vnd;
         
         // Tổng nick đang ẩn
-        $totalRemainingNicks = $account->total_hiden;
+        $totalHideNicks = $account->total_hiden;
         // Tổng số nick còn lại
         $totalRemainingNicks = $account->total_hiden;
         // Tổng số nick đã bán
@@ -64,13 +71,15 @@ class DashboardController extends Controller
 
         return view('pages.admin.index', compact([
             'todayRevenueCard',
-            'todayRevenueCardProcessed',
             'todayRevenueCardAll',
-            'todayRevenueCardProcessedAll',
             'buyerVnd',
             'sellerVnd',
+            'totalHideNicks',
             'totalRemainingNicks',
             'totalNumberOfNicksSold',
+            'totalPartnerRevenue',
+            'totalRevenue',
+            'totalProfit',
         ])); 
     }
 }
