@@ -5,6 +5,8 @@ use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/card', [App\Http\Controllers\HomeController::class, 'card'])->name('card');
+Route::get('/detail', [App\Http\Controllers\HomeController::class, 'detail'])->name('detail');
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'auth.session']], function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
