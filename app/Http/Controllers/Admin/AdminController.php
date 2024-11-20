@@ -13,7 +13,7 @@ use Illuminate\Support\Carbon;
 class AdminController extends Controller
 {
     /**
-     * Danh sách cộng / trừ tiền
+     * Trang dashboard
      * 
      * @param Request $request
      */
