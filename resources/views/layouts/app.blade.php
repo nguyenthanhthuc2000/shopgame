@@ -8,7 +8,7 @@
     <title>@yield('title', 'AvatarQN - Shop Nick AVATAR')</title>
     @include('components.style')
     @vite(['resources/sass/app.scss'])
-    @yield('css')
+    @stack('css')
 </head>
 
 <body>
@@ -26,5 +26,5 @@
 
     @include('components.script')
 
-    @yield('js')
+    @stack('js')
 </body>
