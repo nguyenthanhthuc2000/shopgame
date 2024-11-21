@@ -20,9 +20,9 @@ return [
             //     ],
             // ]
         ],
-        // [
-        //     'name' => 'Về chúng tôi',
-        //     'route_name' => 'about.list',
-        // ],
+        [
+            'name' => 'Giới thiệu',
+            'route_name' => 'services.list',
+        ],
     ],
 ];

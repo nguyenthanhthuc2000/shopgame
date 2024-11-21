@@ -5,112 +5,13 @@
                 <div class="col-lg-10 offset-lg-1 text-center">
                     <div class="hero-text">
                         <div class="hero-text-tablecell">
-                            <p class="subtitle animated fadeInUp" style="opacity: 0;">Đặt Uy Tín Lên Hàng
-                                Đầu</p>
-                            <h1 style="opacity: 0; animation-delay: 0.3s;" class="animated fadeInUp">SHOP
-                                NICK AVATAR 2D</h1>
-                            <div class="hero-btns animated fadeInUp" style="opacity: 0; animation-delay: 0.5s;">
-                                <a href="shop.html" class="boxed-btn">Mua Nick Avatar</a>
-                                <a href="https://zalo.me/g/hujveh995" target="_blank" class="bordered-btn">Tham Gia
-                                    Kênh Zalo</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="single-homepage-slider homepage-bg-2">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 offset-lg-1 text-left">
-                    <div class="hero-text">
-                        <div class="hero-text-tablecell">
-                            <p class="subtitle animated fadeInUp" style="opacity: 0;">Uy Tín - Tốc Độ</p>
-                            <h1 style="opacity: 0; animation-delay: 0.3s;" class="animated fadeInUp">NẠP
-                                LƯỢNG THẺ CAROT</h1>
-                            <div class="hero-btns animated fadeInUp" style="opacity: 0; animation-delay: 0.5s;">
-                                <a href="carot.html" class="boxed-btn">Tìm Hiểu Ngay</a>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="single-homepage-slider homepage-bg-3">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 offset-lg-1 text-right">
-                    <div class="hero-text">
-                        <div class="hero-text-tablecell">
-                            <p class="subtitle animated fadeInUp" style="opacity: 0;">Chất Lượng - Đầy Đủ -
-                                Hài Lòng</p>
-                            <h1 class="animated fadeInUp" style="opacity: 0; animation-delay: 0.3s;">DỊCH VỤ
-                                UP XU AVATAR</h1>
-                            <div class="hero-btns animated fadeInUp" style="opacity: 0; animation-delay: 0.5s;">
-                                <a href="dichvuupxu.html" class="boxed-btn">Tìm Hiểu Ngay</a>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="single-homepage-slider homepage-bg-4">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 offset-lg-1 text-center">
-                    <div class="hero-text">
-                        <div class="hero-text-tablecell">
-                            <p class="subtitle animated fadeInUp" style="opacity: 0;">Thông Tin - Chức Năng
-                                Các Item</p>
-                            <h1 class="animated fadeInUp" style="opacity: 0; animation-delay: 0.3s;">BLOG
-                                GAME AVATAR 2D</h1>
-                            <div class="hero-btns animated fadeInUp" style="opacity: 0; animation-delay: 0.5s;">
-                                <a href="blog.html" class="boxed-btn">Xem Ngay</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="single-homepage-slider homepage-bg-1">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 offset-lg-1 text-center">
-                    <div class="hero-text">
-                        <div class="hero-text-tablecell">
-                            <p class="subtitle animated fadeInUp" style="opacity: 0;">Đặt Uy Tín Lên Hàng
-                                Đầu</p>
-                            <h1 class="animated fadeInUp" style="opacity: 0; animation-delay: 0.3s;">SHOP
-                                NICK AVATAR 2D</h1>
-                            <div class="hero-btns animated fadeInUp" style="opacity: 0; animation-delay: 0.5s;">
-                                <a href="shop.html" class="boxed-btn">Mua Nick Avatar</a>
-                                <a href="https://zalo.me/g/hujveh995" target="_blank" class="bordered-btn">Tham Gia
-                                    Kênh Zalo</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="single-homepage-slider homepage-bg-2">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 offset-lg-1 text-left">
-                    <div class="hero-text">
-                        <div class="hero-text-tablecell">
-                            <p class="subtitle animated fadeInUp" style="opacity: 0;">Uy Tín - Tốc Độ</p>
-                            <h1 class="animated fadeInUp" style="opacity: 0; animation-delay: 0.3s;">NẠP
-                                LƯỢNG THẺ CAROT</h1>
-                            <div class="hero-btns animated fadeInUp" style="opacity: 0; animation-delay: 0.5s;">
-                                <a href="carot.html" class="boxed-btn">Tìm Hiểu Ngay</a>
-
+                            <div class="hero-text-tablecell">
+                                <p class="subtitle animated fadeInUp" style="">Chất Lượng - Uy Tín - Hài Lòng</p>
+                                <h1 class="animated fadeInUp" style=" animation-delay: 0.3s;">NICKDAOQUAN.VN</h1>
+                                <p class="subdesc animated fadeInUp" style="">Hệ thống mua bán nick game uy tín số một Việt Nam!</p>
+                                <div class="hero-btns animated fadeInUp" style=" animation-delay: 0.5s;">
+                                    <a href="{{url()->current()}}#categories" class="boxed-btn">Xem Nick Ngay</a>
+                                </div>
                             </div>
                         </div>
                     </div>

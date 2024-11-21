@@ -52,7 +52,7 @@
             <div class="row">
                 <div class="col-lg-8 offset-lg-2 text-center">
                     <div class="section-title">
-                        <h3><span class="orange-text">Nick</span> Avatar 2D </h3>
+                        <h3 id="categories"><span class="orange-text">Nick</span> Avatar 2D </h3>
                         <p><b>Shop Nick Avatar 2D</b> luôn cập nhật liên tục cho các bạn có thể lựa chọn.<br>Các bạn có thể
                             liên hệ qua <b>Zalo <a href="https://zalo.me/0889694460" target="_blank">0889.69.4460</a></b>
                             hoặc <b>FB <a href="https://www.messenger.com/t/Hello.QN" target="_blank">Quốc Ngân</a></b> để
