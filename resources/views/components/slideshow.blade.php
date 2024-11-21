@@ -125,16 +125,16 @@
         $(document).ready(function() {
             $('.owl-carousel').owlCarousel({
                 loop: true,
-                nav: true,
+                // nav: true,
                 items: 1,
                 autoplay: true,
                 autoplayTimeout: 1000,
                 autoplayHoverPause: true,
                 dots: false,
-                navText: [
-                    '<i class="fas fa-angle-left"></i>',
-                    '<i class="fas fa-angle-right"></i>'
-                ],
+                // navText: [
+                //     '<i class="fas fa-angle-left"></i>',
+                //     '<i class="fas fa-angle-right"></i>'
+                // ],
             })
         })
     </script>
