@@ -26,5 +26,7 @@
 
     @yield('content')
 
+    @include('components.script')
+
     @yield('js')
 </body>

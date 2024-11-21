@@ -13,7 +13,15 @@ Route::get('/card', [App\Http\Controllers\HomeController::class, 'card'])->name(
 Route::get('/detail', [App\Http\Controllers\HomeController::class, 'detail'])->name('detail');
 
 Route::group(["prefix" => 'accounts'], function () {
+    Route::get('/', [AccountController::class, 'index'])->name('accounts.list');
     Route::get('/{id}', [AccountController::class, 'show'])->name('accounts.show');
+    Route::get('/create', [AccountController::class, 'create'])->name('accounts.create');
+    Route::post('/create', [AccountController::class, 'store'])->name('accounts.create.post');
+});
+
+Route::group(["prefix" => 'services'], function () {
+    Route::get('/', [AccountController::class, 'index'])->name('services.list');
+    Route::get('/{id}', [AccountController::class, 'show'])->name('services.show');
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'auth.session']], function () {
@@ -21,6 +29,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'auth.session']], fu
     Route::get('/bank-transaction/create', [AdminBankTransactionController::class, 'create'])->name('bank.tran.create');
     Route::post('/bank-transaction', [AdminBankTransactionController::class, 'store'])->name('bank.tran.store');
 });
+
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('/', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 

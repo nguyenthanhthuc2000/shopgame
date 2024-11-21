@@ -1,3 +1,7 @@
+@php
+    $menu = config('page.main_menu', []);
+@endphp
+
 <div id="sticker-sticky-wrapper" class="sticky-wrapper" style="height: 105px;">
     <div class="top-header-area" id="sticker">
         <div class="container">
@@ -13,19 +17,29 @@
 
                         <nav class="main-menu" style="display: block;">
                             <ul>
-                                <li class="current-list-item"><a href="index.html">Trang Chủ</a></li>
-                                <li><a href="shop.html">Shop Nick AVATAR 2D</a></li>
-                                <li><a href="dichvuavatar.html">Dịch Vụ Avatar 2D</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="dichvuupxu.html">Dịch Vụ Up Xu Avatar</a></li>
-                                        <li><a href="carot.html">Nạp Thẻ Carot</a></li>
-                                        <li><a href="ghepanh.html">Ghép Ảnh Avatar 2D</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="blog.html">Blog Avatar</a></li>
-                                <li><a href="about.html">Về Shop AvatarQN</a></li>
+                                @foreach ($menu as $item)
+                                    <li class="{{ isCurrentRoute($item['route_name']) ? 'current-list-item' : ''}}">
+                                        <a href="{{ $item['route_name'] ? route($item['route_name']) : '' }}">{{ $item['name'] }}</a>
+                                    </li>
+                                @endforeach
                                 <li>
+                                    {{-- @auth --}}
+                                    <div class="dropdown">
+                                        <a class="btn btn-mute dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                          Dropdown link
+                                        </a>
 
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                          <li><a class="dropdown-item" href="#">Action</a></li>
+                                          <li><a class="dropdown-item" href="#">Another action</a></li>
+                                          <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                        </ul>
+                                    </div>
+                                    {{-- @endauth --}}
+
+                                    {{-- @guest
+                                        <p>Cần đăng nhập</p>
+                                    @endguest --}}
                                 </li>
                             </ul>
                         </nav>
