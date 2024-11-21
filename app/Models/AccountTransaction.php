@@ -39,4 +39,6 @@ class AccountTransaction extends Model
      */
     protected $casts = [
     ];
+
+    const ORDER_SUCCESS = 1;
 }
