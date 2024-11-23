@@ -28,7 +28,6 @@ class DashboardController extends Controller
 
         $account = Account::select([
             DB::raw('COUNT(CASE WHEN status = 1 THEN 1 END) as total_available'),
-            DB::raw('COUNT(CASE WHEN status = 0 THEN 1 END) as total_hiden'),
             DB::raw('COUNT(CASE WHEN status = 2 THEN 1 END) as total_sold')
         ])->first();
 
@@ -38,7 +37,7 @@ class DashboardController extends Controller
         ])->where('order_status', AccountTransaction::ORDER_SUCCESS)->where('order_status', )->first();
 
         $cardAmount = CardTransaction::where('status', CardTransaction::IS_SUCCESS_TRANSACTION)->sum('amount');
-        $bankAmount = CardTransaction::where('type', BankTransaction::INCREASE_TYPE)->sum('amount');
+        $bankAmount = BankTransaction::where('type', BankTransaction::INCREASE_TYPE)->sum('amount');
 
         // Doanh thu bán nick hôm nay - card
         $todayRevenueCard = AccountTransaction::where('order_status', AccountTransaction::ORDER_SUCCESS)
@@ -60,24 +59,24 @@ class DashboardController extends Controller
         // Số dư seller
         $sellerVnd = $balance->total_seller_vnd;
         
-        // Tổng nick đang ẩn
-        $totalHideNicks = $account->total_hiden;
         // Tổng số nick còn lại
         $totalRemainingNicks = $account->total_available;
         // Tổng số nick đã bán
         $totalNumberOfNicksSold = $account->total_sold;
+
+        $totalView = 0;
 
         return view('pages.admin.index', compact([
             'todayRevenueCard',
             'todayRevenueCardAll',
             'buyerVnd',
             'sellerVnd',
-            'totalHideNicks',
             'totalRemainingNicks',
             'totalNumberOfNicksSold',
             'totalPartnerRevenue',
             'totalRevenue',
             'totalProfit',
+            'totalView',
         ])); 
     }
 }

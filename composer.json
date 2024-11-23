@@ -9,7 +9,8 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
-        "google/apiclient": "^2.18",
+        "barryvdh/laravel-debugbar": "*",
+        "google/apiclient": "*",
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9"
     },
@@ -27,7 +28,10 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        },
+        "files": [
+            "app/Helpers/Route.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

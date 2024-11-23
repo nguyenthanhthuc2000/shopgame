@@ -5,12 +5,11 @@
     <base href={{ config('app.url') }}>
     <meta charset="utf-8">
     <meta name="download_date" content="2024-11-15T16:50:50.923Z" />
-    <title>@yield('title', 'AvatarQN - Shop Nick AVATAR')</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
-        integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>@yield('title', 'Shop Nick Game Online - nickdaoquan.vn')</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/favicon.ico') }}">
+    @include('components.style')
     @vite(['resources/sass/app.scss'])
-    @yield('css')
+    @stack('css')
 </head>
 
 <body>
@@ -26,5 +25,7 @@
 
     @yield('content')
 
-    @yield('js')
+    @include('components.script')
+
+    @stack('js')
 </body>

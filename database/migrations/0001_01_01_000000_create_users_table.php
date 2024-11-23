@@ -21,8 +21,8 @@ return new class extends Migration
             $table->enum('role', ['admin', 'buyer', 'seller'])->default('buyer');
             $table->decimal('seller_vnd', 10, 2)->default(0)->comment('Số dư có thể mua nick');
             $table->decimal('buyer_vnd', 10, 2)->default(0)->comment('Số dư có thể rút');
-            $table->integer('buyer_exchange_rate')->default(0)->comment('Tỉ lệ đổi tiền từ buyer_vnd -> buyer');
-            $table->integer('seller_exchange_rate')->default(0)->comment('Tỉ lệ đổi tiền từ seller_vnd -> seller');
+            $table->integer('buyer_to_seller_rate')->default(0)->comment('Tỉ lệ đổi tiền từ buyer_vnd -> buyer');
+            $table->integer('seller_to_buyer_rate')->default(0)->comment('Tỉ lệ đổi tiền từ seller_vnd -> seller');
             $table->integer('profit_rate')->default(70)->comment('Tỉ lệ nhận tiền của ctv khi bán nick');
             $table->timestamps();
         });
