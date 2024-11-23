@@ -18,8 +18,9 @@ class BankTransactionController extends Controller
      */
     public function index(Request $request)
     {
-        $banks = BankTransaction::orderBy('id', 'DESC')
-            ->paginate();
+        $banks = BankTransaction::with(['user'])
+            ->orderBy('id', 'DESC')
+            ->paginate(10);
 
         return view('pages.admin.bank.index', compact('banks'));
     }
