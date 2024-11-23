@@ -42,10 +42,6 @@ class HomeController extends Controller
         ];
         return view('pages.home', compact('accountsList'));
     }
-    public function card()
-    {
-        return view('pages.card');
-    }
     public function detail()
     {
         return view('pages.detail');

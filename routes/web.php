@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\IsAdmin;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/card', [App\Http\Controllers\HomeController::class, 'card'])->name('card');
 Route::get('/detail', [App\Http\Controllers\HomeController::class, 'detail'])->name('detail');
+Route::get('/product', [App\Http\Controllers\ProductController::class, 'product'])->name('product');
 
 Route::group(["prefix" => 'accounts'], function () {
     Route::get('/{id}', [AccountController::class, 'show'])->name('accounts.show');
