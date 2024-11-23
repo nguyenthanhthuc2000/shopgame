@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\CardTransactionController as AdminCardTransaction
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
+use App\Http\Controllers\Admin\AccountTransactionController as AdminAccountTransactionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\IsAdmin;
 
@@ -31,6 +32,7 @@ Route::get('/admin/users', [AdminUserController::class, 'index'])->name('users.i
 Route::get('/admin/categories', [AdminCategoryController::class, 'index'])->name('categories.index');
 Route::get('/admin/bank-transactions', [AdminBankTransactionController::class, 'index'])->name('banks.tran.index');
 Route::get('/admin/card-transactions', [AdminCardTransactionController::class, 'index'])->name('cards.tran.index');
+Route::get('/admin/account-transactions', [AdminAccountTransactionController::class, 'index'])->name('accounts.tran.index');
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::post('/bank-transactions', [AdminBankTransactionController::class, 'store'])->name('banks.tran.store');

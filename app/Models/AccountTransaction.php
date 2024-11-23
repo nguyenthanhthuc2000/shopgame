@@ -41,4 +41,16 @@ class AccountTransaction extends Model
     ];
 
     const ORDER_SUCCESS = 1;
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
+    
+    public function scopeFilterByUuid($query, $uuid)
+    {
+        if (!empty($uuid)) {
+            $query->where('uuid', 'like', '%' . $uuid . '%');
+        }
+    }
 }

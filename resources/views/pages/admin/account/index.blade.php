@@ -8,7 +8,7 @@
     <div class="row g-2 align-items-center">
       <div class="col">
         <h2 class="page-title">
-          Thành viên
+          Nick game
         </h2>
       </div>
     </div>
@@ -21,10 +21,10 @@
     <div class="row row-deck row-cards">
       <div class="col-12">
         <div class="card">
-          <div class="card-header" style="justify-content: space-between;">
-            <h3 class="card-title">Danh sách</h3>
+          <div class="card-header" style="justify-content: space-between; gap: 8px;">
+            <h3 class="card-title">Lịch sử mua nick game</h3>
             <div class="my-2 my-md-0 flex-grow-1 flex-md-grow-0 order-first order-md-last">
-              <form action="{{ route('users.index') }}" method="get" autocomplete="off" novalidate>
+              <form action="{{ route('accounts.tran.index') }}" method="get" autocomplete="off" novalidate>
                 <div class="input-icon">
                     <span class="input-icon-addon">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -33,7 +33,7 @@
                             <path d="M21 21l-6 -6" />
                         </svg>
                     </span>
-                    <input type="text" name="email" value="{{ request('email') }}" class="form-control" placeholder="Tìm kiếm tài khoản..." aria-label="">
+                    <input type="text" name="uuid" value="{{ request('uuid') }}" class="form-control" placeholder="Tìm kiếm mã giao dịch..." aria-label="">
                 </div>
               </form>
             </div>
@@ -43,36 +43,39 @@
                 <thead>
                     <tr>
                         <th class="w-1">ID</th>
-                        <th>Tài khoản</th>
-                        <th>Tên</th>
-                        <th>Quyền</th>
-                        <th>Số dư (card)</th>
-                        <th>Số dư (vnđ)</th>
+                        <th>Mã giao dịch</th>
+                        <th>Email</th>
+                        <th>Mã nick</th>
+                        <th>Giá bán</th>
+                        <th>CTV nhận (CARD)</th>
                         <th>Chiếc khấu bán nick</th>
-                        <th>Card sang VND</th>
                         <th>Trạng thái</th>
                         <th>Ngày tạo</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($users as $key => $user)
+                    @foreach ($accounts as $key => $account)
                         <tr>
-                            <td>{{ $user->id }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->role }}</td>
-                            <td>{{ number_format($user->seller_vnd, 0, ',', '.') }}</td>
-                            <td>{{ number_format($user->buyer_vnd, 0, ',', '.') }}</td>
-                            <td>{{ $user->profit_rate }}%</td>
-                            <td>{{ $user->buyer_to_seller_rate }}%</td>
+                            <td>{{ $account->id }}</td>
+                            <td>{{ $account->uuid }}</td>
+                            <td>{{ $account->account_id }}</td>
                             <td>
-                                @if ($user->status === 1)
-                                  <span class="badge bg-success me-1"></span>Hoạt động
-                                @else
-                                  <span class="badge bg-warning me-1"></span>Đã khóa
-                                @endif
+                              <a href="/">{{ $account->user->email }}</a>
                             </td>
-                            <td>{{ $user->created_at->format('d/m/Y') }}</td>
+                            <td>{{ number_format($account->price, 0, ',', '.') }}</td>
+                            <td>{{ number_format($account->seller_profit, 0, ',', '.') }}</td>
+                            <td>{{ $account->profit_rate }}%</td>
+                            <td>
+                              @if ($card->status === 1)
+                                <span class="badge bg-success me-1"></span>Thành công
+                              @elseif ($card->status === 2)
+                                <span class="badge bg-warning me-1"></span>Hủy
+                              @else
+                                <span class="badge bg-danger me-1"></span>Đang xử lí
+                              @endif
+                            </td>
+                          <td>{{ $account->note }}</td>
+                          <td>{{ $account->created_at }}</td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -80,7 +83,7 @@
         </div>
         <div class="card-footer d-flex align-items-center">
             <div class="ms-auto">
-                {{ $users->links('pagination::bootstrap-5') }}
+                {{ $accounts->links('pagination::bootstrap-5') }}
             </div>
         </div>
         </div>

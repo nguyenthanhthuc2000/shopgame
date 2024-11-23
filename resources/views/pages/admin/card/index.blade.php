@@ -33,7 +33,7 @@
                             <path d="M21 21l-6 -6" />
                         </svg>
                     </span>
-                    <input type="text" name="serial" value="{{ request('serial') }}" class="form-control" placeholder="Tìm kiếm serial..." aria-label="">
+                    <input type="text" name="serial" value="{{ request('serial') }}" class="form-control" placeholder="Tìm kiếm mã thẻ..." aria-label="">
                 </div>
               </form>
             </div>

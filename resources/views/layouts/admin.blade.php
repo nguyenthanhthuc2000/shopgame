@@ -102,7 +102,7 @@
                         </a>
                       </li>
                         @php
-                            $activeTransaction = Route::is('cards.tran.index') || Route::is('banks.tran.index') ?? false;
+                            $activeTransaction = Route::is('cards.tran.index') || Route::is('banks.tran.index') || Route::is('accounts.tran.index') ?? false;
                         @endphp
                       <li class="nav-item dropdown {{ $activeTransaction ? 'active' : '' }}">
                         <a class="nav-link dropdown-toggle" href="#transaction" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
@@ -114,7 +114,7 @@
                           </span>
                         </a>
                         <div class="dropdown-menu">
-                          <a class="dropdown-item text-pink" href="/admin/card-transactions" target="_blank" rel="noopener">
+                          <a class="dropdown-item text-pink" href="/admin/account-transactions" rel="noopener">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-inline me-1" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" /></svg>
                             Mua nick
                           </a>
