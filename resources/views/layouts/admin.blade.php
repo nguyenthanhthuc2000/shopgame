@@ -91,8 +91,8 @@
                           </span>
                         </a>
                       </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="./" >
+                      <li class="nav-item {{ Route::is('categories.index') ? 'active' : '' }}">
+                        <a class="nav-link" href="/admin/categories" >
                             <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/star -->
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" /></svg>
                             </span>
@@ -102,7 +102,7 @@
                         </a>
                       </li>
                         @php
-                            $activeTransaction = Route::is('cards.tran.list') || Route::is('banks.tran.list') ?? false;
+                            $activeTransaction = Route::is('cards.tran.index') || Route::is('banks.tran.index') ?? false;
                         @endphp
                       <li class="nav-item dropdown {{ $activeTransaction ? 'active' : '' }}">
                         <a class="nav-link dropdown-toggle" href="#transaction" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
@@ -114,14 +114,14 @@
                           </span>
                         </a>
                         <div class="dropdown-menu">
-                          <a class="dropdown-item text-pink" href="https://tabler.io/docs" target="_blank" rel="noopener">
+                          <a class="dropdown-item text-pink" href="/admin/card-transactions" target="_blank" rel="noopener">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-inline me-1" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" /></svg>
                             Mua nick
                           </a>
-                          <a class="dropdown-item" href="./changelog.html">
+                          <a class="dropdown-item" href="/admin/card-transactions">
                             Nạp thẻ
                           </a>
-                          <a class="dropdown-item" href="https://github.com/tabler/tabler" target="_blank" rel="noopener">
+                          <a class="dropdown-item" href="/admin/bank-transactions" target="_blank" rel="noopener">
                             Nạp ATM
                           </a>
                         </div>

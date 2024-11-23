@@ -73,6 +73,13 @@ class CardTransaction extends Model
 
     public function user()
     {
-        return $this->hasOne(User::class);
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
+    
+    public function scopeFilterBySerial($query, $serial)
+    {
+        if (!empty($serial)) {
+            $query->where('serial', 'like', '%' . $serial . '%');
+        }
     }
 }

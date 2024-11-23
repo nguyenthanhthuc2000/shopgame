@@ -15,8 +15,12 @@ class CardTransactionController extends Controller
      */
     public function index(Request $request)
     {
-        $cardTrans = CardTransaction::with(['user'])->orderBy('id', 'DESC')->paginate();
+        $cards = CardTransaction::with(['user'])
+            ->FilterBySerial($request->input('serial'))
+            ->orderBy('id', 'DESC')
+            ->paginate()
+            ->withQueryString();
 
-        return view('pages.admin.card.index', compact('cardTrans'));
+        return view('pages.admin.card.index', compact('cards'));
     }
 }

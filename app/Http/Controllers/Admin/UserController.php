@@ -18,9 +18,9 @@ class UserController extends Controller
         $users = User::orderBy('id', 'DESC')
             ->filterByEmail($request->input('email'))
             ->paginate(10)
-            ->withQueryString(); // Giữ tham số tìm kiếm trên URL
+            ->withQueryString();
 
-        return view('pages.admin.users', compact([
+        return view('pages.admin.user.index', compact([
             'users',
         ])); 
     }
