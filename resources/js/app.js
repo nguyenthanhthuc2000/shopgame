@@ -1,2 +1,3 @@
-import './bootstrap';
-import './common/slideshow';
+import './lib';
+import './components';
+import './pages';

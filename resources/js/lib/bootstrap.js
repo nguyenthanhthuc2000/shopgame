@@ -1,4 +1,6 @@
-import 'bootstrap';
+import 'owl.carousel/dist/assets/owl.carousel.css';
+import 'owl.carousel';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests

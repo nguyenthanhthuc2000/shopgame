@@ -1,0 +1,326 @@
+$font-family_1: Arial, Helvetica, sans-serif;
+$font-family_2: "Iner", sans-serif;
+$font-family_3: "Inter", sans-serif;
+$font-family_4: "Inter", sans-serif;
+
+/*! #######################################################################
+
+	MeanMenu 2.0.7
+	--------
+
+	To be used with jquery.meanmenu.js by Chris Wharton (http://www.meanthemes.com/plugins/meanmenu/)
+
+####################################################################### */
+/*
+Template Name: Fruitkha - Responsive Bootstrap4 Shop Template
+Template URI:
+Description: Bootstrap template for fruits or any other kind of shop
+Author: Imran Hossain
+Author URI: https://imransdesign.com/
+Version: 1.0
+*/
+/* -----------------------------------------------------------------------------
+
+# Base - Genral & Typography
+
+----------------------------------------------------------------------------- */
+a.meanmenu-reveal {
+    display: none;
+}
+
+.mean-container {
+    .mean-bar {
+        float: left;
+        width: 100%;
+        position: relative;
+        background: #0c1923;
+        padding: 4px 0;
+        min-height: 42px;
+        z-index: 999999;
+        -webkit-box-sizing: content-box;
+        -moz-box-sizing: content-box;
+        box-sizing: content-box;
+        * {
+            -webkit-box-sizing: content-box;
+            -moz-box-sizing: content-box;
+            box-sizing: content-box;
+        }
+    }
+    a.meanmenu-reveal {
+        width: 22px;
+        height: 22px;
+        padding: 13px 13px 11px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        cursor: pointer;
+        color: #fff;
+        text-decoration: none;
+        font-size: 16px;
+        text-indent: -9999em;
+        line-height: 22px;
+        font-size: 1px;
+        display: block;
+        font-family: $font-family_1;
+        font-weight: 700;
+        span {
+            display: block;
+            background: #fff;
+            height: 3px;
+            margin-top: 3px;
+        }
+    }
+    .mean-nav {
+        float: left;
+        width: 100%;
+        background: #0c1923;
+        margin-top: 44px;
+        ul {
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            list-style-type: none;
+            li {
+                position: relative;
+                float: left;
+                width: 100%;
+                a {
+                    display: block;
+                    float: left;
+                    width: 90%;
+                    padding: 1em 5%;
+                    margin: 0;
+                    text-align: left;
+                    color: #fff;
+                    border-top: 1px solid #383838;
+                    border-top: 1px solid rgba(255, 255, 255, 0.5);
+                    text-decoration: none;
+                    text-transform: uppercase;
+                    &:hover {
+                        background: #252525;
+                        background: rgba(255, 255, 255, 0.1);
+                    }
+                }
+                li {
+                    a {
+                        width: 80%;
+                        padding: 1em 10%;
+                        border-top: 1px solid #f1f1f1;
+                        border-top: 1px solid rgba(255, 255, 255, 0.25);
+                        opacity: 0.75;
+                        filter: alpha(opacity=75);
+                        text-shadow: none !important;
+                        visibility: visible;
+                    }
+                    li {
+                        a {
+                            width: 70%;
+                            padding: 1em 15%;
+                        }
+                        li {
+                            a {
+                                width: 60%;
+                                padding: 1em 20%;
+                            }
+                            li {
+                                a {
+                                    width: 50%;
+                                    padding: 1em 25%;
+                                }
+                            }
+                        }
+                    }
+                }
+                a.mean-expand {
+                    margin-top: 1px;
+                    width: 26px;
+                    height: 32px;
+                    padding: 12px !important;
+                    text-align: center;
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                    z-index: 2;
+                    font-weight: 700;
+                    background: rgba(255, 255, 255, 0.1);
+                    border: 0 !important;
+                    border-left: 1px solid rgba(255, 255, 255, 0.4) !important;
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+                    &:hover {
+                        background: rgba(0, 0, 0, 0.9);
+                    }
+                }
+            }
+            li.mean-last {
+                a {
+                    border-bottom: 0;
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+    .mean-push {
+        float: left;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        clear: both;
+    }
+}
+
+.mean-nav {
+    .wrapper {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+}
+
+.mean-remove {
+    display: none !important;
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none;
+    -webkit-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+        color: $main-color;
+        text-decoration: none;
+    }
+}
+
+h1,
+.h1 {
+    font-family: $font-family_3;
+    font-weight: 700;
+    margin: 0 0 1.25rem 0;
+    color: #051922;
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 4rem;
+    &:last-child {
+        margin: 0;
+    }
+}
+
+.h2,
+h2 {
+    font-family: $font-family_3;
+    font-weight: 700;
+    margin: 0 0 1.25rem 0;
+    color: #051922;
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 3.25rem;
+    &:last-child {
+        margin: 0;
+    }
+}
+
+.h3,
+h3 {
+    font-family: $font-family_3;
+    font-weight: 700;
+    margin: 0 0 1.25rem 0;
+    color: #051922;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 2.25rem;
+    &:last-child {
+        margin: 0;
+    }
+}
+
+.h4,
+h4 {
+    font-family: $font-family_3;
+    font-weight: 700;
+    margin: 0 0 1.25rem 0;
+    color: #051922;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.75rem;
+    &:last-child {
+        margin: 0;
+    }
+}
+
+.h5,
+h5 {
+    font-family: $font-family_3;
+    font-weight: 700;
+    margin: 0 0 1.25rem 0;
+    color: #051922;
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.5rem;
+    &:last-child {
+        margin: 0;
+    }
+}
+
+.h6,
+h6 {
+    font-family: $font-family_3;
+    font-weight: 700;
+    margin: 0 0 1.25rem 0;
+    color: #051922;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.5rem;
+    &:last-child {
+        margin: 0;
+    }
+}
+
+p {
+    font-family: $font-family_4;
+    font-weight: 400;
+    font-size: 1rem;
+    letter-spacing: 0.1px;
+    line-height: 1.8;
+    color: #051922;
+    margin: 0 0 1.25rem 0;
+    &:last-child {
+        margin: 0;
+    }
+}
+
+@media only screen and (max-width: 767.96px) {
+    .h1,
+    h1 {
+        font-size: 3rem;
+        line-height: 3.25rem;
+    }
+    .h2,
+    h2 {
+        font-size: 2.5rem;
+        line-height: 2.75rem;
+    }
+}
+
+@media only screen and (max-width: 575.96px) {
+    .h1,
+    h1 {
+        font-size: 2.5rem;
+        line-height: 2.75rem;
+    }
+    .h2,
+    h2 {
+        font-size: 2rem;
+        line-height: 2.25rem;
+    }
+    .h3,
+    h3 {
+        font-size: 1.75rem;
+        line-height: 2rem;
+    }
+    .h4,
+    h4 {
+        font-size: 1.25rem;
+        line-height: 1.5rem;
+    }
+}

@@ -1,8 +1,29 @@
+html {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 28px;
+    height: 100%;
+}
+
 html,
 body {
     cursor: url("@/images/mouse/mouse-f1.png"), auto;
+
+    font-family: $body-font-family;
+    font-weight: 400;
+    font-size: 1rem;
+    letter-spacing: 0.1px;
+    line-height: 1.8;
+    color: #051922;
+    overflow-x: hidden;
+    img {
+        max-width: 100%;
+    }
 }
 
-a:hover {
-    cursor: url("@/images/mouse/mouse-f2.png"), auto;
+a,
+button {
+    &:hover {
+        cursor: url("@/images/mouse/mouse-f2.png"), auto;
+    }
 }

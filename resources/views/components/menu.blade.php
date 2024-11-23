@@ -25,9 +25,9 @@
                                 <li>
                                     {{-- @auth --}}
                                     <div class="dropdown">
-                                        <a class="btn btn-mute dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <button class="btn btn-mute dropdown-toggle border-0" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                                           Dropdown link
-                                        </a>
+                                        </button>
 
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                           <li><a class="dropdown-item" href="#">Action</a></li>
