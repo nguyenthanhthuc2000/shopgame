@@ -22,7 +22,7 @@
       <div class="col-12">
         <div class="card">
           <div class="card-header" style="justify-content: space-between;">
-            <h3 class="card-title">Danh sách thành viên</h3>
+            <h3 class="card-title">Danh sách</h3>
             <div class="my-2 my-md-0 flex-grow-1 flex-md-grow-0 order-first order-md-last">
               <form action="{{ route('users.index') }}" method="get" autocomplete="off" novalidate>
                 <div class="input-icon">

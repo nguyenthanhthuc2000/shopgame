@@ -8,7 +8,7 @@
     <div class="row g-2 align-items-center">
       <div class="col">
         <h2 class="page-title">
-          Danh mục game
+          Cộng / trừ tiền
         </h2>
       </div>
     </div>
@@ -21,10 +21,9 @@
     <div class="row row-deck row-cards">
       <div class="col-12">
         <div class="card">
-          <div class="card-header" style="justify-content: space-between;">
-            <h3 class="card-title">Danh sách</h3>
+          <div class="card-header" style="justify-content: space-between; gap: 8px;">
+            <h3 class="card-title">Lịch sử cộng / trừ tiền</h3>
             <div class="my-2 my-md-0 flex-grow-1 flex-md-grow-0 order-first order-md-last">
-              
             </div>
           </div>
           <div class="table-responsive">
@@ -32,26 +31,32 @@
                 <thead>
                     <tr>
                         <th class="w-1">ID</th>
-                        <th>Tên</th>
-                        <th>Tiêu đề</th>
-                        <th>Trạng thái</th>
+                        <th>Email</th>
+                        <th>Admin nhận qua ATM</th>
+                        <th>Thành viên nhận</th>
+                        <th>Loại</th>
+                        <th>Ghi chú</th>
+                        <th>Ngày tạo</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($categories as $key => $category)
+                    @foreach ($banks as $key => $bank)
                         <tr>
-                            <td>{{ $category->id }}</td>
+                            <td>{{ $bank->id }}</td>
                             <td>
-                              <a href="/">{{ $category->name }}</a>
+                              <a href="/">{{ $bank->user->email }}</a>
                             </td>
-                            <td>{{ $category->title }}</td>
+                            <td>{{ number_format($bank->amount, 0, ',', '.') }}</td>
+                            <td>{{ number_format($bank->buyer_vnd, 0, ',', '.') }}</td>
                             <td>
-                              @if ($category->status === 1)
-                                <span class="badge bg-success me-1"></span>Hoạt động
+                              @if ($bank->type === \App\Models\CardTransaction::IS_SUCCESS_TRANSACTION)
+                                Cộng tiền
                               @else
-                                <span class="badge bg-warning me-1"></span>Ngưng hoạt động
+                                Trừ tiền
                               @endif
                           </td>
+                          <td>{{ $bank->note }}</td>
+                          <td>{{ $bank->created_at }}</td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -59,7 +64,7 @@
         </div>
         <div class="card-footer d-flex align-items-center">
             <div class="ms-auto">
-                {{ $categories->links('pagination::bootstrap-5') }}
+                {{ $banks->links('pagination::bootstrap-5') }}
             </div>
         </div>
         </div>

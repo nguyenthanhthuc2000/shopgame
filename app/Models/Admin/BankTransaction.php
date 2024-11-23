@@ -3,6 +3,7 @@
 namespace App\Models\Admin;
  
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
 class BankTransaction extends Model
 {
@@ -40,4 +41,9 @@ class BankTransaction extends Model
 
     const INCREASE_TYPE = 1; // Cộng tiền
     const DECREASE_TYPE = 0; // Trừ tiền
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
 }
