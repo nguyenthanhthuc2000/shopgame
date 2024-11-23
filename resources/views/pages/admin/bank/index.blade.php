@@ -8,7 +8,7 @@
     <div class="row g-2 align-items-center">
       <div class="col">
         <h2 class="page-title">
-          Cộng / trừ tiền
+          Cộng / trừ số dư
         </h2>
       </div>
     </div>
@@ -22,8 +22,14 @@
       <div class="col-12">
         <div class="card">
           <div class="card-header" style="justify-content: space-between; gap: 8px;">
-            <h3 class="card-title">Lịch sử cộng / trừ tiền</h3>
+            <h3 class="card-title">Lịch sử cộng / trừ số dư</h3>
             <div class="my-2 my-md-0 flex-grow-1 flex-md-grow-0 order-first order-md-last">
+              <div class="btn-list">
+                <a href="/admin/bank-transactions/create" class="btn btn-primary">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 5l0 14"></path><path d="M5 12l14 0"></path></svg>
+                  Tạo giao dịch
+                </a>
+              </div>
             </div>
           </div>
           <div class="table-responsive">

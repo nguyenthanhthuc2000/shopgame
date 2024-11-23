@@ -33,8 +33,8 @@ Route::get('/admin/categories', [AdminCategoryController::class, 'index'])->name
 Route::get('/admin/bank-transactions', [AdminBankTransactionController::class, 'index'])->name('banks.tran.index');
 Route::get('/admin/card-transactions', [AdminCardTransactionController::class, 'index'])->name('cards.tran.index');
 Route::get('/admin/account-transactions', [AdminAccountTransactionController::class, 'index'])->name('accounts.tran.index');
+Route::get('/admin/bank-transactions/create', [AdminBankTransactionController::class, 'create'])->name('banks.tran.create');
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::post('/bank-transactions', [AdminBankTransactionController::class, 'store'])->name('banks.tran.store');
-    Route::get('/bank-transactions/create', [AdminBankTransactionController::class, 'create'])->name('banks.tran.create');
 })->middleware(IsAdmin::class);
