@@ -15,9 +15,12 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $users = User::orderBy('id', 'DESC')->paginate(15);
+        $users = User::orderBy('id', 'DESC')
+            ->filterByEmail($request->input('email'))
+            ->paginate(10)
+            ->withQueryString(); // Giữ tham số tìm kiếm trên URL
 
-        return view('pages.admin.user.index', compact([
+        return view('pages.admin.users', compact([
             'users',
         ])); 
     }

@@ -45,4 +45,14 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * Scope để lọc theo email.
+     */
+    public function scopeFilterByEmail($query, $email)
+    {
+        if (!empty($email)) {
+            $query->where('email', 'like', '%' . $email . '%');
+        }
+    }
 }

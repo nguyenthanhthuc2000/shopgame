@@ -17,6 +17,7 @@ return new class extends Migration
             $table->decimal('amount', 10, 2)->comment('Tiền admin đã nhận qua ATM, MOMO');
             $table->decimal('buyer_vnd', 10, 2)->comment('Tiền người nạp sẽ nhận (cộng vào buyer_vnd)'); 
             $table->string('ip', 100)->comment('IP Admin thực hiện tạo lệnh nap');
+            $table->tinyInteger('type')->default(0)->comment('1: Cộng tiền, 0: Trừ tiền');
             $table->string('note', 255)->nullable(); // Ghi chú của admin khi tạo lệnh
             $table->timestamps();
         });
