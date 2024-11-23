@@ -46,6 +46,11 @@ class AccountTransaction extends Model
     {
         return $this->hasOne(User::class, 'id', 'user_id');
     }
+
+    public function account()
+    {
+        return $this->hasOne(Account::class, 'id', 'account_id');
+    }
     
     public function scopeFilterByUuid($query, $uuid)
     {

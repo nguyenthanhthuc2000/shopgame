@@ -18,7 +18,7 @@ class AccountTransactionController extends Controller
      */
     public function index(Request $request)
     {
-        $accounts = AccountTransaction::with(['user'])
+        $accounts = AccountTransaction::with(['user', 'account.category'])
             ->FilterByUuid($request->input('uuid'))
             ->orderBy('id', 'DESC')
             ->paginate()

@@ -46,6 +46,7 @@
                         <th>Mã giao dịch</th>
                         <th>Email</th>
                         <th>Mã nick</th>
+                        <th>Danh mục</th>
                         <th>Giá bán</th>
                         <th>CTV nhận (CARD)</th>
                         <th>Chiếc khấu bán nick</th>
@@ -59,6 +60,7 @@
                             <td>{{ $account->id }}</td>
                             <td>{{ $account->uuid }}</td>
                             <td>{{ $account->account_id }}</td>
+                            <td>{{ $account->account->category->name }}</td>
                             <td>
                               <a href="/">{{ $account->user->email }}</a>
                             </td>
