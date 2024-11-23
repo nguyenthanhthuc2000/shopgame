@@ -16,5 +16,6 @@ class DatabaseSeeder extends Seeder
         User::factory(100)->create();
         $this->call(CategorySeeder::class);
         $this->call(FakeTransactionSeeder::class);
+        $this->call(FakeNickTransactionSeeder::class);
     }
 }
