@@ -5,7 +5,8 @@
     <base href={{ config('app.url') }}>
     <meta charset="utf-8">
     <meta name="download_date" content="2024-11-15T16:50:50.923Z" />
-    <title>@yield('title', 'AvatarQN - Shop Nick AVATAR')</title>
+    <title>@yield('title', 'Shop Nick Game Online - nickdaoquan.vn')</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/favicon.ico') }}">
     @include('components.style')
     @vite(['resources/sass/app.scss'])
     @stack('css')

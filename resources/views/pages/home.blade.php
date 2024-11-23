@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Trang chủ')
+@section('title', 'nickdaoquan.vn - Shop Nick Game Online')
 
 @section('content')
 

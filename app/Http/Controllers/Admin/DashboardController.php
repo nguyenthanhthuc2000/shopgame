@@ -21,6 +21,8 @@ class DashboardController extends Controller
      */
     public function index(Request $request)
     {
+        return view('pages.admin.index');
+        
         $balance = User::select([
             DB::raw('SUM(buyer_vnd) as total_buyer_vnd'),
             DB::raw('SUM(seller_vnd) as total_seller_vnd')

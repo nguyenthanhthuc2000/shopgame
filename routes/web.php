@@ -30,8 +30,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'auth.session']], fu
     Route::post('/bank-transaction', [AdminBankTransactionController::class, 'store'])->name('bank.tran.store');
 });
 
+Route::get('/admin', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
-    Route::get('/', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
     Route::get('/bank-transactions', [AdminBankTransactionController::class, 'index'])->name('bank.tran.list');
     Route::get('/bank-transactions/create', [AdminBankTransactionController::class, 'create'])->name('bank.tran.create');
