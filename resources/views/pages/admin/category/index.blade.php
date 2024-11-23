@@ -21,7 +21,7 @@
     <div class="row row-deck row-cards">
       <div class="col-12">
         <div class="card">
-          <div class="card-header" style="justify-content: space-between;">
+          <div class="card-header" style="justify-content: space-between; gap:8px;">
             <h3 class="card-title">Danh sách</h3>
             <div class="my-2 my-md-0 flex-grow-1 flex-md-grow-0 order-first order-md-last">
               
