@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'nickdaoquan.vn - Shop Nick Game Online')
+@section('title', 'NickDaoQuan.VN | Shop Nick Ngọc Rồng Online Giá Rẻ, Uy Tín')
 
 @section('content')
 
@@ -15,7 +15,7 @@
                         </div>
                         <div class="content">
                             <h3>Uy Tín</h3>
-                            <p>Shop AvatarQN luôn đặt uy tín và sự tin tưởng của khách hàng lên hàng đầu.</p>
+                            <p>Shop NickDaoQuan.vn luôn đặt uy tín và sự tin tưởng của khách hàng lên hàng đầu.</p>
                         </div>
                     </div>
                 </div>
@@ -52,11 +52,11 @@
             <div class="row">
                 <div class="col-12 text-center">
                     <div class="section-title">
-                        <h3 id="categories"><span class="orange-text">Nick</span> Avatar 2D </h3>
-                        <p class="m-auto"><b>Shop Nick Avatar 2D</b> luôn cập nhật liên tục cho các bạn có thể lựa chọn.<br>Các bạn có thể
-                            liên hệ qua <b>Zalo <a href="https://zalo.me/0889694460" target="_blank">0889.69.4460</a></b>
-                            hoặc <b>FB <a href="https://www.messenger.com/t/Hello.QN" target="_blank">Quốc Ngân</a></b> để
-                            xem Nick mới nhất hoặc tìm kiếm các Nick đúng với yêu cầu cá nhân.</p>
+                        <h3 id="categories"><span class="orange-text">Danh Mục</span> Game </h3>
+                        <p class="m-auto"><b>Shop NickDaoQuan.Vn</b> luôn cập nhật liên tục cho các bạn có thể lựa chọn.<br>Các bạn có thể
+                            liên hệ qua <b>Zalo <a href="https://zalo.me/0389946423" target="_blank">0389.946.423</a></b>
+                            hoặc <b>FB <a href="https://www.facebook.com/nguyenthanhthuc.2k/" target="_blank">Nguyễn Thành Thức</a></b> để
+                            được hổ trợ nhanh chóng (19h-24h thứ 2 đến thứ 6, cuối tuần cả ngày).</p>
                     </div>
                 </div>
             </div>

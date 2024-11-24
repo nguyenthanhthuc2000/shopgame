@@ -5,8 +5,16 @@
     <base href={{ config('app.url') }}>
     <meta charset="utf-8">
     <meta name="download_date" content="2024-11-15T16:50:50.923Z" />
-    <title>@yield('title', 'Shop Nick Game Online - nickdaoquan.vn')</title>
+    <title>@yield('title', 'NickDaoQuan.VN | Shop Nick Ngọc Rồng Online Giá Rẻ, Uy Tín')</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/favicon.ico') }}">
+    <meta name="description" content="NickDaoQuan.vn - Shop bán nick game online uy tín, giá rẻ. Tài khoản game chất lượng với đầy đủ tựa game hot như Ngọc Rồng Online, Liên Quân Mobile. Hỗ trợ giao dịch nhanh chóng, bảo hành uy tín.">
+    <meta name="keywords"content="shop nick game, nickdaoquan.vn, mua bán tài khoản game, nick game giá rẻ, shop game uy tín, bán nick game online">
+    <meta name="author" content="Nguyễn Thành Thức">
+    <meta property="og:title" content="Mua Nick Ngọc Rồng Online Giá Rẻ - nickdaoquan.vn">
+    <meta property="og:description" content="Shop nick Ngọc Rồng Online giá rẻ, đầy đủ sức mạnh, giao dịch nhanh chóng, bảo hành uy tín tại nickdaoquan.vn.">
+    <meta property="og:image" content="{{ asset('assets/images/avatar.jpg') }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+
     @include('components.style')
     @vite(['resources/sass/app.scss'])
     @stack('css')
