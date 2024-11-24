@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function product()
+    public function index(Request $request)
     {
         $productList = [
             [
@@ -59,6 +59,17 @@ class ProductController extends Controller
             ],
 
         ];
+
         return view('pages.product', compact('productList'));
+    }
+
+    public function show($id)
+    {
+        dd($id);
+    }
+
+    public function edit($id)
+    {
+        dd($id);
     }
 }
