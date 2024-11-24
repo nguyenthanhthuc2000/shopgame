@@ -20,7 +20,7 @@ Route::get('/product', [App\Http\Controllers\ProductController::class, 'product'
 Route::get('/dang-nhap', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/dang-nhap', [AuthController::class, 'login'])->name('auth.login');
 Route::post('/dang-ky', [AuthController::class, 'register'])->name('auth.register');
-Route::post('/dang-xuat', [AuthController::class, 'logout']);
+Route::get('/dang-xuat', [AuthController::class, 'logout']);
 
 Route::group(["prefix" => 'services'], function () {
     Route::get('/', [AccountController::class, 'index'])->name('services.list');

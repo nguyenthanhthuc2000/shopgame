@@ -72,15 +72,14 @@
                             <span class="avatar avatar-sm"
                                 style="background-image: url({{ asset('assets/images/avatar.jpg') }}"></span>
                             <div class="d-none d-xl-block ps-2">
-                                <div>Nguyễn Thành Thức</div>
-                                <div class="mt-1 small text-secondary">Administrator</div>
+                                <div>{{ auth()->user()->name }}</div>
+                                <div class="mt-1 small text-secondary">{{ auth()->user()->role }}</div>
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                            <a href="./profile.html" class="dropdown-item">Profile</a>
+                            <a href="./profile.html" class="dropdown-item">Đổi mật khẩu</a>
                             <div class="dropdown-divider"></div>
-                            <a href="./settings.html" class="dropdown-item">Settings</a>
-                            <a href="./sign-in.html" class="dropdown-item">Logout</a>
+                            <a href="/dang-xuat" class="dropdown-item">Đăng xuất</a>
                         </div>
                     </div>
                 </div>

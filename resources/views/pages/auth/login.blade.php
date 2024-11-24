@@ -367,7 +367,6 @@
         $('#login-form').on('submit', function(e) {
             e.preventDefault();
             var formData = $(this).serialize();
-            console.log("🚀 ~ $ ~ formData:", formData)
 
             $.ajax({
                 url: $(this).attr('action'),
@@ -379,7 +378,14 @@
                     }
                 },
                 error: function(xhr, status, error) {
-                    if (xhr.responseJSON && xhr.responseJSON.message) {
+                    if (xhr.responseJSON && xhr.responseJSON.errors) {
+                        var errors = xhr.responseJSON.errors;
+                        var errorMessage = '';
+                        $.each(errors, function(key, value) {
+                            errorMessage += value[0] + '<br>';
+                        });
+                        $('#message_login').html('<div class="error">' + errorMessage + '</div>');
+                    } else if (xhr.responseJSON && xhr.responseJSON.message) {
                         $('#message_login').html('<div class="error">' + xhr.responseJSON.message + '</div>');
                     }
                 }
