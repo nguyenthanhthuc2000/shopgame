@@ -49,5 +49,5 @@ Route::middleware([LogRequestMiddleware::class])->group(function () {
         Route::get('/account-transactions', [AdminAccountTransactionController::class, 'index'])->name('accounts.tran.index');
         Route::get('/bank-transactions/create', [AdminBankTransactionController::class, 'create'])->name('banks.tran.create');
         Route::post('/bank-transactions', [AdminBankTransactionController::class, 'store'])->name('banks.tran.store');
-    })->middleware(IsAdmin::class);
+    });
 });
