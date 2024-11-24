@@ -26,12 +26,13 @@
         </div>
     </div>
 
-    @include('components.menu')
+    @include('layouts.app-menu')
     @include('components.slideshow')
 
     @yield('content')
 
-    @include('components.footer')
+    @include('layouts.app-footer')
+
     @include('components.script')
 
     @stack('js')
