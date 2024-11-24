@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\IsAdmin;
 use \App\Http\Middleware\LogRequestMiddleware;
 
-Route::middleware(['throttle:100,1'])->group(function () {
+Route::middleware(['throttle:30,1'])->group(function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/detail', [App\Http\Controllers\HomeController::class, 'detail'])->name('detail');
     Route::get('/product', [App\Http\Controllers\ProductController::class, 'product'])->name('product');
