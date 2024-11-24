@@ -6,6 +6,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/favicon.ico') }}">
     <meta name="description"
         content="Đăng nhập vào NickDaoQuan.vn để quản lý tài khoản RMNAF của bạn, thực hiện giao dịch mua bán nick game RMNAF một cách nhanh chóng và bảo mật. Nếu bạn chưa có tài khoản, hãy đăng ký ngay để nhận ưu đãi đặc biệt. Đăng nhập dễ dàng với email và mật khẩu đã đăng ký.">
     <meta name="keywords"
