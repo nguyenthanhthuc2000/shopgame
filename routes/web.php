@@ -18,8 +18,8 @@ Route::get('/detail', [App\Http\Controllers\HomeController::class, 'detail'])->n
 Route::get('/product', [App\Http\Controllers\ProductController::class, 'product'])->name('product');
 
 Route::get('/dang-nhap', [AuthController::class, 'showLoginForm'])->name('login');
-Route::get('/dang-ky', [AuthController::class, 'showRegisterForm']);
-Route::post('/dang-ky', [AuthController::class, 'register']);
+Route::post('/dang-nhap', [AuthController::class, 'login'])->name('auth.login');
+Route::post('/dang-ky', [AuthController::class, 'register'])->name('auth.register');
 Route::post('/dang-xuat', [AuthController::class, 'logout']);
 
 Route::group(["prefix" => 'services'], function () {

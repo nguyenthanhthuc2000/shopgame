@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
+use Illuminate\Support\Str;
 
 
 class AuthController extends Controller
@@ -19,7 +20,7 @@ class AuthController extends Controller
      */
     public function showLoginForm()
     {
-        return view('auth.login');
+        return view('pages.auth.login');
     }
 
 
@@ -32,21 +33,25 @@ class AuthController extends Controller
     public function login(LoginRequest $request)
     {
         $credentials = $request->only('email', 'password');
-
         if (Auth::attempt($credentials)) {
             if (Auth::user()->status !== User::ACTIVE_STATUS) {
                 Auth::logout();
-                return back()->withInput()->withErrors([
-                    'error' => 'Tài khoản của bạn đã bị khóa.',
-                ]);
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Tài khoản của bạn đã bị khóa.',
+                ], 401);
             }
 
-            return redirect()->route('home');
+            return response()->json([
+                'success' => true,
+                'message' => 'Đăng nhập thành công',
+            ]);
         }
 
-        return back()->withInput()->withErrors([
-            'error' => 'Thông tin đăng nhập không chính xác.',
-        ]);
+        return response()->json([
+            'success' => false,
+            'message' => 'Thông tin không chính xác.',
+        ], 401);
     }
 
 
@@ -58,19 +63,23 @@ class AuthController extends Controller
      */
     public function register(RegisterRequest $request)
     {
-        $user = User::create([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'status' => User::ACTIVE_STATUS,
-            'role' => 'buyer',
-            'seller_to_buyer_rate' => 70,
-            'profit_rate' => 70,
-            'password' => Hash::make($request->input('password')),
-        ]);
+        $user = new User();
+        $user->uuid = Str::uuid()->toString();
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->status = User::ACTIVE_STATUS;
+        $user->role = 'buyer';
+        $user->seller_to_buyer_rate = 70;
+        $user->profit_rate = 70;
+        $user->password = Hash::make($request->input('password'));
+        $user->save();
 
         Auth::login($user);
 
-        return redirect()->route('home');
+        return response()->json([
+            'success' => true,
+            'message' => 'Đăng ký thành công!',
+        ]);
     }
 
     /**
