@@ -68,7 +68,22 @@ class ProductController extends Controller
         dd($id);
     }
 
+    public function create(Request $request)
+    {
+        dd($request->all());
+    }
+
+    public function store(Request $request)
+    {
+        dd($request->all());
+    }
+
     public function edit($id)
+    {
+        dd($id);
+    }
+
+    public function update(Request $request, $id)
     {
         dd($id);
     }
