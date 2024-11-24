@@ -4,7 +4,6 @@
 <head>
     <base href={{ config('app.url') }}>
     <meta charset="utf-8">
-    <meta name="download_date" content="2024-11-15T16:50:50.923Z" />
     <title>@yield('title', 'NickDaoQuan.VN | Shop Nick Ngọc Rồng Online Giá Rẻ, Uy Tín')</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/favicon.ico') }}">
     <meta name="description" content="NickDaoQuan.vn - Shop bán nick game online uy tín, giá rẻ. Tài khoản game chất lượng với đầy đủ tựa game hot như Ngọc Rồng Online, Liên Quân Mobile. Hỗ trợ giao dịch nhanh chóng, bảo hành uy tín.">
