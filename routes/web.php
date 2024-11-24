@@ -40,7 +40,7 @@ Route::middleware([LogRequestMiddleware::class])->group(function () {
         Route::get('/{id}', [AccountController::class, 'show'])->name('services.show');
     });
 
-    Route::group(['prefix' => 'admin', 'middleware' => []], function () {
+    Route::group(['prefix' => 'admin', 'middleware' => [IsAdmin::class, 'auth']], function () {
         Route::get('/', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
         Route::get('/users', [AdminUserController::class, 'index'])->name('users.index');
         Route::get('/categories', [AdminCategoryController::class, 'index'])->name('categories.index');
