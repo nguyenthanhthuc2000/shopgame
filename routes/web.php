@@ -12,41 +12,43 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\IsAdmin;
 use \App\Http\Middleware\LogRequestMiddleware;
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/detail', [App\Http\Controllers\HomeController::class, 'detail'])->name('detail');
-Route::get('/product', [App\Http\Controllers\ProductController::class, 'product'])->name('product');
+Route::middleware(['throttle:100,1'])->group(function () {
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/detail', [App\Http\Controllers\HomeController::class, 'detail'])->name('detail');
+    Route::get('/product', [App\Http\Controllers\ProductController::class, 'product'])->name('product');
 
-Route::get('/dang-nhap', [AuthController::class, 'showLoginForm'])->name('login');
-Route::post('/dang-nhap', [AuthController::class, 'login'])->name('auth.login');
-Route::post('/dang-ky', [AuthController::class, 'register'])->name('auth.register');
-Route::get('/dang-xuat', [AuthController::class, 'logout']);
+    Route::get('/dang-nhap', [AuthController::class, 'showLoginForm'])->name('login');
+    Route::post('/dang-nhap', [AuthController::class, 'login'])->name('auth.login');
+    Route::post('/dang-ky', [AuthController::class, 'register'])->name('auth.register');
+    Route::get('/dang-xuat', [AuthController::class, 'logout']);
 
-Route::group(["prefix" => 'services'], function () {
-    Route::get('/', [AccountController::class, 'index'])->name('services.list');
-    Route::get('/{id}', [AccountController::class, 'show'])->name('services.show');
-});
-
-Route::middleware([LogRequestMiddleware::class])->group(function () {
-    Route::group(["prefix" => 'accounts'], function () {
-        Route::get('/', [AccountController::class, 'index'])->name('accounts.list');
-        Route::get('/{id}', [AccountController::class, 'show'])->name('accounts.show');
-        Route::get('/create', [AccountController::class, 'create'])->name('accounts.create');
-        Route::post('/create', [AccountController::class, 'store'])->name('accounts.create.post');
-    });
-    
     Route::group(["prefix" => 'services'], function () {
         Route::get('/', [AccountController::class, 'index'])->name('services.list');
         Route::get('/{id}', [AccountController::class, 'show'])->name('services.show');
     });
 
-    Route::group(['prefix' => 'admin', 'middleware' => [IsAdmin::class, 'auth']], function () {
-        Route::get('/', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
-        Route::get('/users', [AdminUserController::class, 'index'])->name('users.index');
-        Route::get('/categories', [AdminCategoryController::class, 'index'])->name('categories.index');
-        Route::get('/bank-transactions', [AdminBankTransactionController::class, 'index'])->name('banks.tran.index');
-        Route::get('/card-transactions', [AdminCardTransactionController::class, 'index'])->name('cards.tran.index');
-        Route::get('/account-transactions', [AdminAccountTransactionController::class, 'index'])->name('accounts.tran.index');
-        Route::get('/bank-transactions/create', [AdminBankTransactionController::class, 'create'])->name('banks.tran.create');
-        Route::post('/bank-transactions', [AdminBankTransactionController::class, 'store'])->name('banks.tran.store');
+    Route::middleware([LogRequestMiddleware::class])->group(function () {
+        Route::group(["prefix" => 'accounts'], function () {
+            Route::get('/', [AccountController::class, 'index'])->name('accounts.list');
+            Route::get('/{id}', [AccountController::class, 'show'])->name('accounts.show');
+            Route::get('/create', [AccountController::class, 'create'])->name('accounts.create');
+            Route::post('/create', [AccountController::class, 'store'])->name('accounts.create.post');
+        });
+        
+        Route::group(["prefix" => 'services'], function () {
+            Route::get('/', [AccountController::class, 'index'])->name('services.list');
+            Route::get('/{id}', [AccountController::class, 'show'])->name('services.show');
+        });
+
+        Route::group(['prefix' => 'admin', 'middleware' => [IsAdmin::class, 'auth']], function () {
+            Route::get('/', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+            Route::get('/users', [AdminUserController::class, 'index'])->name('users.index');
+            Route::get('/categories', [AdminCategoryController::class, 'index'])->name('categories.index');
+            Route::get('/bank-transactions', [AdminBankTransactionController::class, 'index'])->name('banks.tran.index');
+            Route::get('/card-transactions', [AdminCardTransactionController::class, 'index'])->name('cards.tran.index');
+            Route::get('/account-transactions', [AdminAccountTransactionController::class, 'index'])->name('accounts.tran.index');
+            Route::get('/bank-transactions/create', [AdminBankTransactionController::class, 'create'])->name('banks.tran.create');
+            Route::post('/bank-transactions', [AdminBankTransactionController::class, 'store'])->name('banks.tran.store');
+        });
     });
 });
