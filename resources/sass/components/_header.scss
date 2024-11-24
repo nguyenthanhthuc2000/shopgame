@@ -1,6 +1,5 @@
 $font-family_1: Arial, Helvetica, sans-serif;
 $font-family_2: "Iner", sans-serif;
-$font-family_3: "Inter", sans-serif;
 $font-family_4: "Inter", sans-serif;
 
 /*! #######################################################################
@@ -180,147 +179,91 @@ a.meanmenu-reveal {
     display: none !important;
 }
 
-a {
-    cursor: pointer;
-    text-decoration: none;
-    -webkit-transition: all 0.2s ease-in-out;
-    -o-transition: all 0.2s ease-in-out;
-    transition: all 0.2s ease-in-out;
-    &:hover {
-        color: $main-color;
-        text-decoration: none;
-    }
-}
-
-h1,
-.h1 {
-    font-family: $font-family_3;
-    font-weight: 700;
-    margin: 0 0 1.25rem 0;
-    color: #051922;
-    font-size: 4rem;
-    font-weight: 700;
-    line-height: 4rem;
-    &:last-child {
+nav.main-menu {
+    ul {
         margin: 0;
+        padding: 0;
+        list-style: none;
+        li {
+            display: inline-block;
+            a,
+            button {
+                color: $white-color;
+                font-weight: 700;
+                display: block;
+                padding: 15px;
+            }
+            &:last-child {
+                a,
+                button {
+                    display: inline-block;
+                }
+            }
+        }
+        > li {
+            position: relative;
+            &:hover {
+                ul {
+                    opacity: 1;
+                    visibility: visible;
+                }
+            }
+        }
+        ul.sub-menu {
+            position: absolute;
+            background-color: $background-color_5;
+            width: 220px;
+            padding: 15px 15px;
+            margin: 0;
+            left: 0;
+            top: 50px;
+            border-radius: 3px;
+            -webkit-transition: 0.3s;
+            -o-transition: 0.3s;
+            transition: 0.3s;
+            opacity: 0;
+            visibility: hidden;
+            -webkit-box-shadow: 0 0 20px #555555;
+            box-shadow: 0 0 20px #555555;
+            li {
+                display: block;
+                text-align: left;
+                display: block;
+                a {
+                    color: $color_4;
+                    font-weight: 600;
+                    padding: 7px 10px;
+                    font-size: 13px;
+                    color: $color_4;
+                    padding: 8px;
+                    font-size: 13px;
+                    font-weight: 600;
+                }
+            }
+        }
+        li.current-list-item {
+            > a {
+                color: $main-color;
+            }
+        }
     }
-}
-
-.h2,
-h2 {
-    font-family: $font-family_3;
-    font-weight: 700;
-    margin: 0 0 1.25rem 0;
-    color: #051922;
-    font-size: 3rem;
-    font-weight: 700;
-    line-height: 3.25rem;
-    &:last-child {
-        margin: 0;
+    > ul {
+        li {
+            &:last-child {
+                float: right;
+            }
+        }
     }
-}
-
-.h3,
-h3 {
-    font-family: $font-family_3;
-    font-weight: 700;
-    margin: 0 0 1.25rem 0;
-    color: #051922;
-    font-size: 2rem;
-    font-weight: 700;
-    line-height: 2.25rem;
-    &:last-child {
-        margin: 0;
-    }
-}
-
-.h4,
-h4 {
-    font-family: $font-family_3;
-    font-weight: 700;
-    margin: 0 0 1.25rem 0;
-    color: #051922;
-    font-size: 1.5rem;
-    font-weight: 700;
-    line-height: 1.75rem;
-    &:last-child {
-        margin: 0;
-    }
-}
-
-.h5,
-h5 {
-    font-family: $font-family_3;
-    font-weight: 700;
-    margin: 0 0 1.25rem 0;
-    color: #051922;
-    font-size: 1.25rem;
-    font-weight: 700;
-    line-height: 1.5rem;
-    &:last-child {
-        margin: 0;
-    }
-}
-
-.h6,
-h6 {
-    font-family: $font-family_3;
-    font-weight: 700;
-    margin: 0 0 1.25rem 0;
-    color: #051922;
-    font-size: 1rem;
-    font-weight: 700;
-    line-height: 1.5rem;
-    &:last-child {
-        margin: 0;
-    }
-}
-
-p {
-    font-family: $font-family_4;
-    font-weight: 400;
-    font-size: 1rem;
-    letter-spacing: 0.1px;
-    line-height: 1.8;
-    color: #051922;
-    margin: 0 0 1.25rem 0;
-    &:last-child {
-        margin: 0;
-    }
-}
-
-@media only screen and (max-width: 767.96px) {
-    .h1,
-    h1 {
-        font-size: 3rem;
-        line-height: 3.25rem;
-    }
-    .h2,
-    h2 {
-        font-size: 2.5rem;
-        line-height: 2.75rem;
-    }
-}
-
-@media only screen and (max-width: 575.96px) {
-    .h1,
-    h1 {
-        font-size: 2.5rem;
-        line-height: 2.75rem;
-    }
-    .h2,
-    h2 {
-        font-size: 2rem;
-        line-height: 2.25rem;
-    }
-    .h3,
-    h3 {
-        font-size: 1.75rem;
-        line-height: 2rem;
-    }
-    .h4,
-    h4 {
-        font-size: 1.25rem;
-        line-height: 1.5rem;
+    li {
+        &:hover {
+            > a, button {
+                color: $main-color;
+            }
+        }
+        a {
+            -webkit-transition: 0.3s;
+            -o-transition: 0.3s;
+            transition: 0.3s;
+        }
     }
 }

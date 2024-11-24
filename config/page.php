@@ -13,10 +13,11 @@ return [
         [
             'name' => 'Dịch vụ',
             'route_name' => 'services.list',
-            // 'children' => [
+            // 'sub-menu' => [
             //     [
             //         'name' => 'Săn đệ',
-            //         'route_name' => 'service.list'
+            //         'route_name' => 'service.list',
+            //         'divider' => false,
             //     ],
             // ]
         ],

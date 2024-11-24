@@ -34,7 +34,6 @@ $color_34: #e5e5e5;
 $color_35: #ffffff;
 $font-family_1: "Inter", sans-serif;
 $font-family_2: "Font Awesome 5 Free";
-$font-family_3: "Poppins", sans-serif;
 $font-family_4: "Helvetica Neue", Helvetica, Arial, sans-serif;
 $font-family_5: serif;
 $font-family_6: "Open Sans", sans-serif;
@@ -525,92 +524,6 @@ a.navbar-brand {
     transition: 0.3s;
     &:hover {
         opacity: 0.7;
-    }
-}
-nav.main-menu {
-    ul {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        li {
-            display: inline-block;
-            a {
-                color: $color_2;
-                font-weight: 700;
-                display: block;
-                padding: 15px;
-            }
-            &:last-child {
-                a {
-                    display: inline-block;
-                }
-            }
-        }
-        > li {
-            position: relative;
-            &:hover {
-                ul {
-                    opacity: 1;
-                    visibility: visible;
-                }
-            }
-        }
-        ul.sub-menu {
-            position: absolute;
-            background-color: $background-color_5;
-            width: 220px;
-            padding: 15px 15px;
-            margin: 0;
-            left: 0;
-            top: 50px;
-            border-radius: 3px;
-            -webkit-transition: 0.3s;
-            -o-transition: 0.3s;
-            transition: 0.3s;
-            opacity: 0;
-            visibility: hidden;
-            -webkit-box-shadow: 0 0 20px #555555;
-            box-shadow: 0 0 20px #555555;
-            li {
-                display: block;
-                text-align: left;
-                display: block;
-                a {
-                    color: $color_4;
-                    font-weight: 600;
-                    padding: 7px 10px;
-                    font-size: 13px;
-                    color: $color_4;
-                    padding: 8px;
-                    font-size: 13px;
-                    font-weight: 600;
-                }
-            }
-        }
-        li.current-list-item {
-            > a {
-                color: $main-color;
-            }
-        }
-    }
-    > ul {
-        li {
-            &:last-child {
-                float: right;
-            }
-        }
-    }
-    li {
-        &:hover {
-            > a {
-                color: $main-color;
-            }
-        }
-        a {
-            -webkit-transition: 0.3s;
-            -o-transition: 0.3s;
-            transition: 0.3s;
-        }
     }
 }
 .site-logo {
@@ -1473,16 +1386,6 @@ a.mobile-show.search-bar-icon {
         height: 600px;
     }
 }
-html {
-    height: 100%;
-}
-body {
-    height: 100%;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
 .hero-btns {
     margin-top: 35px;
     a.bordered-btn {
@@ -1492,25 +1395,6 @@ body {
 
 .homepage-bg-1 {
     background-image: url("../../../public/assets/images/homepage-bg-1.jpg");
-}
-.homepage-slider {
-    height: 100%;
-    position: relative;
-    div {
-        height: 100%;
-    }
-    div.hero-text {
-        display: table;
-        width: 100%;
-    }
-    div.hero-text-tablecell {
-        height: auto;
-        vertical-align: middle;
-        display: table-cell;
-        div {
-            height: auto;
-        }
-    }
 }
 .single-homepage-slider {
     background-size: cover;
@@ -2036,8 +1920,8 @@ p.testimonial-body {
                 padding: 15px;
                 border: 1px solid #ddd;
                 border-radius: 3px;
-            }l
-            textarea {
+            }
+            l textarea {
                 border: 1px solid #ddd;
                 padding: 15px;
                 height: 200px;
@@ -2156,7 +2040,7 @@ p.testimonial-body {
     }
 }
 p.product-price {
-    font-family: $font-family_3;
+    font-family: $font-family-header;
     font-size: 30px;
     font-weight: 700;
     margin-bottom: 15px;

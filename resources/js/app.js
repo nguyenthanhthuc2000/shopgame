@@ -1,3 +1,5 @@
 import './lib';
+import './global';
 import './components';
 import './pages';
+

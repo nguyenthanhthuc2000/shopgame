@@ -1,8 +1,9 @@
 @php
     $menu = config('page.main_menu', []);
+    $sticking = isHomePage() ? '' : ' is-sticky';
 @endphp
 
-<div id="sticker-sticky-wrapper" class="sticky-wrapper" style="height: 105px;">
+<div id="sticker-sticky-wrapper" class="sticky-wrapper{{ $sticking }}">
     <div class="top-header-area" id="sticker">
         <div class="container">
             <div class="row">
@@ -10,36 +11,44 @@
                     <div class="main-menu-wrap">
 
                         <div class="site-logo">
-                            <a href="{{url()->current()}}">
+                            <a href="{{ route('home') }}">
                                 <img src="{{ asset('assets/images/logo.png') }}" alt="">
                             </a>
                         </div>
-
                         <nav class="main-menu" style="display: block;">
                             <ul>
                                 @foreach ($menu as $item)
-                                    <li class="{{ isCurrentRoute($item['route_name']) ? 'current-list-item' : ''}}">
-                                        <a href="{{ $item['route_name'] ? route($item['route_name']) : '' }}">{{ $item['name'] }}</a>
+                                    <li class="{{ isCurrentRoute($item['route_name']) ? 'current-list-item' : '' }}">
+                                        <a
+                                            href="{{ $item['route_name'] ? route($item['route_name']) : '' }}">{{ $item['name'] }}</a>
+                                        @if (isset($item['sub-menu']) && $item['sub-menu'])
+                                            <ul class="sub-menu">
+                                                @foreach ($item['sub-menu'] as $sItem)
+                                                    <li><a
+                                                            href="{{ $sItem['route_name'] ? route($sItem['route_name']) : '' }}">{{ $sItem['name'] }}</a>
+                                                    </li>
+                                                    @if ($sItem['divider'])
+                                                        <hr class="m-0" />
+                                                    @endif
+                                                @endforeach
+                                            </ul>
+                                        @endif
                                     </li>
                                 @endforeach
                                 <li>
-                                    {{-- @auth --}}
-                                    <div class="dropdown">
-                                        <button class="btn btn-mute dropdown-toggle border-0" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                          Dropdown link
-                                        </button>
-
-                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                          <li><a class="dropdown-item" href="#">Action</a></li>
-                                          <li><a class="dropdown-item" href="#">Another action</a></li>
-                                          <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                    @auth
+                                        <button type="button"
+                                            class="btn btn-mute border-0 dropdown-toggle">{{ 'Nhan' }}</button>
+                                        <ul class="sub-menu">
+                                            <li><a href="carot.html">Thông tin</a></li>
+                                            <hr class="m-0" />
+                                            <li><a href="ghepanh.html">Đăng xuất</a></li>
                                         </ul>
-                                    </div>
-                                    {{-- @endauth --}}
+                                    @endauth
 
-                                    {{-- @guest
-                                        <p>Cần đăng nhập</p>
-                                    @endguest --}}
+                                    @guest
+                                        <a href="{{ route('login') }}">Đăng nhập</a>
+                                    @endguest
                                 </li>
                             </ul>
                         </nav>
