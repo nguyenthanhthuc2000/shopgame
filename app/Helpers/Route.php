@@ -18,3 +18,18 @@ if (!function_exists('isCurrentRoute')) {
         return $current->getName() === $route;
     }
 }
+
+if (!function_exists('isHomePage')) {
+    /**
+     * @return bool
+     */
+    function isHomePage()
+    {
+        $current = Route::current();
+        if (!$current) {
+            return false;
+        }
+
+        return $current->getName() === 'home';
+    }
+}
