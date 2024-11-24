@@ -46,6 +46,8 @@ class User extends Authenticatable
         ];
     }
 
+    const ACTIVE_STATUS = 1;
+
     /**
      * Scope để lọc theo email.
      */
