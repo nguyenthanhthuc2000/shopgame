@@ -32,6 +32,8 @@
 
     @yield('content')
 
+    @include('layouts.app-footer')
+
     @include('components.script')
 
     @stack('js')
