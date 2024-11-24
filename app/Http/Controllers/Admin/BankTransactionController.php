@@ -46,7 +46,6 @@ class BankTransactionController extends Controller
             DB::beginTransaction();
             $user = User::where('email', $request->email)->first();
             $bankTran = new BankTransaction();
-            $bankTran->status = $request->status;
             $bankTran->user_id = $user->id;
             $bankTran->amount = $request->amount;
             $bankTran->buyer_vnd = $request->buyer_vnd;
@@ -55,14 +54,16 @@ class BankTransactionController extends Controller
             $bankTran->ip =  request()->ip();
             $bankTran->save();
 
-            $user->buyer_vnd = $request->type == BankTransaction::INCREASE_TYPE ? $user->buyer_vnd + $request->buyer_vnd : $user->buyer_vnd - $request->buyer_vnd;
+            $user->buyer_vnd = $request->type == BankTransaction::INCREASE_TYPE 
+                ? $user->buyer_vnd + $request->buyer_vnd 
+                : $user->buyer_vnd - $request->buyer_vnd;
             $user->save();
 
             DB::commit();
-            return redirect()->back()->with('message', "Cập nhật thành công, hãy thông báo đến khách hàng.");
+            return redirect()->route('banks.tran.index')->with('success', "Cập nhật thành công, hãy thông báo đến khách hàng.");
         } catch (\Exception $e) {
             DB::rollBack();
-            return redirect()->back()->withErrors(['error' => 'Có lỗi xảy ra, vui lòng thử lại sau.']);
+            return redirect()->back()->withInput()->withErrors(['error' => 'Có lỗi xảy ra, vui lòng thử lại sau.']);
         }
     }
 }

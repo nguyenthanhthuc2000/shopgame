@@ -58,6 +58,13 @@ return [
             'ignore_exceptions' => false,
         ],
 
+        'request_log' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/log-request/request.log'),
+            'level' => 'info',
+            'days' => 14,
+        ],
+
         'single' => [
             'driver' => 'single',
             'path' => storage_path('logs/laravel.log'),
