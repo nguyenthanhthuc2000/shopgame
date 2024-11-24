@@ -42,8 +42,7 @@ class BankTransactionController extends Controller
     */
     public function store(BankTransactionRequest $request)
     {
-        try {
-            DB::beginTransaction();
+        DB::transaction(function () use ($request) {
             $user = User::where('email', $request->email)->first();
             $bankTran = new BankTransaction();
             $bankTran->user_id = $user->id;
@@ -58,12 +57,8 @@ class BankTransactionController extends Controller
                 ? $user->buyer_vnd + $request->buyer_vnd 
                 : $user->buyer_vnd - $request->buyer_vnd;
             $user->save();
-
-            DB::commit();
-            return redirect()->route('banks.tran.index')->with('success', "Cập nhật thành công, hãy thông báo đến khách hàng.");
-        } catch (\Exception $e) {
-            DB::rollBack();
-            return redirect()->back()->withInput()->withErrors(['error' => 'Có lỗi xảy ra, vui lòng thử lại sau.']);
-        }
+        });
+        
+        return redirect()->route('banks.tran.index')->with('success', "Cập nhật thành công, hãy thông báo đến khách hàng.");
     }
 }
