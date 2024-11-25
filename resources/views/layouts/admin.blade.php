@@ -90,7 +90,7 @@
                 <div class="navbar">
                     <div class="container-xl">
                         <ul class="navbar-nav">
-                            <li class="nav-item {{ Route::is('admin.dashboard') ? 'active' : '' }}"">
+                            <li class="nav-item {{ Route::is('admin.dashboard') ? 'active' : '' }}">
                                 <a class="nav-link" href="/admin">
                                     <span
                                         class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
