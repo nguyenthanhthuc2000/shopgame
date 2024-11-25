@@ -636,7 +636,8 @@ nav.mean-nav {
     width: 100%;
     z-index: 999 !important;
 }
-.sticky-wrapper.is-sticky-menu {
+.sticky-wrapper.is-sticky-menu,
+.sticky-wrapper.is-sticky {
     .top-header-area {
         background-color: $background-color_7;
         padding: 15px 0;
@@ -5414,7 +5415,8 @@ body.swal2-height-auto {
             }
         }
     }
-    .sticky-wrapper.is-sticky-menu {
+    .sticky-wrapper.is-sticky-menu,
+    .sticky-wrapper.is-sticky {
         .top-header-area {
             position: absolute !important;
             background-color: $background-color_6;
@@ -5650,7 +5652,8 @@ body.swal2-height-auto {
             font-size: 15px;
         }
     }
-    .sticky-wrapper.is-sticky-menu {
+    .sticky-wrapper.is-sticky-menu,
+    .sticky-wrapper.is-sticky {
         .top-header-area {
             position: absolute !important;
             background-color: $background-color_6;
