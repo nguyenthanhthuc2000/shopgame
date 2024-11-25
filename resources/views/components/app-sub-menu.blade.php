@@ -5,8 +5,8 @@
         </div>
         <div class="c-content-ver-nav">
             <ul class="c-menu">
-                <li><a href="/thong-tin-tai-khoan">Thông tin tài khoản</a></li>
-                <li><a href="/Home/Deposit">Nạp tiền thẻ cào</a></li>
+                <li><a href="{{ route('profile.index') }}">Thông tin tài khoản</a></li>
+                <li><a href="{{ route('card.index') }}">Nạp tiền thẻ cào</a></li>
                 <li><a href="#" data-toggle="modal" data-target="#Modal_ATM">Nạp tiền ATM - Ví điện tử</a></li>
             </ul>
         </div>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\Admin\BankTransactionController as AdminBankTransactionController;
 use App\Http\Controllers\Admin\CardTransactionController as AdminCardTransactionController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
@@ -32,7 +33,8 @@ Route::middleware(['throttle:30,1'])->group(function () {
         Route::get('/{id}', [AccountController::class, 'show'])->name('services.show');
     });
 
-    Route::group(["prefix" => 'nap-tien', 'middleware' => ['auth']], function () {
+    Route::group(['middleware' => ['auth']], function () {
+        Route::get('/thong-tin-tai-khoan', [UserController::class, 'index'])->name('profile.index');
     });
 
     Route::middleware([LogRequestMiddleware::class])->group(function () {
