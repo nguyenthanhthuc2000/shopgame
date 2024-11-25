@@ -18,6 +18,7 @@ Route::middleware(['throttle:30,1'])->group(function () {
     Route::group(['prefix' => 'nick-game'], function () {
         Route::get('/', [App\Http\Controllers\AccountController::class, 'index'])->name('product');
         Route::get('/tao-moi', [App\Http\Controllers\AccountController::class, 'create'])->name('product.create');
+        Route::post('/tao-moi', [App\Http\Controllers\AccountController::class, 'store'])->name('product.create.post');
         Route::get('/{id}', [App\Http\Controllers\AccountController::class, 'show'])->name('product.show');
     });
 
