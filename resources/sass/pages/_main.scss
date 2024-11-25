@@ -1,0 +1,16 @@
+.app-sub-menu {
+  ul {
+    padding-left: 1rem;
+    li {
+      list-style: none;
+      padding: 7px 0;
+      border-bottom: 1px solid #c3c3c3;
+      a {
+        color: #3f444a;
+        &:hover {
+          color: #AFD275;
+        }
+      }
+    }
+  }
+}

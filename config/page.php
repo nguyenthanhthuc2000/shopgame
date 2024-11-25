@@ -11,6 +11,10 @@ return [
             'route_name' => 'accounts.list'
         ],
         [
+            'name' => 'Nạp tiền',
+            'route_name' => 'card.index',
+        ],
+        [
             'name' => 'Dịch vụ',
             'route_name' => 'services.list',
             // 'sub-menu' => [

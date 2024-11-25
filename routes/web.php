@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\CardController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\Admin\BankTransactionController as AdminBankTransactionController;
 use App\Http\Controllers\Admin\CardTransactionController as AdminCardTransactionController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
@@ -14,6 +16,7 @@ use \App\Http\Middleware\LogRequestMiddleware;
 
 Route::middleware(['throttle:30,1'])->group(function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/nap-tien', [CardController::class, 'index'])->name('card.index');
 
     Route::group(['prefix' => 'nick-game'], function () {
         Route::get('/', [App\Http\Controllers\AccountController::class, 'index'])->name('product');
@@ -25,11 +28,15 @@ Route::middleware(['throttle:30,1'])->group(function () {
     Route::get('/dang-nhap', [AuthController::class, 'showLoginForm'])->name('login');
     Route::post('/dang-nhap', [AuthController::class, 'login'])->name('auth.login');
     Route::post('/dang-ky', [AuthController::class, 'register'])->name('auth.register');
-    Route::get('/dang-xuat', [AuthController::class, 'logout']);
+    Route::get('/dang-xuat', [AuthController::class, 'logout'])->name('auth.logout');
 
     Route::group(["prefix" => 'services'], function () {
         Route::get('/', [AccountController::class, 'index'])->name('services.list');
         Route::get('/{id}', [AccountController::class, 'show'])->name('services.show');
+    });
+
+    Route::group(['middleware' => ['auth']], function () {
+        Route::get('/thong-tin-tai-khoan', [UserController::class, 'index'])->name('profile.index');
     });
 
     Route::middleware([LogRequestMiddleware::class])->group(function () {
