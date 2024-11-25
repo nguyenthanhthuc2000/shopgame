@@ -25,7 +25,7 @@
                                             <div class="row">
                                                 <div class="col-md-12 text-center" style="padding-bottom: 20px;">
                                                     <div class="m-auto"
-                                                        style="width: 300px;padding: 10px; background-color: #19b1ff;border: 1px solid #d1ef33;margin-bottom: 30px;border-radius: 6px;">
+                                                        style="width: 300px;padding: 10px; background-color: #AFD275;border: 1px solid #d1ef33;margin-bottom: 30px;border-radius: 6px;">
                                                         <b class="t18" style="color:#ffffff;">SỐ DƯ: 0 VNĐ</b>
                                                     </div>
                                                 </div>
@@ -93,7 +93,7 @@
                                         <div class="header-ball">
                                             <div class="row">
                                                 <div class="col-md-12 header-title-buy">
-                                                    <div class="content_post">
+                                                    <div style=" padding: 20px 15px 20px 15px;background: #AFD275;">
                                                         <p style="text-align:center"><strong><span
                                                                     style="color:#e74c3c"><span style="font-size:20px">NẠP
                                                                         THẺ KHÔNG CHIẾT KHẤU<br>
@@ -104,18 +104,16 @@
                                                                     style="color:#e74c3c"><span style="font-size:20px">SAI
                                                                         MỆNH GIÁ&nbsp;-50%
                                                                         THẺ</span></span></strong></p>
-
-                                                        <br>
-
                                                     </div>
+                                                    <br>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="panel-heading clearfix text-center"
-                                        style="color: #fdfdfd; background: #30b9ff; padding: 10px 15px;">
-                                        <span class="t24 bb" style="">LỊCH SỬ NẠP THẺ</span>
+                                        style="color: #fdfdfd; background: #AFD275; padding: 10px 15px;">
+                                        <span class="t24 bb" style=""><b>LỊCH SỬ NẠP THẺ</b></span>
                                     </div>
                                 </div>
                             </div>
