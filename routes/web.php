@@ -15,8 +15,9 @@ use \App\Http\Middleware\LogRequestMiddleware;
 Route::middleware(['throttle:30,1'])->group(function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-    Route::group(['prefix' => 'san-pham'], function () {
+    Route::group(['prefix' => 'nick-game'], function () {
         Route::get('/', [App\Http\Controllers\ProductController::class, 'index'])->name('product');
+        Route::get('/tao-moi', [App\Http\Controllers\AccountController::class, 'create'])->name('product.create');
         Route::get('/{id}', [App\Http\Controllers\ProductController::class, 'show'])->name('product.show');
     });
 

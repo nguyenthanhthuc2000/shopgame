@@ -19,7 +19,7 @@ class AccountController extends Controller
 
     public function create(Request $request)
     {
-        return 'this is create account page';
+        return view('pages.create-account');
     }
 
     public function store(Request $request)
