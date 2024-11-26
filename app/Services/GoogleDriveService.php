@@ -32,13 +32,13 @@ class GoogleDriveService
     }
 
     /**
-     * Upload a file to Google Drive.
+     * Upload a single file to Google Drive.
      *
      * @param \Illuminate\Http\UploadedFile $file
      * @param string|null $folderId The ID of the target folder on Google Drive. If null, uploads to root.
      * @return array|null The file details (ID, name, public URL), or null on failure.
      */
-    public function uploadFile($file, $folderId = null)
+    public function uploadSingleFile($file, $folderId = null)
     {
         try {
             // Prepare file metadata
@@ -68,6 +68,7 @@ class GoogleDriveService
                     'uploadType' => 'multipart',
                 ]
             );
+
             // Check if file ID is returned correctly
             if (empty($uploadedFile->id)) {
                 throw new Exception('File upload failed. No file ID returned.');
@@ -100,6 +101,28 @@ class GoogleDriveService
 
             return null; // Return null on failure
         }
+    }
+
+    /**
+     * Upload multiple files to Google Drive.
+     *
+     * @param array $files An array of \Illuminate\Http\UploadedFile instances.
+     * @param string|null $folderId The ID of the target folder on Google Drive. If null, uploads to root.
+     * @return array An array of file details (ID, name, public URL) for each uploaded file.
+     */
+    public function uploadMultipleFiles(array $files, $folderId = null)
+    {
+        $uploadedFilesInfo = [];
+
+        foreach ($files as $file) {
+            // Reuse the single file upload method
+            $fileInfo = $this->uploadSingleFile($file, $folderId);
+            if ($fileInfo) {
+                $uploadedFilesInfo[] = $fileInfo; // Add successfully uploaded file details
+            }
+        }
+
+        return $uploadedFilesInfo; // Return all uploaded files' details
     }
 
     /**
