@@ -137,9 +137,9 @@
                                                         <th scope="col">Loại thẻ</th>
                                                         <th scope="col">Mã thẻ</th>
                                                         <th scope="col">Serial</th>
-                                                        <th scope="col">Mệnh giá</th>
-                                                        <th scope="col">Mệnh giá thật</th>
-                                                        <th scope="col">Trạng thái</th>
+                                                        <th scope="col" style="min-width: 100px;">Mệnh giá</th>
+                                                        <th scope="col" style="min-width: 130px;">Mệnh giá thật</th>
+                                                        <th scope="col" style="min-width: 100px;">Trạng thái</th>
                                                         <th scope="col">Thời gian</th>
                                                     </tr>
                                                 </thead>
@@ -148,30 +148,29 @@
                                                         <tr>
                                                             <td>{{ $item->telco }}</td>
                                                             <td> {{ $item->code }}</td>
-                                                            <td> {{ $item->serial }}</td>
-                                                            <td>{{ number_format($item->value, 0, ',', '.') }}</td>
-                                                            <td>{{ number_format($item->declared_value, 0, ',', '.') }}</td>
+                                                            <td style="min-width: 100px;"> {{ $item->serial }}</td>
+                                                            <td style="min-width: 100px;">{{ number_format($item->value, 0, ',', '.') }}</td>
+                                                            <td style="min-width: 130px;">{{ number_format($item->declared_value, 0, ',', '.') }}</td>
                                                             @switch($item->status)
                                                                 @case(0)
-                                                                    <td class="text-info">
+                                                                    <td class="text-info" style="min-width: 100px;">
                                                                         {{ \App\Models\CardTransaction::TRANSACTION_STATUS[$item->status] }}
                                                                     </td>
                                                                 @break
 
                                                                 @case(1)
-                                                                    <td class="text-success">
+                                                                    <td class="text-success" style="min-width: 100px;">
                                                                         {{ \App\Models\CardTransaction::TRANSACTION_STATUS[$item->status] }}
                                                                     </td>
                                                                 @break
 
                                                                 @case(2)
-                                                                    <td class="text-danger">
+                                                                    <td class="text-danger" style="min-width: 100px;">
                                                                         {{ \App\Models\CardTransaction::TRANSACTION_STATUS[$item->status] }}
                                                                     </td>
                                                                 @break
 
                                                                 @default
-                                                                    <td></td>
                                                             @endswitch
                                                             <td>{{ date('d/m/Y H:i', strtotime($item->created_at)) }}</td>
                                                         </tr>
