@@ -21,7 +21,8 @@
                                             <h1 style="font-size: 26px;">NẠP THẺ CÀO</h1>
                                         </div>
                                         <br>
-                                        <form id="frmDonate" method="post" action="">
+                                        <form id="frmDonate" method="post" action="{{ route('postCard') }}">
+                                            @csrf
                                             <div class="row">
                                                 <div class="col-md-12 text-center" style="padding-bottom: 20px;">
                                                     <div class="m-auto"
@@ -32,58 +33,73 @@
                                                 <div class="col-md-12 mb-4">
                                                     <div class="col-md-12 mb-3">
                                                         <div class="form-group row">
-                                                            <spam class="col-md-2 control-label bb ar">Nhà mạng:</spam>
+                                                            <span class="col-md-2 control-label bb ar">Nhà mạng <span
+                                                                    class="text-danger">*</span></span>
                                                             <div class="col-md-10">
-                                                                <select class="form-control" data-live-search="true"
-                                                                    id="Network" name="Network">
-                                                                    <option value="">Chọn nhà mạng</option>
-                                                                    <option value="VTT">Viettel</option>
-                                                                    <option value="VNP">Vinaphone</option>
-                                                                    <option value="VMS">Mobiphone</option>
+                                                                <select class="form-control" id="cardType" name="telco">
+                                                                    <option value="">Chọn loại thẻ</option>
+                                                                    @foreach ($cardTypes as $key => $val)
+                                                                        @if ($key == old('telco'))
+                                                                            <option value="{{ $key }}" selected>
+                                                                                {{ $val }}</option>
+                                                                        @else
+                                                                            <option value="{{ $key }}">
+                                                                                {{ $val }}</option>
+                                                                        @endif
+                                                                    @endforeach
                                                                 </select>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12 mb-3">
                                                         <div class="form-group row">
-                                                            <spam class="col-md-2 control-label bb ar">Mệnh giá:</spam>
+                                                            <span class="col-md-2 control-label bb ar">Mệnh giá <span
+                                                                    class="text-danger">*</span></span>
                                                             <div class="col-md-10">
-                                                                <select class="form-control t14" data-live-search="true"
-                                                                    placeholder="Chọn mệnh giá" name="CardValue"
-                                                                    id="CardValue">
-                                                                    <option>Chọn mệnh giá</option>
+                                                                <select class="form-control" id="cardValue"
+                                                                    name="declared_value"
+                                                                    value="{{ old('declared_value') }}">
+                                                                    <option value="">Chọn mệnh giá</option>
                                                                 </select>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12 mb-3">
                                                         <div class="form-group row">
-                                                            <spam class="col-md-2 control-label bb ar">Số seri:</spam>
+                                                            <span class="col-md-2 control-label bb ar">Số seri <span
+                                                                    class="text-danger">*</span></span>
                                                             <div class="col-md-10">
-                                                                <input type="text" name="NetworkSeri" id="NetworkSeri"
+                                                                <input type="text" id="code" name="code"
                                                                     class="form-control t14"
-                                                                    placeholder="Nhập mã serial nằm sau thẻ" value="">
+                                                                    placeholder="Nhập mã serial nằm sau thẻ"
+                                                                    value="{{ old('code') }}">
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12 mb-3">
                                                         <div class="form-group row">
-                                                            <spam class="col-md-2 control-label bb ar">Mã thẻ: </spam>
+                                                            <span class="col-md-2 control-label bb ar">Mã thẻ <span
+                                                                    class="text-danger">*</span></span>
                                                             <div class="col-md-10">
-                                                                <input type="text" name="NetworkCode" id="NetworkCode"
-                                                                    class="form-control t14"
-                                                                    placeholder="Nhập mã số sau lớp bạc mỏng"
-                                                                    value="">
+                                                                <input type="text" id="serial" name="serial"
+                                                                    value="{{ old('serial') }}" class="form-control t14"
+                                                                    placeholder="Nhập mã số sau lớp bạc mỏng">
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12 mb-3">
                                                         <div class="form-group row">
-                                                            <spam class="col-md-2 control-label bb ar"></spam>
+                                                            <span class="col-md-2 control-label bb ar"></span>
                                                             <div class="col-md-10">
-                                                                <a href="/dang-nhap?refURL=/nap-tien"
-                                                                    class="btn btn-danger col-xs-12 btn4">Đăng nhập để nạp
-                                                                    thẻ</a>
+                                                                @auth
+                                                                    <button type="submit"
+                                                                        class="btn btn-primary col-xs-12 btn4">Nạp thẻ</button>
+                                                                @endauth
+                                                                @guest
+                                                                    <a href="{{ route('login') }}"
+                                                                        class="btn btn-danger col-xs-12 btn4">Đăng nhập để nạp
+                                                                        thẻ</a>
+                                                                @endguest
                                                             </div>
                                                         </div>
                                                     </div>
@@ -99,8 +115,8 @@
                                                                     Nạp 10k được 10k ...100k được
                                                                     100k</span></span></strong></p>
 
-                                                    <p style="text-align:center"><strong><span
-                                                                style="color:#e74c3c"><span style="font-size:20px">SAI
+                                                    <p style="text-align:center"><strong><span style="color:#e74c3c"><span
+                                                                    style="font-size:20px">SAI
                                                                     MỆNH GIÁ&nbsp;-50%
                                                                     THẺ</span></span></strong></p>
                                                 </div>
@@ -109,16 +125,102 @@
                                         </div>
                                     </div>
 
-                                    <div class="panel-heading clearfix text-center"
-                                        style="color: #fdfdfd; background: #AFD275; padding: 10px 15px;">
-                                        <span class="t24 bb" style=""><b>LỊCH SỬ NẠP THẺ</b></span>
+                                    @auth
+                                        <div class="panel-heading clearfix text-center"
+                                            style="color: #fdfdfd; background: #AFD275; padding: 10px 15px;">
+                                            <span class="t24 bb" style=""><b>LỊCH SỬ NẠP THẺ</b></span>
+                                        </div>
+                                        <div id="historyCard" class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Loại thẻ</th>
+                                                        <th scope="col">Mã thẻ</th>
+                                                        <th scope="col">Serial</th>
+                                                        <th scope="col">Mệnh giá</th>
+                                                        <th scope="col">Mệnh giá thật</th>
+                                                        <th scope="col">Trạng thái</th>
+                                                        <th scope="col">Thời gian</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @forelse($historyCards as $index => $item)
+                                                        <tr>
+                                                            <td>{{ $item->telco }}</td>
+                                                            <td> {{ $item->code }}</td>
+                                                            <td> {{ $item->serial }}</td>
+                                                            <td>{{ number_format($item->value, 0, ',', '.') }}</td>
+                                                            <td>{{ number_format($item->declared_value, 0, ',', '.') }}</td>
+                                                            @switch($item->status)
+                                                                @case(0)
+                                                                    <td class="text-info">
+                                                                        {{ \App\Models\CardTransaction::TRANSACTION_STATUS[$item->status] }}
+                                                                    </td>
+                                                                @break
+
+                                                                @case(1)
+                                                                    <td class="text-success">
+                                                                        {{ \App\Models\CardTransaction::TRANSACTION_STATUS[$item->status] }}
+                                                                    </td>
+                                                                @break
+
+                                                                @case(2)
+                                                                    <td class="text-danger">
+                                                                        {{ \App\Models\CardTransaction::TRANSACTION_STATUS[$item->status] }}
+                                                                    </td>
+                                                                @break
+
+                                                                @default
+                                                                    <td></td>
+                                                            @endswitch
+                                                            <td>{{ date('d/m/Y H:i', strtotime($item->created_at)) }}</td>
+                                                        </tr>
+                                                        @empty
+                                                            <tr>
+                                                                <td colspan="5" class="text-center">Không tìm thấy dữ liệu nạp
+                                                                    thẻ</td>
+                                                            </tr>
+                                                        @endforelse
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        @endauth
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </section>
+                        </section>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-@endsection
+    @endsection
+
+
+    @push('js')
+        <script>
+            var cardValues = {!! json_encode($cardValues) !!};
+            if ($('#cardType').val()) {
+                generateOptions();
+            }
+            $('#cardType').change(function() {
+                generateOptions();
+            });
+
+            function generateOptions() {
+                var options = ['<option value="">Chọn mệnh giá</option>'];
+                if ($('#cardType').val()) {
+                    if (cardValues[$('#cardType').val()]) {
+                        cardValues[$('#cardType').val()].forEach(function(value) {
+                            if ("{{ old('declared_value') }}" == value) {
+                                options.push(
+                                    `<option value="${value}" selected>${value.toLocaleString('it-IT')}đ</option>`);
+                            } else {
+                                options.push(`<option value="${value}">${value.toLocaleString('it-IT')}đ</option>`);
+                            }
+                        });
+                    }
+                }
+                $('#cardValue').html(options.join(''));
+            }
+        </script>
+    @endpush

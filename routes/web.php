@@ -39,6 +39,8 @@ Route::middleware(['throttle:30,1'])->group(function () {
 
     Route::group(['middleware' => ['auth']], function () {
         Route::get('/thong-tin-tai-khoan', [UserController::class, 'index'])->name('profile.index');
+        Route::get('/nap-the-cao/lich-su', [CardController::class, 'historyCards'])->name('historyCards');
+        Route::post('/nap-the-cao/gui-the', [CardController::class, 'postCard'])->name('postCard');
     });
 
     Route::middleware([LogRequestMiddleware::class])->group(function () {
