@@ -56,14 +56,6 @@
                                                             - VNĐ</span>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-12 mb-2 hide">
-                                                    <div class="form-group row">
-                                                        <span class="col-4 control-label bb ar">Nhóm tài khoản:
-                                                        </span>
-                                                        <span
-                                                            class="col-8 control-label al">{{ auth()->user()->role }}</span>
-                                                    </div>
-                                                </div>
                                                 <div class="col-md-12 mb-2">
                                                     <div class="form-group row">
                                                         <span class="col-4 control-label bb ar">Ngày tham gia:
