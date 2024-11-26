@@ -4,6 +4,7 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\BankTransactionController as AdminBankTransactionController;
 use App\Http\Controllers\Admin\CardTransactionController as AdminCardTransactionController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
@@ -15,8 +16,9 @@ use App\Http\Middleware\IsAdmin;
 use \App\Http\Middleware\LogRequestMiddleware;
 
 Route::middleware(['throttle:30,1'])->group(function () {
-    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Route::get('/nap-tien', [CardController::class, 'index'])->name('card.index');
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/nap-the-cao', [CardController::class, 'index'])->name('card.index');
+    Route::get('/nap-tien', [HomeController::class, 'deposit'])->name('home.deposit');
 
     Route::group(['prefix' => 'nick-game'], function () {
         Route::get('/', [App\Http\Controllers\AccountController::class, 'index'])->name('product');

@@ -18,7 +18,7 @@
                                 <div class="">
                                     <div class="panel">
                                         <div class="col-sm-12 text-center">
-                                            <h1 style="font-size: 26px;">NẠP TIỀN</h1>
+                                            <h1 style="font-size: 26px;">NẠP THẺ CÀO</h1>
                                         </div>
                                         <br>
                                         <form id="frmDonate" method="post" action="">
@@ -90,23 +90,21 @@
                                                 </div>
                                             </div>
                                         </form>
-                                        <div class="header-ball">
-                                            <div class="row">
-                                                <div class="col-md-12 header-title-buy">
-                                                    <div style=" padding: 20px 15px 20px 15px;background: #AFD275;">
-                                                        <p class="mb-0" style="text-align:center"><strong><span
-                                                                    style="color:#e74c3c"><span style="font-size:20px">NẠP
-                                                                        THẺ KHÔNG CHIẾT KHẤU<br>
-                                                                        Nạp 10k được 10k ...100k được
-                                                                        100k</span></span></strong></p>
+                                        <div class="row">
+                                            <div class="col-md-12 header-title-buy">
+                                                <div style=" padding: 20px 15px 20px 15px;background: #AFD275;">
+                                                    <p class="mb-0" style="text-align:center"><strong><span
+                                                                style="color:#e74c3c"><span style="font-size:20px">NẠP
+                                                                    THẺ KHÔNG CHIẾT KHẤU<br>
+                                                                    Nạp 10k được 10k ...100k được
+                                                                    100k</span></span></strong></p>
 
-                                                        <p style="text-align:center"><strong><span
-                                                                    style="color:#e74c3c"><span style="font-size:20px">SAI
-                                                                        MỆNH GIÁ&nbsp;-50%
-                                                                        THẺ</span></span></strong></p>
-                                                    </div>
-                                                    <br>
+                                                    <p style="text-align:center"><strong><span
+                                                                style="color:#e74c3c"><span style="font-size:20px">SAI
+                                                                    MỆNH GIÁ&nbsp;-50%
+                                                                    THẺ</span></span></strong></p>
                                                 </div>
+                                                <br>
                                             </div>
                                         </div>
                                     </div>

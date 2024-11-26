@@ -7,7 +7,7 @@
             <ul class="c-menu">
                 <li><a href="{{ route('profile.index') }}">Thông tin tài khoản</a></li>
                 <li><a href="{{ route('card.index') }}">Nạp tiền thẻ cào</a></li>
-                <li><a href="#" data-toggle="modal" data-target="#Modal_ATM">Nạp tiền ATM - Ví điện tử</a></li>
+                <li><a href="{{ route('home.deposit') }}">Nạp tiền ATM - Ví điện tử</a></li>
             </ul>
         </div>
     </div>

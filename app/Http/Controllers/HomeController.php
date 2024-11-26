@@ -46,4 +46,9 @@ class HomeController extends Controller
     {
         return view('pages.detail');
     }
+
+    public function deposit()
+    {
+        return view('pages.deposit');
+    }
 }
