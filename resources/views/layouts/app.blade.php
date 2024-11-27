@@ -5,6 +5,7 @@
     <base href={{ config('app.url') }}>
     <meta charset="utf-8">
     <title>@yield('title', 'NickDaoQuan.VN | Shop Nick Ngọc Rồng Online Giá Rẻ, Uy Tín')</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/favicon.ico') }}">
     <meta name="description" content="NickDaoQuan.vn - Shop bán nick game online uy tín, giá rẻ. Tài khoản game chất lượng với đầy đủ tựa game hot như Ngọc Rồng Online, Liên Quân Mobile. Hỗ trợ giao dịch nhanh chóng, bảo hành uy tín.">
     <meta name="keywords"content="shop nick game, nickdaoquan.vn, mua bán tài khoản game, nick game giá rẻ, shop game uy tín, bán nick game online">

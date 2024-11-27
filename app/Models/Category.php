@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Query\Builder;
 
 class Category extends Model
 {
@@ -31,4 +32,13 @@ class Category extends Model
      * @var array<string, string>
      */
     protected $casts = [];
+
+    /**
+     * @param Builder $query
+     * @return Builder
+     */
+    public function scopeIsActive($query)
+    {
+        return $query->where('status', 1);
+    }
 }

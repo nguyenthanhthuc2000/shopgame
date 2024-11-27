@@ -21,7 +21,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id')->comment('Người đăng nick');
             $table->unsignedBigInteger('category_id')->default(0);
             $table->string('note', 255)->nullable()->comment('Mô tả thêm về nick');
-            $table->tinyInteger('status')->default(2)->comment('Trạng thái: 0: Ẩn, 1: Đang bán, 2: Đã bán');
+            $table->tinyInteger('status')->default(1)->comment('Trạng thái: 0: Ẩn, 1: Đang bán, 2: Đã bán');
             $table->timestamps();
         });
     }

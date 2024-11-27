@@ -25,4 +25,9 @@ class HomeController extends Controller
             ->paginate();
         return view('pages.home', compact('categories'));
     }
+
+    public function deposit()
+    {
+        return view('pages.deposit');
+    }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Client;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -11,6 +11,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Auth;
 
 class CardController extends Controller
 {
@@ -25,10 +26,9 @@ class CardController extends Controller
         $partnerId = config('thesieure.partner_id');
         $jsonCardOptions = Http::get("{$domain}/chargingws/v2/getfee?partner_id={$partnerId}");
         $cardOptions = json_decode($jsonCardOptions);
-        
         $cardTypes = CardTransaction::CARD_TYPES;
-
         $cardValues = [];
+
         if (!empty( $cardOptions)) {
             foreach ($cardOptions as $cardOption) {
                 if (in_array($cardOption->telco, array_keys($cardTypes))) {
@@ -40,28 +40,21 @@ class CardController extends Controller
             }
         }
 
-        $userId = auth()->user()->id;
+        $historyCards = collect();
 
-        return view('pages.card', compact(
+        if (Auth::check()) {
+            $userId = auth()->user()->id;
+            $historyCards = CardTransaction::select('id', 'status', 'telco', 'code', 'declared_value', 'value', 'created_at', 'serial')
+                ->where('user_id', Auth::id())
+                ->orderBy('id', 'desc')
+                ->get();
+        }
+
+        return view('pages.card', compact([
             'cardTypes', 
             'cardValues',
-        ));
-    }
-
-    /**
-     * Danh sách lịch sử nạp thẻ
-     * 
-     * @return mixed|string
-     */
-    public function historyCards()
-    {
-        $userId = auth()->user()->id;
-        $historyCards = CardTransaction::select('id', 'status', 'telco', 'code', 'declared_value', 'value', 'created_time')
-            ->where('user_id', $userId)
-            ->orderBy('id', 'desc')
-            ->get();
-
-        return view('client.history-card-table', compact('historyCards'))->render();
+            'historyCards',
+        ]));
     }
 
     /**

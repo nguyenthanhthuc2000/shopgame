@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\CardController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\BankTransactionController as AdminBankTransactionController;
 use App\Http\Controllers\Admin\CardTransactionController as AdminCardTransactionController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
@@ -13,25 +16,39 @@ use App\Http\Middleware\IsAdmin;
 use \App\Http\Middleware\LogRequestMiddleware;
 
 Route::middleware(['throttle:30,1'])->group(function () {
-    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/nap-the-cao', [CardController::class, 'index'])->name('card.index');
+    Route::get('/nap-tien', [HomeController::class, 'deposit'])->name('home.deposit');
 
     Route::group(['prefix' => 'nick-game'], function () {
         Route::get('/', [App\Http\Controllers\AccountController::class, 'index'])->name('product');
+<<<<<<< HEAD
         // Route::get('/{id}', [App\Http\Controllers\AccountController::class, 'show'])->name('product.show');
     });
 
     Route::group(['prefix' => 'danh-muc-game'], function () {
         Route::get('/{slug}/{uuid}', [AccountController::class, 'show'])->name('product.show');
+=======
+        Route::get('/tao-moi', [App\Http\Controllers\AccountController::class, 'create'])->name('product.create');
+        Route::post('/tao-moi', [App\Http\Controllers\AccountController::class, 'store'])->name('product.create.post');
+        Route::get('/{id}', [App\Http\Controllers\AccountController::class, 'show'])->name('product.show');
+>>>>>>> 32b8e3d59d24f8098ef41321d0dc433ad6474abd
     });
 
     Route::get('/dang-nhap', [AuthController::class, 'showLoginForm'])->name('login');
     Route::post('/dang-nhap', [AuthController::class, 'login'])->name('auth.login');
     Route::post('/dang-ky', [AuthController::class, 'register'])->name('auth.register');
-    Route::get('/dang-xuat', [AuthController::class, 'logout']);
+    Route::get('/dang-xuat', [AuthController::class, 'logout'])->name('auth.logout');
 
     Route::group(["prefix" => 'services'], function () {
         Route::get('/', [AccountController::class, 'index'])->name('services.list');
         Route::get('/{id}', [AccountController::class, 'show'])->name('services.show');
+    });
+
+    Route::group(['middleware' => ['auth']], function () {
+        Route::get('/thong-tin-tai-khoan', [UserController::class, 'index'])->name('profile.index');
+        Route::get('/nap-the-cao/lich-su', [CardController::class, 'historyCards'])->name('historyCards');
+        Route::post('/nap-the-cao/gui-the', [CardController::class, 'postCard'])->name('postCard');
     });
 
     Route::middleware([LogRequestMiddleware::class])->group(function () {
