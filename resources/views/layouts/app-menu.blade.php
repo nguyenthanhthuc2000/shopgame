@@ -37,7 +37,7 @@
                                 @endforeach
                                 <li>
                                     @auth
-                                        <a href="/" class="menu__balance" style="
+                                        <a href="{{ route('home.deposit') }}" class="menu__balance" style="
                                             font-weight: 500;
                                             background: unset;
                                             color: #FFFFFF;"

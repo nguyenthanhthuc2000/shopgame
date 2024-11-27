@@ -180,7 +180,7 @@
                                                         </tr>
                                                         @empty
                                                             <tr>
-                                                                <td colspan="5" class="text-center">Không tìm thấy dữ liệu nạp
+                                                                <td colspan="7" class="text-center">Không tìm thấy dữ liệu nạp
                                                                     thẻ</td>
                                                             </tr>
                                                         @endforelse
