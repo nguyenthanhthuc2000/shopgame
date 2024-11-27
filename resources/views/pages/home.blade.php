@@ -64,13 +64,25 @@
             </div>
 
             <div class="row">
-                @foreach ($accountsList as $account)
+                @foreach ($categories as $category)
                     <div class="col-lg-4 col-md-6 text-center">
-                        @include('components.product-card', $account)
+                        <div class="single-product-item">
+                            <div class="product-image">
+                                <a href="5G0ld.html"><img src="{{ asset('assets/images/avatar.jpg') }}" alt=""
+                                        loading="lazy"></a>
+                            </div>
+                            <h3><b>Danh mục:</b> {{ $category['name'] ?? '' }}</h3>
+                            <p>Đang bán :xxx</p>
+                            <p>Đã bán :xxx</p>
+                            <a href="{{ route('accounts.list', $category['id']) }}" class="cart-btn"><i
+                                    class="fas fa-shopping-cart"></i> XEM THÊM</a>
+                            <a href="{{ route('product.show', ['slug', 'uuid']) }}">
+                                View Product
+                            </a>
+                        </div>
                     </div>
                 @endforeach
             </div>
-
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <a href="shop.html" class="boxed-btn">Xem Thêm Nick Avatar 2D</a>
@@ -115,7 +127,7 @@
                     <div class="single-latest-news">
                         <a href="/" target="_blank">
                             <img style="width: 100%;height: 200px; object-fit: cover;"
-                                src="{{ asset('assets/images/avatar.jpg') }}" alt="">
+                                src="{{ asset('assets/images/avatar.jpg') }}" alt="" loading="lazy">
                         </a>
                         <div class="news-text-box">
                             <h3><a href="/" target="_blank">Trứng Rồng để làm gì?</a></h3>
@@ -132,7 +144,7 @@
                     <div class="single-latest-news">
                         <a href="/" target="_blank">
                             <img style="width: 100%;height: 200px; object-fit: cover;"
-                                src="{{ asset('assets/images/avatar.jpg') }}" alt="">
+                                src="{{ asset('assets/images/avatar.jpg') }}" alt="" loading="lazy">
                         </a>
                         <div class="news-text-box">
                             <h3><a href="/" target="_blank">Đá Ngũ Hành để làm gì?</a></h3>

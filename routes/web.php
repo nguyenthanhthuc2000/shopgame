@@ -17,7 +17,11 @@ Route::middleware(['throttle:30,1'])->group(function () {
 
     Route::group(['prefix' => 'nick-game'], function () {
         Route::get('/', [App\Http\Controllers\AccountController::class, 'index'])->name('product');
-        Route::get('/{id}', [App\Http\Controllers\AccountController::class, 'show'])->name('product.show');
+        // Route::get('/{id}', [App\Http\Controllers\AccountController::class, 'show'])->name('product.show');
+    });
+
+    Route::group(['prefix' => 'danh-muc-game'], function () {
+        Route::get('/{slug}/{uuid}', [AccountController::class, 'show'])->name('product.show');
     });
 
     Route::get('/dang-nhap', [AuthController::class, 'showLoginForm'])->name('login');
