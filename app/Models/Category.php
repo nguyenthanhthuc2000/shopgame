@@ -41,4 +41,19 @@ class Category extends Model
     {
         return $query->where('status', 1);
     }
+
+    public function accounts()
+    {
+        return $this->hasMany(Account::class, 'category_id');
+    }
+
+    public function soldAccounts()
+    {
+        return $this->hasMany(Account::class, 'category_id')->where('status', 1);
+    }
+
+    public function unsoldAccounts()
+    {
+        return $this->hasMany(Account::class, 'category_id')->where('status', 2);
+    }
 }

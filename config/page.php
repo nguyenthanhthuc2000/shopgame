@@ -3,20 +3,20 @@
 return [
     'main_menu' => [
         [
-            'name' => 'Trang Chủ',
+            'name' => 'TRANG CHỦ',
             'route_name' => 'home'
         ],
         [
-            'name' => 'Shop acc',
-            'route_name' => 'accounts.list'
+            'name' => 'SHOP NICK',
+            'route_name' => 'home.deposit'
         ],
         [
-            'name' => 'Nạp tiền',
+            'name' => 'NẠP THẺ CÀO',
             'route_name' => 'card.index',
         ],
-        [
-            'name' => 'Dịch vụ',
-            'route_name' => 'services.list',
+        // [
+            // 'name' => 'Dịch vụ',
+            // 'route_name' => 'services.list',
             // 'sub-menu' => [
             //     [
             //         'name' => 'Săn đệ',
@@ -24,10 +24,10 @@ return [
             //         'divider' => false,
             //     ],
             // ]
-        ],
-        [
-            'name' => 'Giới thiệu',
-            'route_name' => 'services.list',
-        ],
+        // ],
+        // [
+        //     'name' => 'Giới thiệu',
+        //     'route_name' => 'services.list',
+        // ],
     ],
 ];

@@ -48,6 +48,7 @@
                                                                         @endif
                                                                     @endforeach
                                                                 </select>
+                                                                @error('telco')<div class="text-danger">{{ $message }}</div>@enderror
                                                             </div>
                                                         </div>
                                                     </div>
@@ -61,6 +62,7 @@
                                                                     value="{{ old('declared_value') }}">
                                                                     <option value="">Chọn mệnh giá</option>
                                                                 </select>
+                                                                @error('declared_value')<div class="text-danger">{{ $message }}</div>@enderror
                                                             </div>
                                                         </div>
                                                     </div>
@@ -73,6 +75,7 @@
                                                                     class="form-control t14"
                                                                     placeholder="Nhập mã serial nằm sau thẻ"
                                                                     value="{{ old('code') }}">
+                                                                    @error('code')<div class="text-danger">{{ $message }}</div>@enderror
                                                             </div>
                                                         </div>
                                                     </div>
@@ -84,6 +87,7 @@
                                                                 <input type="text" id="serial" name="serial"
                                                                     value="{{ old('serial') }}" class="form-control t14"
                                                                     placeholder="Nhập mã số sau lớp bạc mỏng">
+                                                                    @error('serial')<div class="text-danger">{{ $message }}</div>@enderror
                                                             </div>
                                                         </div>
                                                     </div>
@@ -176,7 +180,7 @@
                                                         </tr>
                                                         @empty
                                                             <tr>
-                                                                <td colspan="5" class="text-center">Không tìm thấy dữ liệu nạp
+                                                                <td colspan="7" class="text-center">Không tìm thấy dữ liệu nạp
                                                                     thẻ</td>
                                                             </tr>
                                                         @endforelse

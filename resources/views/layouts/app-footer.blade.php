@@ -14,7 +14,6 @@
                         <div class="footer-box pages">
                             <ul>
                                 <li><a href="https://www.facebook.com/nguyenthanhthuc.2k/" target="_blank">Facebook: <b>Nguyễn Thành Thức</b></a></li>
-                                <li><a href="https://www.nguyenthanhthuc.info.vn/en" target="_blank">Website: <b>nguyenthanhthuc.info.vn</b></a></li>
                                 <li><a href="https://www.youtube.com/@nguyenthanhthuc.2k" target="_blank">Youtube: <b>Nguyễn Thành Thức</b></a></li>
                                 <li><a href="https://zalo.me/0389946423" target="_blank">Zalo: <b>0389.946.423</b></a></li>
                             </ul>
@@ -26,12 +25,11 @@
                 <div class="footer-box pages">
                     <h2 class="widget-title">Trang</h2>
                     <ul>
-                        <li><a href="/">Shop Nick Ngọc Rồng Online</a></li>
-                        <li><a href="/">Shop Vật Phẩm Ngọc Rồng Online</a></li>
-                        <li><a href="/">Shop Nick Liên Quân</a></li>
-                        <li><a href="/">Bài Viết</a></li>
-                        <li><a href="/">Giới Thiệu</a></li>
-                        <li><a href="/">Chính Sách, Qui Định</a></li>
+                        <li><a href="{{ route('category.list', ['slug' => 'nick-ngoc-rong']) }}">Shop Nick Ngọc Rồng Online</a></li>
+                        <li><a href="{{ route('category.list', ['slug' => 'nick-ngoc-rong-so-sinh']) }}">Shop Nick Ngọc Rồng Sơ Sinh</a></li>
+                        <li><a href="{{ route('category.list', ['slug' => 'kho-do-ngoc-rong']) }}">Shop Vật Phẩm Ngọc Rồng Online</a></li>
+                        <li><a href="{{ route('category.list', ['slug' => 'nick-lien-quan']) }}">Shop Nick Liên Quân</a></li>
+                        <li><a href="{{ route('card.index') }}">Nạp Thẻ Cào</a></li>
                     </ul>
                 </div>
             </div>

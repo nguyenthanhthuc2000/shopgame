@@ -375,7 +375,7 @@
                 data: formData,
                 success: function(response) {
                     if (response.success) {
-                        window.location.href = '/';
+                        window.location.href = '/nap-the-cao';
                     }
                 },
                 error: function(xhr, status, error) {
