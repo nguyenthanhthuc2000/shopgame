@@ -40,7 +40,7 @@ class CategorySeeder extends Seeder
                 'slug' => 'nick-ngoc-rong-so-sinh',
                 'name' => 'Nick NRO Sơ Sinh',
                 'description' => 'nickdaoquan.vn - Ngọc rồng online, mua bán vàng, mua bán ngọc, mua nick ngọc rồng online, shop nick ngọc rồng online',
-                'title' => 'Shop Đồ Ngọc Rồng Online',
+                'title' => 'Shop Nick Ngọc Rồng Online',
                 'status' => 1,
                 'noti' => '',
                 'image' => 'uploads/nick-ngoc-rong-so-sinh.png',
