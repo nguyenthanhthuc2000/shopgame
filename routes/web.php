@@ -22,17 +22,14 @@ Route::middleware(['throttle:30,1'])->group(function () {
 
     Route::group(['prefix' => 'nick-game'], function () {
         Route::get('/', [App\Http\Controllers\AccountController::class, 'index'])->name('product');
-<<<<<<< HEAD
+        Route::get('/tao-moi', [App\Http\Controllers\AccountController::class, 'create'])->name('product.create');
+        Route::post('/tao-moi', [App\Http\Controllers\AccountController::class, 'store'])->name('product.create.post');
         // Route::get('/{id}', [App\Http\Controllers\AccountController::class, 'show'])->name('product.show');
     });
 
     Route::group(['prefix' => 'danh-muc-game'], function () {
         Route::get('/{slug}/{uuid}', [AccountController::class, 'show'])->name('product.show');
-=======
-        Route::get('/tao-moi', [App\Http\Controllers\AccountController::class, 'create'])->name('product.create');
-        Route::post('/tao-moi', [App\Http\Controllers\AccountController::class, 'store'])->name('product.create.post');
         Route::get('/{id}', [App\Http\Controllers\AccountController::class, 'show'])->name('product.show');
->>>>>>> 32b8e3d59d24f8098ef41321d0dc433ad6474abd
     });
 
     Route::get('/dang-nhap', [AuthController::class, 'showLoginForm'])->name('login');
