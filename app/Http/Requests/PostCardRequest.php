@@ -34,12 +34,31 @@ class PostCardRequest extends FormRequest
             ],
             'code' => [
                 'required',
-                'numeric',
+                'max:100',
             ],
             'serial' => [
                 'required',
-                'numeric',
+                'max:100',
             ],
+        ];
+    }
+
+    /**
+     * Get custom messages for validation errors.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'telco.required' => 'Nhà mạng không được để trống.',
+            'telco.in' => 'Nhà mạng không hợp lệ.',
+            'declared_value.required' => 'Giá trị khai báo là bắt buộc.',
+            'declared_value.numeric' => 'Giá trị khai báo phải là số.',
+            'code.required' => 'Mã thẻ không được để trống.',
+            'serial.required' => 'Số serial không được để trống.',
+            'code.max' => 'Mã thẻ không được vượt quá 100 ký tự.',
+            'serial.max' => 'Số serial không được vượt quá 100 ký tự.',
         ];
     }
 }

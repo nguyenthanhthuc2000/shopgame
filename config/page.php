@@ -8,15 +8,15 @@ return [
         ],
         [
             'name' => 'Shop acc',
-            'route_name' => 'accounts.list'
+            'route_name' => 'home.deposit'
         ],
         [
-            'name' => 'Nạp tiền',
+            'name' => 'Nạp thẻ cào',
             'route_name' => 'card.index',
         ],
-        [
-            'name' => 'Dịch vụ',
-            'route_name' => 'services.list',
+        // [
+            // 'name' => 'Dịch vụ',
+            // 'route_name' => 'services.list',
             // 'sub-menu' => [
             //     [
             //         'name' => 'Săn đệ',
@@ -24,7 +24,7 @@ return [
             //         'divider' => false,
             //     ],
             // ]
-        ],
+        // ],
         [
             'name' => 'Giới thiệu',
             'route_name' => 'services.list',

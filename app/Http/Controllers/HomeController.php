@@ -14,15 +14,19 @@ class HomeController extends Controller
      */
     public function __construct() {}
 
+
     /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * Summary of index
+     * 
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
-        $categories = Category::orderBy('id', 'DESC')
-            ->paginate();
+        $categories = Category::withCount([
+            'soldAccounts as sold_count',
+            'unsoldAccounts as unsold_count',
+        ])->orderBy('id', 'DESC')->get();
+
         return view('pages.home', compact('categories'));
     }
 

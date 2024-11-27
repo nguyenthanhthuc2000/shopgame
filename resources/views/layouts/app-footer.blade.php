@@ -14,7 +14,6 @@
                         <div class="footer-box pages">
                             <ul>
                                 <li><a href="https://www.facebook.com/nguyenthanhthuc.2k/" target="_blank">Facebook: <b>Nguyễn Thành Thức</b></a></li>
-                                <li><a href="https://www.nguyenthanhthuc.info.vn/en" target="_blank">Website: <b>nguyenthanhthuc.info.vn</b></a></li>
                                 <li><a href="https://www.youtube.com/@nguyenthanhthuc.2k" target="_blank">Youtube: <b>Nguyễn Thành Thức</b></a></li>
                                 <li><a href="https://zalo.me/0389946423" target="_blank">Zalo: <b>0389.946.423</b></a></li>
                             </ul>

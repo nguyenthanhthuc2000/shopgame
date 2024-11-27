@@ -3,7 +3,7 @@ $(function() {
     $(".homepage-slider").owlCarousel({
         items: 1,
         loop: true,
-        autoplay: true,
+        autoplay: false,
         nav: true,
         dots: false,
         navText: ['<i class="fas fa-angle-left"></i>', '<i class="fas fa-angle-right"></i>'],
@@ -13,12 +13,12 @@ $(function() {
                 nav: false,
                 loop: true
             },
-            600: {
+            3000: {
                 items: 1,
                 nav: true,
                 loop: true
             },
-            1000: {
+            6000: {
                 items: 1,
                 nav: true,
                 loop: true
