@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('images', function (Blueprint $table) {
             $table->tinyInteger('is_banner')->after('path');
-            $table->string('file_id', 15)->unique(true)->after('is_banner');
+            $table->string('file_id', 255)->unique(true)->after('is_banner');
         });
     }
 

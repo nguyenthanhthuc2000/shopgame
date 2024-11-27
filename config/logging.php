@@ -147,6 +147,22 @@ return [
             'days' => 14,
             'replace_placeholders' => true,
         ],
+
+        'account_transactions' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/account_transactions/log.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+            'days' => 14,
+            'replace_placeholders' => true,
+        ],
+
+        'images_save' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/images/images_save/log.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+            'days' => 14,
+            'replace_placeholders' => true,
+        ]
     ],
 
 ];

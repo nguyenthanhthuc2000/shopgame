@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Account;
 use App\Http\Requests\AccountRequest;
 use App\Models\Category;
-use App\Services\GoogleDriveService;
+use App\Services\AccountService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -13,13 +13,13 @@ use Illuminate\Support\Str;
 class AccountController extends Controller
 {
     /**
-     * @var GoogleDriveService $googleDriveService
+     * @var AccountService $accountService
      */
-    protected $googleDriveService;
+    protected $accountService;
 
-    public function __construct(GoogleDriveService $googleDriveService)
+    public function __construct(AccountService $accountService)
     {
-        $this->googleDriveService = $googleDriveService;
+        $this->accountService = $accountService;
     }
 
     public function index(Request $request)
@@ -168,22 +168,17 @@ class AccountController extends Controller
             'status' => 1,
         ];
 
-        $accountCreated = Account::create($accountData);
-
-        if ($accountCreated) {
-            $folderId = config('google.accounts_folder_id');
-
-            if ($request->hasFile('banner')) {
-                $banner = $this->googleDriveService->uploadSingleFile($request->file('banner'), $folderId);
-            }
-
-            if ($request->hasFile('gallery')) {
-                $imagesDetail = $this->googleDriveService->uploadMultipleFiles($request->file('gallery'), $folderId);
-            }
-            // TODO: Save the images in the table
+        if ($request->hasFile('banner')) {
+            $banner = $request->file('banner');
         }
 
-        dd($accountCreated, $banner, $imagesDetail);
+        if ($request->hasFile('gallery')) {
+            $imagesDetail = $request->file('gallery');
+        }
+
+        $accountCreated = $this->accountService->storeAccount($accountData, $banner, $imagesDetail ?? []);
+
+        dd($accountCreated);
     }
 
     public function edit($id)

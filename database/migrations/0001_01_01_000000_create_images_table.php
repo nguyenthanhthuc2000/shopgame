@@ -13,9 +13,8 @@ return new class extends Migration
     {
         Schema::create('images', function (Blueprint $table) {
             $table->id();
-            $table->string('model_type');
-            $table->unsignedBigInteger('model_id');
-            $table->string('path');
+            $table->unsignedBigInteger('account_id');
+            $table->string('image_link');
             $table->timestamps();
         });
     }
