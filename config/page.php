@@ -3,15 +3,15 @@
 return [
     'main_menu' => [
         [
-            'name' => 'Trang Chủ',
+            'name' => 'TRANG CHỦ',
             'route_name' => 'home'
         ],
         [
-            'name' => 'Shop acc',
+            'name' => 'SHOP NICK',
             'route_name' => 'home.deposit'
         ],
         [
-            'name' => 'Nạp thẻ cào',
+            'name' => 'NẠP THẺ CÀO',
             'route_name' => 'card.index',
         ],
         // [
@@ -25,9 +25,9 @@ return [
             //     ],
             // ]
         // ],
-        [
-            'name' => 'Giới thiệu',
-            'route_name' => 'services.list',
-        ],
+        // [
+        //     'name' => 'Giới thiệu',
+        //     'route_name' => 'services.list',
+        // ],
     ],
 ];
