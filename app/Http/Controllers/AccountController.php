@@ -2,23 +2,16 @@
 
 namespace App\Http\Controllers;
 
-<<<<<<< HEAD
 use App\Models\Account;
-=======
 use App\Http\Requests\AccountRequest;
-use App\Models\Account;
 use App\Models\Category;
 use App\Services\GoogleDriveService;
->>>>>>> 32b8e3d59d24f8098ef41321d0dc433ad6474abd
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class AccountController extends Controller
 {
-<<<<<<< HEAD
-    public function index(Request $request)
-=======
     /**
      * @var GoogleDriveService $googleDriveService
      */
@@ -29,8 +22,7 @@ class AccountController extends Controller
         $this->googleDriveService = $googleDriveService;
     }
 
-    public function index()
->>>>>>> 32b8e3d59d24f8098ef41321d0dc433ad6474abd
+    public function index(Request $request)
     {
         // $query = Account::orther();
 
@@ -59,9 +51,6 @@ class AccountController extends Controller
 
     public function create(Request $request)
     {
-<<<<<<< HEAD
-        dd($request->all());
-=======
         $categories = Category::isActive()->get();
         $classes = [
             [
@@ -161,14 +150,10 @@ class AccountController extends Controller
         );
 
         return view('pages.create-account',  $data);
->>>>>>> 32b8e3d59d24f8098ef41321d0dc433ad6474abd
     }
 
     public function store(AccountRequest $request)
     {
-<<<<<<< HEAD
-        dd($request->all());
-=======
         $accountData = [
             'uuid' => Str::uuid(),
             'price' => $request->input('price_account', ''),
@@ -199,7 +184,6 @@ class AccountController extends Controller
         }
 
         dd($accountCreated, $banner, $imagesDetail);
->>>>>>> 32b8e3d59d24f8098ef41321d0dc433ad6474abd
     }
 
     public function edit($id)
