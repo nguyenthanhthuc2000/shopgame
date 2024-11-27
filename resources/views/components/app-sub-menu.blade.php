@@ -17,7 +17,7 @@
         </div>
         <div class="c-content-ver-nav m-b-20">
             <ul class="c-menu">
-                <li><a href="/Home/BuyNickLog">Tài khoản đã mua</a></li>
+                <li><a href="{{ route('account.tran.index') }}">Tài khoản đã mua</a></li>
             </ul>
         </div>
     </div>

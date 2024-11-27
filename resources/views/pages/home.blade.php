@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'NickDaoQuan.VN | Shop Nick Ngọc Rồng Online Giá Rẻ, Uy Tín')
+@section('title', 'Trang Chủ | NickDaoQuan.VN Shop Nick Ngọc Rồng Online Giá Rẻ, Uy Tín')
 
 @section('content')
 
