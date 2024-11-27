@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\AccountTransactionController as AdminAccountTransactionController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\IsAdmin;
 use \App\Http\Middleware\LogRequestMiddleware;
@@ -24,7 +25,11 @@ Route::middleware(['throttle:30,1'])->group(function () {
         Route::get('/', [App\Http\Controllers\AccountController::class, 'index'])->name('product');
         Route::get('/tao-moi', [App\Http\Controllers\AccountController::class, 'create'])->name('product.create');
         Route::post('/tao-moi', [App\Http\Controllers\AccountController::class, 'store'])->name('product.create.post');
-        Route::get('/{id}', [App\Http\Controllers\AccountController::class, 'show'])->name('product.show');
+        // Route::get('/{slug}/{uuid}', [App\Http\Controllers\AccountController::class, 'show'])->name('product.show');
+    });
+
+    Route::group(['prefix' => 'danh-muc'], function () {
+        Route::get('/{slug}', [CategoryController::class, 'index'])->name('category.list');
     });
 
     Route::get('/dang-nhap', [AuthController::class, 'showLoginForm'])->name('login');
@@ -45,8 +50,8 @@ Route::middleware(['throttle:30,1'])->group(function () {
 
     Route::middleware([LogRequestMiddleware::class])->group(function () {
         Route::group(["prefix" => 'accounts'], function () {
-            Route::get('/', [AccountController::class, 'index'])->name('accounts.list');
-            Route::get('/{id}', [AccountController::class, 'show'])->name('accounts.show');
+            Route::get('/{slug}', [AccountController::class, 'index'])->name('accounts.list');
+            Route::get('/{slug}/{id}', [AccountController::class, 'show'])->name('accounts.show');
             Route::get('/create', [AccountController::class, 'create'])->name('accounts.create');
             Route::post('/create', [AccountController::class, 'store'])->name('accounts.create.post');
         });

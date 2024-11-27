@@ -74,11 +74,8 @@
                             <h3><b>Danh mục:</b> {{ $category['name'] ?? '' }}</h3>
                             <p>Đang bán :xxx</p>
                             <p>Đã bán :xxx</p>
-                            <a href="{{ route('accounts.list', $category['id']) }}" class="cart-btn"><i
+                            <a href="{{ route('category.list', ['slug' => $categories['id'] ?? '']) }}" class="cart-btn"><i
                                     class="fas fa-shopping-cart"></i> XEM THÊM</a>
-                            <a href="{{ route('product.show', ['slug', 'uuid']) }}">
-                                View Product
-                            </a>
                         </div>
                     </div>
                 @endforeach
