@@ -1,115 +1,24 @@
 @extends('layouts.app')
 
 @section('title', 'Detail')
-<style>
-    /* Bố cục tổng thể */
-    .col-lg-5 .game-detail {
-        background: #fff;
-        /* Nền trắng */
-        border: 1px solid #ddd;
-        /* Viền mờ */
-        border-radius: 8px;
-        /* Bo góc */
-        padding: 20px;
-        /* Khoảng cách trong */
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        /* Đổ bóng */
-    }
-
-    /* Phần đầu (Top Section) */
-    .game-detail_top {
-        margin-bottom: 15px;
-        /* Khoảng cách dưới */
-    }
-
-    .game-detail_code b {
-        color: #e74c3c;
-        /* Mã số màu đỏ */
-        font-size: 18px;
-        /* Kích thước chữ */
-    }
-
-    .game-detail_category a {
-        color: #3498db;
-        /* Màu xanh */
-        text-decoration: none;
-    }
-
-    .game-detail_category a:hover {
-        text-decoration: underline;
-    }
-
-    /* Phần giá (Bottom Section) */
-    .game-detail_price {
-        margin-bottom: 20px;
-    }
-
-    .game-detail_price--item span {
-        font-weight: bold;
-        font-size: 18px;
-        color: #27ae60;
-        /* Màu xanh lá */
-    }
-
-    /* Thông tin meta */
-    .game-detail_meta {
-        margin-bottom: 20px;
-    }
-
-    .game-detail_meta--item b {
-        font-size: 16px;
-        color: #2c3e50;
-        /* Màu đậm */
-    }
-
-    /* Nút hành động */
-    .game-detail_buttons a {
-        display: inline-block;
-        padding: 10px 20px;
-        border-radius: 4px;
-        font-weight: bold;
-        text-transform: uppercase;
-        text-align: center;
-        margin-right: 10px;
-        transition: all 0.3s ease-in-out;
-    }
-
-    .game-detail_button--primary {
-        background: #e74c3c;
-        color: #fff;
-        text-decoration: none;
-    }
-
-    .game-detail_button--primary:hover {
-        background: #c0392b;
-    }
-
-    .game-detail_button--secondary {
-        background: #3498db;
-        color: #fff;
-        text-decoration: none;
-    }
-
-    .game-detail_button--secondary:hover {
-        background: #2980b9;
-    }
-</style>
 @section('content')
-
-    <div class="section-gap">
+    <div class="section-gap mt-5 pt-80 pb-80">
         <div class="container">
             <div class="row">
                 <div class="section-gap">
                     <div class="container">
                         <div class="row">
-                            <div class="col-lg-7">
+                            <div class="col-lg-7 col-md-6 mb-3">
                                 <div class="game-images">
                                     <div class="nick-avatar_photo" id="detail-avatar_photo">
                                         <div class="preview-avatar_photo__item">
                                             <span class="ratio ratio-1x1">
-                                                <img src="https://nick24s.com/storage/nicks/8346/501871-Screenshot 2024-11-18 220032.png"
+                                                <img src="https://drive.google.com/thumbnail?id=10mnwAT8jIRjCKwTqSG_xswjglpt4MTQl&sz=w1000"
+                                                    class="img-fluid object-fit-cotain clickable-image" alt="Image"
+                                                    style="object-fit: contain;" loading="lazy">
+                                                {{-- <img src="https://nick24s.com/storage/nicks/8346/501871-Screenshot 2024-11-18 220032.png"
                                                     class="img-fluid object-fit-cover clickable-image" alt="Image"
-                                                    loading="lazy">
+                                                    loading="lazy"> --}}
                                             </span>
                                             {{-- <a href="https://nick24s.com/storage/nicks/8346/501871-Screenshot 2024-11-18 220032.png"
                                                 data-index="01" data-fancybox="game-images" class="stretched-link"
@@ -135,7 +44,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-5">
+
+                            <div class="col-lg-5 col-md-6">
                                 <div class="game-detail">
                                     <div class="game-detail_top">
                                         <div class="game-detail_code">
@@ -175,13 +85,13 @@
                                                 <b>Ảo</b>
                                             </div>
                                         </div>
-                                        <div class="game-detail_buttons">
+                                        <div class="game-detail_buttons row">
                                             <a href="https://nick24s.com/deposit/card"
-                                                class="game-detail_button game-detail_button--primary">
+                                                class="game-detail_button game-detail_button--primary col-md-6 mb-2">
                                                 Nạp thẻ cào
                                             </a>
                                             <a href="https://nick24s.com/nick/ngoc-rong-online/101150/buynow"
-                                                class="game-detail_button game-detail_button--secondary">
+                                                class="game-detail_button game-detail_button--secondary col-md-6 mb-2">
                                                 Mua ngay
                                             </a>
                                         </div>

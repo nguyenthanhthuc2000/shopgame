@@ -1,0 +1,91 @@
+
+/* Bố cục tổng thể */
+.col-lg-5 .game-detail {
+    background: #fff;
+    /* Nền trắng */
+    border: 1px solid #ddd;
+    /* Viền mờ */
+    border-radius: 8px;
+    /* Bo góc */
+    padding: 20px;
+    /* Khoảng cách trong */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Đổ bóng */
+}
+
+/* Phần đầu (Top Section) */
+.game-detail_top {
+    margin-bottom: 15px;
+    /* Khoảng cách dưới */
+}
+
+.game-detail_code b {
+    color: #e74c3c;
+    /* Mã số màu đỏ */
+    font-size: 18px;
+    /* Kích thước chữ */
+}
+
+.game-detail_category a {
+    color: #3498db;
+    /* Màu xanh */
+    text-decoration: none;
+}
+
+.game-detail_category a:hover {
+    text-decoration: underline;
+}
+
+/* Phần giá (Bottom Section) */
+.game-detail_price {
+    margin-bottom: 20px;
+}
+
+.game-detail_price--item span {
+    font-weight: bold;
+    font-size: 18px;
+    color: #27ae60;
+    /* Màu xanh lá */
+}
+
+/* Thông tin meta */
+.game-detail_meta {
+    margin-bottom: 20px;
+}
+
+.game-detail_meta--item b {
+    font-size: 16px;
+    color: #2c3e50;
+    /* Màu đậm */
+}
+
+/* Nút hành động */
+.game-detail_buttons a {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.game-detail_button--primary {
+    background: #e74c3c;
+    color: #fff;
+    text-decoration: none;
+}
+
+.game-detail_button--primary:hover {
+    background: #c0392b;
+}
+
+.game-detail_button--secondary {
+    background: #3498db;
+    color: #fff;
+    text-decoration: none;
+}
+
+.game-detail_button--secondary:hover {
+    background: #2980b9;
+}

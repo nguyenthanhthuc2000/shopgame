@@ -71,10 +71,10 @@
                                 <a href="5G0ld.html"><img src="{{ asset('assets/images/avatar.jpg') }}" alt=""
                                         loading="lazy"></a>
                             </div>
-                            <h3><b>Danh mục:</b> {{ $category['name'] ?? '' }}</h3>
+                            <h3><b>Danh mục:</b> {{ $category->name ?? '' }}</h3>
                             <p>Đang bán :xxx</p>
                             <p>Đã bán :xxx</p>
-                            <a href="{{ route('category.list', ['slug' => $categories['id'] ?? '']) }}" class="cart-btn"><i
+                            <a href="{{ route('category.list', ['slug' => $category->slug ?? '#']) }}" class="cart-btn"><i
                                     class="fas fa-shopping-cart"></i> XEM THÊM</a>
                         </div>
                     </div>

@@ -50,8 +50,8 @@ Route::middleware(['throttle:30,1'])->group(function () {
 
     Route::middleware([LogRequestMiddleware::class])->group(function () {
         Route::group(["prefix" => 'accounts'], function () {
-            Route::get('/{slug}', [AccountController::class, 'index'])->name('accounts.list');
-            Route::get('/{slug}/{id}', [AccountController::class, 'show'])->name('accounts.show');
+            Route::get('/', [AccountController::class, 'index'])->name('accounts.list');
+            Route::get('/{id}', [AccountController::class, 'show'])->name('accounts.show');
             Route::get('/create', [AccountController::class, 'create'])->name('accounts.create');
             Route::post('/create', [AccountController::class, 'store'])->name('accounts.create.post');
         });
