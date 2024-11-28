@@ -189,8 +189,9 @@ class AccountController extends Controller
         }
 
         $accountCreated = $this->accountService->storeAccount($accountData, $banner, $imagesDetail ?? []);
+        // TODO: need check created
 
-        dd($accountCreated);
+        return view('account.manage.index');
     }
 
     public function edit($uuid)

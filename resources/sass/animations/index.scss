@@ -1,4 +1,3 @@
-
 @-webkit-keyframes showSweetToast {
     0% {
         -webkit-transform: translateY(-10px) rotateZ(2deg);
@@ -679,4 +678,19 @@
         transform: rotateX(0);
         opacity: 1;
     }
+}
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.3s ease-out;
+    animation-fill-mode: both;
 }

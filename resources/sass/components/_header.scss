@@ -178,92 +178,105 @@ a.meanmenu-reveal {
 .mean-remove {
     display: none !important;
 }
+.sticky-wrapper {
+    &.is-sticky {
+        .navbar-toggler {
+            color: rgba(255, 255, 255, 0.55);
+            border-color: rgba(255, 255, 255, 0.1);
 
-nav.main-menu {
-    ul {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        li {
-            display: inline-block;
-            a,
-            button {
-                color: $white-color;
-                font-weight: 700;
-                display: block;
-                padding: 15px;
+            .navbar-toggler-icon {
+                background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
             }
-            &:last-child {
+        }
+    }
+
+    nav.main-menu {
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            li {
+                display: inline-block;
                 a,
                 button {
-                    display: inline-block;
+                    color: $white-color;
+                    font-weight: 700;
+                    display: block;
+                    padding: 15px;
+                }
+                &:last-child {
+                    a,
+                    button {
+                        display: inline-block;
+                    }
+                }
+            }
+            > li {
+                position: relative;
+                &:hover {
+                    ul {
+                        opacity: 1;
+                        visibility: visible;
+                    }
+                }
+            }
+            ul.sub-menu {
+                position: absolute;
+                background-color: $background-color_5;
+                width: 220px;
+                padding: 15px 15px;
+                margin: 0;
+                left: 0;
+                top: 50px;
+                border-radius: 3px;
+                -webkit-transition: 0.3s;
+                -o-transition: 0.3s;
+                transition: 0.3s;
+                opacity: 0;
+                visibility: hidden;
+                -webkit-box-shadow: 0 0 20px #555555;
+                box-shadow: 0 0 20px #555555;
+                li {
+                    display: block;
+                    text-align: left;
+                    display: block;
+                    a {
+                        color: $color_4;
+                        font-weight: 600;
+                        padding: 7px 10px;
+                        font-size: 13px;
+                        color: $color_4;
+                        padding: 8px;
+                        font-size: 13px;
+                        font-weight: 600;
+                    }
+                }
+            }
+            li.current-list-item {
+                > a {
+                    color: $main-color;
                 }
             }
         }
-        > li {
-            position: relative;
-            &:hover {
-                ul {
-                    opacity: 1;
-                    visibility: visible;
-                }
-            }
-        }
-        ul.sub-menu {
-            position: absolute;
-            background-color: $background-color_5;
-            width: 220px;
-            padding: 15px 15px;
-            margin: 0;
-            left: 0;
-            top: 50px;
-            border-radius: 3px;
-            -webkit-transition: 0.3s;
-            -o-transition: 0.3s;
-            transition: 0.3s;
-            opacity: 0;
-            visibility: hidden;
-            -webkit-box-shadow: 0 0 20px #555555;
-            box-shadow: 0 0 20px #555555;
-            li {
-                display: block;
-                text-align: left;
-                display: block;
-                a {
-                    color: $color_4;
-                    font-weight: 600;
-                    padding: 7px 10px;
-                    font-size: 13px;
-                    color: $color_4;
-                    padding: 8px;
-                    font-size: 13px;
-                    font-weight: 600;
-                }
-            }
-        }
-        li.current-list-item {
-            > a {
-                color: $main-color;
-            }
-        }
-    }
-    > ul {
         li {
-            &:last-child {
-                float: right;
+            &:hover {
+                > a,
+                button {
+                    color: $main-color;
+                }
+            }
+            a {
+                -webkit-transition: 0.3s;
+                -o-transition: 0.3s;
+                transition: 0.3s;
             }
         }
-    }
-    li {
-        &:hover {
-            > a, button {
-                color: $main-color;
+        .user-action {
+            a {
+                color: #fff;
+                font-weight: 700;
+                padding: 15px;
             }
-        }
-        a {
-            -webkit-transition: 0.3s;
-            -o-transition: 0.3s;
-            transition: 0.3s;
         }
     }
 }
