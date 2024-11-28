@@ -52,19 +52,18 @@
                                             Mã số: <b>#101150</b>
                                         </div>
                                         <div class="game-detail_category">
-                                            Danh mục: <a href="https://nick24s.com/nick/ngoc-rong-online">NICK NRO TRUNG -
-                                                VIP</a>
+                                            Danh Mục: <a href="{{ route('category.list', ['slug' => $category->slug]) }}">{{ $category->name }}</a>
                                         </div>
                                     </div>
                                     <div class="game-detail_bottom">
                                         <div class="game-detail_price">
                                             <div class="game-detail_price--item">
                                                 Giá thẻ cào
-                                                <span>120,000đ</span>
+                                                <span>{{ number_format($account->price, 0, ',', '.') }}đ</span>
                                             </div>
                                             <div class="game-detail_price--item">
                                                 Giá ATM/Momo
-                                                <span>99,000đ</span>
+                                                <span>{{ number_format($account->price_atm, 0, ',', '.') }}đ</span>
                                             </div>
                                         </div>
                                         <div class="game-detail_meta">
