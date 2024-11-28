@@ -28,6 +28,9 @@ Route::middleware(['throttle:30,1'])->group(function () {
         Route::get('/tao-moi', [App\Http\Controllers\AccountController::class, 'create'])->name('product.create');
         Route::post('/tao-moi', [App\Http\Controllers\AccountController::class, 'store'])->name('product.create.post');
         // Route::get('/{slug}/{uuid}', [App\Http\Controllers\AccountController::class, 'show'])->name('product.show');
+        Route::get('/chinh-sua/{uuid}', [App\Http\Controllers\AccountController::class, 'edit'])->name('product.edit');
+        Route::put('/chinh-sua/{uuid}', [App\Http\Controllers\AccountController::class, 'update'])->name('product.edit.post');
+        Route::delete('/xoa/{uuid}', [App\Http\Controllers\AccountController::class, 'destroy'])->name('product.delete');
     });
 
     Route::get('/dang-nhap', [AuthController::class, 'showLoginForm'])->name('login');
@@ -46,7 +49,7 @@ Route::middleware(['throttle:30,1'])->group(function () {
         Route::get('/tai-khoan-da-mua', [AccountTransactionController::class, 'index'])->name('account.tran.index');
         Route::get('/nap-the-cao/lich-su', [CardController::class, 'historyCards'])->name('historyCards');
         Route::post('/nap-the-cao/gui-the', [CardController::class, 'postCard'])->name('postCard');
-        Route::get('/tai-khoan-hien-co', [AccountController::class, 'index'])->name('account.current.index');
+        Route::get('/quan-ly-nick-ngoc-rong', [AccountController::class, 'index'])->name('account.manage.index');
     });
 
     Route::group(['prefix' => 'danh-muc-game'], function () {

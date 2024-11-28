@@ -25,12 +25,12 @@ class AccountController extends Controller
 
     public function index(Request $request)
     {
-        // $accounts = Account::orderBy('id', 'DESC')
-        //     ->paginate();
+        $accounts = Account::with(['category'])->orderBy('id', 'DESC')->paginate();
         // return view('pages.product', compact('accounts'));
-        $accountCurent = AccountTransaction::with(['account.category'])->where('user_id', Auth::id())->get();
 
-        return view('pages.account-current', compact(['accountCurent']));
+        // $accountCurent = Account::with(['account.category'])->where('user_id', Auth::id())->get();
+        // dd($accountCurent);
+        return view('pages.account-manage', compact('accounts'));
     }
 
     public function show($categorySlug, $accountUuid)
@@ -193,14 +193,117 @@ class AccountController extends Controller
         dd($accountCreated);
     }
 
-    public function edit($id)
+    public function edit($uuid)
     {
-        dd($id);
+        $categories = Category::isActive()->get();
+        $classes = [
+            [
+                'name' => 'Xayda',
+                'value' => '1',
+            ],
+            [
+                'name' => 'Trái đất',
+                'value' => '2',
+            ],
+            [
+                'name' => 'Namec',
+                'value' => '3',
+            ],
+        ];
+        $regisTypes = [
+            [
+                'name' => 'Đăng ký ảo',
+                'value' => '0',
+            ],
+            [
+                'name' => 'Đăng ký bằng số điện thoại',
+                'value' => '1',
+            ],
+            [
+                'name' => 'Đăng ký bằng email',
+                'value' => '2',
+            ],
+        ];
+        $earring = [
+            [
+                'name' => 'Có',
+                'value' => '1',
+            ],
+            [
+                'name' => 'Không',
+                'value' => '0',
+            ],
+        ];
+        $servers = [
+            [
+                'name' => 'Server 1',
+                'value' => '1',
+            ],
+            [
+                'name' => 'Server 2',
+                'value' => '2',
+            ],
+            [
+                'name' => 'Server 3',
+                'value' => '3',
+            ],
+            [
+                'name' => 'Server 4',
+                'value' => '4',
+            ],
+            [
+                'name' => 'Server 5',
+                'value' => '5',
+            ],
+            [
+                'name' => 'Server 6',
+                'value' => '6',
+            ],
+            [
+                'name' => 'Server 7',
+                'value' => '7',
+            ],
+            [
+                'name' => 'Server 8',
+                'value' => '8',
+            ],
+            [
+                'name' => 'Server 9',
+                'value' => '9',
+            ],
+            [
+                'name' => 'Server 10',
+                'value' => '10',
+            ],
+            [
+                'name' => 'Server 11',
+                'value' => '11',
+            ],
+            [
+                'name' => 'Server 12',
+                'value' => '12',
+            ],
+        ];
+        $account = Account::whereUuid($uuid)->first();
+        // dd($account->category);
+
+        $data = compact(
+            'categories',
+            'classes',
+            'regisTypes',
+            'earring',
+            'servers',
+            'account'
+        );
+        return view('pages.edit-account', $data);
     }
 
     public function update(Request $request, $id)
     {
         dd($id);
     }
-    public function filterProducts(Request $request) {}
+    public function destroy($uuid)
+    {
+        dd($uuid);
+    }
 }

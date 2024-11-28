@@ -27,7 +27,7 @@
         </div>
         <div class="c-content-ver-nav m-b-20">
             <ul class="c-menu">
-                <li><a href="">Game Ngọc Rồng</a></li>
+                <li><a href="{{ route('account.manage.index') }}">Game Ngọc Rồng</a></li>
             </ul>
         </div>
     </div>

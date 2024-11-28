@@ -33,3 +33,22 @@ if (!function_exists('isHomePage')) {
         return $current->getName() === 'home';
     }
 }
+
+if (!function_exists('getPrice')) {
+    /**
+     * @return string
+     */
+    function getPrice($price)
+    {
+        try {
+
+            if ($price === 0) {
+                return 0;
+            }
+
+            return number_format($price, 0, ',', '.');
+        } catch (Exception $e) {
+            return '';
+        }
+    }
+}
