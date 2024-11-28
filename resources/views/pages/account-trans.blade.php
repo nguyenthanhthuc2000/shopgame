@@ -11,7 +11,9 @@
                         <div class="row">
 
                             {{-- LEFT MENU --}}
-                            @include('components.app-sub-menu')
+                            <div class="col-xs-12 col-md-3">
+                                @include('components.app-sub-menu')
+                            </div>
                             {{-- END LEFT MENU --}}
 
                             <div class="col-xs-12 col-md-9">
@@ -40,30 +42,37 @@
                                                 <tbody>
                                                     @forelse($accountTrans as $index => $accountTran)
                                                         <tr>
-                                                            <td >{{ $accountTran->uuid }}</td>
-                                                            <td >#{{ $accountTran->account_id }}</td>
-                                                            <td style="min-width: 200px;">#{{ $accountTran->account->username }}</td>
-                                                            <td style="min-width: 100px;">#{{ $accountTran->account->password }}</td>
-                                                            <td style="min-width: 200px;" >#{{ $accountTran->account->category->name }}</td>
-                                                            <td style="min-width: 100px;">{{ number_format($accountTran->price, 0, ',', '.') }}</td>
-                                                            <td style="min-width: 100px;">{{ date('d/m/Y H:i', strtotime($accountTran->created_at)) }}</td>
+                                                            <td>{{ $accountTran->uuid }}</td>
+                                                            <td>#{{ $accountTran->account_id }}</td>
+                                                            <td style="min-width: 200px;">
+                                                                #{{ $accountTran->account->username }}</td>
+                                                            <td style="min-width: 100px;">
+                                                                #{{ $accountTran->account->password }}</td>
+                                                            <td style="min-width: 200px;">
+                                                                #{{ $accountTran->account->category->name }}</td>
+                                                            <td style="min-width: 100px;">
+                                                                {{ number_format($accountTran->price, 0, ',', '.') }}</td>
+                                                            <td style="min-width: 100px;">
+                                                                {{ date('d/m/Y H:i', strtotime($accountTran->created_at)) }}
+                                                            </td>
                                                         </tr>
-                                                        @empty
-                                                            <tr>
-                                                                <td colspan="7" class="text-center">Không tìm thấy lịch sử mua nick</td>
-                                                            </tr>
-                                                        @endforelse
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        @endauth
-                                    </div>
+                                                    @empty
+                                                        <tr>
+                                                            <td colspan="7" class="text-center">Không tìm thấy lịch sử
+                                                                mua nick</td>
+                                                        </tr>
+                                                    @endforelse
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    @endauth
                                 </div>
                             </div>
-                        </section>
-                    </div>
+                        </div>
+                    </section>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 @endsection

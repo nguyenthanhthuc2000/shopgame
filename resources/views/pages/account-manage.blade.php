@@ -10,16 +10,17 @@
                     <section id="cardbody" class="section">
                         <div class="row">
                             {{-- LEFT MENU --}}
-                            @include('components.app-sub-menu')
+                            <div class="col-lg-3">
+                                @include('components.app-sub-menu')
+                            </div>
                             {{-- END LEFT MENU --}}
 
-                            <div class="col-xs-12 col-md-9">
+                            <div class="col-lg-9">
                                 <div class="col-sm-12 text-center">
                                     <h1 style="font-size: 26px;">TÀI KHOẢN NGỌC RỒNG</h1>
                                 </div>
-                                <div class="d-flex justify-content-start my-3">
-                                    <div class="input-group" style="max-width: 400px;">
-
+                                <div class="d-flex justify-content-end my-3">
+                                    <div class="input-group w-50">
                                         <input type="text" id="searchInput" class="form-control"
                                             placeholder="Tìm kiếm tài khoản..." aria-label="Search"
                                             aria-describedby="searchIcon">
@@ -28,9 +29,9 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="">
+                                <div>
                                     @auth
-                                        <div id="historyCard" class="table-responsive">
+                                        <div id="accountList" class="table-responsive">
                                             <table class="table">
                                                 <thead>
                                                     <tr>
@@ -68,7 +69,7 @@
                                                         </tr>
                                                     @empty
                                                         <tr>
-                                                            <td colspan="7" class="text-center">Không tìm thấy tài khoản</td>
+                                                            <td colspan=8" class="text-center">Không tìm thấy tài khoản</td>
                                                         </tr>
                                                     @endforelse
                                                 </tbody>

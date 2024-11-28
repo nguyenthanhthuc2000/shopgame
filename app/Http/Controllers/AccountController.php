@@ -26,10 +26,7 @@ class AccountController extends Controller
     public function index(Request $request)
     {
         $accounts = Account::with(['category'])->orderBy('id', 'DESC')->paginate();
-        // return view('pages.product', compact('accounts'));
 
-        // $accountCurent = Account::with(['account.category'])->where('user_id', Auth::id())->get();
-        // dd($accountCurent);
         return view('pages.account-manage', compact('accounts'));
     }
 

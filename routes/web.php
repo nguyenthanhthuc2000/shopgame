@@ -23,11 +23,10 @@ Route::middleware(['throttle:30,1'])->group(function () {
     Route::get('/nap-the-cao', [CardController::class, 'index'])->name('card.index');
     Route::get('/nap-tien', [HomeController::class, 'deposit'])->name('home.deposit');
 
-    Route::group(['prefix' => 'nick-game'], function () {
+    Route::group(['prefix' => 'nick-game', 'middleware' => 'auth'], function () {
         Route::get('/', [App\Http\Controllers\AccountController::class, 'index'])->name('product');
-        Route::get('/tao-moi', [App\Http\Controllers\AccountController::class, 'create'])->name('product.create')->middleware('auth');
-        Route::post('/tao-moi', [App\Http\Controllers\AccountController::class, 'store'])->name('product.create.post')->middleware('auth');
-        // Route::get('/{slug}/{uuid}', [App\Http\Controllers\AccountController::class, 'show'])->name('product.show');
+        Route::get('/tao-moi', [App\Http\Controllers\AccountController::class, 'create'])->name('product.create');
+        Route::post('/tao-moi', [App\Http\Controllers\AccountController::class, 'store'])->name('product.create.post');
         Route::get('/chinh-sua/{uuid}', [App\Http\Controllers\AccountController::class, 'edit'])->name('product.edit');
         Route::put('/chinh-sua/{uuid}', [App\Http\Controllers\AccountController::class, 'update'])->name('product.edit.post');
         Route::delete('/xoa/{uuid}', [App\Http\Controllers\AccountController::class, 'destroy'])->name('product.delete');

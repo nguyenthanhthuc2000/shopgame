@@ -105,7 +105,9 @@
                         <div class="row">
 
                             {{-- LEFT MENU --}}
-                            @include('components.app-sub-menu')
+                            <div class="col-xs-12 col-md-3">
+                                @include('components.app-sub-menu')
+                            </div>
                             {{-- END LEFT MENU --}}
 
                             <div class="col-xs-12 col-md-9">
@@ -156,7 +158,8 @@
                                                 <select class="form-select" aria-label="Default select example"
                                                     id="regis_type" name="regis_type_id">
                                                     @foreach ($regisTypes as $type)
-                                                        <option value="{{ $type['value'] ?? '' }}">{{ $type['name'] ?? '' }}
+                                                        <option value="{{ $type['value'] ?? '' }}">
+                                                            {{ $type['name'] ?? '' }}
                                                         </option>
                                                     @endforeach
                                                 </select>

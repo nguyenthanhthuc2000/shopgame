@@ -11,7 +11,9 @@
                         <div class="row">
 
                             {{-- LEFT MENU --}}
-                            @include('components.app-sub-menu')
+                            <div class="col-xs-12 col-md-3">
+                                @include('components.app-sub-menu')
+                            </div>
                             {{-- END LEFT MENU --}}
 
                             <div class="col-xs-12 col-md-9">
@@ -48,7 +50,9 @@
                                                                         @endif
                                                                     @endforeach
                                                                 </select>
-                                                                @error('telco')<div class="text-danger">{{ $message }}</div>@enderror
+                                                                @error('telco')
+                                                                    <div class="text-danger">{{ $message }}</div>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
@@ -62,7 +66,9 @@
                                                                     value="{{ old('declared_value') }}">
                                                                     <option value="">Chọn mệnh giá</option>
                                                                 </select>
-                                                                @error('declared_value')<div class="text-danger">{{ $message }}</div>@enderror
+                                                                @error('declared_value')
+                                                                    <div class="text-danger">{{ $message }}</div>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
@@ -75,7 +81,9 @@
                                                                     class="form-control t14"
                                                                     placeholder="Nhập mã serial nằm sau thẻ"
                                                                     value="{{ old('code') }}">
-                                                                    @error('code')<div class="text-danger">{{ $message }}</div>@enderror
+                                                                @error('code')
+                                                                    <div class="text-danger">{{ $message }}</div>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
@@ -87,7 +95,9 @@
                                                                 <input type="text" id="serial" name="serial"
                                                                     value="{{ old('serial') }}" class="form-control t14"
                                                                     placeholder="Nhập mã số sau lớp bạc mỏng">
-                                                                    @error('serial')<div class="text-danger">{{ $message }}</div>@enderror
+                                                                @error('serial')
+                                                                    <div class="text-danger">{{ $message }}</div>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
@@ -153,8 +163,10 @@
                                                             <td>{{ $item->telco }}</td>
                                                             <td> {{ $item->code }}</td>
                                                             <td style="min-width: 100px;"> {{ $item->serial }}</td>
-                                                            <td style="min-width: 100px;">{{ number_format($item->value, 0, ',', '.') }}</td>
-                                                            <td style="min-width: 130px;">{{ number_format($item->declared_value, 0, ',', '.') }}</td>
+                                                            <td style="min-width: 100px;">
+                                                                {{ number_format($item->value, 0, ',', '.') }}</td>
+                                                            <td style="min-width: 130px;">
+                                                                {{ number_format($item->declared_value, 0, ',', '.') }}</td>
                                                             @switch($item->status)
                                                                 @case(0)
                                                                     <td class="text-info" style="min-width: 100px;">

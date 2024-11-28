@@ -105,7 +105,9 @@
                         <div class="row">
 
                             {{-- LEFT MENU --}}
-                            @include('components.app-sub-menu')
+                            <div class="col-xs-12 col-md-3">
+                                @include('components.app-sub-menu')
+                            </div>
                             {{-- END LEFT MENU --}}
 
                             <div class="col-xs-12 col-md-9">
