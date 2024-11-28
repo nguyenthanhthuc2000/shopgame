@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\AccountController;
-use App\Http\Controllers\AccountCurrentController;
 use App\Http\Controllers\AccountTransactionController;
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\AuthController;
@@ -30,15 +29,11 @@ Route::middleware(['throttle:30,1'])->group(function () {
         // Route::get('/{slug}/{uuid}', [App\Http\Controllers\AccountController::class, 'show'])->name('product.show');
     });
 
-    Route::group(['prefix' => 'danh-muc'], function () {
-        Route::get('/', [CategoryController::class, 'index'])->name('category.index');
-        Route::get('/{slug}', [CategoryController::class, 'show'])->name('category.list');
-    });
-
     Route::get('/dang-nhap', [AuthController::class, 'showLoginForm'])->name('login');
     Route::post('/dang-nhap', [AuthController::class, 'login'])->name('auth.login');
     Route::post('/dang-ky', [AuthController::class, 'register'])->name('auth.register');
-    Route::get('/dang-xuat', [AuthController::class, 'logout'])->name('auth.logout');
+    Route::get('/dang-xuat', action: [AuthController::class, 'logout'])->name('auth.logout');
+    Route::get('/mua-nick/{accountUuid}', [AccountTransactionController::class, 'buyNick'])->name('account.buy');
 
     Route::group(["prefix" => 'services'], function () {
         Route::get('/', [AccountController::class, 'index'])->name('services.list');
@@ -50,7 +45,11 @@ Route::middleware(['throttle:30,1'])->group(function () {
         Route::get('/tai-khoan-da-mua', [AccountTransactionController::class, 'index'])->name('account.tran.index');
         Route::get('/nap-the-cao/lich-su', [CardController::class, 'historyCards'])->name('historyCards');
         Route::post('/nap-the-cao/gui-the', [CardController::class, 'postCard'])->name('postCard');
-        Route::get('/tai-khoan-hien-co', [AccountCurrentController::class, 'index'])->name('account.current.index');
+    });
+
+    Route::group(['prefix' => 'danh-muc-game'], function () {
+        Route::get('/{slug}', [CategoryController::class, 'index'])->name('category.list');
+        Route::get('/{categorySlug}/{accountUuid}', [AccountController::class, 'show'])->name('account.show');
     });
 
     Route::middleware([LogRequestMiddleware::class])->group(function () {
