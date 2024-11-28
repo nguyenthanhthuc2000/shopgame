@@ -12,16 +12,16 @@
             </div>
         </div>
         {{-- search --}}
+
+        <div class="row mb-4">
+            @include('components.search-product')
+        </div>
+        <div class="row">
+            @foreach ($accounts as $account)
+                <div class="col-lg-3 col-md-6 text-center">
+                    @include('components.product-card', $account)
+                </div>
+            @endforeach
+        </div>
     </div>
-    <div class="row mb-4">
-        @include('components.search-product')
-    </div>
-    <div class="row">
-        @foreach ($accounts as $product)
-            <div class="col-lg-3 col-md-6 text-center">
-                @include('components.product-list', $product)
-            </div>
-        @endforeach
-    </div>
-</div>
 </div>

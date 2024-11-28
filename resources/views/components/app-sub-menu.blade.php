@@ -21,4 +21,14 @@
             </ul>
         </div>
     </div>
+    <div class="col-md-12 col-sm-6 col-xs-6 m-t-15">
+        <div class="c-content-title-3 c-title-md c-theme-border">
+            <h3 style="font-size: 20px;">MENU GAME</h3>
+        </div>
+        <div class="c-content-ver-nav m-b-20">
+            <ul class="c-menu">
+                <li><a href="{{ route('account.current.index') }}">Game Ngọc Rồng</a></li>
+            </ul>
+        </div>
+    </div>
 </div>

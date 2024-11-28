@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Admin\Category;
+use App\Models\Category;
 
 class CategoryController extends Controller
 {
@@ -13,8 +13,11 @@ class CategoryController extends Controller
      *
      * @param Request $request
      */
-    public function index(Request $request, $slug)
+    public function index(Request $request) {}
+    public function show($slug)
     {
-        return view('pages.account-detail');
+        $accounts = Category::whereSlug($slug)->first()->accounts;
+
+        return view('pages.product', compact('accounts'));
     }
 }

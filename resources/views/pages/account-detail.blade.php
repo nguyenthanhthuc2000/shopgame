@@ -49,21 +49,22 @@
                                 <div class="game-detail">
                                     <div class="game-detail_top">
                                         <div class="game-detail_code">
-                                            Mã Số: #{{ $account->id }}
+                                            Mã số: <b>#101150</b>
                                         </div>
                                         <div class="game-detail_category">
-                                            Danh Mục: <a href="{{ route('category.list', ['slug' => $category->slug]) }}">{{ $category->name }}</a>
+                                            Danh mục: <a href="https://nick24s.com/nick/ngoc-rong-online">NICK NRO TRUNG -
+                                                VIP</a>
                                         </div>
                                     </div>
                                     <div class="game-detail_bottom">
                                         <div class="game-detail_price">
                                             <div class="game-detail_price--item">
                                                 Giá thẻ cào
-                                                <span>{{ number_format($account->price, 0, ',', '.') }}đ</span>
+                                                <span>120,000đ</span>
                                             </div>
                                             <div class="game-detail_price--item">
-                                                Giá ATM/MOMO
-                                                <span>{{ number_format($account->price_atm, 0, ',', '.') }}đ</span>
+                                                Giá ATM/Momo
+                                                <span>99,000đ</span>
                                             </div>
                                         </div>
                                         <div class="game-detail_meta">
@@ -84,7 +85,7 @@
                                                 <b>Ảo</b>
                                             </div>
                                         </div>
-                                        <div class="game-detail_buttons d-flex">
+                                        <div class="game-detail_buttons row">
                                             <a href="https://nick24s.com/deposit/card"
                                                 class="game-detail_button game-detail_button--primary col-md-6 mb-2">
                                                 Nạp thẻ cào
