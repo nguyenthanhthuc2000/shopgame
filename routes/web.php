@@ -29,10 +29,6 @@ Route::middleware(['throttle:30,1'])->group(function () {
         // Route::get('/{slug}/{uuid}', [App\Http\Controllers\AccountController::class, 'show'])->name('product.show');
     });
 
-    Route::group(['prefix' => 'danh-muc'], function () {
-        Route::get('/{slug}', [CategoryController::class, 'index'])->name('category.list');
-    });
-
     Route::get('/dang-nhap', [AuthController::class, 'showLoginForm'])->name('login');
     Route::post('/dang-nhap', [AuthController::class, 'login'])->name('auth.login');
     Route::post('/dang-ky', [AuthController::class, 'register'])->name('auth.register');
@@ -48,6 +44,11 @@ Route::middleware(['throttle:30,1'])->group(function () {
         Route::get('/tai-khoan-da-mua', [AccountTransactionController::class, 'index'])->name('account.tran.index');
         Route::get('/nap-the-cao/lich-su', [CardController::class, 'historyCards'])->name('historyCards');
         Route::post('/nap-the-cao/gui-the', [CardController::class, 'postCard'])->name('postCard');
+    });
+
+    Route::group(['prefix' => 'danh-muc-game'], function () {
+        Route::get('/{slug}', [CategoryController::class, 'index'])->name('category.list');
+        Route::get('/{categorySlug}/{accountUuid}', [AccountController::class, 'show'])->name('account.show');
     });
 
     Route::middleware([LogRequestMiddleware::class])->group(function () {

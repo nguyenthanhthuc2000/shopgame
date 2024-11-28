@@ -44,102 +44,38 @@ class AccountController extends Controller
         return view('pages.product', compact('accounts'));
     }
 
-    public function show($slug, $uuid)
+    /**
+     * Summary of show
+     * 
+     * @param mixed $categorySlug
+     * @param mixed $accountUuid
+     * @return mixed|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
+     */
+    public function show($categorySlug, $accountUuid)
     {
-        return view('pages.detail');
+        $category = Category::where('slug', $categorySlug)->first();
+        $account = Account::where('uuid', $accountUuid)->first();
+
+        if (empty($category) || empty($category)) {
+            return redirect()->route('home');
+        }
+
+        return view('pages.account-detail', compact(['account', 'category']));
     }
 
+    /**
+     * Summary of create
+     * 
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function create(Request $request)
     {
         $categories = Category::isActive()->get();
-        $classes = [
-            [
-                'name' => 'Xayda',
-                'value' => '1',
-            ],
-            [
-                'name' => 'Trái đất',
-                'value' => '2',
-            ],
-            [
-                'name' => 'Namec',
-                'value' => '3',
-            ],
-        ];
-        $regisTypes = [
-            [
-                'name' => 'Đăng ký ảo',
-                'value' => '0',
-            ],
-            [
-                'name' => 'Đăng ký bằng số điện thoại',
-                'value' => '1',
-            ],
-            [
-                'name' => 'Đăng ký bằng email',
-                'value' => '2',
-            ],
-        ];
-        $earring = [
-            [
-                'name' => 'Có',
-                'value' => '1',
-            ],
-            [
-                'name' => 'Không',
-                'value' => '0',
-            ],
-        ];
-        $servers = [
-            [
-                'name' => 'Server 1',
-                'value' => '1',
-            ],
-            [
-                'name' => 'Server 2',
-                'value' => '2',
-            ],
-            [
-                'name' => 'Server 3',
-                'value' => '3',
-            ],
-            [
-                'name' => 'Server 4',
-                'value' => '4',
-            ],
-            [
-                'name' => 'Server 5',
-                'value' => '5',
-            ],
-            [
-                'name' => 'Server 6',
-                'value' => '6',
-            ],
-            [
-                'name' => 'Server 7',
-                'value' => '7',
-            ],
-            [
-                'name' => 'Server 8',
-                'value' => '8',
-            ],
-            [
-                'name' => 'Server 9',
-                'value' => '9',
-            ],
-            [
-                'name' => 'Server 10',
-                'value' => '10',
-            ],
-            [
-                'name' => 'Server 11',
-                'value' => '11',
-            ],
-            [
-                'name' => 'Server 12',
-                'value' => '12',
-            ],
-        ];
+        $classes = Account::CLASSED;
+        $regisTypes = Account::REGIS_TYPE;
+        $earring = Account::EARRING;
+        $servers = Account::SERVER;
 
         $data = compact(
             'categories',
