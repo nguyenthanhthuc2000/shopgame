@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('images', function (Blueprint $table) {
-            $table->tinyInteger('is_banner')->after('path');
+            $table->tinyInteger('is_banner')->after('image_link');
             $table->string('file_id', 255)->unique(true)->after('is_banner');
         });
     }
