@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Lịch Sử Mua Nick | NickDaoQuan.Vn')
+@section('title', 'Tai Khoản Ngọc Rồng | NickDaoQuan.Vn')
 
 @section('content')
     <div class="list-section app-sub-menu" style="padding-top: 130px; padding-bottom: 100px;">

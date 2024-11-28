@@ -106,23 +106,19 @@
         </div>
     </div>
 @endsection
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $(".owl-carousel").owlCarousel({
-            loop: true,
-            margin: 10,
-            dots: true,
-        });
-    });
-</script>
+@push('js')
+    <script>
+        $(document).ready(function() {
+            $(".owl-carousel").owlCarousel({
+                loop: true,
+                margin: 10,
+                dots: true,
+            });
 
-<script>
-    $(document).ready(function() {
-        $(".thumb-image").on("click", function() {
-            const selectedImageSrc = $(this).attr("src");
-            $("#detail-avatar_photo img").attr("src", selectedImageSrc);
+            $(".thumb-image").on("click", function() {
+                const selectedImageSrc = $(this).attr("src");
+                $("#detail-avatar_photo img").attr("src", selectedImageSrc);
+            });
         });
-    });
-</script>
+    </script>
+@endpush

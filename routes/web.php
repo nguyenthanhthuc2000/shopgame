@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\AccountCurrentController;
 use App\Http\Controllers\AccountTransactionController;
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\AuthController;
@@ -45,6 +46,7 @@ Route::middleware(['throttle:30,1'])->group(function () {
         Route::get('/tai-khoan-da-mua', [AccountTransactionController::class, 'index'])->name('account.tran.index');
         Route::get('/nap-the-cao/lich-su', [CardController::class, 'historyCards'])->name('historyCards');
         Route::post('/nap-the-cao/gui-the', [CardController::class, 'postCard'])->name('postCard');
+        Route::get('/tai-khoan-hien-co', [AccountController::class, 'index'])->name('account.current.index');
     });
 
     Route::group(['prefix' => 'danh-muc-game'], function () {

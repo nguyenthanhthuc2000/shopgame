@@ -9,6 +9,7 @@ use App\Services\AccountService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use App\Models\AccountTransaction;
 
 class AccountController extends Controller
 {
@@ -24,9 +25,12 @@ class AccountController extends Controller
 
     public function index(Request $request)
     {
-        $accounts = Account::orderBy('id', 'DESC')
-            ->paginate();
-        return view('pages.product', compact('accounts'));
+        // $accounts = Account::orderBy('id', 'DESC')
+        //     ->paginate();
+        // return view('pages.product', compact('accounts'));
+        $accountCurent = AccountTransaction::with(['account.category'])->where('user_id', Auth::id())->get();
+
+        return view('pages.account-current', compact(['accountCurent']));
     }
 
     public function show($categorySlug, $accountUuid)
