@@ -70,27 +70,27 @@
                                         <div class="game-detail_meta">
                                             <div class="game-detail_meta--item">
                                                 Máy chủ:
-                                                <b>5sao</b>
+                                                <b>{{ $server['name'] }}</b>
                                             </div>
                                             <div class="game-detail_meta--item">
                                                 Hành tinh:
-                                                <b>Nm</b>
+                                                <b>{{ $class['name'] }}</b>
                                             </div>
                                             <div class="game-detail_meta--item">
                                                 Bông tai:
-                                                <b>Có</b>
+                                                <b>{{ $earring['name'] }}</b>
                                             </div>
                                             <div class="game-detail_meta--item">
                                                 Đăng ký:
-                                                <b>Ảo</b>
+                                                <b>{{ $regisType['name'] }}</b>
                                             </div>
                                         </div>
-                                        <div class="game-detail_buttons row">
-                                            <a href="https://nick24s.com/deposit/card"
+                                        <div class="game-detail_buttons d-flex">
+                                            <a href="{{ route('card.index') }}"
                                                 class="game-detail_button game-detail_button--primary col-md-6 mb-2">
                                                 Nạp thẻ cào
                                             </a>
-                                            <a href="https://nick24s.com/nick/ngoc-rong-online/101150/buynow"
+                                            <a href="{{ route('account.buy', ['accountUuid' => $account->uuid]) }}"
                                                 class="game-detail_button game-detail_button--secondary col-md-6 mb-2">
                                                 Mua ngay
                                             </a>

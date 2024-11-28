@@ -29,9 +29,32 @@ class AccountController extends Controller
         return view('pages.product', compact('accounts'));
     }
 
-    public function show($slug, $uuid)
+    public function show($categorySlug, $accountUuid)
     {
-        return view('pages.detail');
+        $category = Category::where('slug', $categorySlug)->first();
+        $account = Account::where('uuid', $accountUuid)->first();
+
+        if (empty($category) || empty($category) || !empty($category) && $category->status !== Category::ACTIVE_STATUS) {
+            return redirect()->route('home');
+        }
+        $class = collect(Account::CLASSED)->where('value', $account->class)->first();
+        $regisType = collect(Account::REGIS_TYPE)->where('value', $account->regis_type)->first();
+        $earring = collect(Account::EARRING)->where('value', $account->earring)->first();
+        $server = collect(Account::SERVER)->where('value', $account->server)->first();
+
+        return view('pages.account-detail', compact([
+            'account',
+            'category',
+            'class',
+            'regisType',
+            'earring',
+            'server',
+        ]));
+    }
+
+    public function buyNick(Request $request, $accountUuid)
+    {
+        $account = Account::where('uuid', $accountUuid)->first();
     }
 
     public function create(Request $request)
