@@ -49,7 +49,7 @@
                                 <div class="game-detail">
                                     <div class="game-detail_top">
                                         <div class="game-detail_code">
-                                            Mã số: <b>#101150</b>
+                                            Mã số: <b>#{{ $account->id }}</b>
                                         </div>
                                         <div class="game-detail_category">
                                             Danh Mục: <a href="{{ route('category.list', ['slug' => $category->slug]) }}">{{ $category->name }}</a>
