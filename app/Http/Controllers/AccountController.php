@@ -9,7 +9,7 @@ use App\Services\AccountService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
-use App\Models\AccountTransaction;
+use Illuminate\Support\Facades\DB;
 
 class AccountController extends Controller
 {
@@ -23,13 +23,26 @@ class AccountController extends Controller
         $this->accountService = $accountService;
     }
 
+    /**
+     * Summary of index
+     * 
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function index(Request $request)
     {
-        $accounts = Account::with(['category'])->orderBy('id', 'DESC')->paginate();
+        $accounts = Account::orderBy('id', 'DESC')->paginate();
 
         return view('pages.account-manage', compact('accounts'));
     }
 
+    /**
+     * Summary of show
+     * 
+     * @param mixed $categorySlug
+     * @param mixed $accountUuid
+     * @return mixed|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
+     */
     public function show($categorySlug, $accountUuid)
     {
         $category = Category::where('slug', $categorySlug)->first();
@@ -58,97 +71,19 @@ class AccountController extends Controller
         $account = Account::where('uuid', $accountUuid)->first();
     }
 
+    /**
+     * Summary of create
+     * 
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function create(Request $request)
     {
         $categories = Category::isActive()->get();
-        $classes = [
-            [
-                'name' => 'Xayda',
-                'value' => '1',
-            ],
-            [
-                'name' => 'Trái đất',
-                'value' => '2',
-            ],
-            [
-                'name' => 'Namec',
-                'value' => '3',
-            ],
-        ];
-        $regisTypes = [
-            [
-                'name' => 'Đăng ký ảo',
-                'value' => '0',
-            ],
-            [
-                'name' => 'Đăng ký bằng số điện thoại',
-                'value' => '1',
-            ],
-            [
-                'name' => 'Đăng ký bằng email',
-                'value' => '2',
-            ],
-        ];
-        $earring = [
-            [
-                'name' => 'Có',
-                'value' => '1',
-            ],
-            [
-                'name' => 'Không',
-                'value' => '0',
-            ],
-        ];
-        $servers = [
-            [
-                'name' => 'Server 1',
-                'value' => '1',
-            ],
-            [
-                'name' => 'Server 2',
-                'value' => '2',
-            ],
-            [
-                'name' => 'Server 3',
-                'value' => '3',
-            ],
-            [
-                'name' => 'Server 4',
-                'value' => '4',
-            ],
-            [
-                'name' => 'Server 5',
-                'value' => '5',
-            ],
-            [
-                'name' => 'Server 6',
-                'value' => '6',
-            ],
-            [
-                'name' => 'Server 7',
-                'value' => '7',
-            ],
-            [
-                'name' => 'Server 8',
-                'value' => '8',
-            ],
-            [
-                'name' => 'Server 9',
-                'value' => '9',
-            ],
-            [
-                'name' => 'Server 10',
-                'value' => '10',
-            ],
-            [
-                'name' => 'Server 11',
-                'value' => '11',
-            ],
-            [
-                'name' => 'Server 12',
-                'value' => '12',
-            ],
-        ];
+        $classes = Account::CLASSED;
+        $regisTypes = Account::REGIS_TYPE;
+        $earring = Account::EARRING;
+        $servers = Account::SERVER;
 
         $data = compact(
             'categories',
@@ -161,6 +96,13 @@ class AccountController extends Controller
         return view('pages.create-account',  $data);
     }
 
+
+    /**
+     * Summary of store
+     * 
+     * @param \App\Http\Requests\AccountRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(AccountRequest $request)
     {
         $accountData = [
@@ -177,113 +119,35 @@ class AccountController extends Controller
             'status' => 1,
         ];
 
-        if ($request->hasFile('banner')) {
-            $banner = $request->file('banner');
-        }
+        DB::transaction(function () use ($request, $accountData) {
+            if ($request->hasFile('banner')) {
+                $banner = $request->file('banner');
+            }
 
-        if ($request->hasFile('gallery')) {
-            $imagesDetail = $request->file('gallery');
-        }
+            if ($request->hasFile('gallery')) {
+                $imagesDetail = $request->file('gallery');
+            }
 
-        $accountCreated = $this->accountService->storeAccount($accountData, $banner, $imagesDetail ?? []);
-        // TODO: need check created
+            $this->accountService->storeAccount($accountData, $banner, $imagesDetail ?? []);
+        });
 
-        return view('account.manage.index');
+        return redirect()->route('banks.tran.index')->with('success', "Thêm nick thành công");
     }
 
+    /**
+     * Summary of edit
+     * 
+     * @param mixed $uuid
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function edit($uuid)
     {
         $categories = Category::isActive()->get();
-        $classes = [
-            [
-                'name' => 'Xayda',
-                'value' => '1',
-            ],
-            [
-                'name' => 'Trái đất',
-                'value' => '2',
-            ],
-            [
-                'name' => 'Namec',
-                'value' => '3',
-            ],
-        ];
-        $regisTypes = [
-            [
-                'name' => 'Đăng ký ảo',
-                'value' => '0',
-            ],
-            [
-                'name' => 'Đăng ký bằng số điện thoại',
-                'value' => '1',
-            ],
-            [
-                'name' => 'Đăng ký bằng email',
-                'value' => '2',
-            ],
-        ];
-        $earring = [
-            [
-                'name' => 'Có',
-                'value' => '1',
-            ],
-            [
-                'name' => 'Không',
-                'value' => '0',
-            ],
-        ];
-        $servers = [
-            [
-                'name' => 'Server 1',
-                'value' => '1',
-            ],
-            [
-                'name' => 'Server 2',
-                'value' => '2',
-            ],
-            [
-                'name' => 'Server 3',
-                'value' => '3',
-            ],
-            [
-                'name' => 'Server 4',
-                'value' => '4',
-            ],
-            [
-                'name' => 'Server 5',
-                'value' => '5',
-            ],
-            [
-                'name' => 'Server 6',
-                'value' => '6',
-            ],
-            [
-                'name' => 'Server 7',
-                'value' => '7',
-            ],
-            [
-                'name' => 'Server 8',
-                'value' => '8',
-            ],
-            [
-                'name' => 'Server 9',
-                'value' => '9',
-            ],
-            [
-                'name' => 'Server 10',
-                'value' => '10',
-            ],
-            [
-                'name' => 'Server 11',
-                'value' => '11',
-            ],
-            [
-                'name' => 'Server 12',
-                'value' => '12',
-            ],
-        ];
+        $classes = Account::CLASSED;
+        $regisTypes = Account::REGIS_TYPE;
+        $earring = Account::EARRING;
+        $servers = Account::SERVER;
         $account = Account::whereUuid($uuid)->first();
-        // dd($account->category);
 
         $data = compact(
             'categories',

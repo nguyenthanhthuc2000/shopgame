@@ -117,7 +117,7 @@
                                             <h1 style="font-size: 26px;">Tạo nick Ngọc Rồng</h1>
                                         </div>
                                         <br>
-                                        <form action="{{ route('product.create.post') }}" method="post"
+                                        <form action="{{ route('account.create.post') }}" method="post"
                                             enctype="multipart/form-data" class="row">
                                             @csrf
                                             <div class="mb-3 col-xl-4 col-md-6">

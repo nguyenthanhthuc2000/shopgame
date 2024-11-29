@@ -36,10 +36,9 @@
                                                 <thead>
                                                     <tr>
                                                         <th scope="col">Mã Nick</th>
-                                                        <th scope="col" style="min-width: 200px;">Tài Khoản</th>
-                                                        <th scope="col">Mật Khẩu</th>
-                                                        <th scope="col" style="min-width: 70px;">Loại</th>
+                                                        <th scope="col" style="min-width: 150px;">Tài Khoản</th>
                                                         <th scope="col" style="min-width: 70px;">Giá</th>
+                                                        <th scope="col" style="min-width: 70px;">Giá KM</th>
                                                         <th scope="col" style="min-width: 60px;">Trạng Thái</th>
                                                         <th scope="col" style="min-width: 60px;">Ngày Tạo</th>
                                                         <th scope="col" style="min-width: 60px;">Hành Động</th>
@@ -48,28 +47,23 @@
                                                 <tbody>
                                                     @forelse($accounts as $account)
                                                         <tr>
-                                                            <td>{{ $account->uuid }}</td>
+                                                            <td>#{{ $account->id }}</td>
                                                             <td>{{ $account->username }}</td>
-                                                            <td>{{ $account->password }}</td>
-                                                            <td>{{ $account->category->name ?? '' }}</td>
                                                             <td>{{ getPrice($account->price) }}</td>
+                                                            <td>{{ getPrice($account->discount_price) }}</td>
                                                             <td>{{ config('account.account_status.' . $account->status) }}</td>
                                                             <td>{{ date('d/m/Y H:i', strtotime($account->created_at)) }}</td>
                                                             <td>
-                                                                <div class="row">
-                                                                    <div class="col-6">
-                                                                        <a href="" class="btn btn-danger">Xóa</a>
-                                                                    </div>
-                                                                    <div class="col-6">
-                                                                        <a href="{{ route('product.edit', $account->uuid ?? '#') }}"
-                                                                            class="btn btn-warning">Sửa</a>
-                                                                    </div>
+                                                                <div class="d-flex gap-3">
+                                                                    <a href="" class="btn btn-danger">Xóa</a>
+                                                                    <a href="{{ route('account.edit', $account->uuid ?? '#') }}"
+                                                                        class="btn btn-warning">Sửa</a>
                                                                 </div>
                                                             </td>
                                                         </tr>
                                                     @empty
                                                         <tr>
-                                                            <td colspan=8" class="text-center">Không tìm thấy tài khoản</td>
+                                                            <td colspan="7" class="text-center">Không tìm thấy tài khoản</td>
                                                         </tr>
                                                     @endforelse
                                                 </tbody>
