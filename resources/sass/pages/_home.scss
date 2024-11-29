@@ -137,6 +137,13 @@
 
 // ======================= end acc detail
 
+
+.btn-auth {
+  border: 1px solid;
+  border-radius: 25px;
+  padding: 4px 15px !important;
+}
+
 @media (max-width: 992px) {
   .main-menu {
     .user-action {
@@ -145,11 +152,6 @@
         padding: unset !important;
       }
     }
-  }
-  .btn-auth {
-    border: 1px solid;
-    border-radius: 25px;
-    padding: 4px 15px !important;
   }
   .btn-register {
     margin-left: 8px;
