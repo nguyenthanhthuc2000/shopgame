@@ -636,11 +636,11 @@ nav.mean-nav {
     width: 100%;
     z-index: 999 !important;
 }
-.sticky-wrapper.is-sticky-menu,
-.sticky-wrapper.is-sticky {
+.sticky-wrapper,
+.sticky-wrapper {
     .top-header-area {
         background-color: $background-color_7;
-        padding: 15px 0;
+        padding: 5px 0;
     }
 }
 .search-area {
@@ -5366,7 +5366,7 @@ body.swal2-height-auto {
     .site-logo {
         a {
             img {
-                max-width: 150px;
+                max-width: 250px;
             }
         }
         text-align: center;
@@ -5456,7 +5456,7 @@ body.swal2-height-auto {
 @media only screen and (max-width: 767px) {
     .site-logo {
         img {
-            max-width: 150px;
+            max-width: 250px;
         }
         z-index: 99;
     }

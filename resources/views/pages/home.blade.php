@@ -75,7 +75,7 @@
                             <p class="mb-1 category-total">Đang bán: <b>{{ $category->sold_count }}</b></p>
                             <p class="mb-2 category-total">Đã bán: <b>{{ $category->unsold_count }}</b></p>
                             <div class="mb-3 buy-btn">
-                                <a href="{{ route('category.list', ['slug' => $category->slug ?? '#']) }}">
+                                <a href="{{ route('category.index', ['slug' => $category->slug ?? '#']) }}">
                                     <img src="{{ asset('assets/images/buy-now.png') }}" class="buy-img" alt="Mua ngay" loading="lazy">
                                 </a>
                             </div>

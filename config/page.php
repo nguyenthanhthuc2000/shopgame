@@ -7,12 +7,12 @@ return [
             'route_name' => 'home'
         ],
         [
-            'name' => 'SHOP NICK',
-            'route_name' => 'home.deposit'
+            'name' => 'NICK GAME',
+            'route_name' => 'category.list'
         ],
         [
-            'name' => 'NẠP THẺ CÀO',
-            'route_name' => 'card.index',
+            'name' => 'NẠP TIỀN',
+            'route_name' => 'home.deposit',
         ],
         // [
             // 'name' => 'Dịch vụ',

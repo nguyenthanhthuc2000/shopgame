@@ -25,10 +25,10 @@
                 <div class="footer-box pages">
                     <h2 class="widget-title">Trang</h2>
                     <ul>
-                        <li><a href="{{ route('category.list', ['slug' => 'nick-ngoc-rong']) }}">Shop Nick Ngọc Rồng Online</a></li>
-                        <li><a href="{{ route('category.list', ['slug' => 'nick-ngoc-rong-so-sinh']) }}">Shop Nick Ngọc Rồng Sơ Sinh</a></li>
-                        <li><a href="{{ route('category.list', ['slug' => 'kho-do-ngoc-rong']) }}">Shop Vật Phẩm Ngọc Rồng Online</a></li>
-                        <li><a href="{{ route('category.list', ['slug' => 'nick-lien-quan']) }}">Shop Nick Liên Quân</a></li>
+                        <li><a href="{{ route('category.index', ['slug' => 'nick-ngoc-rong']) }}">Shop Nick Ngọc Rồng Online</a></li>
+                        <li><a href="{{ route('category.index', ['slug' => 'nick-ngoc-rong-so-sinh']) }}">Shop Nick Ngọc Rồng Sơ Sinh</a></li>
+                        <li><a href="{{ route('category.index', ['slug' => 'kho-do-ngoc-rong']) }}">Shop Vật Phẩm Ngọc Rồng Online</a></li>
+                        <li><a href="{{ route('category.index', ['slug' => 'nick-lien-quan']) }}">Shop Nick Liên Quân</a></li>
                         <li><a href="{{ route('card.index') }}">Nạp Thẻ Cào</a></li>
                     </ul>
                 </div>

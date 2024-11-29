@@ -52,7 +52,8 @@ Route::middleware(['throttle:30,1'])->group(function () {
     });
 
     Route::group(['prefix' => 'danh-muc-game'], function () {
-        Route::get('/{slug}', [CategoryController::class, 'index'])->name('category.list');
+        Route::get('/', [CategoryController::class, 'list'])->name('category.list');
+        Route::get('/{slug}', [CategoryController::class, 'index'])->name('category.index');
         Route::get('/{categorySlug}/{accountUuid}', [AccountController::class, 'show'])->name('account.show');
     });
 

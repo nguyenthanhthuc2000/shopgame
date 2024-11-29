@@ -38,12 +38,9 @@
                             </li>
                         @endforeach
                     </ul>
-                    <div class="ps-3 ps-lg-0 d-lg-flex user-action">
-                        <div class="d-lg-none">
-                            <hr class="text-light my-0"/>
-                        </div>
+                    <div class="ps-3 ps-lg-0 d-lg-flex user-action" style="display: flex; gap: 16px;">
                         @auth
-                            <a href="{{ route('home.deposit') }}" class="">
+                            <a href="{{ route('home.deposit') }}" class="d-block btn-auth" style="max-width: fit-content;">
                                 <span class="d-flex align-items-center gap-2">
                                     <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -58,7 +55,7 @@
                                             stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" />
                                     </svg> {{ number_format(auth()->user()->buyer_vnd, 0, ',', '.') }}
                                 </span></a>
-                            <a href="{{ route('auth.logout') }}"><span class="d-flex align-items-center gap-2">
+                            <a href="{{ route('auth.logout') }}" class="btn-auth d-block" style="max-width: fit-content;"><span class="d-flex align-items-center gap-2">
                                     <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path d="M21 12L13 12" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"
@@ -74,7 +71,7 @@
                                     </svg> ĐĂNG XUẤT</span></a>
                         @endauth
                         @guest
-                            <a href="{{ route('login') }}">
+                            <a href="{{ route('login') }}" class="btn-auth">
                                 <svg style="margin-bottom: 6px;" width="20px" height="20px" viewBox="0 0 24 24"
                                     fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -85,7 +82,7 @@
                                         fill="#FFFFFF" />
                                 </svg>
                                 ĐĂNG NHẬP</a>
-                            <a href="{{ route('login') }}"><svg style="margin-bottom: 6px;" width="20px" height="20px" viewBox="0 0 24 24"
+                            <a href="{{ route('login') }}" class="btn-auth btn-register"><svg style="margin-bottom: 6px;" width="20px" height="20px" viewBox="0 0 24 24"
                                     fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M20 18L17 18M17 18L14 18M17 18V15M17 18V21M11 21H4C4 17.134 7.13401 14 11 14C11.695 14 12.3663 14.1013 13 14.2899M15 7C15 9.20914 13.2091 11 11 11C8.79086 11 7 9.20914 7 7C7 4.79086 8.79086 3 11 3C13.2091 3 15 4.79086 15 7Z"

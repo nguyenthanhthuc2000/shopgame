@@ -137,6 +137,25 @@
 
 // ======================= end acc detail
 
+@media (max-width: 992px) {
+  .main-menu {
+    .user-action {
+      margin-bottom: 16px;
+      .btn-wallet {
+        padding: unset !important;
+      }
+    }
+  }
+  .btn-auth {
+    border: 1px solid;
+    border-radius: 25px;
+    padding: 4px 15px !important;
+  }
+  .btn-register {
+    margin-left: 8px;
+  }
+}
+
 @media (min-width: 1400px) {
   .category__banner {
     min-height: 172px;

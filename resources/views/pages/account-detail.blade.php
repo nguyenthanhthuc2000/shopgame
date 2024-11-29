@@ -52,7 +52,7 @@
                                             Mã số: <b>#{{ $account->id }}</b>
                                         </div>
                                         <div class="game-detail_category">
-                                            Danh Mục: <a href="{{ route('category.list', ['slug' => $category->slug]) }}">{{ $category->name }}</a>
+                                            Danh Mục: <a href="{{ route('category.index', ['slug' => $category->slug]) }}">{{ $category->name }}</a>
                                         </div>
                                     </div>
                                     <div class="game-detail_bottom">
