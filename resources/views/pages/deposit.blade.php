@@ -50,8 +50,8 @@
                                                 <div style=" padding: 20px 15px 20px 15px;background: #AFD275;">
                                                     <p class="mb-0" style="text-align:center"><strong><span
                                                                 style="color:#e74c3c"><span style="font-size:20px">NẠP
-                                                                    TIỀN QUA ATM, MOMO CỘNG THÊM 15%<br>
-                                                                    Nạp 100k được 115k</span></span></strong></p>
+                                                                    TIỀN QUA ATM, MOMO CỘNG THÊM 20%<br>
+                                                                    Nạp 100k được 120k</span></span></strong></p>
                                                     <b>Nội dung thanh toán: nap tien nickdaoquan - "tài khoản đăng nhập của
                                                         bạn"</b>
                                                     <br>

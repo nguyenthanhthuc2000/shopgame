@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Account;
 
 class CategoryController extends Controller
 {
@@ -13,13 +14,31 @@ class CategoryController extends Controller
      *
      * @param Request $request
      */
-    public function index(Request $request) {}
+    public function index(Request $request, $slug) {
+        $category = Category::IsActive()->whereSlug($slug)->first();
+
+        if (empty($category) || !empty($category) && $category->status == 0) {
+            return redirect()->route('home');
+        }
+
+        $accounts = Account::where('category_id', $category->id)
+            ->where('status', Account::STATUS_AVAILABLE )
+            ->orderBy('id', 'DESC')
+            ->paginate(20)
+            ->withQueryString();
+
+        return view('pages.accounts', compact([
+            'category',
+            'accounts',
+        ]));
+    }
 
     public function show($slug)
     {
-        $accounts = Category::whereSlug($slug)->first()->accounts;
+        $category = Category::whereSlug($slug)->first()->accounts;
+        $accounts = $category->accounts;
 
-        return view('pages.product', compact('accounts'));
+        return view('pages.product', compact('accounts', 'category'));
     }
 
     /**

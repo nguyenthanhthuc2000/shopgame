@@ -28,7 +28,7 @@
     </div>
 
     @include('layouts.app-menu')
-    @include('components.slideshow')
+    {{-- @include('components.slideshow') --}}
 
     @yield('content')
 
