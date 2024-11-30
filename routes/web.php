@@ -30,7 +30,7 @@ Route::middleware(['throttle:200,1'])->group(function () {
         Route::post('/tao-moi-nick-ngoc-rong', [AccountController::class, 'store'])->name('account.create.post');
         Route::get('/chinh-sua-nick-ngoc-rong/{uuid}', [AccountController::class, 'edit'])->name('account.edit');
         Route::put('/chinh-sua-nick-ngoc-rong/{uuid}', [AccountController::class, 'update'])->name('account.edit.post');
-        Route::delete('/xoa-nick/{uuid}', [AccountController::class, 'destroy'])->name('account.delete');
+        Route::DELETE('/xoa-nick/{uuid}', [AccountController::class, 'destroy'])->name('account.delete');
     });
 
     Route::get('/dang-nhap', [AuthController::class, 'showLoginForm'])->name('login');

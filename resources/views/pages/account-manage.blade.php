@@ -3,6 +3,22 @@
 @section('title', 'Tai Khoản Ngọc Rồng | NickDaoQuan.Vn')
 
 @section('content')
+    {{-- <style>
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+            /* khoảng cách phía dưới */
+        }
+
+        .page-info {
+            text-align: center;
+            margin-top: 10px;
+            /* khoảng cách phía trên */
+            font-size: 14px;
+            color: #555;
+        }
+    </style> --}}
     <div class="list-section app-sub-menu" style="padding-top: 130px; padding-bottom: 100px;">
         <div class="container">
             <div class="row">
@@ -55,10 +71,20 @@
                                                             <td>{{ date('d/m/Y H:i', strtotime($account->created_at)) }}</td>
                                                             <td>
                                                                 <div class="d-flex gap-3">
-                                                                    <a href="" class="btn btn-danger">Xóa</a>
+                                                                    <form action="{{ route('account.delete', $account->uuid) }}"
+                                                                        method="POST" style="display:inline;">
+                                                                        @csrf
+                                                                        @method('DELETE')
+                                                                        <button type="submit"
+                                                                            class="btn btn-danger">Xóa</button>
+                                                                    </form>
                                                                     <a href="{{ route('account.edit', $account->uuid ?? '#') }}"
                                                                         class="btn btn-warning">Sửa</a>
                                                                 </div>
+
+                                                                ////////////////////////////////////////////////////////////////
+
+                                                                ////////////////////////////////
                                                             </td>
                                                         </tr>
                                                     @empty

@@ -25,7 +25,7 @@ class AccountController extends Controller
 
     /**
      * Summary of index
-     * 
+     *
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
@@ -38,7 +38,7 @@ class AccountController extends Controller
 
     /**
      * Summary of show
-     * 
+     *
      * @param mixed $categorySlug
      * @param mixed $accountUuid
      * @return mixed|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
@@ -73,7 +73,7 @@ class AccountController extends Controller
 
     /**
      * Summary of create
-     * 
+     *
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
@@ -99,7 +99,7 @@ class AccountController extends Controller
 
     /**
      * Summary of store
-     * 
+     *
      * @param \App\Http\Requests\AccountRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -136,7 +136,7 @@ class AccountController extends Controller
 
     /**
      * Summary of edit
-     * 
+     *
      * @param mixed $uuid
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
@@ -166,6 +166,15 @@ class AccountController extends Controller
     }
     public function destroy($uuid)
     {
-        dd($uuid);
+        $account = Account::find($uuid);
+        // dd($uuid);
+        if (!$account) {
+            return redirect()->back()->with('error', 'Tài khoản không tồn tại.');
+        }
+
+        $account->status = 0;
+        $account->save();
+
+        return redirect()->back()->with('success', 'Đã xóa tài khoản (cập nhật status = 0).');
     }
 }
