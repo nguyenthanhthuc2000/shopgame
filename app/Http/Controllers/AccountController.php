@@ -166,15 +166,11 @@ class AccountController extends Controller
     }
     public function destroy($uuid)
     {
-        $account = Account::find($uuid);
-        // dd($uuid);
-        if (!$account) {
-            return redirect()->back()->with('error', 'Tài khoản không tồn tại.');
-        }
-
+        $account = Account::where('uuid', $uuid)->first();
+        // dd($account);
         $account->status = 0;
         $account->save();
 
-        return redirect()->back()->with('success', 'Đã xóa tài khoản (cập nhật status = 0).');
+        return redirect()->back()->with('success', 'completed');
     }
 }
