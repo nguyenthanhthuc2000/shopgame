@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'NickDaoQuan.Vn | Nick Ngọc Rồng Online Server ' . $account->server)
+@section('title', 'Nick Ngọc Rồng Online Server ' . $account->server . '| NickDaoQuan.Vn')
 
 @section('content')
     <div class="section-gap mt-5 pt-80 pb-80">
@@ -99,7 +99,7 @@
                                 </div>
                             </div>
                             @if ($accountRefs->isNotEmpty())
-                                <h3 style="font-size: 24px; text-align: center;"><span>TÀI KHOẢN LIÊN QUAN </span></h3>
+                                <h3 style="font-size: 24px; text-align: center;" class="mt-80"><span>TÀI KHOẢN LIÊN QUAN </span></h3>
                                 <div class="row">
                                     @foreach ($accountRefs as $account)
                                         <div class="col-xl-3 col-lg-4 col-md-6 text-center mb-4">

@@ -52,10 +52,10 @@ class AccountTransaction extends Model
         return $this->hasOne(Account::class, 'id', 'account_id');
     }
     
-    public function scopeFilterByUuid($query, $uuid)
+    public function scopeFilterByAccountId($query, $uuid)
     {
         if (!empty($uuid)) {
-            $query->where('uuid', 'like', '%' . $uuid . '%');
+            $query->where('account_id', 'like', '%' . $uuid . '%');
         }
     }
 }

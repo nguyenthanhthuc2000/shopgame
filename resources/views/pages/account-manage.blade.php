@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Tai Khoản Ngọc Rồng | NickDaoQuan.Vn')
+@section('title', 'Tài Khoản Ngọc Rồng | NickDaoQuan.Vn')
 
 @section('content')
     {{-- <style>

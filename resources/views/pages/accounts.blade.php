@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Sản Phẩm')
+@section('title', 'Danh Sách '. $category->name .' | NickDaoQuan.Vn')
 
 @section('content')
     <div class="product-section mt-150 mb-80">

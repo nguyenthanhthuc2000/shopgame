@@ -8,7 +8,7 @@
     <div class="row g-2 align-items-center">
       <div class="col">
         <h2 class="page-title">
-          Nick game
+          Lịch sử mua nick
         </h2>
       </div>
     </div>
@@ -33,7 +33,7 @@
                             <path d="M21 21l-6 -6" />
                         </svg>
                     </span>
-                    <input type="text" name="uuid" value="{{ request('uuid') }}" class="form-control" placeholder="Tìm kiếm mã giao dịch..." aria-label="">
+                    <input type="text" name="account_id" value="{{ request('account_id') }}" class="form-control" placeholder="Tìm kiếm mã giao dịch..." aria-label="">
                 </div>
               </form>
             </div>
@@ -43,8 +43,7 @@
                 <thead>
                     <tr>
                         <th class="w-1">ID</th>
-                        <th>Mã giao dịch</th>
-                        <th>Email</th>
+                        <th>Người mua</th>
                         <th>Mã nick</th>
                         <th>Danh mục</th>
                         <th>Giá bán</th>
@@ -58,25 +57,19 @@
                     @foreach ($accounts as $key => $account)
                         <tr>
                             <td>{{ $account->id }}</td>
-                            <td>{{ $account->uuid }}</td>
-                            <td>{{ $account->account_id }}</td>
-                            <td>{{ $account->account->category->name }}</td>
                             <td>
-                              <a href="/">{{ $account->user->email }}</a>
+                              <a href="#">{{ $account->user->email }}</a>
                             </td>
+                            <td>{{ $account->account_id }}</td>
+                            <td><a href="{{ route('category.index', ['slug' => $account->account->category->slug]) }}">{{ $account->account->category->name }}</a></td>
                             <td>{{ number_format($account->price, 0, ',', '.') }}</td>
                             <td>{{ number_format($account->seller_profit, 0, ',', '.') }}</td>
                             <td>{{ $account->profit_rate }}%</td>
                             <td>
-                              @if ($card->status === 1)
+                              @if ($account->order_status === 1)
                                 <span class="badge bg-success me-1"></span>Thành công
-                              @elseif ($card->status === 2)
-                                <span class="badge bg-warning me-1"></span>Hủy
-                              @else
-                                <span class="badge bg-danger me-1"></span>Đang xử lí
                               @endif
                             </td>
-                          <td>{{ $account->note }}</td>
                           <td>{{ $account->created_at }}</td>
                         </tr>
                     @endforeach
