@@ -24,7 +24,7 @@ class CategoryController extends Controller
         $accounts = Account::with(['banner'])->where('category_id', $category->id)
             ->where('status', Account::STATUS_AVAILABLE )
             ->orderBy('id', 'DESC')
-            ->paginate(20)
+            ->paginate(perPage: 8)
             ->withQueryString();
 
         return view('pages.accounts', compact([

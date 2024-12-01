@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Detail')
+@section('title', 'NickDaoQuan.Vn | Nick Ngọc Rồng Online Server ' . $account->server)
 @section('content')
     <div class="section-gap mt-5 pt-80 pb-80">
         <div class="container">
@@ -8,22 +8,21 @@
                 <div class="section-gap">
                     <div class="container">
                         <div class="row">
-                            <div class="col-lg-7 col-md-6 mb-3">
+                            <div class="col-lg-7 col-12 mb-3">
                                 <div class="game-images">
                                     <div class="nick-avatar_photo" id="detail-avatar_photo">
                                         <div class="preview-avatar_photo__item mb-3">
                                             <img src="{{ $account->images[0]->image_link }}&sz=w1000"
-                                                class="img-fluid object-fit-cover thumb-image" alt="Preview Image"
+                                                class="img-fluid object-fit-cover" alt="Nick Ngọc Rồng Online VIP giá rẻ, NickDaoquan.Vn, Shop Nick Ngọc Rồng"
                                                 loading="lazy">
                                         </div>
                                     </div>
                                     <div class="game-images_thumb" id="detail-avatar_thumb">
-                                        <!-- Owl Carousel -->
                                         <div class="owl-carousel owl-theme">
-                                            @foreach ($account->images as $image)
+                                            @foreach ($account->images as $key => $image)
                                                 <div class="item">
                                                     <img src="{{ $image->image_link }}&sz=w1000"
-                                                        class="img-fluid object-fit-cover thumb-image" alt="Preview Image"
+                                                        class="img-fluid object-fit-cover thumb-image {{ $key === 0 ? 'active' : '' }}" alt="Nick Ngọc Rồng Online VIP giá rẻ, NickDaoquan.Vn, Shop Nick Ngọc Rồng"
                                                         loading="lazy">
                                                 </div>
                                             @endforeach
@@ -32,7 +31,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-lg-5 col-md-6">
+                            <div class="col-lg-5 col-12">
                                 <div class="game-detail">
                                     <div class="game-detail_top">
                                         <div class="game-detail_code">
@@ -99,12 +98,14 @@
             $(".owl-carousel").owlCarousel({
                 loop: true,
                 margin: 10,
-                dots: true,
+                nav: true, 
             });
 
             $(".thumb-image").on("click", function() {
+                $(".thumb-image").removeClass('active');
                 const selectedImageSrc = $(this).attr("src");
                 $("#detail-avatar_photo img").attr("src", selectedImageSrc);
+                $(this).addClass('active');
             });
         });
     </script>

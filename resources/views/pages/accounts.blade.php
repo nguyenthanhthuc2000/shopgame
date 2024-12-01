@@ -62,12 +62,10 @@
                     </div>
                 @endforeach
             </div>
-            
-            <div class="card-footer d-flex align-items-center">
                 <div class="ms-auto">
                     {{ $accounts->links('pagination::bootstrap-5') }}
                 </div>
-            </div>
         </div>
     </div>
+            
 @endsection
