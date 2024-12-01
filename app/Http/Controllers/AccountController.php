@@ -169,8 +169,11 @@ class AccountController extends Controller
      */
     public function destroy($uuid)
     {
-        $account =  Account::where('uuid', $uuid)->first();
-        if (!empty($account) && $account->user_id === Auth::id()) {
+        $account = Account::where('user_id', Auth::id())
+            ->where('uuid', $uuid)
+            ->first();
+
+        if (!empty($account)) {
             $account->delete();
             return redirect()->back()->with('success', 'Xóa thành công!');
         }
