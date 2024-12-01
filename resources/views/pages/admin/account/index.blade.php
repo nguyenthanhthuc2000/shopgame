@@ -47,7 +47,7 @@
                         <th>Mã nick</th>
                         <th>Danh mục</th>
                         <th>Giá bán</th>
-                        <th>CTV nhận (CARD)</th>
+                        <th>CTV nhận (VND)</th>
                         <th>Chiếc khấu bán nick</th>
                         <th>Trạng thái</th>
                         <th>Ngày tạo</th>

@@ -56,7 +56,7 @@
                                         <select class="form-select" name="type">
                                             <option value="{{ \App\Models\Admin\BankTransaction::INCREASE_TYPE }}" {{ old('type') == 1 ? 'selected' : '' }}>Cộng tiền
                                             </option>
-                                            <option value="{{ \App\Models\Admin\BankTransaction::INCREASE_TYPE }}" {{ old('type') == 2 ? 'selected' : '' }}>Trừ tiền</option>
+                                            <option value="{{ \App\Models\Admin\BankTransaction::DECREASE_TYPE }}" {{ old('type') == 0 ? 'selected' : '' }}>Trừ tiền</option>
                                         </select>
                                         @error('type')
                                             <div class="text-danger">{{ $message }}</div>

@@ -55,7 +55,7 @@
                             <td>{{ number_format($bank->amount, 0, ',', '.') }}</td>
                             <td>{{ number_format($bank->buyer_vnd, 0, ',', '.') }}</td>
                             <td>
-                              @if ($bank->type === \App\Models\CardTransaction::IS_SUCCESS_TRANSACTION)
+                              @if ($bank->type === \App\Models\Admin\BankTransaction::INCREASE_TYPE)
                                 Cộng tiền
                               @else
                                 Trừ tiền
