@@ -72,7 +72,8 @@
                                                             <td>
                                                                 <div class="d-flex gap-3">
                                                                     <form action="{{ route('account.delete', $account->uuid) }}"
-                                                                        method="POST" style="display:inline;">
+                                                                        method="POST" style="display:inline;"
+                                                                        onsubmit="return confirmDelete(event, this)">
                                                                         @csrf
                                                                         @method('DELETE')
                                                                         <button type="submit"
@@ -102,3 +103,24 @@
         </div>
     </div>
 @endsection
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function confirmDelete(event, form) {
+        event.preventDefault();
+        Swal.fire({
+            title: 'Bạn có chắc chắn?',
+            text: "Hành động này không thể hoàn tác!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Xóa',
+            cancelButtonText: 'Hủy'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit();
+            }
+        });
+    }
+</script>

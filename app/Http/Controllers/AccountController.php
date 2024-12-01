@@ -163,7 +163,7 @@ class AccountController extends Controller
 
     /**
      * Summary of destroy
-     * 
+     *
      * @param mixed $uuid
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -172,7 +172,6 @@ class AccountController extends Controller
         $account = Account::where('user_id', Auth::id())
             ->where('uuid', $uuid)
             ->first();
-
         if (!empty($account)) {
             $account->delete();
             return redirect()->back()->with('success', 'Xóa thành công!');
