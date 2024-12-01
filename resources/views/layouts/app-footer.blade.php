@@ -9,12 +9,11 @@
             </div>
             <div class="col-lg-4 col-md-6">
                 <div class="footer-box get-in-touch">
-                    <h2 class="widget-title">Thông Tin Admin</h2>
+                    <h2 class="widget-title">Thông Tin</h2>
                     <ul>
                         <div class="footer-box pages">
                             <ul>
-                                <li><a href="https://www.facebook.com/nguyenthanhthuc.2k/" target="_blank">Facebook: <b>Nguyễn Thành Thức</b></a></li>
-                                <li><a href="https://www.youtube.com/@nguyenthanhthuc.2k" target="_blank">Youtube: <b>Nguyễn Thành Thức</b></a></li>
+                                <li><a href="https://www.facebook.com/people/Nickdaoquanvn/61569589252659/" target="_blank">Facebook: <b>Nickdaoquan.vn</b></a></li>
                                 <li><a href="https://zalo.me/0389946423" target="_blank">Zalo: <b>0389.946.423</b></a></li>
                             </ul>
                         </div>

@@ -52,9 +52,16 @@ class AccountController extends Controller
             return redirect()->route('home');
         }
 
+        $accountRefs = Account::with(relations: 'banner')
+            ->whereNotIn('id', [$account->id])
+            ->where('server', $account->server)
+            ->limit(8)
+            ->get();
+
         return view('pages.account-detail', compact([
             'account',
             'category',
+            'accountRefs',
         ]));
     }
 

@@ -62,9 +62,9 @@
                     </div>
                 @endforeach
             </div>
-                <div class="ms-auto">
-                    {{ $accounts->links('pagination::bootstrap-5') }}
-                </div>
+            <div class="ms-auto">
+                {{ $accounts->links('pagination::bootstrap-5') }}
+            </div>
         </div>
     </div>
             

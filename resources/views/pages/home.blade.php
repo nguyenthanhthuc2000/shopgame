@@ -51,13 +51,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
-                    <div class="section-title">
+                    <div class="mb-3">
                         <h3 id="categories"><span class="orange-text">DANH MỤC</span> GAME </h3>
-                        <p class="m-auto"><b>Shop NickDaoQuan.Vn</b> luôn cập nhật liên tục cho các bạn có thể lựa
-                            chọn.<br>Các bạn có thể
-                            liên hệ qua <b><a href="https://zalo.me/0389946423" target="_blank">Zalo</a></b>
-                            hoặc <b><a href="https://www.facebook.com/nguyenthanhthuc.2k/" target="_blank">Facebook</a></b> để
-                            được hổ trợ nhanh chóng (19h-24h thứ 2 đến thứ 6, cuối tuần cả ngày).</p>
+                        <p class="m-auto"><b>Shop NickDaoQuan.Vn</b> luôn cập nhật liên tục cho các bạn có thể lựa  chọn.</p>
                     </div>
                 </div>
             </div>
