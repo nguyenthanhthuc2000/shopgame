@@ -17,6 +17,7 @@
                             {{-- END LEFT MENU --}}
 
                             <div class="col-xs-12 col-md-9">
+                                @include('components.admin.alert')
                                 <div class="">
                                     <div class="panel">
                                         <div class="col-sm-12 text-center">

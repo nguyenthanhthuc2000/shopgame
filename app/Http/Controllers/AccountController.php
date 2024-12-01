@@ -46,9 +46,9 @@ class AccountController extends Controller
     public function show($categorySlug, $accountUuid)
     {
         $category = Category::where('slug', $categorySlug)->first();
-        $account = Account::with('images')->where('uuid', $accountUuid)->first();
+        $account = Account::with('images')->whereIn('status', [Account::STATUS_SOLD, Account::STATUS_AVAILABLE])->where('uuid', $accountUuid)->first();
 
-        if (empty($category) || empty($category) || !empty($category) && $category->status !== Category::ACTIVE_STATUS) {
+        if (empty($category) || empty($category) || !empty($category) && $category->status !== Category::ACTIVE_STATUS || empty($account)) {
             return redirect()->route('home');
         }
 
@@ -63,11 +63,6 @@ class AccountController extends Controller
             'category',
             'accountRefs',
         ]));
-    }
-
-    public function buyNick(Request $request, $accountUuid)
-    {
-        $account = Account::where('uuid', $accountUuid)->first();
     }
 
     /**
@@ -163,13 +158,16 @@ class AccountController extends Controller
     {
         dd($id);
     }
+
+    /**
+     * Summary of destroy
+     * 
+     * @param mixed $uuid
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function destroy($uuid)
     {
-        $account = Account::where('uuid', $uuid)->first();
-        // dd($account);
-        $account->status = 0;
-        $account->save();
-
-        return redirect()->back()->with('success', 'completed');
+        Account::where('uuid', $uuid)->delete();
+        return redirect()->back()->with('success', 'Xóa thành công!');
     }
 }

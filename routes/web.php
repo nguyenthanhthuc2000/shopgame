@@ -27,7 +27,6 @@ Route::middleware(['throttle:300,1'])->group(function () {
     Route::post('/dang-nhap', [AuthController::class, 'login'])->name('auth.login');
     Route::post('/dang-ky', [AuthController::class, 'register'])->name('auth.register');
     Route::get('/dang-xuat', action: [AuthController::class, 'logout'])->name('auth.logout');
-    Route::get('/mua-nick/{accountUuid}', [AccountTransactionController::class, 'buyNick'])->name('account.buy');
 
     Route::group(['prefix' => 'nick-game'], function () {
         Route::get('/', [CategoryController::class, 'list'])->name('category.list');
@@ -49,6 +48,7 @@ Route::middleware(['throttle:300,1'])->group(function () {
             Route::get('/thong-tin-tai-khoan', [UserController::class, 'index'])->name('profile.index');
             Route::get('/tai-khoan-da-mua', [AccountTransactionController::class, 'index'])->name('account.tran.index');
             Route::post('/nap-the-cao/gui-the', [CardController::class, 'postCard'])->name('postCard');
+            Route::get('/mua-nick/{accountUuid}', [AccountTransactionController::class, 'buyNick'])->name('account.buy');
         });
 
         Route::group(['prefix' => 'admin', 'middleware' => [IsAdmin::class, 'auth']], function () {

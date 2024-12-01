@@ -82,10 +82,18 @@
                                                 class="game-detail_button game-detail_button--primary col-md-6 mb-2">
                                                 Nạp thẻ cào
                                             </a>
-                                            <a href="{{ route('account.buy', ['accountUuid' => $account->uuid]) }}"
-                                                class="game-detail_button game-detail_button--secondary col-md-6 mb-2">
-                                                Mua ngay
-                                            </a>
+
+                                            @if ($account->status !== \App\Models\Account::STATUS_SOLD)
+                                                <a href="{{ route('account.buy', ['accountUuid' => $account->uuid]) }}"
+                                                    class="game-detail_button game-detail_button--secondary col-md-6 mb-2">
+                                                    Mua ngay
+                                                </a>
+                                            @else
+                                                <a href="#"
+                                                    class="game-detail_button game-detail_button--secondary col-md-6 mb-2">
+                                                    Đã bán
+                                                </a>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

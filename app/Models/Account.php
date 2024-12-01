@@ -4,9 +4,11 @@ namespace App\Models;
  
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Admin\Category;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Account extends Model
 {
+    use SoftDeletes;
 
     /**
      * The table associated with the model.
@@ -168,5 +170,10 @@ class Account extends Model
     public function images()
     {
         return $this->hasMany(Image::class);
+    }
+
+    public function author()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
     }
 }

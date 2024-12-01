@@ -15,8 +15,8 @@
                                 @include('components.app-sub-menu')
                             </div>
                             {{-- END LEFT MENU --}}
-
                             <div class="col-xs-12 col-md-9">
+                                @include('components.admin.alert')
                                 <div class="col-sm-12 text-center">
                                     <h1 style="font-size: 26px;">LỊCH SỬ MUA NICK GAME</h1>
                                 </div>
@@ -30,36 +30,43 @@
                                             <table class="table">
                                                 <thead>
                                                     <tr>
-                                                        <th scope="col" style="min-width: 30px;">Mã GD</th>
                                                         <th scope="col" style="min-width: 100px;">Mã Nick</th>
                                                         <th scope="col" style="min-width: 200px;">Tài Khoản</th>
                                                         <th scope="col" style="min-width: 100px;">Mật Khẩu</th>
                                                         <th scope="col" style="min-width: 200px;">Loại</th>
                                                         <th scope="col" style="min-width: 100px;">Giá</th>
+                                                        <th scope="col" style="min-width: 100px;">Trước GD</th>
+                                                        <th scope="col" style="min-width: 100px;">Sau GD</th>
                                                         <th scope="col" style="min-width: 100px;">Thời gian</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     @forelse($accountTrans as $index => $accountTran)
                                                         <tr>
-                                                            <td>{{ $accountTran->uuid }}</td>
                                                             <td>#{{ $accountTran->account_id }}</td>
                                                             <td style="min-width: 200px;">
-                                                                #{{ $accountTran->account->username }}</td>
+                                                                {{ $accountTran->account->username }}</td>
                                                             <td style="min-width: 100px;">
-                                                                #{{ $accountTran->account->password }}</td>
+                                                                {{ $accountTran->account->password }}</td>
                                                             <td style="min-width: 200px;">
-                                                                #{{ $accountTran->account->category->name }}</td>
+                                                                <a href="{{ route('category.index', ['slug' => $accountTran->account->category->slug]) }}">{{ $accountTran->account->category->name }}</a>
+                                                            </td>
                                                             <td style="min-width: 100px;">
-                                                                {{ number_format($accountTran->price, 0, ',', '.') }}</td>
+                                                                {{ number_format($accountTran->price, 0, ',', '.') }}
+                                                            </td>
+                                                            <td style="min-width: 100px;">
+                                                                {{ number_format($accountTran->buyer_vnd_before, 0, ',', '.') }}
+                                                            </td>
+                                                            <td style="min-width: 100px;">
+                                                                {{ number_format($accountTran->buyer_vnd_after, 0, ',', '.') }}
+                                                            </td>
                                                             <td style="min-width: 100px;">
                                                                 {{ date('d/m/Y H:i', strtotime($accountTran->created_at)) }}
                                                             </td>
                                                         </tr>
                                                     @empty
                                                         <tr>
-                                                            <td colspan="7" class="text-center">Không tìm thấy lịch sử
-                                                                mua nick</td>
+                                                            <td colspan="9" class="text-center">Không tìm thấy lịch sử mua nick</td>
                                                         </tr>
                                                     @endforelse
                                                 </tbody>
