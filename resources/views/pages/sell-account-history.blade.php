@@ -39,7 +39,7 @@
                                                 <thead>
                                                     <tr>
                                                         <th scope="col" style="min-width: 50px;">Mã Nick</th>
-                                                        <th scope="col" style="min-width: 150px;">Game</th>
+                                                        <th scope="col" style="min-width: 150px;">Danh Mục</th>
                                                         <th scope="col" style="min-width: 70px;">Giá</th>
                                                         <th scope="col" style="min-width: 70px;">Thực Nhận</th>
                                                         <th scope="col" style="min-width: 60px;">Chiếc Khấu</th>
@@ -62,7 +62,7 @@
                                                         </tr>
                                                     @empty
                                                         <tr>
-                                                            <td colspan="7" class="text-center">Không tìm thấy tài khoản</td>
+                                                            <td colspan="8" class="text-center">Không tìm thấy tài khoản</td>
                                                         </tr>
                                                     @endforelse
                                                 </tbody>

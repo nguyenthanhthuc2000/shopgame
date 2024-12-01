@@ -35,7 +35,16 @@
                                 <div class="col-sm-12 text-center">
                                     <h1 style="font-size: 26px;">TÀI KHOẢN NGỌC RỒNG</h1>
                                 </div>
-                                <div class="d-flex justify-content-end my-3">
+                                <div class="d-flex justify-content-end my-3 gap-3">
+                                    <a href="{{ route('account.create') }}" class="btn btn-primary col-xs-12 btn4"
+                                        style="display: flex; align-items: center; gap: 6px;">
+                                        <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M4 12H20M12 4V20" stroke="#FFFFFF" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                        Thêm Mới
+                                    </a>
                                     <div class="input-group w-50">
                                         <input type="text" id="searchInput" class="form-control"
                                             placeholder="Tìm kiếm tài khoản..." aria-label="Search"
@@ -72,7 +81,8 @@
                                                             <td>
                                                                 @if ($account->status === \App\Models\Account::STATUS_AVAILABLE)
                                                                     <div class="d-flex gap-3">
-                                                                        <form action="{{ route('account.delete', $account->uuid) }}"
+                                                                        <form
+                                                                            action="{{ route('account.delete', $account->uuid) }}"
                                                                             method="POST" style="display:inline;">
                                                                             @csrf
                                                                             @method('DELETE')
