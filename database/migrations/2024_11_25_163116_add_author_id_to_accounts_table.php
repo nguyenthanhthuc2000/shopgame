@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('images', function (Blueprint $table) {
-            $table->tinyInteger('is_banner')->after('image_link');
-            $table->string('file_id', 255)->unique(true)->after('is_banner');
+        Schema::table('account_transactions', function (Blueprint $table) {
+            $table->unsignedBigInteger('author_id')->default(0)->after('user_id')->comment('Người đăng nick');
         });
     }
 
@@ -22,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('images', function (Blueprint $table) {
-            $table->dropColumn(['file_id', 'is_banner']);
+        Schema::table('account_transactions', function (Blueprint $table) {
+            $table->dropColumn(['author_id']);
         });
     }
 };

@@ -70,17 +70,19 @@
                                                             <td>{{ config('account.account_status.' . $account->status) }}</td>
                                                             <td>{{ date('d/m/Y H:i', strtotime($account->created_at)) }}</td>
                                                             <td>
-                                                                <div class="d-flex gap-3">
-                                                                    <form action="{{ route('account.delete', $account->uuid) }}"
-                                                                        method="POST" style="display:inline;">
-                                                                        @csrf
-                                                                        @method('DELETE')
-                                                                        <button type="submit"
-                                                                            class="btn btn-danger">Xóa</button>
-                                                                    </form>
-                                                                    <a href="{{ route('account.edit', $account->uuid ?? '#') }}"
-                                                                        class="btn btn-warning">Sửa</a>
-                                                                </div>
+                                                                @if ($account->status === \App\Models\Account::STATUS_AVAILABLE)
+                                                                    <div class="d-flex gap-3">
+                                                                        <form action="{{ route('account.delete', $account->uuid) }}"
+                                                                            method="POST" style="display:inline;">
+                                                                            @csrf
+                                                                            @method('DELETE')
+                                                                            <button type="submit"
+                                                                                class="btn btn-danger">Xóa</button>
+                                                                        </form>
+                                                                        <a href="{{ route('account.edit', $account->uuid ?? '#') }}"
+                                                                            class="btn btn-warning">Sửa</a>
+                                                                    </div>
+                                                                @endif
                                                             </td>
                                                         </tr>
                                                     @empty

@@ -30,6 +30,7 @@
                 <ul class="c-menu">
                     <li><a href="{{ route('account.manage.index') }}">Game Ngọc Rồng</a></li>
                     <li><a href="{{ route('account.create') }}">Tạo Nick Ngọc Rồng</a></li>
+                    <li><a href="{{ route('account.sell.history') }}">Lịch sử bán nick</a></li>
                 </ul>
             </div>
         </div>
