@@ -21,6 +21,7 @@ class AccountTransactionController extends Controller
     public function index()
     {
         $accountTrans = AccountTransaction::with(['account.category'])
+            ->where('user_id', Auth::id())
             ->orderBy('id', 'DESC')
             ->where('user_id', Auth::id())->get();
 

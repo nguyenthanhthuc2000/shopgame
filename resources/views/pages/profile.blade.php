@@ -46,18 +46,22 @@
                                                 </div>
                                                 <div class="col-md-12 mb-2">
                                                     <div class="form-group row">
-                                                        <span class="col-4 control-label bb ar">Mật khẩu:</span>
-                                                        <span class="col-8 control-label al">**********</span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12 mb-2">
-                                                    <div class="form-group row">
                                                         <span class="col-4 control-label bb ar">Số dư:</span>
                                                         <span class="col-8 control-label al bb"
                                                             style="color:#d70f0f;">{{ number_format(auth()->user()->buyer_vnd, 0, ',', '.') }}
                                                             - VNĐ</span>
                                                     </div>
                                                 </div>
+                                                @if (in_array(auth()->user()->role, ['admin', 'seller']) )
+                                                <div class="col-md-12 mb-2">
+                                                    <div class="form-group row">
+                                                        <span class="col-4 control-label bb ar">Số dư có thể rút:</span>
+                                                        <span class="col-8 control-label al bb"
+                                                            style="color:#d70f0f;">{{ number_format(auth()->user()->seller_vnd, 0, ',', '.') }}
+                                                            - VNĐ</span>
+                                                    </div>
+                                                </div>
+                                                @endif
                                                 <div class="col-md-12 mb-2">
                                                     <div class="form-group row">
                                                         <span class="col-4 control-label bb ar">Ngày tham gia:

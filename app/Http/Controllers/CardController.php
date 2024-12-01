@@ -11,7 +11,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class CardController extends Controller
 {
@@ -43,7 +43,6 @@ class CardController extends Controller
         $historyCards = collect();
 
         if (Auth::check()) {
-            $userId = auth()->user()->id;
             $historyCards = CardTransaction::select('id', 'status', 'telco', 'code', 'declared_value', 'value', 'created_at', 'serial')
                 ->where('user_id', Auth::id())
                 ->orderBy('id', 'desc')
@@ -65,7 +64,7 @@ class CardController extends Controller
      */
     public function postCard(PostCardRequest $request)
     {
-        $userId = auth()->user()->id;
+        $userId =  Auth::id();
         $domain = config('thesieure.domain');
         $partnerId = config('thesieure.partner_id');
         $partnerKey = config('thesieure.partner_key');
