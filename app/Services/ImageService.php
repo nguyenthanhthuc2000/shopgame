@@ -26,25 +26,6 @@ class ImageService extends BaseService
     }
 
     /**
-     * Insert banner to Google Drive
-     * @param array $fileData
-     * @return array
-     */
-    public function createBanner(array $fileData)
-    {
-        try {
-            $fileData['is_banner'] = 1;
-
-            $created = Image::create($fileData);
-
-            return $created;
-        } catch (Exception $e) {
-            $this->logWritter($this->logChannel, $e->getMessage(), $e);
-            return [];
-        }
-    }
-
-    /**
      * Insert gallery to Google Drive
      * @param array $fileData
      * @return array
@@ -53,7 +34,7 @@ class ImageService extends BaseService
     {
         try {
             $created = Image::insert($fileData);
-
+            
             return $created;
         } catch (Exception $e) {
             $this->logWritter($this->logChannel, $e->getMessage(), $e);

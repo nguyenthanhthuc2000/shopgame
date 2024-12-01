@@ -21,7 +21,7 @@ class CategoryController extends Controller
             return redirect()->route('home');
         }
 
-        $accounts = Account::where('category_id', $category->id)
+        $accounts = Account::with(['banner'])->where('category_id', $category->id)
             ->where('status', Account::STATUS_AVAILABLE )
             ->orderBy('id', 'DESC')
             ->paginate(20)

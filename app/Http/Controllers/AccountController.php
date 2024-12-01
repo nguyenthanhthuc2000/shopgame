@@ -46,23 +46,15 @@ class AccountController extends Controller
     public function show($categorySlug, $accountUuid)
     {
         $category = Category::where('slug', $categorySlug)->first();
-        $account = Account::where('uuid', $accountUuid)->first();
+        $account = Account::with('images')->where('uuid', $accountUuid)->first();
 
         if (empty($category) || empty($category) || !empty($category) && $category->status !== Category::ACTIVE_STATUS) {
             return redirect()->route('home');
         }
-        $class = collect(Account::CLASSED)->where('value', $account->class)->first();
-        $regisType = collect(Account::REGIS_TYPE)->where('value', $account->regis_type)->first();
-        $earring = collect(Account::EARRING)->where('value', $account->earring)->first();
-        $server = collect(Account::SERVER)->where('value', $account->server)->first();
 
         return view('pages.account-detail', compact([
             'account',
             'category',
-            'class',
-            'regisType',
-            'earring',
-            'server',
         ]));
     }
 
@@ -131,7 +123,7 @@ class AccountController extends Controller
             $this->accountService->storeAccount($accountData, $banner, $imagesDetail ?? []);
         });
 
-        return redirect()->route('banks.tran.index')->with('success', "Thêm nick thành công");
+        return redirect()->route('account.manage.index')->with('success', "Thêm nick thành công");
     }
 
     /**

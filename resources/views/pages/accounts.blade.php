@@ -30,32 +30,28 @@
                     <div class="col-xl-3 col-lg-4 col-md-6 text-center mb-4">
                         <div class="bt-card-ui-3 account">
                             <div class="card-image">
-                                {{-- <img
-                                    src="https://i.ibb.co/rdbGnwF/room.jpg"
-                                    alt="easy template"
-                                /> --}}
-                                <img src="https://drive.google.com/thumbnail?id=10mnwAT8jIRjCKwTqSG_xswjglpt4MTQl&amp;sz=w1000" class="img-fluid object-fit-cotain clickable-image" alt="Image" style="object-fit: contain;" loading="lazy">
-                                <span class="ms">Mã số: 169019</span>
+                                <img src="{{ $account->banner->image_link ?? "" }}&amp;sz=w1000" class="img-fluid object-fit-cotain clickable-image" alt="Image" style="object-fit: contain;" loading="lazy">
+                                <span class="ms">Mã số: #{{ $account->id}}</span>
                             </div>
                             <div class="card-body">
                                 <div class="row" style="font-size: 14px;">
                                     <div class="col-6 a_att">
-                                        Máy chủ: <b>Server 1</b>
+                                        Máy chủ: <b>Server {{ $account->server}}</b>
                                     </div>
                                     <div class="col-6 a_att">
-                                        Hành tinh: <b>Trái đất</b>
+                                        Hành tinh: <b>{{ $account->class_name }}</b>
+                                    </div> 
+                                    <div class="col-6 a_att">
+                                        Đăng ký: <b>{{ $account->regis_type_name }}</b>
                                     </div>
                                     <div class="col-6 a_att">
-                                        Đăng ký: <b>Ảo</b>
-                                    </div>
-                                    <div class="col-6 a_att">
-                                        Bông tai: <b>Có</b>
+                                        Bông tai: <b>{{ $account->earring_name }}</b>
                                     </div>
                                 </div>
 
                                 <div class="card-btn-wrap">
                                     <a href="#" class="card-btn card-btn--book">
-                                        2.000.000 đ
+                                        {{ number_format($account->price_atm, 0, ',', '.') }} đ
                                     </a>
                                     <a href="{{ route('account.show', ['categorySlug' => $category->slug,'accountUuid' => $account->uuid]) }}" class="card-btn card-btn--more">
                                         Chi Tiết

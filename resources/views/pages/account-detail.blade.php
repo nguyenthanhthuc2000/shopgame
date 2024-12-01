@@ -11,35 +11,22 @@
                             <div class="col-lg-7 col-md-6 mb-3">
                                 <div class="game-images">
                                     <div class="nick-avatar_photo" id="detail-avatar_photo">
-                                        <div class="preview-avatar_photo__item">
-                                            <span class="ratio ratio-1x1">
-                                                <img src="https://drive.google.com/thumbnail?id=10mnwAT8jIRjCKwTqSG_xswjglpt4MTQl&sz=w1000"
-                                                    class="img-fluid object-fit-cotain clickable-image" alt="Image"
-                                                    style="object-fit: contain;" loading="lazy">
-                                                {{-- <img src="https://nick24s.com/storage/nicks/8346/501871-Screenshot 2024-11-18 220032.png"
-                                                    class="img-fluid object-fit-cover clickable-image" alt="Image"
-                                                    loading="lazy"> --}}
-                                            </span>
-                                            {{-- <a href="https://nick24s.com/storage/nicks/8346/501871-Screenshot 2024-11-18 220032.png"
-                                                data-index="01" data-fancybox="game-images" class="stretched-link"
+                                        <div class="preview-avatar_photo__item mb-3">
+                                            <img src="{{ $account->images[0]->image_link }}&sz=w1000"
+                                                class="img-fluid object-fit-cover thumb-image" alt="Preview Image"
                                                 loading="lazy">
-                                            </a> --}}
                                         </div>
                                     </div>
                                     <div class="game-images_thumb" id="detail-avatar_thumb">
                                         <!-- Owl Carousel -->
                                         <div class="owl-carousel owl-theme">
-                                            <div class="item">
-                                                <img src="https://nick24s.com/storage/nicks/8346/501871-Screenshot 2024-11-18 220032.png"
-                                                    class="img-fluid object-fit-cover thumb-image" alt="Preview Image 1"
-                                                    loading="lazy">
-                                            </div>
-                                            <div class="item">
-                                                <img src="https://nick24s.com/storage/nicks/8346/screenshot-2024-11-26-195417-6745c55c8ecbe.png"
-                                                    class="img-fluid object-fit-cover thumb-image" alt="Preview Image 2"
-                                                    loading="lazy">
-                                            </div>
-                                            <!-- Thêm các ảnh khác nếu cần -->
+                                            @foreach ($account->images as $image)
+                                                <div class="item">
+                                                    <img src="{{ $image->image_link }}&sz=w1000"
+                                                        class="img-fluid object-fit-cover thumb-image" alt="Preview Image"
+                                                        loading="lazy">
+                                                </div>
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
@@ -52,7 +39,8 @@
                                             Mã số: <b>#{{ $account->id }}</b>
                                         </div>
                                         <div class="game-detail_category">
-                                            Danh Mục: <a href="{{ route('category.index', ['slug' => $category->slug]) }}">{{ $category->name }}</a>
+                                            Danh Mục: <a
+                                                href="{{ route('category.index', ['slug' => $category->slug]) }}">{{ $category->name }}</a>
                                         </div>
                                     </div>
                                     <div class="game-detail_bottom">
@@ -69,19 +57,19 @@
                                         <div class="game-detail_meta">
                                             <div class="game-detail_meta--item">
                                                 Máy chủ:
-                                                <b>{{ $server['name'] }}</b>
+                                                <b>Server {{ $account->server }}</b>
                                             </div>
                                             <div class="game-detail_meta--item">
                                                 Hành tinh:
-                                                <b>{{ $class['name'] }}</b>
+                                                <b>{{ $account->class_name }}</b>
                                             </div>
                                             <div class="game-detail_meta--item">
                                                 Bông tai:
-                                                <b>{{ $earring['name'] }}</b>
+                                                <b>{{ $account->earring_name }}</b>
                                             </div>
                                             <div class="game-detail_meta--item">
                                                 Đăng ký:
-                                                <b>{{ $regisType['name'] }}</b>
+                                                <b>{{ $account->regis_type_name }}</b>
                                             </div>
                                         </div>
                                         <div class="game-detail_buttons d-flex">

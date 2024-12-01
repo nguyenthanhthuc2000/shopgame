@@ -33,7 +33,7 @@ class Account extends Model
      */
     protected $guarded = ['id'];
 
-    protected $appends = ['price_atm'];
+    protected $appends = ['price_atm', 'class_name', 'earring_name', 'regis_type_name'];
 
     /**
      * The attributes that should be cast.
@@ -64,16 +64,12 @@ class Account extends Model
 
     const REGIS_TYPE = [
         [
-            'name' => 'Đăng ký ảo',
+            'name' => 'Ảo',
             'value' => '0',
         ],
         [
-            'name' => 'Đăng ký bằng số điện thoại',
+            'name' => 'Email',
             'value' => '1',
-        ],
-        [
-            'name' => 'Đăng ký bằng email',
-            'value' => '2',
         ],
     ];
 
@@ -146,6 +142,31 @@ class Account extends Model
 
     public function getPriceAtmAttribute()
     {
-        return $this->price * 0.85; // Tính giá bằng cách giảm 15%
+        return ceil($this->price * 0.8 / 1000) * 1000;
+    }
+
+    public function getClassNameAttribute()
+    {
+        return collect(self::CLASSED)->where('value', $this->class)->first()['name'];
+    }
+
+    public function getEarringNameAttribute()
+    {
+        return collect(self::EARRING)->where('value', $this->earring)->first()['name'];
+    }
+
+    public function getRegisTypeNameAttribute()
+    {
+        return collect(self::REGIS_TYPE)->where('value', $this->earring)->first()['name'];
+    }
+
+    public function banner()
+    {
+        return $this->hasOne(Image::class)->where('is_banner', true);
+    }
+
+    public function images()
+    {
+        return $this->hasMany(Image::class);
     }
 }
