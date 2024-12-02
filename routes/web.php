@@ -48,6 +48,8 @@ Route::middleware(['throttle:300,1'])->group(function () {
         });
 
         Route::group(['middleware' => ['auth']], function () {
+            Route::get('/doi-mat-khau', [AuthController::class, 'changePassword'])->name('auth.change.password');
+            Route::post('/doi-mat-khau', [AuthController::class, 'updatePassword'])->name('auth.update.password');
             Route::get('/thong-tin-tai-khoan', [UserController::class, 'index'])->name('profile.index');
             Route::get('/tai-khoan-da-mua', [AccountTransactionController::class, 'index'])->name('account.tran.index');
             Route::post('/nap-the-cao/gui-the', [CardController::class, 'postCard'])->name('postCard');

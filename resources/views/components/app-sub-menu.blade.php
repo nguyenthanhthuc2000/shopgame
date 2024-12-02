@@ -5,6 +5,9 @@
     <div class="c-content-ver-nav">
         <ul class="c-menu">
             <li><a href="{{ route('profile.index') }}">Thông Tin Tài Khoản</a></li>
+            @auth
+                <li><a href="{{ route('auth.change.password') }}">Đổi Mật Khẩu</a></li>
+            @endauth
             <li><a href="{{ route('card.index') }}">Nạp Tiền Thẻ Cào</a></li>
             <li><a href="{{ route('home.deposit') }}">Nạp Tiền ATM - Ví Điện Tử</a></li>
         </ul>

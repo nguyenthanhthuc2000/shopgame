@@ -45,13 +45,15 @@
                                         </svg>
                                         Thêm Mới
                                     </a>
-                                    <div class="input-group w-50">
-                                        <input type="text" id="searchInput" class="form-control"
-                                            placeholder="Tìm kiếm tài khoản..." aria-label="Search"
-                                            aria-describedby="searchIcon">
-                                        <span class="input-group-text" id="searchIcon">
-                                            <i class="fas fa-search"></i>
-                                        </span>
+                                    <div class="d-flex justify-content-end">
+                                        <div class="input-group w-100">
+                                            <input type="text" id="searchInput" class="form-control"
+                                                placeholder="Tìm kiếm tài khoản..." aria-label="Search"
+                                                aria-describedby="searchIcon">
+                                            <span class="input-group-text" id="searchIcon">
+                                                <i class="fas fa-search"></i>
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
                                 <div>
