@@ -53,7 +53,7 @@
                 <div class="col-12 text-center">
                     <div class="mb-3">
                         <h3 id="categories"><span class="orange-text">DANH MỤC</span> GAME </h3>
-                        <p class="m-auto"><b>Shop NickDaoQuan.Vn</b> luôn cập nhật liên tục cho các bạn có thể lựa  chọn.</p>
+                        <p class="m-auto"><b>Shop NickDaoQuan.Vn</b> luôn cập nhật liên tục cho các bạn có thể lựa chọn.</p>
                     </div>
                 </div>
             </div>
@@ -72,7 +72,8 @@
                             <p class="mb-2 category-total">Đã bán: <b>{{ $category->unsold_count }}</b></p>
                             <div class="mb-3 buy-btn">
                                 <a href="{{ route('category.index', ['slug' => $category->slug ?? '#']) }}">
-                                    <img src="{{ asset('assets/images/buy-now.png') }}" class="buy-img" alt="Mua ngay" loading="lazy">
+                                    <img src="{{ asset('assets/images/buy-now.png') }}" class="buy-img" alt="Mua ngay"
+                                        loading="lazy">
                                 </a>
                             </div>
                         </div>
@@ -98,4 +99,38 @@
             </div>
         </div>
     </div>
+    <button type="button" class="btn btn-primary showPopup" data-toggle="modal" data-target="#exampleModal"hidden>
+        Launch demo modal
+    </button>
+
+    <div class="modal fade modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Thông báo</h5>
+                </div>
+                <div class="modal-body">
+                    <p><strong><span>ZALO 0389946423 NHẬP NICK NGỌC RỒNG GIÁ CAO <img src="{{ asset('assets/images/hot.gif') }}" alt="nickdaoquan.vn"></span></strong></p>
+
+                    <p><strong>NẠP ATM/MOMO 100K = 120K SHOP <a href="{{ route('home.deposit') }}">tại đây <img src="{{ asset('assets/images/hot.gif') }}" alt="nickdaoquan.vn"></a></strong></p>
+
+                    <p><strong>LƯU Ý: NẠP SAI MỆNH GIÁ THẺ SẼ BỊ TRỪ 50% TIỀN</strong></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @endsection
+
+@push('js')
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.showPopup').click();
+        });
+    </script>
+@endpush
