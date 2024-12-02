@@ -306,33 +306,40 @@
 @push('js')
     <script>
         let addedImages = [];
+        const maxFiles = 20; // Giới hạn số lượng file tối đa
+        let dt = new DataTransfer(); // Dùng để cập nhật danh sách file trong input
 
         $('#images').on('change', function(event) {
-            const files = event.target.files;
-            const previewContainer = $('#preview-container');
-            const maxFiles = 20;
+            const files = event.target.files; // Lấy các file từ input
+            const previewContainer = $('#preview-container'); // Container để hiển thị preview
 
             for (let i = 0; i < files.length; i++) {
-                if (addedImages.length >= maxFiles) {
-                    alert('Bạn chỉ có thể thêm tối đa 20 ảnh.');
-                    break;
-                }
-
                 const file = files[i];
+
+                // Kiểm tra xem đã có file này chưa
                 if (!addedImages.some(img => img.name === file.name)) {
-                    addedImages.push(file);
+                    if (addedImages.length >= maxFiles) {
+                        alert('Bạn chỉ có thể thêm tối đa 20 ảnh.');
+                        break;
+                    }
+
+                    addedImages.push(file); // Thêm file vào danh sách
+                    dt.items.add(file); // Thêm file vào DataTransfer
 
                     const reader = new FileReader();
                     reader.onload = function(e) {
-                        const div = $('<div></div>');
+                        const div = $('<div></div>').addClass('preview-item');
                         const img = $('<img>').attr('src', e.target.result).addClass('preview-img');
-                        const removeBtn = $('<button>&times;</button>');
+                        const removeBtn = $('<button>&times;</button>').addClass('remove-btn');
 
+                        // Xử lý xóa file
                         removeBtn.on('click', function() {
                             const index = addedImages.findIndex(img => img.name === file.name);
                             if (index !== -1) {
-                                addedImages.splice(index, 1);
-                                div.remove();
+                                addedImages.splice(index, 1); // Xóa file khỏi danh sách
+                                dt.items.remove(index); // Xóa file khỏi DataTransfer
+                                $('#images')[0].files = dt.files; // Cập nhật lại input file
+                                div.remove(); // Xóa preview khỏi giao diện
                             }
                         });
 
@@ -342,6 +349,17 @@
                     reader.readAsDataURL(file);
                 }
             }
+
+            // Cập nhật lại input với danh sách mới
+            $('#images')[0].files = dt.files;
+        });
+
+        $('.btn-clear-gallery').click(function() {
+            $('#preview-container > div').remove();
+            addedImages = [];
+            dt = new DataTransfer();
+            $('#images')[0].files = dt.files;
+            $('#images').val(null);
         });
 
         $('.btn-add-single-image').click(function() {
@@ -369,10 +387,5 @@
                 reader.readAsDataURL(file);
             }
         });
-
-        $('.btn-clear-gallery').click(function() {
-            $('#preview-container > div').remove();
-            $('#images').val(null)
-        })
     </script>
 @endpush
