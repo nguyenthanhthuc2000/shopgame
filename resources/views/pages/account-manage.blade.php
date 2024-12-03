@@ -81,15 +81,15 @@
                                                             <td>{{ config('account.account_status.' . $account->status) }}</td>
                                                             <td>{{ date('d/m/Y H:i', strtotime($account->created_at)) }}</td>
                                                             <td>
-                                                                @if ($account->status === \App\Models\Account::STATUS_AVAILABLE)
+                                                                @if ($account->status !== \App\Models\Account::STATUS_AVAILABLE)
                                                                     <div class="d-flex gap-3">
-                                                                        <form
+                                                                        <form id="delete-form"
                                                                             action="{{ route('account.delete', $account->uuid) }}"
                                                                             method="POST" style="display:inline;">
                                                                             @csrf
                                                                             @method('DELETE')
-                                                                            <button type="submit"
-                                                                                class="btn btn-danger">Xóa</button>
+                                                                            <button type="button"
+                                                                                class="btn btn-danger btn-delete">Xóa</button>
                                                                         </form>
                                                                         <a href="{{ route('account.edit', $account->uuid ?? '#') }}"
                                                                             class="btn btn-warning">Sửa</a>
@@ -117,9 +117,12 @@
     </div>
 @endsection
 @push('js')
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        function confirmDelete(event, form) {
+        $(function() {
+            $('.btn-delete').on('click', confirmDelete)
+        })
+
+        function confirmDelete(event) {
             event.preventDefault();
             Swal.fire({
                 title: 'Bạn có chắc chắn?',
@@ -132,10 +135,15 @@
                 cancelButtonText: 'Hủy'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    form.submit();
+                    $('#delete-form').submit();
                 }
             });
         }
+
+        function handleDelete() {
+
+        }
+
         @if (session('success'))
             Swal.fire({
                 title: 'Thành công!',

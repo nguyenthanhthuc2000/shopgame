@@ -180,7 +180,7 @@ class AccountController extends Controller
             $account->delete();
             return redirect()->back()->with('success', 'Xóa thành công!');
         }
-
+        // dd($account);
         return redirect()->back()->withErrors([
             'error' => 'Có lỗi xảy ra',
         ]);
