@@ -14,7 +14,7 @@
     <meta property="og:description" content="Shop nick Ngọc Rồng Online giá rẻ, đầy đủ sức mạnh, giao dịch nhanh chóng, bảo hành uy tín tại nickdaoquan.vn.">
     <meta property="og:image" content="{{ asset('assets/images/avatar.jpg') }}">
     <meta property="og:url" content="{{ url()->current() }}">
-
+    <meta name="csrf_token" content="{{ csrf_token() }}" />
     @include('components.style')
     @vite(['resources/sass/app.scss'])
     @stack('css')
