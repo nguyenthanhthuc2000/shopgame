@@ -178,11 +178,14 @@ class AccountController extends Controller
 
         if (!empty($account) && $account->status !== Account::STATUS_AVAILABLE) {
             $account->delete();
-            return redirect()->back()->with('success', 'Xóa thành công!');
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Xóa thành công!'
+            ]);
         }
-        // dd($account);
-        return redirect()->back()->withErrors([
-            'error' => 'Có lỗi xảy ra',
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Có lỗi xảy ra!'
         ]);
     }
 }

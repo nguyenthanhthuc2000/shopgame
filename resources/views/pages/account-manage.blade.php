@@ -83,14 +83,9 @@
                                                             <td>
                                                                 @if ($account->status !== \App\Models\Account::STATUS_AVAILABLE)
                                                                     <div class="d-flex gap-3">
-                                                                        <form id="delete-form"
-                                                                            action="{{ route('account.delete', $account->uuid) }}"
-                                                                            method="POST" style="display:inline;">
-                                                                            @csrf
-                                                                            @method('DELETE')
-                                                                            <button type="button"
-                                                                                class="btn btn-danger btn-delete">Xóa</button>
-                                                                        </form>
+                                                                        <button type="button" class="btn btn-danger btn-delete"
+                                                                            data-id="{{ $account->uuid }}"
+                                                                            data-url="{{ route('account.delete', $account->uuid) }}">Xóa</button>
                                                                         <a href="{{ route('account.edit', $account->uuid ?? '#') }}"
                                                                             class="btn btn-warning">Sửa</a>
                                                                     </div>
@@ -135,23 +130,39 @@
                 cancelButtonText: 'Hủy'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    $('#delete-form').submit();
+                    const uuid = $(event.currentTarget).data('id');
+                    const url = $(event.currentTarget).data('url');
+                    handleDelete(url, uuid);
                 }
             });
         }
 
-        function handleDelete() {
-
+        function handleDelete(url, uuid) {
+            $.ajax({
+                url: url,
+                type: 'delete',
+                success: function(response) {
+                    Swal.fire({
+                        title: 'Thông báo!',
+                        text: response.message,
+                        icon: response.status,
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'OK'
+                    });
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1000);
+                },
+                error: function(error) {
+                    Swal.fire({
+                        title: 'Lỗi!',
+                        text: response.message,
+                        icon: response.status,
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'OK',
+                    });
+                },
+            })
         }
-
-        @if (session('success'))
-            Swal.fire({
-                title: 'Thành công!',
-                text: "{{ session('success') }}",
-                icon: 'success',
-                confirmButtonColor: '#3085d6',
-                confirmButtonText: 'OK'
-            });
-        @endif
     </script>
 @endpush
