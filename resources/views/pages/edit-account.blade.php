@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Tạo nick game | NickDaoQuan.Vn')
+@section('title', 'Chỉnh Sửa | NickDaoQuan.Vn')
 
 @push('css')
     <style>
@@ -114,7 +114,7 @@
                                 <div class="">
                                     <div class="panel">
                                         <div class="col-sm-12 text-center">
-                                            <h1 style="font-size: 26px;">Tạo nick Ngọc Rồng</h1>
+                                            <h1 style="font-size: 26px;">Chỉnh sửa nick Ngọc Rồng</h1>
                                         </div>
                                         <br>
                                         <form action="{{ route('account.create.post') }}" method="post"
@@ -289,7 +289,7 @@
                                                 </div>
                                             </div>
                                             <div class="w-100 text-center">
-                                                <button type="submit" class="btn btn-success w-30">Tạo mới</button>
+                                                <button type="submit" class="btn btn-success w-30">Áp dụng</button>
                                             </div>
                                         </form>
                                     </div>
