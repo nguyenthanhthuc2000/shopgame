@@ -166,7 +166,7 @@ class AccountController extends Controller
 
     /**
      * Summary of destroy
-     * 
+     *
      * @param mixed $uuid
      * @return \Illuminate\Http\RedirectResponse
      */
