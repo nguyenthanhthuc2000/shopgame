@@ -155,7 +155,6 @@
                 },
                 error: function(error) {
                     Swal.fire({
-                        title: 'Lỗi!',
                         text: response.message,
                         icon: response.status,
                         confirmButtonColor: '#3085d6',
