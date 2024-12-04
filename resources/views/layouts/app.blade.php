@@ -18,11 +18,6 @@
     @include('components.style')
     @vite(['resources/sass/app.scss'])
     @stack('css')
-    <style>
-        .homepage-bg-1 {
-            background-image: url({{ asset('assets/images/homepage-bg-1.jpg') }});
-        }
-    </style>
 </head>
 
 <body>
