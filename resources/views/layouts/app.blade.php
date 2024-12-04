@@ -37,17 +37,8 @@
     @include('components.script')
 
     @stack('js')
-
     
-
     <script>
-        $(document).ready(function () {
-            $('.homepage-bg-1').css(
-                'background-image',
-                'url("'+ "{{ asset('assets/images/homepage-bg-1.jpg') }}" +'")'
-            );
-        });
-
         const styleElement = document.createElement('style');
         styleElement.textContent = `
         .snow-container {
