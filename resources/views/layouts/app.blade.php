@@ -18,12 +18,6 @@
     @include('components.style')
     @vite(['resources/sass/app.scss'])
     @stack('css')
-
-    <style>
-        .homepage-bg-1 {
-            background-image:  url("{{ asset('assets/images/homepage-bg-1.jpg') }}");
-        }
-    </style>
 </head>
 
 <body>
@@ -44,7 +38,16 @@
 
     @stack('js')
 
+    
+
     <script>
+        $(document).ready(function () {
+            $('.homepage-bg-1').css(
+                'background-image',
+                'url("'+ "{{ asset('assets/images/homepage-bg-1.jpg') }}" +'")'
+            );
+        });
+
         const styleElement = document.createElement('style');
         styleElement.textContent = `
         .snow-container {
