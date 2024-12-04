@@ -63,7 +63,7 @@
                     <div class="col-lg-3 col-md-4 col-6 text-center">
                         <div class="single-card-item">
                             <div class="category__banner mb-2">
-                                <a href="/">
+                                <a href="{{ route('category.index', ['slug' => $category->slug ?? '#']) }}">
                                     <img src="{{ asset($category->image) }}" alt="{{ $category->title }}" loading="lazy">
                                 </a>
                             </div>
