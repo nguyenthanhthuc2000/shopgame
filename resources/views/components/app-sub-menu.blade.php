@@ -4,9 +4,12 @@
     </div>
     <div class="c-content-ver-nav">
         <ul class="c-menu">
-            <li><a href="{{ route('profile.index') }}">Thông tin tài khoản</a></li>
-            <li><a href="{{ route('card.index') }}">Nạp tiền thẻ cào</a></li>
-            <li><a href="{{ route('home.deposit') }}">Nạp tiền ATM - Ví điện tử</a></li>
+            <li><a href="{{ route('profile.index') }}">Thông Tin Tài Khoản</a></li>
+            @auth
+                <li><a href="{{ route('auth.change.password') }}">Đổi Mật Khẩu</a></li>
+            @endauth
+            <li><a href="{{ route('card.index') }}">Nạp Tiền Thẻ Cào</a></li>
+            <li><a href="{{ route('home.deposit') }}">Nạp Tiền ATM - Ví Điện Tử</a></li>
         </ul>
     </div>
 </div>
@@ -16,7 +19,7 @@
     </div>
     <div class="c-content-ver-nav m-b-20">
         <ul class="c-menu">
-            <li><a href="{{ route('account.tran.index') }}">Tài khoản đã mua</a></li>
+            <li><a href="{{ route('account.tran.index') }}">Tài Khoản Đã Mua</a></li>
         </ul>
     </div>
 </div>
@@ -29,7 +32,7 @@
             <div class="c-content-ver-nav m-b-20">
                 <ul class="c-menu">
                     <li><a href="{{ route('account.manage.index') }}">Game Ngọc Rồng</a></li>
-                    <li><a href="{{ route('account.create') }}">Tạo Nick Ngọc Rồng</a></li>
+                    <li><a href="{{ route('account.sell.history') }}">Lịch Sử Bán Nick</a></li>
                 </ul>
             </div>
         </div>

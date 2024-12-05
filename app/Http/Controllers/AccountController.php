@@ -48,7 +48,10 @@ class AccountController extends Controller
     public function show($categorySlug, $accountUuid)
     {
         $category = Category::where('slug', $categorySlug)->first();
-        $account = Account::with('images')->whereIn('status', [Account::STATUS_SOLD, Account::STATUS_AVAILABLE])->where('uuid', $accountUuid)->first();
+        $account = Account::with('images')
+            ->whereIn('status', [Account::STATUS_SOLD, Account::STATUS_AVAILABLE])
+            ->where('uuid', $accountUuid)
+            ->first();
 
         if (empty($category) || empty($category) || !empty($category) && $category->status !== Category::ACTIVE_STATUS || empty($account)) {
             return redirect()->route('home');
@@ -172,13 +175,17 @@ class AccountController extends Controller
         $account = Account::where('user_id', Auth::id())
             ->where('uuid', $uuid)
             ->first();
-        if (!empty($account)) {
-            $account->delete();
-            return redirect()->back()->with('success', 'Xóa thành công!');
-        }
 
-        return redirect()->back()->withErrors([
-            'error' => 'Có lỗi xảy ra',
+        if (!empty($account) && $account->status !== Account::STATUS_AVAILABLE) {
+            $account->delete();
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Xóa thành công!'
+            ]);
+        }
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Có lỗi xảy ra!'
         ]);
     }
 }

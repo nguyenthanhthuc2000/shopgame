@@ -17,4 +17,14 @@ export default defineConfig({
             '@': path.resolve(__dirname, 'resources'),
         },
     },
+    build: {
+        rollupOptions: {
+            external: ['jquery'],
+            output: {
+                globals: {
+                    jquery: 'jQuery',
+                },
+            },
+        },
+    },
 });

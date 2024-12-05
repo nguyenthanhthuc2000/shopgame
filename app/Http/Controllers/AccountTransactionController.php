@@ -21,7 +21,6 @@ class AccountTransactionController extends Controller
     public function index()
     {
         $accountTrans = AccountTransaction::with(['account.category'])
-            ->where('user_id', Auth::id())
             ->orderBy('id', 'DESC')
             ->where('user_id', Auth::id())->get();
 
@@ -69,6 +68,10 @@ class AccountTransactionController extends Controller
             // Thực nhận của CTV
             $sellerProfit = ($account->price /100) *  $author->profit_rate;
             $buyer->buyer_vnd = $buyerVndAfter;
+
+            // Số dư trước và sau gd của CTV
+            $sellerVndAfter = $author->seller_vnd + $sellerProfit;
+            $sellerVndBefore = $author->seller_vnd;
             $author->seller_vnd += $sellerProfit;
 
             $accTran = new AccountTransaction();
@@ -78,8 +81,16 @@ class AccountTransactionController extends Controller
             $accTran->price = $account->price;
             $accTran->profit_rate = $author->profit_rate;
             $accTran->seller_profit = $sellerProfit;
+
+            // Số dư trước và sau gd của người mua
             $accTran->buyer_vnd_after = $buyerVndAfter;
             $accTran->buyer_vnd_before = $buyerVndBefore;
+
+            // Số dư trước và sau gd của CTV
+            $accTran->seller_vnd_before = $sellerVndBefore;
+            $accTran->seller_vnd_after = $sellerVndAfter;
+
+            $accTran->author_id = $author->id;
             $accTran->order_status = AccountTransaction::ORDER_SUCCESS;
             
             DB::transaction(function () use ($accTran, $author, $account, $buyer) {
@@ -106,5 +117,17 @@ class AccountTransactionController extends Controller
     public function checkAccoutAvailabel()
     {
         return true;
+    }
+
+    public function sellHistory(Request $request)
+    {
+        $accounts = AccountTransaction::with(['account.category'])
+            ->FilterByAccountId($request->input('account_id'))
+            ->where('author_id', Auth::id())
+            ->orderBy('id', 'DESC')
+            ->paginate(15)
+            ->withQueryString();
+
+        return view('pages.sell-account-history', compact(['accounts']));
     }
 }

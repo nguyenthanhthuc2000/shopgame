@@ -35,6 +35,9 @@ Route::middleware(['throttle:300,1'])->group(function () {
     });
     
     Route::middleware([LogRequestMiddleware::class])->group(function () {
+        Route::group(['middleware' => ['auth', IsAdminOrSeller::class]], function () {
+            Route::get('/lich-su-ban-nick', [AccountTransactionController::class, 'sellHistory'])->name('account.sell.history');
+        });
         Route::group(['prefix' => 'quan-ly-nick-ngoc-rong', 'middleware' => ['auth', IsAdminOrSeller::class]], function () {
             Route::get('/', [AccountController::class, 'index'])->name('account.manage.index');
             Route::post('/', [AccountController::class, 'store'])->name('account.create.post');
@@ -45,6 +48,8 @@ Route::middleware(['throttle:300,1'])->group(function () {
         });
 
         Route::group(['middleware' => ['auth']], function () {
+            Route::get('/doi-mat-khau', [AuthController::class, 'changePassword'])->name('auth.change.password');
+            Route::post('/doi-mat-khau', [AuthController::class, 'updatePassword'])->name('auth.update.password');
             Route::get('/thong-tin-tai-khoan', [UserController::class, 'index'])->name('profile.index');
             Route::get('/tai-khoan-da-mua', [AccountTransactionController::class, 'index'])->name('account.tran.index');
             Route::post('/nap-the-cao/gui-the', [CardController::class, 'postCard'])->name('postCard');

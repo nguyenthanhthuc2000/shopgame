@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\ChangePasswordRequest;
 use Illuminate\Support\Str;
 
 
@@ -23,6 +24,30 @@ class AuthController extends Controller
         return view('pages.auth.login');
     }
 
+    /**
+     * Summary of changePassword
+     * 
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function changePassword()
+    {
+        return view('pages.auth.change-password');
+    }
+
+    /**
+     * Summary of updatePassword
+     * 
+     * @param ChangePasswordRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updatePassword(ChangePasswordRequest $request)
+    {
+        $user = auth()->user();
+        $user->password = Hash::make($request->input('password'));
+        $user->save();
+    
+        return back()->with('success', 'Đổi mật khẩu thành công, vui lòng đăng nhập lại!');
+    }
 
     /**
      * Login

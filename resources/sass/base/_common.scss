@@ -1394,9 +1394,34 @@ a.mobile-show.search-bar-icon {
     }
 }
 
-.homepage-bg-1 {
-    background-image: url("../../../public/assets/images/homepage-bg-1.jpg");
+.owl-carousel .owl-item img {
+    position: absolute;
+    height: 100vh;
 }
+
+/* Đặt kích thước cho ảnh slider */
+.single-homepage-slider {
+    position: relative;
+    overflow: hidden;
+}
+
+.slider-img {
+    width: 100%; /* Ảnh rộng 100% */
+    height: auto; /* Tự động điều chỉnh chiều cao */
+    object-fit: cover; /* Đảm bảo ảnh bao phủ toàn bộ vùng */
+}
+
+/* Định vị phần nội dung (hero-text) */
+.hero-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2; /* Đưa nội dung lên trên ảnh */
+    color: #fff; /* Đặt màu chữ trắng */
+    text-align: center;
+}
+
 .single-homepage-slider {
     background-size: cover;
     background-position: center;

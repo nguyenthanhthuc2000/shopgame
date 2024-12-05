@@ -35,14 +35,25 @@
                                 <div class="col-sm-12 text-center">
                                     <h1 style="font-size: 26px;">TÀI KHOẢN NGỌC RỒNG</h1>
                                 </div>
-                                <div class="d-flex justify-content-end my-3">
-                                    <div class="input-group w-50">
-                                        <input type="text" id="searchInput" class="form-control"
-                                            placeholder="Tìm kiếm tài khoản..." aria-label="Search"
-                                            aria-describedby="searchIcon">
-                                        <span class="input-group-text" id="searchIcon">
-                                            <i class="fas fa-search"></i>
-                                        </span>
+                                <div class="d-flex justify-content-end my-3 gap-3">
+                                    <a href="{{ route('account.create') }}" class="btn btn-primary col-xs-12 btn4"
+                                        style="display: flex; align-items: center; gap: 6px;">
+                                        <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M4 12H20M12 4V20" stroke="#FFFFFF" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                        Thêm Mới
+                                    </a>
+                                    <div class="d-flex justify-content-end">
+                                        <div class="input-group w-100">
+                                            <input type="text" id="searchInput" class="form-control"
+                                                placeholder="Tìm kiếm tài khoản..." aria-label="Search"
+                                                aria-describedby="searchIcon">
+                                            <span class="input-group-text" id="searchIcon">
+                                                <i class="fas fa-search"></i>
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
                                 <div>
@@ -70,18 +81,15 @@
                                                             <td>{{ config('account.account_status.' . $account->status) }}</td>
                                                             <td>{{ date('d/m/Y H:i', strtotime($account->created_at)) }}</td>
                                                             <td>
-                                                                <div class="d-flex gap-3">
-                                                                    <form action="{{ route('account.delete', $account->uuid) }}"
-                                                                        method="POST" style="display:inline;"
-                                                                        onsubmit="return confirmDelete(event, this)">
-                                                                        @csrf
-                                                                        @method('DELETE')
-                                                                        <button type="submit"
-                                                                            class="btn btn-danger">Xóa</button>
-                                                                    </form>
-                                                                    <a href="{{ route('account.edit', $account->uuid ?? '#') }}"
-                                                                        class="btn btn-warning">Sửa</a>
-                                                                </div>
+                                                                @if ($account->status !== \App\Models\Account::STATUS_AVAILABLE)
+                                                                    <div class="d-flex gap-3">
+                                                                        <button type="button" class="btn btn-danger btn-delete"
+                                                                            data-id="{{ $account->uuid }}"
+                                                                            data-url="{{ route('account.delete', $account->uuid) }}">Xóa</button>
+                                                                        <a href="{{ route('account.edit', $account->uuid ?? '#') }}"
+                                                                            class="btn btn-warning">Sửa</a>
+                                                                    </div>
+                                                                @endif
                                                             </td>
                                                         </tr>
                                                     @empty
@@ -103,24 +111,57 @@
         </div>
     </div>
 @endsection
+@push('js')
+    <script>
+        $(function() {
+            $('.btn-delete').on('click', confirmDelete)
+        })
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-    function confirmDelete(event, form) {
-        event.preventDefault();
-        Swal.fire({
-            title: 'Bạn có chắc chắn?',
-            text: "Hành động này không thể hoàn tác!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#3085d6',
-            confirmButtonText: 'Xóa',
-            cancelButtonText: 'Hủy'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                form.submit();
-            }
-        });
-    }
-</script>
+        function confirmDelete(event) {
+            event.preventDefault();
+            Swal.fire({
+                title: 'Bạn có chắc chắn?',
+                text: "Hành động này không thể hoàn tác!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Xóa',
+                cancelButtonText: 'Hủy'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const uuid = $(event.currentTarget).data('id');
+                    const url = $(event.currentTarget).data('url');
+                    handleDelete(url, uuid);
+                }
+            });
+        }
+
+        function handleDelete(url, uuid) {
+            $.ajax({
+                url: url,
+                type: 'delete',
+                success: function(response) {
+                    Swal.fire({
+                        title: 'Thông báo!',
+                        text: response.message,
+                        icon: response.status,
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'OK'
+                    });
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1000);
+                },
+                error: function(error) {
+                    Swal.fire({
+                        text: response.message,
+                        icon: response.status,
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'OK',
+                    });
+                },
+            })
+        }
+    </script>
+@endpush
