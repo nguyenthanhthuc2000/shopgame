@@ -79,7 +79,7 @@ class AccountController extends Controller
     public function create(Request $request)
     {
         $categories = Category::isActive()->get();
-        $classes = Account::CLASSED;
+        $classes = Account::CLASSES;
         $regisTypes = Account::REGIS_TYPE;
         $earring = Account::EARRING;
         $servers = Account::SERVER;
@@ -142,7 +142,7 @@ class AccountController extends Controller
     public function edit($uuid)
     {
         $categories = Category::isActive()->get();
-        $classes = Account::CLASSED;
+        $classes = Account::CLASSES;
         $regisTypes = Account::REGIS_TYPE;
         $earring = Account::EARRING;
         $servers = Account::SERVER;

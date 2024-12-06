@@ -22,17 +22,49 @@ class CategoryController extends Controller
             return redirect()->route('home');
         }
 
+        $selected = $request->all();
+        $classes = Account::CLASSES;
+        $regisTypes = Account::REGIS_TYPE;
+        $earring = Account::EARRING;
+        $servers = Account::SERVER;
+        $prices = config('account.pirce_options');
+        $status = Account::STATUS;
+
         $accounts = Account::select('server', 'earring', 'price', 'class', 'regis_type', 'id', 'uuid')
             ->with(['banner'])
             ->where('category_id', $category->id)
-            ->where('status', Account::STATUS_AVAILABLE)
-            ->orderBy('id', 'DESC')
+            ->where('status', Account::STATUS_AVAILABLE);
+
+        if ($request->code) {
+            $accounts = $accounts->byCode($request->code);
+        }
+
+        if ($request->price) {
+            $accounts = $accounts->byPrice($request->price);
+        }
+
+        if ($request->server_game) {
+            $accounts = $accounts->byServer($request->server_game);
+        }
+
+        if ($request->class) {
+            $accounts = $accounts->byClass($request->class);
+        }
+
+        $accounts = $accounts->orderBy('id', 'DESC')
             ->paginate()
             ->withQueryString();
 
         return view('pages.accounts', compact([
             'category',
             'accounts',
+            'classes',
+            'regisTypes',
+            'earring',
+            'servers',
+            'prices',
+            'status',
+            'selected'
         ]));
     }
 

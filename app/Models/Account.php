@@ -48,7 +48,7 @@ class Account extends Model
     const STATUS_HIDE = 0;
     const STATUS_SOLD = 2;
 
-    const CLASSED = [
+    const CLASSES = [
         [
             'name' => 'Xayda',
             'value' => '1',
@@ -136,6 +136,21 @@ class Account extends Model
         ],
     ];
 
+    const STATUS = [
+        [
+            'name' => 'Ẩn',
+            'value' => 0
+        ],
+        [
+            'name' => 'Đang bán',
+            'value' => 1
+        ],
+        [
+            'name' => 'Đã bán',
+            'value' => 2
+        ],
+    ];
+
     public function category()
     {
         return $this->hasOne(Category::class, 'id', 'category_id');
@@ -148,7 +163,7 @@ class Account extends Model
 
     public function getClassNameAttribute()
     {
-        return collect(self::CLASSED)->where('value', $this->class)->first()['name'];
+        return collect(self::CLASSES)->where('value', $this->class)->first()['name'];
     }
 
     public function getEarringNameAttribute()
@@ -225,5 +240,29 @@ class Account extends Model
         }
 
         return $list;
+    }
+    public function scopeByCode($query, $code)
+    {
+        return $query->where('id', $code);
+    }
+    public function scopeByPrice($query, $price)
+    {
+        $priceRange = explode(' ', $price);
+        return $query->whereBetween('price', $priceRange);
+    }
+
+    public function scopeByStatus($query, $status)
+    {
+        return $query->where('status', $status);
+    }
+
+    public function scopeByServer($query, $server)
+    {
+        return $query->where('server', $server);
+    }
+
+    public function scopeByClass($query, $class)
+    {
+        return $query->where('class', $class);
     }
 }
