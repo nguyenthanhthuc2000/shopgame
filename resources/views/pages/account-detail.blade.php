@@ -21,7 +21,7 @@
                                             @endif
                                         </div>
                                     </div>
-                                    <div class="game-images_thumb" id="detail-avatar_thumb">
+                                    {{-- <div class="game-images_thumb" id="detail-avatar_thumb">
                                         <div class="owl-carousel owl-theme">
                                             @foreach ($account->images as $key => $image)
                                                 <div class="item">
@@ -31,7 +31,7 @@
                                                 </div>
                                             @endforeach
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
 
@@ -78,7 +78,7 @@
                                         </div>
                                         @endif
                                         <div class="game-detail_buttons d-flex">
-                                            <a href="{{ route('card.index') }}"
+                                            {{-- <a href="{{ route('card.index') }}"
                                                 class="game-detail_button game-detail_button--primary col-md-6 mb-2">
                                                 Nạp thẻ cào
                                             </a>
@@ -93,14 +93,19 @@
                                                     class="game-detail_button game-detail_button--secondary col-md-6 mb-2">
                                                     Đã bán
                                                 </a>
-                                            @endif
+                                            @endif --}}
+                                            <button class="btn btn-primary game-detail_button game-detail_button--secondary col-md-6 mb-2">
+                                                Mua ngay zalo: 0389946423
+                                            </button>
+                                            <br>
                                         </div>
+                                        <p><strong>Shop tạm bảo trì chức năng mua nick tự động</strong></p>
                                     </div>
                                     
                                 </div>
                             </div>
                             @foreach ($account->images as $key => $image)
-                                <div class="mb-3">
+                                <div class="mb-3" style="text-align: center;">
                                     <img src="{{ $image->image_link }}&sz=w1000"
                                         class="img-fluid object-fit-cover {{ $key === 0 ? 'active' : '' }}" alt="Nick Ngọc Rồng Online VIP giá rẻ, NickDaoquan.Vn, Shop Nick Ngọc Rồng"
                                         loading="lazy">
