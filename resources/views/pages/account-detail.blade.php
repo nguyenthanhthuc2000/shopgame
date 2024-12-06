@@ -96,8 +96,16 @@
                                             @endif
                                         </div>
                                     </div>
+                                    
                                 </div>
                             </div>
+                            @foreach ($account->images as $key => $image)
+                                <div class="mb-3">
+                                    <img src="{{ $image->image_link }}&sz=w1000"
+                                        class="img-fluid object-fit-cover {{ $key === 0 ? 'active' : '' }}" alt="Nick Ngọc Rồng Online VIP giá rẻ, NickDaoquan.Vn, Shop Nick Ngọc Rồng"
+                                        loading="lazy">
+                                </div>
+                            @endforeach
                             @if ($accountRefs->isNotEmpty())
                                 <h3 style="font-size: 24px; text-align: center;" class="mt-80"><span>TÀI KHOẢN LIÊN QUAN </span></h3>
                                 <div class="row">
