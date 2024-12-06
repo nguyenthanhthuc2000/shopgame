@@ -33,7 +33,7 @@ Route::middleware(['throttle:300,1'])->group(function () {
         Route::get('/{slug}', [CategoryController::class, 'index'])->name('category.index');
         Route::get('/{categorySlug}/{accountUuid}', [AccountController::class, 'show'])->name('account.show');
     });
-    
+
     Route::middleware([LogRequestMiddleware::class])->group(function () {
         Route::group(['middleware' => ['auth', IsAdminOrSeller::class]], function () {
             Route::get('/lich-su-ban-nick', [AccountTransactionController::class, 'sellHistory'])->name('account.sell.history');
@@ -44,6 +44,7 @@ Route::middleware(['throttle:300,1'])->group(function () {
             Route::get('/them-moi', [AccountController::class, 'create'])->name('account.create');
             Route::put('/{uuid}', [AccountController::class, 'update'])->name('account.edit.post');
             Route::get('/{uuid}/chinh-sua', [AccountController::class, 'edit'])->name('account.edit');
+            Route::patch('/{uuid}/chinh-sua', [AccountController::class, 'update'])->name('account.edit.post');
             Route::delete('/{uuid}', [AccountController::class, 'destroy'])->name('account.delete');
         });
 

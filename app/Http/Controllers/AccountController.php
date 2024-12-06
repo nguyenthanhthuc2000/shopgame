@@ -146,7 +146,7 @@ class AccountController extends Controller
         $regisTypes = Account::REGIS_TYPE;
         $earring = Account::EARRING;
         $servers = Account::SERVER;
-        $account = Account::whereUuid($uuid)->first();
+        $account = Account::with(['banner', 'images'])->whereUuid($uuid)->first();
 
         $data = compact(
             'categories',
@@ -156,12 +156,34 @@ class AccountController extends Controller
             'servers',
             'account'
         );
+
         return view('pages.edit-account', $data);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $uuid)
     {
-        dd($id);
+        dd($request->all(), $request->file('banner'));
+        $account = Account::whereUuid($uuid)->first();
+
+        if (!$account) {
+            return redirect()->back()->with('error', 'Tài khoản không hợp lệ');
+        }
+
+        $accountData = $request->all();
+
+        DB::transaction(function () use ($request, $accountData) {
+            if ($request->hasFile('banner')) {
+                $banner = $request->file('banner');
+            }
+
+            if ($request->hasFile('gallery')) {
+                $imagesDetail = $request->file('gallery');
+            }
+
+            $this->accountService->updateAccount($accountData, $banner, $imagesDetail ?? []);
+        });
+
+        return redirect()->route('account.manage.index')->with('success', "Thêm nick thành công");
     }
 
     /**

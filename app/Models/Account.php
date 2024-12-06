@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
- 
+
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Admin\Category;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -27,7 +27,7 @@ class Account extends Model
     public $timestamps = true;
 
     protected $perPage = 10;
-    
+
     /**
      * The attributes that are mass assignable.
      *
@@ -42,8 +42,7 @@ class Account extends Model
      *
      * @var array<string, string>
      */
-    protected $casts = [
-    ];
+    protected $casts = [];
 
     const STATUS_AVAILABLE = 1;
     const STATUS_HIDE = 0;
@@ -85,7 +84,7 @@ class Account extends Model
             'value' => '0',
         ],
     ];
-    
+
     const SERVER = [
         [
             'name' => 'Server 1',
@@ -167,6 +166,14 @@ class Account extends Model
         return $this->hasOne(Image::class)->where('is_banner', true);
     }
 
+    public function gallery()
+    {
+        return $this->hasMany(Image::class)->where('is_banner', false);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function images()
     {
         return $this->hasMany(Image::class);
@@ -175,5 +182,48 @@ class Account extends Model
     public function author()
     {
         return $this->hasOne(User::class, 'id', 'user_id');
+    }
+
+    /**
+     * Get banner of the account
+     * @param string $size
+     * @param string $column
+     * @return string
+     */
+    public function getBanner($size = '1000', $column = 'image_link')
+    {
+        $link = $this->banner->select($column)->first()->$column ?? '';
+
+        if (!$link) {
+            return '';
+        }
+
+        if ($size) {
+            return "$link&sw=$size";
+        }
+
+        return $link;
+    }
+
+    /**
+     * Get banner of the account
+     * @param string $size
+     * @param string $column
+     * @return array
+     */
+    public function getGallery($size = '1000', $column = 'image_link')
+    {
+        $gallery = $this->gallery->select($column);
+
+        if (empty($gallery)) {
+            return [];
+        }
+
+        $list = [];
+        foreach ($gallery as $item) {
+            $list[] = $item->$column . ($size ? "&sw=$size" : '');
+        }
+
+        return $list;
     }
 }

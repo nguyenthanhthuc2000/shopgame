@@ -92,6 +92,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+            z-index: -1;
         }
     </style>
 @endpush
@@ -117,9 +118,10 @@
                                             <h1 style="font-size: 26px;">Chỉnh sửa nick Ngọc Rồng</h1>
                                         </div>
                                         <br>
-                                        <form action="{{ route('account.create.post') }}" method="post"
+                                        <form action="{{ route('account.edit.post', $account->uuid ?? '') }}" method="post"
                                             enctype="multipart/form-data" class="row">
                                             @csrf
+                                            @method('patch')
                                             <div class="mb-3 col-xl-4 col-md-6">
                                                 <label for="category_id" class="form-label">Danh mục game <span
                                                         class="text-danger">*</span></label>
@@ -260,12 +262,24 @@
                                                                 class="text-danger">*</span></label>
                                                         <br />
                                                         <button class="btn-add-single-image btn btn-success w-100"
-                                                            type="button">Thêm
-                                                            ảnh</button>
+                                                            type="button">
+                                                            @if (empty($account->banner))
+                                                                Thêm
+                                                            @else
+                                                                Thay đổi
+                                                            @endif
+                                                            ảnh
+                                                        </button>
                                                         <input type="file" name="banner" id="single-image" hidden>
                                                         <div class="mt-2">
                                                             <div id="banner-preview-container"
-                                                                class="image-preview single-image-preview"></div>
+                                                                class="image-preview single-image-preview">
+                                                                @if (!empty($account->banner))
+                                                                    <img src="{{ $account->getBanner() }}"
+                                                                        alt="{{ $account->uuid }}">
+                                                                    <button>X</button>
+                                                                @endif
+                                                            </div>
                                                         </div>
                                                         @if ($errors->has('banner'))
                                                             <div class="text-danger">

@@ -78,7 +78,7 @@
                                                             <td>{{ $account->username }}</td>
                                                             <td>{{ getPrice($account->price) }}</td>
                                                             <td>{{ getPrice($account->discount_price) }}</td>
-                                                            <td>{{ config('account.account_status.' . $account->status) }}</td>
+                                                            <td>{{ config('account.account_status.' . $account->getStatus) }}</td>
                                                             <td>{{ date('d/m/Y H:i', strtotime($account->created_at)) }}</td>
                                                             <td>
                                                                 @if ($account->status !== \App\Models\Account::STATUS_AVAILABLE)
