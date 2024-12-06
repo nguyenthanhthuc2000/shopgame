@@ -22,7 +22,7 @@ class CategoryController extends Controller
             return redirect()->route('home');
         }
 
-        $accounts = Account::select('server', 'earring', 'price', 'class', 'regis_type', 'uuid')
+        $accounts = Account::select('server', 'earring', 'price', 'class', 'regis_type', 'id', 'uuid')
             ->with(['banner'])
             ->where('category_id', $category->id)
             ->where('status', Account::STATUS_AVAILABLE)

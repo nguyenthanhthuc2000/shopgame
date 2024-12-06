@@ -41,7 +41,7 @@
                                 <img src="{{ $account->banner->image_link ?? '' }}&amp;sz=w1000"
                                     class="img-fluid object-fit-cotain clickable-image" alt="Image"
                                     style="object-fit: contain;" loading="lazy">
-                                <span class="ms">Mã số: #{{ $account->id }}</span>
+                                <span class="ms">Mã số: {{ $account->id }}</span>
                             </div>
                             <div class="card-body">
                                 <div class="row" style="font-size: 14px;">
