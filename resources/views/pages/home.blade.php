@@ -111,6 +111,8 @@
                     <h5 class="modal-title" id="exampleModalLabel">Thông báo</h5>
                 </div>
                 <div class="modal-body">
+                    <p class="text-danger"><strong>Shop tạm thời bảo trì chức năng đăng kí tài khoản, khách mua vui lòng liên hệ zalo 0389946423 để được tư vấn mua nick</strong></p>
+                    
                     <p><strong><span>ZALO 0389946423 NHẬP NICK NGỌC RỒNG GIÁ CAO <img src="{{ asset('assets/images/hot.gif') }}" alt="nickdaoquan.vn"></span></strong></p>
 
                     <p><strong>NẠP ATM/MOMO 100K = 120K SHOP <a href="{{ route('home.deposit') }}">tại đây <img src="{{ asset('assets/images/hot.gif') }}" alt="nickdaoquan.vn"></a></strong></p>

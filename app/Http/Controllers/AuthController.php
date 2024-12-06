@@ -21,7 +21,7 @@ class AuthController extends Controller
      */
     public function showLoginForm()
     {
-        return view('pages.auth.login');
+        return redirect()->route('home');
     }
 
     /**
