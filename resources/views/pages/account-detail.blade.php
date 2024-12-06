@@ -9,15 +9,17 @@
                 <div class="section-gap">
                     <div class="container">
                         <div class="row">
-                            <h2 style="font-size: 24px; text-align: center;"><span>THÔNG TIN TÀI KHOẢN </span><span style="color:#e7505a;">#{{ $account->id }}</span></h2>
+                            <h2 style="font-size: 24px; text-align: center;"><span>THÔNG TIN TÀI KHOẢN </span><span
+                                    style="color:#e7505a;">#{{ $account->id }}</span></h2>
                             <div class="col-lg-7 col-12 mb-3">
                                 <div class="game-images">
                                     <div class="nick-avatar_photo" id="detail-avatar_photo">
                                         <div class="preview-avatar_photo__item mb-3">
                                             @if ($account->images->isNotEmpty())
                                                 <img src="{{ $account->images[0]->image_link }}&sz=w1000"
-                                                class="img-fluid object-fit-cover" alt="Nick Ngọc Rồng Online VIP giá rẻ, NickDaoquan.Vn, Shop Nick Ngọc Rồng"
-                                                loading="lazy">
+                                                    class="img-fluid object-fit-cover"
+                                                    alt="Nick Ngọc Rồng Online VIP giá rẻ, NickDaoquan.Vn, Shop Nick Ngọc Rồng"
+                                                    loading="lazy">
                                             @endif
                                         </div>
                                     </div>
@@ -26,7 +28,8 @@
                                             @foreach ($account->images as $key => $image)
                                                 <div class="item">
                                                     <img src="{{ $image->image_link }}&sz=w1000"
-                                                        class="img-fluid object-fit-cover thumb-image {{ $key === 0 ? 'active' : '' }}" alt="Nick Ngọc Rồng Online VIP giá rẻ, NickDaoquan.Vn, Shop Nick Ngọc Rồng"
+                                                        class="img-fluid object-fit-cover thumb-image {{ $key === 0 ? 'active' : '' }}"
+                                                        alt="Nick Ngọc Rồng Online VIP giá rẻ, NickDaoquan.Vn, Shop Nick Ngọc Rồng"
                                                         loading="lazy">
                                                 </div>
                                             @endforeach
@@ -73,9 +76,9 @@
                                             </div>
                                         </div>
                                         @if (!empty($account->note))
-                                        <div class="desc mb-3">
-                                            <b>Mô Tả</b>: <span class="">{{ $account->note }}</span>
-                                        </div>
+                                            <div class="desc mb-3">
+                                                <b>Mô Tả</b>: <span class="">{{ $account->note }}</span>
+                                            </div>
                                         @endif
                                         <div class="game-detail_buttons d-flex">
                                             <a href="{{ route('card.index') }}"
@@ -99,23 +102,26 @@
                                 </div>
                             </div>
                             @if ($accountRefs->isNotEmpty())
-                                <h3 style="font-size: 24px; text-align: center;" class="mt-80"><span>TÀI KHOẢN LIÊN QUAN </span></h3>
+                                <h3 style="font-size: 24px; text-align: center;" class="mt-80"><span>TÀI KHOẢN LIÊN QUAN
+                                    </span></h3>
                                 <div class="row">
                                     @foreach ($accountRefs as $account)
                                         <div class="col-xl-3 col-lg-4 col-md-6 text-center mb-4">
                                             <div class="bt-card-ui-3 account">
                                                 <div class="card-image">
-                                                    <img src="{{ $account->banner->image_link ?? "" }}&amp;sz=w1000" class="img-fluid object-fit-cotain clickable-image" alt="Image" style="object-fit: contain;" loading="lazy">
-                                                    <span class="ms">Mã số: #{{ $account->id}}</span>
+                                                    <img src="{{ $account->banner->image_link ?? '' }}&amp;sz=w1000"
+                                                        class="img-fluid object-fit-cotain clickable-image" alt="Image"
+                                                        style="object-fit: contain;" loading="lazy">
+                                                    <span class="ms">Mã số: #{{ $account->id }}</span>
                                                 </div>
                                                 <div class="card-body">
                                                     <div class="row" style="font-size: 14px;">
                                                         <div class="col-6 a_att">
-                                                            Máy chủ: <b>Server {{ $account->server}}</b>
+                                                            Máy chủ: <b>Server {{ $account->server }}</b>
                                                         </div>
                                                         <div class="col-6 a_att">
                                                             Hành tinh: <b>{{ $account->class_name }}</b>
-                                                        </div> 
+                                                        </div>
                                                         <div class="col-6 a_att">
                                                             Đăng ký: <b>{{ $account->regis_type_name }}</b>
                                                         </div>
@@ -123,12 +129,13 @@
                                                             Bông tai: <b>{{ $account->earring_name }}</b>
                                                         </div>
                                                     </div>
-                    
+
                                                     <div class="card-btn-wrap">
                                                         <a href="#" class="card-btn card-btn--book">
                                                             {{ number_format($account->price_atm, 0, ',', '.') }} đ
                                                         </a>
-                                                        <a href="{{ route('account.show', ['categorySlug' => $category->slug,'accountUuid' => $account->uuid]) }}" class="card-btn card-btn--more">
+                                                        <a href="{{ route('account.show', ['categorySlug' => $category->slug, 'accountUuid' => $account->uuid]) }}"
+                                                            class="card-btn card-btn--more">
                                                             Chi Tiết
                                                         </a>
                                                     </div>
@@ -152,7 +159,7 @@
             $(".owl-carousel").owlCarousel({
                 loop: true,
                 margin: 10,
-                nav: true, 
+                nav: true,
             });
 
             $(".thumb-image").on("click", function() {

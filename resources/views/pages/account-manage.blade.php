@@ -3,34 +3,15 @@
 @section('title', 'Tài Khoản Ngọc Rồng | NickDaoQuan.Vn')
 
 @section('content')
-    {{-- <style>
-        .pagination {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 10px;
-            /* khoảng cách phía dưới */
-        }
-
-        .page-info {
-            text-align: center;
-            margin-top: 10px;
-            /* khoảng cách phía trên */
-            font-size: 14px;
-            color: #555;
-        }
-    </style> --}}
     <div class="list-section app-sub-menu" style="padding-top: 130px; padding-bottom: 100px;">
         <div class="container">
             <div class="row">
                 <div class="row-flex-safari game-list">
                     <section id="cardbody" class="section">
                         <div class="row">
-                            {{-- LEFT MENU --}}
                             <div class="col-lg-3">
                                 @include('components.app-sub-menu')
                             </div>
-                            {{-- END LEFT MENU --}}
-
                             <div class="col-lg-9">
                                 <div class="col-sm-12 text-center">
                                     <h1 style="font-size: 26px;">TÀI KHOẢN NGỌC RỒNG</h1>

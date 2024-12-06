@@ -14,17 +14,20 @@ class CategoryController extends Controller
      *
      * @param Request $request
      */
-    public function index(Request $request, $slug) {
+    public function index(Request $request, $slug)
+    {
         $category = Category::IsActive()->whereSlug($slug)->first();
 
         if (empty($category) || !empty($category) && $category->status == 0) {
             return redirect()->route('home');
         }
 
-        $accounts = Account::with(['banner'])->where('category_id', $category->id)
-            ->where('status', Account::STATUS_AVAILABLE )
+        $accounts = Account::select('server', 'earring', 'price', 'class', 'regis_type', 'uuid')
+            ->with(['banner'])
+            ->where('category_id', $category->id)
+            ->where('status', Account::STATUS_AVAILABLE)
             ->orderBy('id', 'DESC')
-            ->paginate(perPage: 8)
+            ->paginate()
             ->withQueryString();
 
         return view('pages.accounts', compact([
@@ -43,7 +46,7 @@ class CategoryController extends Controller
 
     /**
      * Summary of list
-     * 
+     *
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
