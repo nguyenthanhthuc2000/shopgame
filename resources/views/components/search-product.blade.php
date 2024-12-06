@@ -28,13 +28,11 @@
 
     <div class="content_post">
         <div class="row g-3 align-items-end">
-            <!-- Mã Số -->
             <div class="col-md-2">
                 <label for="Code" class="form-label">Mã Số</label>
                 <input type="text" id="Code" name="Code" class="form-control" placeholder="Nhập Mã Số">
             </div>
 
-            <!-- Giá -->
             <div class="col-md-2">
                 <label for="Money" class="form-label">Giá</label>
                 <select id="Money" name="Money" class="form-select">
@@ -49,7 +47,6 @@
                 </select>
             </div>
 
-            <!-- Trạng thái -->
             <div class="col-md-2">
                 <label for="Stage" class="form-label">Trạng thái</label>
                 <select id="Stage" name="Stage" class="form-select">

@@ -35,7 +35,6 @@ class CategoryController extends Controller
             'accounts',
         ]));
     }
-
     public function show($slug)
     {
         $category = Category::whereSlug($slug)->first()->accounts;
