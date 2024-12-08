@@ -18,7 +18,9 @@ use App\Http\Middleware\IsAdmin;
 use App\Http\Middleware\IsAdminOrSeller;
 use \App\Http\Middleware\LogRequestMiddleware;
 
-Route::match(['get', 'post'], '/nap-the-cao/callback-the', [CardController::class, 'callbackCard'])->name('callbackCard');
+Route::middleware([LogRequestMiddleware::class])->group(function () {
+    Route::match(['get', 'post'], '/nap-the-cao/callback-the', [CardController::class, 'callbackCard'])->name('callbackCard');
+});
 Route::middleware(['throttle:300,1'])->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/nap-the-cao', [CardController::class, 'index'])->name('card.index');
