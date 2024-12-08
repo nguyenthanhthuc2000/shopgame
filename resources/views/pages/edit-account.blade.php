@@ -65,6 +65,7 @@
             width: 100%;
             height: 100%;
             object-fit: contain;
+            z-index: 1;
         }
 
         .single-image-preview button {
@@ -83,6 +84,7 @@
             align-items: center;
             font-size: 12px;
             cursor: pointer;
+            z-index: 2;
         }
 
         .single-image-preview::after {
@@ -92,7 +94,6 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            z-index: -1;
         }
     </style>
 @endpush
@@ -273,11 +274,11 @@
                                                         <input type="file" name="banner" id="single-image" hidden>
                                                         <div class="mt-2">
                                                             <div id="banner-preview-container"
+                                                                data-existing-image="{{ !empty($account->banner) ? 'true' : 'false' }}"
                                                                 class="image-preview single-image-preview">
                                                                 @if (!empty($account->banner))
-                                                                    <img src="{{ $account->getBanner() }}"
+                                                                    <img src="{{ $account->getBannerLink() }}" loading="lazy"
                                                                         alt="{{ $account->uuid }}">
-                                                                    <button>X</button>
                                                                 @endif
                                                             </div>
                                                         </div>
@@ -296,10 +297,19 @@
                                                         name="gallery[]" placeholder="Chọn hình ảnh..."
                                                         aria-label="Thêm các ảnh chi tiết" multiple>
                                                     <button class="btn btn-danger btn-clear-gallery"
-                                                        type="button">X</button>
+                                                        type="button">&times;</button>
                                                 </div>
                                                 <div class="my-2">
-                                                    <div id="preview-container" class="image-preview"></div>
+                                                    <div id="gallery-preview-container" class="image-preview" data-existing-image="{{ !empty($account->gallery) ? 'true' : 'false' }}">
+                                                        @if (!empty($account->gallery))
+                                                            @foreach ($account->getGalleryLinks() as $i => $img)
+                                                                <div class="preview-item">
+                                                                    <img src="{{ $img }}" class="preview-img" loading="lazy"
+                                                                        alt="{{ $img . "_$i" }}">
+                                                                </div>
+                                                            @endforeach
+                                                        @endif
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="w-100 text-center">
@@ -319,26 +329,54 @@
 
 @push('js')
     <script>
+        $(document).ready(function() {
+            // Init banner
+            const singlePreviewContainer = $('#banner-preview-container');
+            const existingbanner = singlePreviewContainer.data('existing-image');
+
+            if (existingbanner) {
+                const removeBtn = $('<button>&times;</button>');
+                removeBtn.on('click', function() {
+                    $('#single-image').val('');
+                    singlePreviewContainer.empty();
+                });
+
+                singlePreviewContainer.append(removeBtn);
+            }
+
+            // Init gallery
+            const galleryPreviewContainer = $('#gallery-preview-container');
+            const existingGallery = galleryPreviewContainer.data('existing-image');
+
+            if (existingGallery) {
+                const removeBtn = $('<button>&times;</button>');
+                removeBtn.on('click', function() {
+                    $('#single-image').val('');
+                    galleryPreviewContainer.empty();
+                });
+
+                galleryPreviewContainer.append(removeBtn);
+            }
+        });
+
         let addedImages = [];
-        const maxFiles = 20; // Giới hạn số lượng file tối đa
-        let dt = new DataTransfer(); // Dùng để cập nhật danh sách file trong input
+        const maxFiles = 20;
+        let dt = new DataTransfer();
+
 
         $('#images').on('change', function(event) {
-            const files = event.target.files; // Lấy các file từ input
-            const previewContainer = $('#preview-container'); // Container để hiển thị preview
+            const files = Array.from(event.target.files);
+            const previewContainer = $('#preview-container');
 
-            for (let i = 0; i < files.length; i++) {
-                const file = files[i];
-
-                // Kiểm tra xem đã có file này chưa
+            for (const file of files) {
                 if (!addedImages.some(img => img.name === file.name)) {
                     if (addedImages.length >= maxFiles) {
                         alert('Bạn chỉ có thể thêm tối đa 20 ảnh.');
                         break;
                     }
 
-                    addedImages.push(file); // Thêm file vào danh sách
-                    dt.items.add(file); // Thêm file vào DataTransfer
+                    addedImages.push(file);
+                    dt.items.add(file);
 
                     const reader = new FileReader();
                     reader.onload = function(e) {
@@ -346,14 +384,14 @@
                         const img = $('<img>').attr('src', e.target.result).addClass('preview-img');
                         const removeBtn = $('<button>&times;</button>').addClass('remove-btn');
 
-                        // Xử lý xóa file
+
                         removeBtn.on('click', function() {
                             const index = addedImages.findIndex(img => img.name === file.name);
                             if (index !== -1) {
-                                addedImages.splice(index, 1); // Xóa file khỏi danh sách
-                                dt.items.remove(index); // Xóa file khỏi DataTransfer
-                                $('#images')[0].files = dt.files; // Cập nhật lại input file
-                                div.remove(); // Xóa preview khỏi giao diện
+                                addedImages.splice(index, 1);
+                                dt.items.remove(index);
+                                $('#images')[0].files = dt.files;
+                                div.remove();
                             }
                         });
 
@@ -364,42 +402,51 @@
                 }
             }
 
-            // Cập nhật lại input với danh sách mới
+
             $('#images')[0].files = dt.files;
         });
 
+
         $('.btn-clear-gallery').click(function() {
-            $('#preview-container > div').remove();
+            $('#preview-container').empty();
             addedImages = [];
             dt = new DataTransfer();
             $('#images')[0].files = dt.files;
             $('#images').val(null);
         });
 
+
         $('.btn-add-single-image').click(function() {
             $('#single-image').click();
-        })
+        });
+
+
+        // For banner
+        function addPreview(file, container) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = $('<img>').attr('src', e.target.result);
+                const removeBtn = $('<button>&times;</button>');
+
+                removeBtn.on('click', function() {
+                    $('#single-image').val('');
+                    container.empty();
+                });
+
+                container.empty();
+                container.append(img).append(removeBtn);
+            };
+            reader.readAsDataURL(file);
+        }
 
         $('#single-image').on('change', function(event) {
             const file = event.target.files[0];
             const singlePreviewContainer = $('#banner-preview-container');
-            singlePreviewContainer.empty(); // Clear previous preview
 
             if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const img = $('<img>').attr('src', e.target.result);
-                    const removeBtn = $('<button>&times;</button>');
-
-                    removeBtn.on('click', function() {
-                        $('#single-image').val(''); // Clear input
-                        singlePreviewContainer.empty(); // Clear preview
-                    });
-
-                    singlePreviewContainer.append(img).append(removeBtn);
-                };
-                reader.readAsDataURL(file);
+                addPreview(file, singlePreviewContainer);
             }
         });
+
     </script>
 @endpush

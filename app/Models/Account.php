@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Admin\Category;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Collection;
 
 class Account extends Model
 {
@@ -205,7 +206,7 @@ class Account extends Model
      * @param string $column
      * @return string
      */
-    public function getBanner($size = '1000', $column = 'image_link')
+    public function getBannerLink($size = '1000', $column = 'image_link')
     {
         $link = $this->banner->select($column)->first()->$column ?? '';
 
@@ -224,9 +225,9 @@ class Account extends Model
      * Get banner of the account
      * @param string $size
      * @param string $column
-     * @return array
+     * @return array|Collection
      */
-    public function getGallery($size = '1000', $column = 'image_link')
+    public function getGalleryLinks($size = '1000', $column = 'image_link'): array|Collection
     {
         $gallery = $this->gallery->select($column);
 
@@ -236,7 +237,7 @@ class Account extends Model
 
         $list = [];
         foreach ($gallery as $item) {
-            $list[] = $item->$column . ($size ? "&sw=$size" : '');
+            $list[] = $item[$column] . ($size ? "&sw=$size" : '');
         }
 
         return $list;
