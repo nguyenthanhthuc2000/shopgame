@@ -21,8 +21,8 @@ class AuthController extends Controller
      */
     public function showLoginForm()
     {
-        return redirect()->route('home');
         return view("pages.auth.login");
+        return redirect()->route('home');
     }
 
     /**
@@ -89,6 +89,7 @@ class AuthController extends Controller
      */
     public function register(RegisterRequest $request)
     {
+        return redirect()->route('home');
         $user = new User();
         $user->uuid = Str::uuid()->toString();
         $user->name = $request->input('name');
