@@ -78,11 +78,11 @@
                                                             <span class="col-md-2 control-label bb ar">Số seri <span
                                                                     class="text-danger">*</span></span>
                                                             <div class="col-md-10">
-                                                                <input type="text" id="code" name="code"
+                                                                <input type="text" id="serial" name="serial"
                                                                     class="form-control t14"
                                                                     placeholder="Nhập mã serial nằm sau thẻ"
-                                                                    value="{{ old('code') }}">
-                                                                @error('code')
+                                                                    value="{{ old('serial') }}">
+                                                                @error('serial')
                                                                     <div class="text-danger">{{ $message }}</div>
                                                                 @enderror
                                                             </div>
@@ -93,10 +93,10 @@
                                                             <span class="col-md-2 control-label bb ar">Mã thẻ <span
                                                                     class="text-danger">*</span></span>
                                                             <div class="col-md-10">
-                                                                <input type="text" id="serial" name="serial"
-                                                                    value="{{ old('serial') }}" class="form-control t14"
+                                                                <input type="text" id="code" name="code"
+                                                                    value="{{ old('code') }}" class="form-control t14"
                                                                     placeholder="Nhập mã số sau lớp bạc mỏng">
-                                                                @error('serial')
+                                                                @error('code')
                                                                     <div class="text-danger">{{ $message }}</div>
                                                                 @enderror
                                                             </div>
