@@ -48,7 +48,8 @@ class AccountController extends Controller
     public function show($categorySlug, $accountUuid)
     {
         $category = Category::where('slug', $categorySlug)->first();
-        $account = Account::with('images')
+        $account = Account::select(['uuid', 'price', 'discount_price', 'user_id', 'category_id', 'note', 'status', 'server', 'class', 'earring', 'regis_type', 'id'])
+            ->with('images')
             ->whereIn('status', [Account::STATUS_SOLD, Account::STATUS_AVAILABLE])
             ->where('uuid', $accountUuid)
             ->first();

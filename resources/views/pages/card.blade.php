@@ -165,9 +165,9 @@
                                                             <td> {{ $item->code }}</td>
                                                             <td style="min-width: 100px;"> {{ $item->serial }}</td>
                                                             <td style="min-width: 100px;">
-                                                                {{ number_format($item->value, 0, ',', '.') }}</td>
-                                                            <td style="min-width: 130px;">
                                                                 {{ number_format($item->declared_value, 0, ',', '.') }}</td>
+                                                            <td style="min-width: 130px;">
+                                                                {{ number_format($item->value, 0, ',', '.') }}</td>
                                                             @switch($item->status)
                                                                 @case(0)
                                                                     <td class="text-info" style="min-width: 100px;">
