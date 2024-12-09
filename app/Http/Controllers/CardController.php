@@ -22,7 +22,6 @@ class CardController extends Controller
      */
     public function index()
     {
-        return view('pages.deposit');
         $domain = config('thesieure.domain');
         $partnerId = config('thesieure.partner_id');
         $jsonCardOptions = Http::get("{$domain}/chargingws/v2/getfee?partner_id={$partnerId}");
