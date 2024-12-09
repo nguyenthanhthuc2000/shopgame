@@ -28,7 +28,7 @@ class CategoryController extends Controller
         $earring = Account::EARRING;
         $servers = Account::SERVER;
         $prices = config('account.pirce_options');
-        $status = Account::STATUS;
+        $status = collect(Account::STATUS)->where('value', '!==', 0);
 
         $accounts = Account::select('server', 'earring', 'price', 'class', 'regis_type', 'id', 'uuid')
             ->with(['banner'])
