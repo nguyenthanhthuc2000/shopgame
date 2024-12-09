@@ -113,6 +113,7 @@ class AccountController extends Controller
             'server' => $request->input('server_id', ''),
             'class' => $request->input('class_id', ''),
             'regis_type' => $request->input('regis_type_id', 0),
+            'earring' => $request->input('earring', 0),
             'note' => $request->input('description', 0),
             'user_id' => Auth::id(),
             'status' => 1,
