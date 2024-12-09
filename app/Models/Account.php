@@ -174,7 +174,7 @@ class Account extends Model
 
     public function getRegisTypeNameAttribute()
     {
-        return collect(self::REGIS_TYPE)->where('value', $this->earring)->first()['name'];
+        return collect(self::REGIS_TYPE)->where('value', $this->regis_type)->first()['name'];
     }
 
     public function banner()
