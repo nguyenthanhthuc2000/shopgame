@@ -49,13 +49,13 @@
                                         Máy chủ: <b>Server {{ $account->server }}</b>
                                     </div>
                                     <div class="col-6 a_att">
-                                        Hành tinh: <b>{{ $account->class }}</b>
+                                        Hành tinh: <b>{{ $account->class_name  }}</b>
                                     </div>
                                     <div class="col-6 a_att">
-                                        Đăng ký: <b>{{ $account->regis_type }}</b>
+                                        Đăng ký: <b>{{ $account->regis_type_name  }}</b>
                                     </div>
                                     <div class="col-6 a_att">
-                                        Bông tai: <b>{{ $account->earring }}</b>
+                                        Bông tai: <b>{{ $account->earring_name  }}</b>
                                     </div>
                                 </div>
 
