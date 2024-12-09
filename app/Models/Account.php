@@ -202,50 +202,42 @@ class Account extends Model
 
     /**
      * Get banner of the account
-     * @param string $size
-     * @param string $column
-     * @return string
+     * @param string $collumn
+     * @return mixed
      */
-    public function getBannerLink($size = '1000', $column = 'image_link')
+    public function getBannerLink($collumn = ''): mixed
     {
-        $link = $this->banner->select($column)->first()->$column ?? '';
-
-        if (!$link) {
-            return '';
+        if ($collumn) {
+            return $this->banner->first()->$collumn;
         }
 
-        if ($size) {
-            return "$link&sw=$size";
-        }
-
-        return $link;
+        return $this->banner->first();
     }
 
     /**
      * Get banner of the account
-     * @param string $size
-     * @param string $column
      * @return array|Collection
      */
-    public function getGalleryLinks($size = '1000', $column = 'image_link'): array|Collection
+    public function getGalleryLinks(): array|Collection
     {
-        $gallery = $this->gallery->select($column);
-
-        if (empty($gallery)) {
-            return [];
-        }
-
-        $list = [];
-        foreach ($gallery as $item) {
-            $list[] = $item[$column] . ($size ? "&sw=$size" : '');
-        }
-
-        return $list;
+        return $this->gallery;
     }
+
+    public function hasGallery(): bool
+    {
+        return $this->gallery->count() > 0;
+    }
+
+    public function hasBanner(): bool
+    {
+        return $this->banner->count() > 0;
+    }
+
     public function scopeByCode($query, $code)
     {
         return $query->where('id', $code);
     }
+
     public function scopeByPrice($query, $price)
     {
         $priceRange = explode(' ', $price);

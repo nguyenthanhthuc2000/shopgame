@@ -38,8 +38,8 @@
                     <div class="col-xl-3 col-lg-4 col-md-6 text-center mb-4">
                         <div class="bt-card-ui-3 account">
                             <div class="card-image">
-                                <img src="{{ $account->banner->image_link ?? '' }}&amp;sz=w1000"
-                                    class="img-fluid object-fit-cotain clickable-image" alt="Image"
+                                <img src="{{ $account->getBannerLink('full_image_link') ?? '' }}"
+                                    class="img-fluid object-fit-cotain clickable-image" alt="{{ $account->uuid }}"
                                     style="object-fit: contain;" loading="lazy">
                                 <span class="ms">Mã số: {{ $account->id }}</span>
                             </div>
@@ -49,13 +49,13 @@
                                         Máy chủ: <b>Server {{ $account->server }}</b>
                                     </div>
                                     <div class="col-6 a_att">
-                                        Hành tinh: <b>{{ $account->class_name  }}</b>
+                                        Hành tinh: <b>{{ $account->class_name }}</b>
                                     </div>
                                     <div class="col-6 a_att">
-                                        Đăng ký: <b>{{ $account->regis_type_name  }}</b>
+                                        Đăng ký: <b>{{ $account->regis_type_name }}</b>
                                     </div>
                                     <div class="col-6 a_att">
-                                        Bông tai: <b>{{ $account->earring_name  }}</b>
+                                        Bông tai: <b>{{ $account->earring_name }}</b>
                                     </div>
                                 </div>
 

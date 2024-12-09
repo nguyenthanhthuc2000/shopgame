@@ -163,7 +163,6 @@ class AccountController extends Controller
 
     public function update(Request $request, $uuid)
     {
-        dd($request->all(), $request->file('banner'));
         $account = Account::whereUuid($uuid)->first();
 
         if (!$account) {

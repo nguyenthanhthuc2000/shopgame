@@ -100,6 +100,7 @@ class AccountService extends BaseService
      */
     public function updateAccount(array $account, $banner, $gallery = [])
     {
+        dd($account, $banner, $gallery);
         // try {
         //     if (!$accountCreated) {
         //         return false;
@@ -147,13 +148,5 @@ class AccountService extends BaseService
         //     $this->logWritter($this->logChannel, $e->getMessage(), $e);
         //     return false;
         // }
-    }
-
-    public function getNewBannerImage($request)
-    {
-        // if (!is_array($request)) {}
-        if ($request->hasFile('new_banner_image')) {
-
-        }
     }
 }

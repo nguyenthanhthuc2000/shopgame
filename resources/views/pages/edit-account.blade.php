@@ -274,11 +274,11 @@
                                                         <input type="file" name="banner" id="single-image" hidden>
                                                         <div class="mt-2">
                                                             <div id="banner-preview-container"
-                                                                data-existing-image="{{ !empty($account->banner) ? 'true' : 'false' }}"
+                                                                data-existing-image="{{ $account->hasBanner() }}"
                                                                 class="image-preview single-image-preview">
-                                                                @if (!empty($account->banner))
-                                                                    <img src="{{ $account->getBannerLink() }}" loading="lazy"
-                                                                        alt="{{ $account->uuid }}">
+                                                                @if ($account->hasBanner())
+                                                                    <img src="{{ $account->getBannerLink('full_image_link') }}"
+                                                                        loading="lazy" alt="{{ $account->uuid }}">
                                                                 @endif
                                                             </div>
                                                         </div>
@@ -300,12 +300,17 @@
                                                         type="button">&times;</button>
                                                 </div>
                                                 <div class="my-2">
-                                                    <div id="gallery-preview-container" class="image-preview" data-existing-image="{{ !empty($account->gallery) ? 'true' : 'false' }}">
-                                                        @if (!empty($account->gallery))
+                                                    <div id="gallery-preview-container" class="image-preview">
+                                                        @if ($account->hasGallery())
+                                                            <input type="hidden" name="removed_image"
+                                                                class="removed-gallery-input">
                                                             @foreach ($account->getGalleryLinks() as $i => $img)
                                                                 <div class="preview-item">
-                                                                    <img src="{{ $img }}" class="preview-img" loading="lazy"
-                                                                        alt="{{ $img . "_$i" }}">
+                                                                    <img src="{{ $img->full_image_link }}"
+                                                                        class="preview-img" loading="lazy"
+                                                                        data-image-id="{{ $img->file_id }}"
+                                                                        data-existing-image="true"
+                                                                        alt="{{ $account->uuid }}">
                                                                 </div>
                                                             @endforeach
                                                         @endif
@@ -328,125 +333,5 @@
 @endsection
 
 @push('js')
-    <script>
-        $(document).ready(function() {
-            // Init banner
-            const singlePreviewContainer = $('#banner-preview-container');
-            const existingbanner = singlePreviewContainer.data('existing-image');
-
-            if (existingbanner) {
-                const removeBtn = $('<button>&times;</button>');
-                removeBtn.on('click', function() {
-                    $('#single-image').val('');
-                    singlePreviewContainer.empty();
-                });
-
-                singlePreviewContainer.append(removeBtn);
-            }
-
-            // Init gallery
-            const galleryPreviewContainer = $('#gallery-preview-container');
-            const existingGallery = galleryPreviewContainer.data('existing-image');
-
-            if (existingGallery) {
-                const removeBtn = $('<button>&times;</button>');
-                removeBtn.on('click', function() {
-                    $('#single-image').val('');
-                    galleryPreviewContainer.empty();
-                });
-
-                galleryPreviewContainer.append(removeBtn);
-            }
-        });
-
-        let addedImages = [];
-        const maxFiles = 20;
-        let dt = new DataTransfer();
-
-
-        $('#images').on('change', function(event) {
-            const files = Array.from(event.target.files);
-            const previewContainer = $('#preview-container');
-
-            for (const file of files) {
-                if (!addedImages.some(img => img.name === file.name)) {
-                    if (addedImages.length >= maxFiles) {
-                        alert('Bạn chỉ có thể thêm tối đa 20 ảnh.');
-                        break;
-                    }
-
-                    addedImages.push(file);
-                    dt.items.add(file);
-
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        const div = $('<div></div>').addClass('preview-item');
-                        const img = $('<img>').attr('src', e.target.result).addClass('preview-img');
-                        const removeBtn = $('<button>&times;</button>').addClass('remove-btn');
-
-
-                        removeBtn.on('click', function() {
-                            const index = addedImages.findIndex(img => img.name === file.name);
-                            if (index !== -1) {
-                                addedImages.splice(index, 1);
-                                dt.items.remove(index);
-                                $('#images')[0].files = dt.files;
-                                div.remove();
-                            }
-                        });
-
-                        div.append(img).append(removeBtn);
-                        previewContainer.append(div);
-                    };
-                    reader.readAsDataURL(file);
-                }
-            }
-
-
-            $('#images')[0].files = dt.files;
-        });
-
-
-        $('.btn-clear-gallery').click(function() {
-            $('#preview-container').empty();
-            addedImages = [];
-            dt = new DataTransfer();
-            $('#images')[0].files = dt.files;
-            $('#images').val(null);
-        });
-
-
-        $('.btn-add-single-image').click(function() {
-            $('#single-image').click();
-        });
-
-
-        // For banner
-        function addPreview(file, container) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const img = $('<img>').attr('src', e.target.result);
-                const removeBtn = $('<button>&times;</button>');
-
-                removeBtn.on('click', function() {
-                    $('#single-image').val('');
-                    container.empty();
-                });
-
-                container.empty();
-                container.append(img).append(removeBtn);
-            };
-            reader.readAsDataURL(file);
-        }
-
-        $('#single-image').on('change', function(event) {
-            const file = event.target.files[0];
-            const singlePreviewContainer = $('#banner-preview-container');
-
-            if (file) {
-                addPreview(file, singlePreviewContainer);
-            }
-        });
-
-    </script>
+    @vite(['resources/js/pages/edit-account.js'])
 @endpush
