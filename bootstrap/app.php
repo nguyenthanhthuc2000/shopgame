@@ -13,6 +13,9 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->append(CheckUserLocked::class);
+        $middleware->validateCsrfTokens(except: [
+            '/nap-the-cao/callback-the'
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
