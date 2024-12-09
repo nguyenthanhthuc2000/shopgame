@@ -27,7 +27,7 @@ class Account extends Model
      */
     public $timestamps = true;
 
-    protected $perPage = 10;
+    protected $perPage = 12;
 
     /**
      * The attributes that are mass assignable.
