@@ -3,12 +3,12 @@
     <div class="content_post">
         <div class="row g-3 align-items-end">
 
-            <div class="col-md-2">
+            <div class="col-md-2 col-6">
                 <label for="code" class="form-label">Mã Số</label>
                 <input type="text" id="code" name="code" class="form-control" placeholder="Nhập Mã Số">
             </div>
 
-            <div class="col-md-2">
+            <div class="col-md-2 col-6">
                 <label for="price" class="form-label">Giá</label>
                 <select id="price" name="price" class="form-select">
                     <option value="" selected>Tất cả</option>
@@ -24,7 +24,7 @@
                 </select>
             </div>
 
-            <div class="col-md-2">
+            <div class="col-md-2 col-6">
                 <label for="status" class="form-label">Trạng thái</label>
                 <select id="status" name="status" class="form-select">
                     <option value="">Tất cả</option>
@@ -36,7 +36,7 @@
                 </select>
             </div>
 
-            <div class="col-md-2">
+            <div class="col-md-2 col-6">
                 <label for="server-game" class="form-label">Máy chủ</label>
                 <select id="server-game" name="server_game" class="form-select">
                     <option value="">Tất cả</option>
@@ -49,7 +49,7 @@
                 </select>
             </div>
 
-            <div class="col-md-2">
+            <div class="col-md-2 col-6">
                 <label for="class" class="form-label">Hành tinh</label>
                 <select id="class" name="class" class="form-select">
                     <option value="">Tất cả</option>
@@ -62,7 +62,7 @@
                 </select>
             </div>
 
-            <div class="col-md-2">
+            <div class="col-md-2 col-6">
                 <button type="submit" class="btn btn-primary w-100">
                     <i class="fas fa-search"></i>
                 </button>

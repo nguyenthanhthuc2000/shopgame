@@ -36,7 +36,7 @@
                             </div>
 
                             <div class="col-lg-5 col-12">
-                                <div class="game-detail">
+                                <div class="game-detail mb-3">
                                     <div class="game-detail_top">
                                         <div class="game-detail_category">
                                             Danh Mục: <a
@@ -46,18 +46,18 @@
                                     <div class="game-detail_bottom">
                                         <div class="game-detail_price">
                                             <div class="game-detail_price--item">
-                                                Giá thẻ cào
+                                                CARD
                                                 <span>{{ number_format($account->price, 0, ',', '.') }}đ</span>
                                             </div>
                                             <div class="game-detail_price--item">
-                                                Giá ATM/Momo
+                                                ATM/MOMO
                                                 <span>{{ number_format($account->price_atm, 0, ',', '.') }}đ</span>
                                             </div>
                                         </div>
                                         <div class="game-detail_meta">
                                             <div class="game-detail_meta--item">
-                                                Máy chủ:
-                                                <b>Server {{ $account->server }}</b>
+                                                Server:
+                                                <b>{{ $account->server }}</b>
                                             </div>
                                             <div class="game-detail_meta--item">
                                                 Hành tinh:
