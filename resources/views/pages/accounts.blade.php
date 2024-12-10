@@ -58,9 +58,9 @@
                                 </div>
 
                                 <div class="card-btn-wrap">
-                                    <a href="#" class="card-btn card-btn--book">
-                                        {{ number_format($account->price, 0, ',', '.') }} đ
-                                    </a>
+                                    <b href="#" class="card-btn card-btn--book">
+                                        {{ number_format($account->price_atm, 0, ',', '.') }} đ
+                                    </b>
                                     <a href="{{ route('account.show', ['categorySlug' => $category->slug, 'accountUuid' => $account->uuid]) }}"
                                         class="card-btn card-btn--more">
                                         Chi Tiết
