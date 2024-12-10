@@ -172,7 +172,7 @@ class AccountController extends Controller
 
         $accountData = $request->all();
 
-        DB::transaction(function () use ($request, $accountData) {
+        DB::transaction(function () use ($request, $accountData, $uuid) {
             if ($request->hasFile('banner')) {
                 $banner = $request->file('banner');
             }
@@ -181,7 +181,7 @@ class AccountController extends Controller
                 $imagesDetail = $request->file('gallery');
             }
 
-            $this->accountService->updateAccount($accountData, $banner, $imagesDetail ?? []);
+            $this->accountService->updateAccount($uuid, $accountData, $banner, $imagesDetail ?? []);
         });
 
         return redirect()->route('account.manage.index')->with('success', "Thêm nick thành công");

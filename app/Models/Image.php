@@ -37,4 +37,9 @@ class Image extends Model
     {
         return $this->image_link . "&sw=1000";
     }
+
+    public function scopeIsBanner($query)
+    {
+        return $query->whereIsBanner(1);
+    }
 }

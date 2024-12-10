@@ -40,7 +40,6 @@ class AccountService extends BaseService
     public function storeAccount(array $account, $banner, $gallery = [])
     {
         try {
-
             $accountCreated = Account::create($account);
 
             if (!$accountCreated) {
@@ -93,60 +92,79 @@ class AccountService extends BaseService
 
     /**
      * Update new account
+     * @param string $uuid
      * @param array $account
      * @param mixed $banner
      * @param mixed $gallery
      * @return bool
      */
-    public function updateAccount(array $account, $banner, $gallery = [])
+    public function updateAccount($uuid, array $account, $banner, $gallery = [])
     {
-        dd($account, $banner, $gallery);
-        // try {
-        //     if (!$accountCreated) {
-        //         return false;
-        //     }
+        try {
+            $findAccount = Account::getByUuid($uuid);
 
-        //     $folderId = config('google.accounts_folder_id');
+            if (empty($findAccount)) {
+                $this->logWritter($this->logChannel, "Cannot find account $uuid to update!");
+                return false;
+            }
 
-        //     if ($banner) {
-        //         $bannerUploaded = $this->googleDriveService->uploadSingleFile($banner, $folderId);
-        //     }
+            $accountUpdated = $findAccount?->update($account);
+            if (!$accountUpdated) {
+                $this->logWritter($this->logChannel, "Cannot update account $$uuid!");
+                return false;
+            }
 
-        //     if (!empty($gallery)) {
-        //         $imagesUploaded = $this->googleDriveService->uploadMultipleFiles($gallery, $folderId);
-        //     }
+            if (!empty($account['removed_image'])) {
+                // handle delete image
+            }
 
-        //     if (!empty($bannerUploaded['src_url']) && !empty($bannerUploaded['id'])) {
-        //         $bannerData = [
-        //             'account_id' => $accountCreated->id,
-        //             'image_link' => $bannerUploaded['src_url'],
-        //             'is_banner' => 1,
-        //             'file_id' => $bannerUploaded['id'],
-        //             'created_at' => now(),
-        //             'updated_at' => now(),
-        //         ];
-        //         $this->imageService->createGallery($bannerData);
-        //     }
-        //     if (!empty($imagesUploaded)) {
-        //         $galleryData = array_map(function ($img) use ($accountCreated) {
-        //             if (!empty($img['src_url']) && !empty($img['id'])) {
-        //                 return [
-        //                     'account_id' => $accountCreated->id,
-        //                     'image_link' => $img['src_url'],
-        //                     'file_id' => $img['id'],
-        //                     'is_banner' => 0,
-        //                     'created_at' => now(),
-        //                     'updated_at' => now(),
-        //                 ];
-        //             }
-        //         }, $imagesUploaded);
-        //         $this->imageService->createGallery($galleryData);
-        //     }
+            $folderId = config('google.accounts_folder_id');
 
-        //     return true;
-        // } catch (Exception $e) {
-        //     $this->logWritter($this->logChannel, $e->getMessage(), $e);
-        //     return false;
-        // }
+            if ($banner) {
+                $bannerUploaded = $this->googleDriveService->uploadSingleFile($banner, $folderId);
+            }
+
+            // Add banner image
+            if (!empty($bannerUploaded['src_url']) && !empty($bannerUploaded['id'])) {
+                // remove old banner
+                $this->imageService->deleteBanner($findAccount->banner->account_id ?? '');
+
+                $bannerData = [
+                    'account_id' => $findAccount->id,
+                    'image_link' => $bannerUploaded['src_url'],
+                    'is_banner' => 1,
+                    'file_id' => $bannerUploaded['id'],
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ];
+                $this->imageService->createGallery($bannerData);
+            }
+
+            // Add gallery
+            if (!empty($gallery)) {
+                $imagesUploaded = $this->googleDriveService->uploadMultipleFiles($gallery, $folderId);
+            }
+
+            if (!empty($imagesUploaded)) {
+                $galleryData = array_map(function ($img) use ($findAccount) {
+                    if (!empty($img['src_url']) && !empty($img['id'])) {
+                        return [
+                            'account_id' => $findAccount->id,
+                            'image_link' => $img['src_url'],
+                            'file_id' => $img['id'],
+                            'is_banner' => 0,
+                            'created_at' => now(),
+                            'updated_at' => now(),
+                        ];
+                    }
+                }, $imagesUploaded);
+                $this->imageService->createGallery($galleryData);
+            }
+
+            return true;
+        } catch (Exception $e) {
+            $this->logWritter($this->logChannel, $e->getMessage(), $e);
+            return false;
+        }
     }
 }

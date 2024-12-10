@@ -40,7 +40,7 @@ class GoogleDriveService
      */
     public function uploadSingleFile($file, $folderId = null)
     {
-        try {
+            try {
             // Prepare file metadata
             $fileMetadata = [
                 'name' => $file->getClientOriginalName(),

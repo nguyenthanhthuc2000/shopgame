@@ -208,10 +208,10 @@ class Account extends Model
     public function getBannerLink($collumn = ''): mixed
     {
         if ($collumn) {
-            return $this->banner->first()->$collumn;
+            return $this->banner->$collumn;
         }
 
-        return $this->banner->first();
+        return $this->banner;
     }
 
     /**
@@ -223,14 +223,24 @@ class Account extends Model
         return $this->gallery;
     }
 
+    /**
+     * Get a account by uuid
+     * @param string $uuid
+     * @return Model|null
+     */
+    public static function getByUuid($uuid)
+    {
+        return self::byUuid($uuid)->first();
+    }
+
     public function hasGallery(): bool
     {
-        return $this->gallery->count() > 0;
+        return $this->gallery?->count() > 0;
     }
 
     public function hasBanner(): bool
     {
-        return $this->banner->count() > 0;
+        return $this->banner?->count() > 0;
     }
 
     public function scopeByCode($query, $code)
@@ -257,5 +267,10 @@ class Account extends Model
     public function scopeByClass($query, $class)
     {
         return $query->where('class', $class);
+    }
+
+    public function scopeByUuid($query, $uuid)
+    {
+        return $query->whereUuid($uuid);
     }
 }

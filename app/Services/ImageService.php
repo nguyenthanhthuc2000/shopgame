@@ -2,10 +2,8 @@
 
 namespace App\Services;
 
-use App\Models\Account;
 use App\Models\Image;
 use Exception;
-use Illuminate\Http\UploadedFile;
 
 class ImageService extends BaseService
 {
@@ -13,16 +11,10 @@ class ImageService extends BaseService
      * @var string $logChannel
      */
     protected $logChannel;
-
-    /**
-     * @var GoogleDriveService $googleDriveService
-     */
-
     protected $googleDriveService;
-    public function __construct(GoogleDriveService $googleDriveService)
+    public function __construct()
     {
         $this->logChannel = 'images_save';
-        $this->googleDriveService = $googleDriveService;
     }
 
     /**
@@ -34,11 +26,32 @@ class ImageService extends BaseService
     {
         try {
             $created = Image::insert($fileData);
-            
+
             return $created;
         } catch (Exception $e) {
             $this->logWritter($this->logChannel, $e->getMessage(), $e);
             return [];
+        }
+    }
+
+    /**
+     * Delete gallery from database
+     * @param int|string $imageId
+     * @return bool
+     */
+    public function deleteBanner($accountId)
+    {
+        try {
+            $image = Image::whereAccountId($accountId)->isBanner()->first();
+
+            if (!$image) {
+                throw new Exception("Image with account ID {$accountId} not found.");
+            }
+
+            return $image->delete();
+        } catch (Exception $e) {
+            $this->logWritter($this->logChannel, $e->getMessage(), $e);
+            return false;
         }
     }
 }
