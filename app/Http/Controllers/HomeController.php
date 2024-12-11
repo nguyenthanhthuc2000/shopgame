@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -27,7 +28,9 @@ class HomeController extends Controller
             'unsoldAccounts as unsold_count',
         ])->orderBy('id', 'DESC')->get();
 
-        return view('pages.home', compact('categories'));
+        $services = Service::get();
+
+        return view('pages.home', compact('categories', 'services'));
     }
 
     public function deposit()
