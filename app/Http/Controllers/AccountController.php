@@ -54,7 +54,7 @@ class AccountController extends Controller
             ->where('uuid', $accountUuid)
             ->first();
 
-        if (empty($category) || empty($category) || !empty($category) && $category->status !== Category::ACTIVE_STATUS || empty($account)) {
+        if (empty($category) || !empty($category) && $category->status !== Category::ACTIVE_STATUS || empty($account)) {
             return redirect()->route('home');
         }
 
