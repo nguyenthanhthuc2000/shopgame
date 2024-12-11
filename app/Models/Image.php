@@ -32,4 +32,9 @@ class Image extends Model
      * @var array<string, string>
      */
     protected $casts = [];
+
+    public function getFullImageLinkAttribute()
+    {
+        return $this->image_link . "&sw=1000";
+    }
 }

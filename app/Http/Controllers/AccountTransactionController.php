@@ -15,7 +15,6 @@ class AccountTransactionController extends Controller
 {
     /**
      * Summary of index
-     * 
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
@@ -29,7 +28,7 @@ class AccountTransactionController extends Controller
 
     /**
      * Summary of buyNick
-     * 
+     *
      * @param \Illuminate\Http\Request $request
      * @param mixed $accountUuid
      * @return mixed|\Illuminate\Http\RedirectResponse
@@ -37,7 +36,7 @@ class AccountTransactionController extends Controller
     public function buyNick(Request $request, $accountUuid)
     {
         $account = Account::with('author')->where('status', Account::STATUS_AVAILABLE)->where('uuid', $accountUuid)->first();
-        
+
         if (empty($account)) {
             return redirect()->route('home');
         }
@@ -53,7 +52,7 @@ class AccountTransactionController extends Controller
         }
 
         $buyer = User::find(Auth::id());
- 
+
         if ($account->price > $buyer->buyer_vnd) {
             return redirect()->route('card.index')->withErrors([
                 'error' => 'Tài khoản bạn không đủ tiền, vui lòng nạp thêm để tiếp tục giao dịch!',
@@ -92,7 +91,7 @@ class AccountTransactionController extends Controller
 
             $accTran->author_id = $author->id;
             $accTran->order_status = AccountTransaction::ORDER_SUCCESS;
-            
+
             DB::transaction(function () use ($accTran, $author, $account, $buyer) {
                 $account->status = Account::STATUS_SOLD;
                 $account->save();
@@ -103,7 +102,7 @@ class AccountTransactionController extends Controller
 
             return redirect()->route('account.tran.index')->with(['success' => 'Mua tài khoản thành công, bạn vui lòng tiến hành đổi mật khẩu!']);
         }
-        
+
         return back()->withErrors([
             'error' => 'Tài khoản đã bán!',
         ]);
@@ -111,7 +110,7 @@ class AccountTransactionController extends Controller
 
     /**
      * Summary of checkAccoutAvailabel
-     * 
+     *
      * @return bool
      */
     public function checkAccoutAvailabel()

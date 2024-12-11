@@ -48,7 +48,8 @@ class AccountController extends Controller
     public function show($categorySlug, $accountUuid)
     {
         $category = Category::where('slug', $categorySlug)->first();
-        $account = Account::with('images')
+        $account = Account::select(['uuid', 'price', 'discount_price', 'user_id', 'category_id', 'note', 'status', 'server', 'class', 'earring', 'regis_type', 'id'])
+            ->with('images')
             ->whereIn('status', [Account::STATUS_SOLD, Account::STATUS_AVAILABLE])
             ->where('uuid', $accountUuid)
             ->first();
@@ -79,7 +80,7 @@ class AccountController extends Controller
     public function create(Request $request)
     {
         $categories = Category::isActive()->get();
-        $classes = Account::CLASSED;
+        $classes = Account::CLASSES;
         $regisTypes = Account::REGIS_TYPE;
         $earring = Account::EARRING;
         $servers = Account::SERVER;
@@ -113,6 +114,7 @@ class AccountController extends Controller
             'server' => $request->input('server_id', ''),
             'class' => $request->input('class_id', ''),
             'regis_type' => $request->input('regis_type_id', 0),
+            'earring' => $request->input('earring', 0),
             'note' => $request->input('description', 0),
             'user_id' => Auth::id(),
             'status' => 1,
@@ -142,11 +144,11 @@ class AccountController extends Controller
     public function edit($uuid)
     {
         $categories = Category::isActive()->get();
-        $classes = Account::CLASSED;
+        $classes = Account::CLASSES;
         $regisTypes = Account::REGIS_TYPE;
         $earring = Account::EARRING;
         $servers = Account::SERVER;
-        $account = Account::whereUuid($uuid)->first();
+        $account = Account::with(['banner', 'images'])->whereUuid($uuid)->first();
 
         $data = compact(
             'categories',
@@ -156,12 +158,33 @@ class AccountController extends Controller
             'servers',
             'account'
         );
+
         return view('pages.edit-account', $data);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $uuid)
     {
-        dd($id);
+        $account = Account::whereUuid($uuid)->first();
+
+        if (!$account) {
+            return redirect()->back()->with('error', 'Tài khoản không hợp lệ');
+        }
+
+        $accountData = $request->all();
+
+        DB::transaction(function () use ($request, $accountData) {
+            if ($request->hasFile('banner')) {
+                $banner = $request->file('banner');
+            }
+
+            if ($request->hasFile('gallery')) {
+                $imagesDetail = $request->file('gallery');
+            }
+
+            $this->accountService->updateAccount($accountData, $banner, $imagesDetail ?? []);
+        });
+
+        return redirect()->route('account.manage.index')->with('success', "Thêm nick thành công");
     }
 
     /**

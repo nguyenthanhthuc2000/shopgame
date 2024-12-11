@@ -65,6 +65,7 @@
             width: 100%;
             height: 100%;
             object-fit: contain;
+            z-index: 1;
         }
 
         .single-image-preview button {
@@ -83,6 +84,7 @@
             align-items: center;
             font-size: 12px;
             cursor: pointer;
+            z-index: 2;
         }
 
         .single-image-preview::after {
@@ -117,9 +119,10 @@
                                             <h1 style="font-size: 26px;">Chỉnh sửa nick Ngọc Rồng</h1>
                                         </div>
                                         <br>
-                                        <form action="{{ route('account.create.post') }}" method="post"
+                                        <form action="{{ route('account.edit.post', $account->uuid ?? '') }}" method="post"
                                             enctype="multipart/form-data" class="row">
                                             @csrf
+                                            @method('patch')
                                             <div class="mb-3 col-xl-4 col-md-6">
                                                 <label for="category_id" class="form-label">Danh mục game <span
                                                         class="text-danger">*</span></label>
@@ -260,12 +263,24 @@
                                                                 class="text-danger">*</span></label>
                                                         <br />
                                                         <button class="btn-add-single-image btn btn-success w-100"
-                                                            type="button">Thêm
-                                                            ảnh</button>
+                                                            type="button">
+                                                            @if (empty($account->banner))
+                                                                Thêm
+                                                            @else
+                                                                Thay đổi
+                                                            @endif
+                                                            ảnh
+                                                        </button>
                                                         <input type="file" name="banner" id="single-image" hidden>
                                                         <div class="mt-2">
                                                             <div id="banner-preview-container"
-                                                                class="image-preview single-image-preview"></div>
+                                                                data-existing-image="{{ $account->hasBanner() }}"
+                                                                class="image-preview single-image-preview">
+                                                                @if ($account->hasBanner())
+                                                                    <img src="{{ $account->getBannerLink('full_image_link') }}"
+                                                                        loading="lazy" alt="{{ $account->uuid }}">
+                                                                @endif
+                                                            </div>
                                                         </div>
                                                         @if ($errors->has('banner'))
                                                             <div class="text-danger">
@@ -282,10 +297,24 @@
                                                         name="gallery[]" placeholder="Chọn hình ảnh..."
                                                         aria-label="Thêm các ảnh chi tiết" multiple>
                                                     <button class="btn btn-danger btn-clear-gallery"
-                                                        type="button">X</button>
+                                                        type="button">&times;</button>
                                                 </div>
                                                 <div class="my-2">
-                                                    <div id="preview-container" class="image-preview"></div>
+                                                    <div id="gallery-preview-container" class="image-preview">
+                                                        @if ($account->hasGallery())
+                                                            <input type="hidden" name="removed_image"
+                                                                class="removed-gallery-input">
+                                                            @foreach ($account->getGalleryLinks() as $i => $img)
+                                                                <div class="preview-item">
+                                                                    <img src="{{ $img->full_image_link }}"
+                                                                        class="preview-img" loading="lazy"
+                                                                        data-image-id="{{ $img->file_id }}"
+                                                                        data-existing-image="true"
+                                                                        alt="{{ $account->uuid }}">
+                                                                </div>
+                                                            @endforeach
+                                                        @endif
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="w-100 text-center">
@@ -304,88 +333,5 @@
 @endsection
 
 @push('js')
-    <script>
-        let addedImages = [];
-        const maxFiles = 20; // Giới hạn số lượng file tối đa
-        let dt = new DataTransfer(); // Dùng để cập nhật danh sách file trong input
-
-        $('#images').on('change', function(event) {
-            const files = event.target.files; // Lấy các file từ input
-            const previewContainer = $('#preview-container'); // Container để hiển thị preview
-
-            for (let i = 0; i < files.length; i++) {
-                const file = files[i];
-
-                // Kiểm tra xem đã có file này chưa
-                if (!addedImages.some(img => img.name === file.name)) {
-                    if (addedImages.length >= maxFiles) {
-                        alert('Bạn chỉ có thể thêm tối đa 20 ảnh.');
-                        break;
-                    }
-
-                    addedImages.push(file); // Thêm file vào danh sách
-                    dt.items.add(file); // Thêm file vào DataTransfer
-
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        const div = $('<div></div>').addClass('preview-item');
-                        const img = $('<img>').attr('src', e.target.result).addClass('preview-img');
-                        const removeBtn = $('<button>&times;</button>').addClass('remove-btn');
-
-                        // Xử lý xóa file
-                        removeBtn.on('click', function() {
-                            const index = addedImages.findIndex(img => img.name === file.name);
-                            if (index !== -1) {
-                                addedImages.splice(index, 1); // Xóa file khỏi danh sách
-                                dt.items.remove(index); // Xóa file khỏi DataTransfer
-                                $('#images')[0].files = dt.files; // Cập nhật lại input file
-                                div.remove(); // Xóa preview khỏi giao diện
-                            }
-                        });
-
-                        div.append(img).append(removeBtn);
-                        previewContainer.append(div);
-                    };
-                    reader.readAsDataURL(file);
-                }
-            }
-
-            // Cập nhật lại input với danh sách mới
-            $('#images')[0].files = dt.files;
-        });
-
-        $('.btn-clear-gallery').click(function() {
-            $('#preview-container > div').remove();
-            addedImages = [];
-            dt = new DataTransfer();
-            $('#images')[0].files = dt.files;
-            $('#images').val(null);
-        });
-
-        $('.btn-add-single-image').click(function() {
-            $('#single-image').click();
-        })
-
-        $('#single-image').on('change', function(event) {
-            const file = event.target.files[0];
-            const singlePreviewContainer = $('#banner-preview-container');
-            singlePreviewContainer.empty(); // Clear previous preview
-
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const img = $('<img>').attr('src', e.target.result);
-                    const removeBtn = $('<button>&times;</button>');
-
-                    removeBtn.on('click', function() {
-                        $('#single-image').val(''); // Clear input
-                        singlePreviewContainer.empty(); // Clear preview
-                    });
-
-                    singlePreviewContainer.append(img).append(removeBtn);
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-    </script>
+    @vite(['resources/js/pages/edit-account.js'])
 @endpush

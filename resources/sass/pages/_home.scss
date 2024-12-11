@@ -115,23 +115,20 @@
 .game-detail .game-detail_bottom .game-detail_meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
   margin-top: 25px;
   font-size: 1.1em;
 }
 
 .game-detail .game-detail_bottom .game-detail_meta .game-detail_meta--item {
-  width: calc(50% - 15px);
+  width: 50%;
   display: flex;
   align-items: center;
   position: relative;
-  padding-left: 15px;
   gap: 5px;
 }
 
 .game-detail_buttons {
   width: 100%;
-  gap: 20px;
   justify-content: space-between;
   a {
     width: calc(50% - 10px);

@@ -23,7 +23,7 @@
                                             @endif
                                         </div>
                                     </div>
-                                    <div class="game-images_thumb" id="detail-avatar_thumb">
+                                    {{-- <div class="game-images_thumb" id="detail-avatar_thumb">
                                         <div class="owl-carousel owl-theme">
                                             @foreach ($account->images as $key => $image)
                                                 <div class="item">
@@ -34,12 +34,12 @@
                                                 </div>
                                             @endforeach
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
 
                             <div class="col-lg-5 col-12">
-                                <div class="game-detail">
+                                <div class="game-detail mb-3">
                                     <div class="game-detail_top">
                                         <div class="game-detail_category">
                                             Danh Mục: <a
@@ -49,18 +49,18 @@
                                     <div class="game-detail_bottom">
                                         <div class="game-detail_price">
                                             <div class="game-detail_price--item">
-                                                Giá thẻ cào
+                                                CARD
                                                 <span>{{ number_format($account->price, 0, ',', '.') }}đ</span>
                                             </div>
                                             <div class="game-detail_price--item">
-                                                Giá ATM/Momo
+                                                ATM/MOMO
                                                 <span>{{ number_format($account->price_atm, 0, ',', '.') }}đ</span>
                                             </div>
                                         </div>
                                         <div class="game-detail_meta">
                                             <div class="game-detail_meta--item">
-                                                Máy chủ:
-                                                <b>Server {{ $account->server }}</b>
+                                                Server:
+                                                <b>{{ $account->server }}</b>
                                             </div>
                                             <div class="game-detail_meta--item">
                                                 Hành tinh:
@@ -97,10 +97,19 @@
                                                     Đã bán
                                                 </a>
                                             @endif
+                                            <br>
                                         </div>
                                     </div>
+                                    
                                 </div>
                             </div>
+                            @foreach ($account->images as $key => $image)
+                                <div class="mb-3" style="text-align: center;">
+                                    <img src="{{ $image->image_link }}&sz=w1000"
+                                        class="img-fluid object-fit-cover {{ $key === 0 ? 'active' : '' }}" alt="Nick Ngọc Rồng Online VIP giá rẻ, NickDaoquan.Vn, Shop Nick Ngọc Rồng"
+                                        loading="lazy">
+                                </div>
+                            @endforeach
                             @if ($accountRefs->isNotEmpty())
                                 <h3 style="font-size: 24px; text-align: center;" class="mt-80"><span>TÀI KHOẢN LIÊN QUAN
                                     </span></h3>

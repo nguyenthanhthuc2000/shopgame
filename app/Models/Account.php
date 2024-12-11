@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Models;
- 
+
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Admin\Category;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Collection;
 
 class Account extends Model
 {
@@ -26,8 +27,8 @@ class Account extends Model
      */
     public $timestamps = true;
 
-    protected $perPage = 10;
-    
+    protected $perPage = 12;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -42,14 +43,13 @@ class Account extends Model
      *
      * @var array<string, string>
      */
-    protected $casts = [
-    ];
+    protected $casts = [];
 
     const STATUS_AVAILABLE = 1;
     const STATUS_HIDE = 0;
     const STATUS_SOLD = 2;
 
-    const CLASSED = [
+    const CLASSES = [
         [
             'name' => 'Xayda',
             'value' => '1',
@@ -85,7 +85,7 @@ class Account extends Model
             'value' => '0',
         ],
     ];
-    
+
     const SERVER = [
         [
             'name' => 'Server 1',
@@ -137,6 +137,21 @@ class Account extends Model
         ],
     ];
 
+    const STATUS = [
+        [
+            'name' => 'Ẩn',
+            'value' => 0
+        ],
+        [
+            'name' => 'Đang bán',
+            'value' => 1
+        ],
+        [
+            'name' => 'Đã bán',
+            'value' => 2
+        ],
+    ];
+
     public function category()
     {
         return $this->hasOne(Category::class, 'id', 'category_id');
@@ -149,7 +164,7 @@ class Account extends Model
 
     public function getClassNameAttribute()
     {
-        return collect(self::CLASSED)->where('value', $this->class)->first()['name'];
+        return collect(self::CLASSES)->where('value', $this->class)->first()['name'];
     }
 
     public function getEarringNameAttribute()
@@ -159,7 +174,7 @@ class Account extends Model
 
     public function getRegisTypeNameAttribute()
     {
-        return collect(self::REGIS_TYPE)->where('value', $this->earring)->first()['name'];
+        return collect(self::REGIS_TYPE)->where('value', $this->regis_type)->first()['name'];
     }
 
     public function banner()
@@ -167,6 +182,14 @@ class Account extends Model
         return $this->hasOne(Image::class)->where('is_banner', true);
     }
 
+    public function gallery()
+    {
+        return $this->hasMany(Image::class)->where('is_banner', false);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function images()
     {
         return $this->hasMany(Image::class);
@@ -175,5 +198,64 @@ class Account extends Model
     public function author()
     {
         return $this->hasOne(User::class, 'id', 'user_id');
+    }
+
+    /**
+     * Get banner of the account
+     * @param string $collumn
+     * @return mixed
+     */
+    public function getBannerLink($collumn = ''): mixed
+    {
+        if ($collumn) {
+            return $this->banner->first()->$collumn;
+        }
+
+        return $this->banner->first();
+    }
+
+    /**
+     * Get banner of the account
+     * @return array|Collection
+     */
+    public function getGalleryLinks(): array|Collection
+    {
+        return $this->gallery;
+    }
+
+    public function hasGallery(): bool
+    {
+        return $this->gallery->count() > 0;
+    }
+
+    public function hasBanner(): bool
+    {
+        return $this->banner->count() > 0;
+    }
+
+    public function scopeByCode($query, $code)
+    {
+        return $query->where('id', $code);
+    }
+
+    public function scopeByPrice($query, $price)
+    {
+        $priceRange = explode(' ', $price);
+        return $query->whereBetween('price', $priceRange);
+    }
+
+    public function scopeByStatus($query, $status)
+    {
+        return $query->where('status', $status);
+    }
+
+    public function scopeByServer($query, $server)
+    {
+        return $query->where('server', $server);
+    }
+
+    public function scopeByClass($query, $class)
+    {
+        return $query->where('class', $class);
     }
 }

@@ -16,17 +16,17 @@ class AuthController extends Controller
 {
     /**
      * ShowLoginForm
-     * 
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function showLoginForm()
     {
-        return view('pages.auth.login');
+        return view("pages.auth.login");
     }
 
     /**
      * Summary of changePassword
-     * 
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function changePassword()
@@ -36,7 +36,7 @@ class AuthController extends Controller
 
     /**
      * Summary of updatePassword
-     * 
+     *
      * @param ChangePasswordRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -45,13 +45,13 @@ class AuthController extends Controller
         $user = auth()->user();
         $user->password = Hash::make($request->input('password'));
         $user->save();
-    
+
         return back()->with('success', 'Đổi mật khẩu thành công, vui lòng đăng nhập lại!');
     }
 
     /**
      * Login
-     * 
+     *
      * @param LoginRequest $request
      * @return mixed|\Illuminate\Http\RedirectResponse
      */
@@ -82,7 +82,7 @@ class AuthController extends Controller
 
     /**
      * Register
-     * 
+     *
      * @param \App\Http\Requests\RegisterRequest $request
      * @return mixed|\Illuminate\Http\RedirectResponse
      */

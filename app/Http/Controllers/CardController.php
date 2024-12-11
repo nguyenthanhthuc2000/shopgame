@@ -165,6 +165,7 @@ class CardController extends Controller
 
         $cardTran = CardTransaction::select('id', 'user_id', 'log')
                 ->where('request_id', $request->request_id)
+                ->where('response_code', 99)
                 ->where('callback_sign', $request->callback_sign)->first();
 
         if (empty($cardTran)) {
