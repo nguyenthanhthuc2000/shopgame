@@ -3,10 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Query\Builder;
 
 class Image extends Model
 {
+    use SoftDeletes;
+
+    const IS_BANNER = 1;
+
+    const IMAGE_SIZE = 1000;
 
     protected $primaryKey = 'id';
 
@@ -35,11 +41,11 @@ class Image extends Model
 
     public function getFullImageLinkAttribute()
     {
-        return $this->image_link . "&sw=1000";
+        return $this->image_link . "&sw=" . self::IMAGE_SIZE;
     }
 
     public function scopeIsBanner($query)
     {
-        return $query->whereIsBanner(1);
+        return $query->whereIsBanner(self::IS_BANNER);
     }
 }

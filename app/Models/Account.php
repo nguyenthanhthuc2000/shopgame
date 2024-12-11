@@ -140,15 +140,18 @@ class Account extends Model
     const STATUS = [
         [
             'name' => 'Ẩn',
-            'value' => 0
+            'value' => 0,
+            'is_default' => false,
         ],
         [
             'name' => 'Đang bán',
-            'value' => 1
+            'value' => 1,
+            'is_default' => true,
         ],
         [
             'name' => 'Đã bán',
-            'value' => 2
+            'value' => 2,
+            'is_default' => false,
         ],
     ];
 
@@ -221,6 +224,14 @@ class Account extends Model
     public function getGalleryLinks(): array|Collection
     {
         return $this->gallery;
+    }
+
+    /**
+     * Check record can be edited
+     */
+    public function canEdit(): bool
+    {
+        return $this->status === self::STATUS_AVAILABLE;
     }
 
     /**

@@ -98,24 +98,24 @@ class AccountService extends BaseService
      * @param mixed $gallery
      * @return bool
      */
-    public function updateAccount($uuid, array $account, $banner, $gallery = [])
+    public function updateAccount($uuid, array $account, $banner = null, $gallery = [])
     {
         try {
             $findAccount = Account::getByUuid($uuid);
 
             if (empty($findAccount)) {
-                $this->logWritter($this->logChannel, "Cannot find account $uuid to update!");
-                return false;
+                throw new Exception("Cannot find account $uuid to update!");
             }
 
             $accountUpdated = $findAccount?->update($account);
             if (!$accountUpdated) {
-                $this->logWritter($this->logChannel, "Cannot update account $$uuid!");
-                return false;
+                throw new Exception("Cannot update account $$uuid!");
             }
 
             if (!empty($account['removed_image'])) {
-                // handle delete image
+                foreach ($account['removed_image'] as $imageId) {
+                    $this->imageService->delete($imageId ?? '', $findAccount->banner->account_id ?? '');
+                }
             }
 
             $folderId = config('google.accounts_folder_id');

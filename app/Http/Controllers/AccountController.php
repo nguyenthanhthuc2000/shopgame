@@ -84,13 +84,15 @@ class AccountController extends Controller
         $regisTypes = Account::REGIS_TYPE;
         $earring = Account::EARRING;
         $servers = Account::SERVER;
+        $statuses = Account::STATUS;
 
         $data = compact(
             'categories',
             'classes',
             'regisTypes',
             'earring',
-            'servers'
+            'servers',
+            'statuses',
         );
 
         return view('pages.create-account',  $data);
@@ -148,7 +150,12 @@ class AccountController extends Controller
         $regisTypes = Account::REGIS_TYPE;
         $earring = Account::EARRING;
         $servers = Account::SERVER;
+        $statuses = Account::STATUS;
         $account = Account::with(['banner', 'images'])->whereUuid($uuid)->first();
+
+        if (!$account || !$account->canEdit()) {
+            return redirect()->route('account.manage.index');
+        }
 
         $data = compact(
             'categories',
@@ -156,7 +163,8 @@ class AccountController extends Controller
             'regisTypes',
             'earring',
             'servers',
-            'account'
+            'account',
+            'statuses',
         );
 
         return view('pages.edit-account', $data);
@@ -166,7 +174,7 @@ class AccountController extends Controller
     {
         $account = Account::whereUuid($uuid)->first();
 
-        if (!$account) {
+        if (!$account || !$account->canEdit()) {
             return redirect()->back()->with('error', 'Tài khoản không hợp lệ');
         }
 
@@ -181,7 +189,11 @@ class AccountController extends Controller
                 $imagesDetail = $request->file('gallery');
             }
 
-            $this->accountService->updateAccount($uuid, $accountData, $banner, $imagesDetail ?? []);
+            if (!empty($accountData['removed_image'])) {
+                $accountData['removed_image'] = explode(';', $accountData['removed_image']);
+            }
+
+            $this->accountService->updateAccount($uuid, $accountData, $banner ?? null, $imagesDetail ?? []);
         });
 
         return redirect()->route('account.manage.index')->with('success', "Thêm nick thành công");
@@ -198,6 +210,10 @@ class AccountController extends Controller
         $account = Account::where('user_id', Auth::id())
             ->where('uuid', $uuid)
             ->first();
+
+        if (!$account || !$account->canEdit()) {
+            return redirect()->route('account.manage.index');
+        }
 
         if (!empty($account) && $account->status !== Account::STATUS_AVAILABLE) {
             $account->delete();

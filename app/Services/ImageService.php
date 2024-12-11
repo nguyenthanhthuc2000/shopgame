@@ -35,8 +35,36 @@ class ImageService extends BaseService
     }
 
     /**
-     * Delete gallery from database
-     * @param int|string $imageId
+     * Delete banner from database
+     * @param string $imageId
+     * @param int|string $accountId
+     * @return bool
+     */
+    public function delete($imageId, $accountId = '')
+    {
+        try {
+            $image = Image::whereFileId($imageId);
+
+            if (!empty($accountId)) {
+                $image = $image->whereAccountId($accountId);
+            }
+
+            $image->first();
+
+            if (!$image) {
+                throw new Exception("Image with account ID {$accountId} not found.");
+            }
+
+            return $image->delete();
+        } catch (Exception $e) {
+            $this->logWritter($this->logChannel, $e->getMessage(), $e);
+            return false;
+        }
+    }
+
+    /**
+     * Delete banner from database
+     * @param int|string $accountId
      * @return bool
      */
     public function deleteBanner($accountId)

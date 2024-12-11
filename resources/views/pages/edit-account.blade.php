@@ -207,6 +207,22 @@
                                                     </div>
                                                 @endif
                                             </div>
+                                            <div class="mb-3 col-xl-4 col-md-6">
+                                                <label for="status" class="form-label">Trạng thái <span
+                                                        class="text-danger">*</span></label>
+                                                <select class="form-select" aria-label="Có" id="status" name="status">
+                                                    @foreach ($statuses as $status)
+                                                        <option value="{{ $status['value'] ?? '' }}"
+                                                            {{ $status['value'] == $account->status ? 'selected' : ($status['is_default'] ? 'selected' : '') }}>
+                                                            {{ $status['name'] ?? '' }}</option>
+                                                    @endforeach
+                                                </select>
+                                                @if ($errors->has('status'))
+                                                    <div class="text-danger">
+                                                        {{ $errors->first('status') }}
+                                                    </div>
+                                                @endif
+                                            </div>
                                             <div class="mb-3 col-xl-6">
                                                 <div class="row">
                                                     <div class="col-12">
