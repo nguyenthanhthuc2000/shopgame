@@ -83,7 +83,38 @@
         </div>
     </div>
 
-    {{-- endproduct section --}}
+    <div class="product-section mt-80 mb-80">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <div class="mb-3">
+                        <h3 id="categories"><span class="orange-text">DỊCH VỤ</span> GAME </h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                @foreach ($services as $service)
+                    <div class="col-lg-3 col-md-4 col-6 text-center">
+                        <div class="single-card-item">
+                            <div class="category__banner mb-2">
+                                <a href="https://zalo.me/0389946423">
+                                    <img src="{{ asset($service->image) }}" alt="{{ $service->title }}" loading="lazy">
+                                </a>
+                            </div>
+                            <h2 class="category__title mb-0">{{ $service->name }}</h2>
+                            <div class="mb-3 buy-btn">
+                                <a href="https://zalo.me/0389946423">
+                                    <img src="{{ asset('assets/images/buy-now.png') }}" class="buy-img" alt="Mua ngay"
+                                        loading="lazy">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
 
     <div class="latest-news mt-80 mb-80">
         <div class="container">
