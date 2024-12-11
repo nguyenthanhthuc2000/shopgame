@@ -27,7 +27,7 @@ class CategoryController extends Controller
             ->where('category_id', $category->id)
             ->where('status', Account::STATUS_AVAILABLE)
             ->orderBy('id', 'DESC');
-        $selected = $request->all();
+
         $classes = Account::CLASSES;
         $regisTypes = Account::REGIS_TYPE;
         $earring = Account::EARRING;
@@ -69,7 +69,6 @@ class CategoryController extends Controller
             'servers',
             'prices',
             'status',
-            'selected'
         ]));
     }
     public function show($slug)

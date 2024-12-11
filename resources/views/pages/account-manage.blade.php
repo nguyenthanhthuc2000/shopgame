@@ -18,14 +18,17 @@
                                 </div>
                                 <div class="d-flex justify-content-end my-3 gap-3">
                                     <div class="d-flex">
-                                        <div class="input-group w-100">
-                                            <input type="text" id="searchInput" class="form-control"
-                                                placeholder="Tìm kiếm tài khoản..." aria-label="Search"
-                                                aria-describedby="searchIcon">
-                                            <span class="input-group-text" id="searchIcon">
-                                                <i class="fas fa-search"></i>
-                                            </span>
-                                        </div>
+                                        <form action="{{ url()->current() }}" method="GET">
+                                            <div class="input-group w-100">
+                                                <input type="text" for="username" id="username" name="username"
+                                                    class="form-control" placeholder="Tìm kiếm tài khoản..."
+                                                    aria-label="Search" aria-describedby="searchIcon"
+                                                    value="{{ request('username') }}">
+                                                <button type="submit" class="input-group-text" id="searchIcon">
+                                                    <i class="fas fa-search"></i>
+                                                </button>
+                                            </div>
+                                        </form>
                                     </div>
                                     <a href="{{ route('account.create') }}" class="btn btn-primary col-xs-12 btn4"
                                         style="display: flex; align-items: center; gap: 6px;">

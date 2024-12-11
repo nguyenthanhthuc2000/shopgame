@@ -31,11 +31,19 @@ class AccountController extends Controller
      */
     public function index(Request $request)
     {
-        $accounts = Account::orderBy('id', 'DESC')
-            ->where('user_id', Auth::id())
-            ->paginate();
 
-        return view('pages.account-manage', compact('accounts'));
+        $accounts = Account::orderBy('id', 'DESC')
+            ->where('user_id', Auth::id());
+
+        if ($request->username) {
+            $accounts = $accounts->byUserName($request->username);
+        }
+
+        $accounts = $accounts->paginate();
+
+        return view('pages.account-manage', compact([
+            'accounts',
+        ]));
     }
 
     /**

@@ -258,4 +258,9 @@ class Account extends Model
     {
         return $query->where('class', $class);
     }
+
+    public function scopeByUserName($query, $username)
+    {
+        return $query->where('username', $username);
+    }
 }

@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\AccountTransactionController as AdminAccountTransactionController;
+use App\Http\Controllers\Admin\BlogController as AdminBlogController;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\IsAdmin;
@@ -68,6 +69,10 @@ Route::middleware(['throttle:300,1'])->group(function () {
             Route::get('/account-transactions', [AdminAccountTransactionController::class, 'index'])->name('accounts.tran.index');
             Route::get('/bank-transactions/create', [AdminBankTransactionController::class, 'create'])->name('banks.tran.create');
             Route::post('/bank-transactions', [AdminBankTransactionController::class, 'store'])->name('banks.tran.store');
+
+            // blog
+            Route::get('/blog', [AdminBlogController::class, 'index'])->name('admin.blog.index');
+            Route::get('/blog/create', [AdminBlogController::class, 'create'])->name('admin.blog.create');
         });
     });
 });
