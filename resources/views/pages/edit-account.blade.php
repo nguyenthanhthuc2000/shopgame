@@ -349,5 +349,6 @@
 @endsection
 
 @push('js')
-    @vite('resources/js/pages/edit-account.js')
+    {{-- @vite('resources/js/pages/edit-account.js') --}}
+    @vite(['resources/js/pages/edit-account.js'])
 @endpush
