@@ -178,7 +178,20 @@ class AccountController extends Controller
             return redirect()->back()->with('error', 'Tài khoản không hợp lệ');
         }
 
-        $accountData = $request->all();
+        $accountData = [
+            'price' => $request->input('price_account'),
+            'username' => $request->input('username'),
+            'password' => $request->input('password'),
+            'category_id' => $request->input('category_id'),
+            'server' => $request->input('server_id'),
+            'class' => $request->input('class_id'),
+            'regis_type' => $request->input('regis_type_id'),
+            'earring' => $request->input('earring'),
+            'note' => $request->input('description'),
+            'status' => $request->input('status'),
+        ];
+
+        $accountData = array_filter($accountData, fn($value) => $value !== '' && $value !== null);
 
         DB::transaction(function () use ($request, $accountData, $uuid) {
             if ($request->hasFile('banner')) {
