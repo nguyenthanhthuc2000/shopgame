@@ -13,7 +13,7 @@
     <meta name="keywords"
         content="đăng nhập, tài khoản ngọc rồng, shop nick ngọc rồng online, ngọc rồng online, đăng nhập NickDaoQuan.vn, tài khoản game uy tín, hệ thống đăng nhập, shop nick ngọc rồng uy tín">
     <meta name="author" content="Nguyễn Thành Thức">
-    @vite('resources/sass/pages/_login.scss')
+    @vite('resources/sass/pages-exclusive/_login.scss')
 </head>
 
 <body>
@@ -22,7 +22,7 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
-    @vite('resources/js/pages/login.js')
+    @vite('resources/js/pages-exclusive/login.js')
 </body>
 
 </html>
