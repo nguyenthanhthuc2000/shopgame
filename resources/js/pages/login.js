@@ -1,12 +1,14 @@
-const signUpButton = document.getElementById('signUp');
-const signInButton = document.getElementById('signIn');
 const container = document.getElementById('container');
+const signUpButton = $('.signUp');
+const signInButton = $('.signIn');
 
-signUpButton.addEventListener('click', () => {
+signUpButton.on('click', (event) => {
+    event.preventDefault();
     container.classList.add("right-panel-active");
 });
 
-signInButton.addEventListener('click', () => {
+signInButton.on('click', (event) => {
+    event.preventDefault();
     container.classList.remove("right-panel-active");
 });
 
