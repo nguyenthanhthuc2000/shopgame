@@ -1,6 +1,15 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import path from 'path';
+import fs from 'fs';
+
+function getFiles(dir, ext = '') {
+    return fs
+        .readdirSync(dir)
+        .filter((file) => file.endsWith(ext))
+        .map((file) => `${dir}/${file}`);
+}
+
 
 export default defineConfig({
     plugins: [
@@ -8,6 +17,8 @@ export default defineConfig({
             input: [
                 'resources/sass/app.scss',
                 'resources/js/app.js',
+                ...getFiles('resources/js/pages', '.js'),
+                ...getFiles('resources/sass/pages', '.scss'),
             ],
             refresh: true,
         }),

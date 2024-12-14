@@ -1,6 +1,5 @@
 @extends('layouts.auth')
 
-
 @section('content')
     <section>
         <h2 class="font-lg">Chào mừng bạn đến với <a href="{{ route('home') }}" class="font-lg">nickdaoquan.vn</a></h2>
