@@ -63,6 +63,7 @@ Route::middleware(['throttle:300,1'])->group(function () {
 
         Route::group(['prefix' => 'admin', 'middleware' => [IsAdmin::class, 'auth']], function () {
             Route::get('/', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+            Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);
             Route::get('/users', [AdminUserController::class, 'index'])->name('users.index');
             Route::get('/categories', [AdminCategoryController::class, 'index'])->name('categories.index');
             Route::get('/bank-transactions', [AdminBankTransactionController::class, 'index'])->name('banks.tran.index');
