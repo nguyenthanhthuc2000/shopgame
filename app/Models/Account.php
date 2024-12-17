@@ -140,15 +140,18 @@ class Account extends Model
     const STATUS = [
         [
             'name' => 'Ẩn',
-            'value' => 0
+            'value' => 0,
+            'is_default' => false,
         ],
         [
             'name' => 'Đang bán',
-            'value' => 1
+            'value' => 1,
+            'is_default' => true,
         ],
         [
             'name' => 'Đã bán',
-            'value' => 2
+            'value' => 2,
+            'is_default' => false,
         ],
     ];
 
@@ -208,10 +211,10 @@ class Account extends Model
     public function getBannerLink($collumn = ''): mixed
     {
         if ($collumn) {
-            return $this->banner->first()->$collumn;
+            return $this->banner->$collumn;
         }
 
-        return $this->banner->first();
+        return $this->banner;
     }
 
     /**
@@ -223,14 +226,32 @@ class Account extends Model
         return $this->gallery;
     }
 
+    /**
+     * Check record can be edited
+     */
+    public function canEdit(): bool
+    {
+        return $this->status === self::STATUS_AVAILABLE;
+    }
+
+    /**
+     * Get a account by uuid
+     * @param string $uuid
+     * @return Model|null
+     */
+    public static function getByUuid($uuid)
+    {
+        return self::byUuid($uuid)->first();
+    }
+
     public function hasGallery(): bool
     {
-        return $this->gallery->count() > 0;
+        return $this->gallery?->count() > 0;
     }
 
     public function hasBanner(): bool
     {
-        return $this->banner->count() > 0;
+        return $this->banner?->count() > 0;
     }
 
     public function scopeByCode($query, $code)
@@ -262,5 +283,10 @@ class Account extends Model
     public function scopeByUserName($query, $username)
     {
         return $query->where('username', $username);
+    }
+
+    public function scopeByUuid($query, $uuid)
+    {
+        return $query->whereUuid($uuid);
     }
 }

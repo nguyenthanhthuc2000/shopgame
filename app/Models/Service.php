@@ -3,16 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Query\Builder;
 
-class Image extends Model
+class Service extends Model
 {
-    use SoftDeletes;
-
-    const IS_BANNER = 1;
-
-    const IMAGE_SIZE = 1000;
 
     protected $primaryKey = 'id';
 
@@ -32,20 +25,12 @@ class Image extends Model
      */
     protected $guarded = ['id'];
 
+    const ACTIVE_STATUS = 1;
+
     /**
      * The attributes that should be cast.
      *
      * @var array<string, string>
      */
     protected $casts = [];
-
-    public function getFullImageLinkAttribute()
-    {
-        return $this->image_link . "&sw=" . self::IMAGE_SIZE;
-    }
-
-    public function scopeIsBanner($query)
-    {
-        return $query->whereIsBanner(self::IS_BANNER);
-    }
 }
