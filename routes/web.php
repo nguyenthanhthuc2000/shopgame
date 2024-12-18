@@ -74,8 +74,9 @@ Route::middleware(['throttle:300,1'])->group(function () {
             Route::post('/bank-transactions', [AdminBankTransactionController::class, 'store'])->name('banks.tran.store');
 
             // blog
-            Route::get('/blog', [AdminBlogController::class, 'index'])->name('admin.blog.index');
+            Route::get('/blog', [AdminBlogController::class, 'index'])->name(name: 'admin.blog.index');
             Route::get('/blog/create', [AdminBlogController::class, 'create'])->name('admin.blog.create');
+            Route::post('/blog', [AdminBlogController::class, 'store'])->name('admin.blog.store');
         });
     });
 });

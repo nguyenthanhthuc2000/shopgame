@@ -282,7 +282,7 @@ class Account extends Model
 
     public function scopeByUserName($query, $username)
     {
-        return $query->where('username', $username);
+        return $query->where('username', 'LIKE', "%{$username}%");
     }
 
     public function scopeByUuid($query, $uuid)
