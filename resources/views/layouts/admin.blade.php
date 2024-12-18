@@ -1223,6 +1223,19 @@
         });
         // @formatter:on
     </script>
+
+    <script defer>
+        const {
+            ClassicEditor,
+            Essentials,
+            Bold,
+            Italic,
+            Font,
+            Paragraph
+        } = CKEDITOR;
+
+        const LICENSE_KEY = '{{ config("app.ckeditor.key") }}';
+    </script>
 </body>
 
 </html>
