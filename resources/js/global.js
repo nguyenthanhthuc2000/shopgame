@@ -138,9 +138,9 @@ $(function () {
         jQuery(".loader").fadeOut(1000);
     });
 
-    $('#sticker').on('sticky-start', function () { console.log("Started"); });
-    $('#sticker').on('sticky-end', function () { console.log("Ended"); });
-    $('#sticker').on('sticky-update', function () { console.log("Update"); });
-    $('#sticker').on('sticky-bottom-reached', function () { console.log("Bottom reached"); });
-    $('#sticker').on('sticky-bottom-unreached', function () { console.log("Bottom unreached"); });
+    // $('#sticker').on('sticky-start', function () { console.log("Started"); });
+    // $('#sticker').on('sticky-end', function () { console.log("Ended"); });
+    // $('#sticker').on('sticky-update', function () { console.log("Update"); });
+    // $('#sticker').on('sticky-bottom-reached', function () { console.log("Bottom reached"); });
+    // $('#sticker').on('sticky-bottom-unreached', function () { console.log("Bottom unreached"); });
 });

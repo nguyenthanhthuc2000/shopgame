@@ -1,0 +1,92 @@
+
+.footer-area {
+    background-color: $background-color_7;
+    color: $color_2;
+    padding: 50px 0;
+}
+
+.footer-box {
+    p {
+        color: $color_2;
+        opacity: 0.7;
+        line-height: 1.8;
+    }
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        li {
+            opacity: 0.7;
+            margin-bottom: 10px;
+            line-height: 1.8;
+            &:last-child {
+                margin-bottom: 0;
+            }
+            a {
+                color: $color_2;
+            }
+        }
+    }
+
+    &.subscribe {
+        form {
+            input[type="email"] {
+                border: none;
+                background-color: $background-color_8;
+                width: 78%;
+                padding: 15px;
+                border-top-left-radius: 5px;
+                border-bottom-left-radius: 5px;
+                color: $color_2;
+            }
+            button {
+                width: 20%;
+                border: none;
+                background-color: $background-color_8;
+                color: $main-color;
+                padding: 14px 0;
+                border-top-right-radius: 3px;
+                border-bottom-right-radius: 3px;
+                cursor: pointer;
+                -webkit-transition: 0.3s;
+                -o-transition: 0.3s;
+                transition: 0.3s;
+                &:focus {
+                    outline: none;
+                }
+                &:hover {
+                    background-color: $main-bg;
+                    color: $color_3;
+                }
+            }
+        }
+    }
+
+    &.pages {
+        ul {
+            li {
+                position: relative;
+                padding-left: 20px;
+                &:before {
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    content: "\f054";
+                    font-family: 'Font Awesome 6 Free';
+                    font-weight: 900;
+                    color: $main-color;
+                }
+                a {
+                    -webkit-transition: 0.3s;
+                    -o-transition: 0.3s;
+                    transition: 0.3s;
+                }
+                &:hover {
+                    a {
+                        color: $main-color;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -15,6 +15,10 @@
     <meta property="og:image" content="{{ asset('assets/images/avatar.jpg') }}">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta name="csrf_token" content="{{ csrf_token() }}" />
+    {{-- CKEditor --}}
+    <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/44.1.0/ckeditor5.css" />
+    <script src="https://cdn.ckeditor.com/ckeditor5/44.1.0/ckeditor5.umd.js"></script>
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5V70YRDLZB"></script>
     <script>
@@ -53,7 +57,7 @@
     @include('components.script')
 
     @stack('js')
-    
+
     <script>
         const styleElement = document.createElement('style');
         styleElement.textContent = `
