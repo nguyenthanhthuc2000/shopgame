@@ -13,6 +13,10 @@
     <link href="{{ asset('assets/dist/css/demo.min') }}" rel="stylesheet" />
     <link href="{{ asset('assets/dist/css/inter.css') }}" rel="stylesheet" />
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/favicon.ico') }}">
+    {{-- CKEditor --}}
+    <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/44.1.0/ckeditor5.css" />
+    <script src="https://cdn.ckeditor.com/ckeditor5/44.1.0/ckeditor5.umd.js"></script>
+
     <style>
         :root {
             --tblr-font-sans-serif: 'Inter Var', -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
@@ -400,9 +404,6 @@
     <script src="{{ asset('assets/dist/libs/jsvectormap/dist/js/jsvectormap.min.js') }}" defer></script>
     <script src="{{ asset('assets/dist/libs/jsvectormap/dist/maps/world.js') }}" defer></script>
     <script src="{{ asset('assets/dist/libs/jsvectormap/dist/maps/world-merc.js') }}" defer></script>
-    {{-- CKEditor --}}
-    <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/44.1.0/ckeditor5.css" />
-    <script src="https://cdn.ckeditor.com/ckeditor5/44.1.0/ckeditor5.umd.js"></script>
     <!-- Tabler Core -->
     <script src="{{ asset('assets/dist/js/tabler.min.js') }}" defer></script>
     <script src="{{ asset('assets/dist/js/demo.min.js') }}" defer></script>
