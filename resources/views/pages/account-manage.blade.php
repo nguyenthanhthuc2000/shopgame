@@ -74,9 +74,7 @@
                                                 <tbody>
                                                     @forelse($accounts as $account)
                                                         <tr>
-                                                            <td><a
-                                                                    href="{{ route('account.show', ['categorySlug' => $category->slug, 'accountUuid' => $account->uuid]) }}">#{{ $account->id }}</a>
-                                                            </td>
+                                                            <td>#{{ $account->id }}</td>
                                                             <td>{{ $account->username }}</td>
                                                             <td>{{ getPrice($account->price) }}</td>
                                                             <td>{{ getPrice($account->discount_price) }}</td>
@@ -158,7 +156,7 @@
                 error: function(error) {
                     Swal.fire({
                         title: 'Thông báo!',
-                        text: error.message || '{{ __('messages.common_error') }}',
+                        text: error.message || '{{ __("messages.common_error") }}',
                         icon: error.status || 'error',
                         confirmButtonColor: '#3085d6',
                         confirmButtonText: 'OK',
