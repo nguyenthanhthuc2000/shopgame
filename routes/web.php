@@ -77,6 +77,7 @@ Route::middleware(['throttle:300,1'])->group(function () {
             Route::get('/blog', [AdminBlogController::class, 'index'])->name(name: 'admin.blog.index');
             Route::get('/blog/create', [AdminBlogController::class, 'create'])->name('admin.blog.create');
             Route::post('/blog', [AdminBlogController::class, 'store'])->name('admin.blog.store');
+            Route::delete('/{id}', [AdminBlogController::class, 'destroy'])->name('admin.blog.delete');
         });
     });
 });

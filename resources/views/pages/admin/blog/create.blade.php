@@ -17,8 +17,9 @@
         </form>
     </div>
 
-    {{-- <script src="https://cdn.ckeditor.com/4.20.2/standard/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/4.20.2/standard/ckeditor.js"></script>
     <script>
         CKEDITOR.replace('content');
-    </script> --}}
+    </script>
+    {{-- @vite(['resources/js/pages-exclusive/ckeditor.js']) --}}
 @endsection

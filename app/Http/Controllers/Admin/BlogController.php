@@ -3,38 +3,69 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\BlogRequest;
 use App\Models\Account;
 use App\Models\Blog;
+use Google\Service\Blogger\Resource\Blogs;
+use Google\Service\ServiceControl\Auth;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 class BlogController extends Controller
 {
     public function index(request $request)
     {
-        return view('pages.admin.blog.index');
+        $blogs = Blog::filterById($request->input('id'))
+            ->paginate(10)
+            ->withQueryString();
+
+        return view('pages.admin.blog.index', compact('blogs'));
     }
 
     public function create()
     {
-        // dd(Blog::get());
         return view('pages.admin.blog.create');
     }
 
-    public function store(Request $request)
+    public function store(BlogRequest $request)
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'content' => 'required|string',
+        // dd($request->all());
+        $validatedData = $request->validated();
+
+        $slug = str::slug($validatedData['title'], '-');
+
+        $blog = new Blog();
+        $blog->title = $validatedData['title'];
+        $blog->content = $validatedData['content'];
+        $blog->slug = $slug;
+        $blog->save();
+
+        return redirect()->route('admin.blog.index')->with([
+            'success' => 'Bài viết đã được lưu thành công.',
         ]);
+    }
 
-        // $blog = new Account();
+    public function destroy($id)
+    {
+        // $blog = Blog::where('id', Auth::id())
+        //     ->where('id', $id)
+        //     ->first();
 
-        // $blog->title = $request->input('title');
-        // $blog->content = $request->input('content');
-        // $blog->save();
+        // if (!$blog) {
+        //     return redirect()->route('admin.blog.index')->with('error', 'Không tìm thấy bài viết.');
+        // }
 
-        // Chuyển hướng về trang danh sách bài viết với thông báo thành công
-        return redirect()->route('admin.blog.index')->with('success', 'Bài viết đã được lưu thành công.');
+        // if ($blog->status !== Blog::STATUS_AVAILABLE) {
+        //     $blog->delete();
+        //     return response()->json([
+        //         'status' => 'success',
+        //         'message' => 'Xóa thành công!'
+        //     ]);
+        // }
+
+        // return response()->json([
+        //     'status' => 'error',
+        //     'message' => 'Bài viết đang hoạt động, không thể xóa.'
+        // ]);
     }
 }
