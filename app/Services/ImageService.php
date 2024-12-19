@@ -10,27 +10,19 @@ class ImageService extends BaseService
     /**
      * @var string $logChannel
      */
-    protected $logChannel;
-    protected $googleDriveService;
-    public function __construct()
-    {
-        $this->logChannel = 'images_save';
-    }
+    protected $logChannel = 'images_save';
 
     /**
      * Insert gallery to Google Drive
      * @param array $fileData
-     * @return array
      */
     public function createGallery(array $fileData)
     {
         try {
-            $created = Image::insert($fileData);
-
-            return $created;
+            return Image::insert($fileData);
         } catch (Exception $e) {
-            $this->logWritter($this->logChannel, $e->getMessage(), $e);
-            return [];
+            $this->logWritter($e->getMessage(), $e);
+            return false;
         }
     }
 
@@ -57,7 +49,7 @@ class ImageService extends BaseService
 
             return $image->delete();
         } catch (Exception $e) {
-            $this->logWritter($this->logChannel, $e->getMessage(), $e);
+            $this->logWritter($e->getMessage(), $e);
             return false;
         }
     }
@@ -78,7 +70,7 @@ class ImageService extends BaseService
 
             return $image->delete();
         } catch (Exception $e) {
-            $this->logWritter($this->logChannel, $e->getMessage(), $e);
+            $this->logWritter($e->getMessage(), $e);
             return false;
         }
     }

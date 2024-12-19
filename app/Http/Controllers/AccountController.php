@@ -6,6 +6,7 @@ use App\Models\Account;
 use App\Http\Requests\AccountRequest;
 use App\Models\Category;
 use App\Services\AccountService;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -228,24 +229,18 @@ class AccountController extends Controller
      */
     public function destroy($uuid)
     {
-        $account = Account::where('user_id', Auth::id())
-            ->where('uuid', $uuid)
-            ->first();
+        $deleted = $this->accountService->delete($uuid);
 
-        if (!$account || !$account->canEdit()) {
-            return redirect()->route('account.manage.index');
-        }
-
-        if (!empty($account) && $account->status !== Account::STATUS_AVAILABLE) {
-            $account->delete();
+        if ($deleted) {
             return response()->json([
                 'status' => 'success',
                 'message' => 'Xóa thành công!'
             ]);
         }
+
         return response()->json([
             'status' => 'error',
-            'message' => 'Có lỗi xảy ra!'
+            'message' => __('messages.common_error'),
         ]);
     }
 }
