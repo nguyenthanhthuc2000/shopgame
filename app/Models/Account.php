@@ -227,6 +227,11 @@ class Account extends Model
         return $this->gallery;
     }
 
+    public function findByUuid($uuid)
+    {
+        return $this->byUuid($uuid)->first();
+    }
+
     /**
      * Check record can be edited
      */
@@ -240,7 +245,7 @@ class Account extends Model
      */
     public function canDelete(): bool
     {
-        return $this->author->id === Auth::id();
+        return $this->author->id === Auth::id() && $this->status === self::STATUS_AVAILABLE;
     }
 
     /**
