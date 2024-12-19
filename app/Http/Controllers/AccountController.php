@@ -220,11 +220,12 @@ class AccountController extends Controller
      */
     public function destroy($uuid)
     {
+        try {
         $account = Account::where('user_id', Auth::id())
             ->where('uuid', $uuid)
             ->first();
 
-        if (!$account || !$account->canEdit()) {
+            if (!$account || !$account->canDelete()) {
             return redirect()->route('account.manage.index');
         }
 
@@ -235,9 +236,16 @@ class AccountController extends Controller
                 'message' => 'Xóa thành công!'
             ]);
         }
+
         return response()->json([
             'status' => 'error',
             'message' => 'Có lỗi xảy ra!'
         ]);
+        } catch (Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage(),
+            ]);
+        }
     }
 }

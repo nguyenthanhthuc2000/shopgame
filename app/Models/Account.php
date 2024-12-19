@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Admin\Category;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 
 class Account extends Model
 {
@@ -232,6 +233,14 @@ class Account extends Model
     public function canEdit(): bool
     {
         return $this->status === self::STATUS_AVAILABLE;
+    }
+
+    /**
+     * Check record can be deleted
+     */
+    public function canDelete(): bool
+    {
+        return $this->author->id === Auth::id();
     }
 
     /**
