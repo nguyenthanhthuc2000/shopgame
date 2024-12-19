@@ -58,7 +58,9 @@ class AuthController extends Controller
     public function login(LoginRequest $request)
     {
         $credentials = $request->only('email', 'password');
-        if (Auth::attempt($credentials)) {
+        $remember = $request->boolean('remember', false);
+
+        if (Auth::attempt($credentials, $remember)) {
             if (Auth::user()->status !== User::ACTIVE_STATUS) {
                 Auth::logout();
                 return response()->json([
