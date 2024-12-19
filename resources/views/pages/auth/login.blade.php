@@ -24,6 +24,10 @@
                     <div id="message_login"></div>
                     <input type="email" name="email" placeholder="Nhập tài khoản" />
                     <input type="password" name="password" placeholder="Nhập mật khẩu" />
+                    <label for="remember">
+                        <input type="checkbox" name="remember" id="remember" value="true"/>
+                        Ghi nhớ đăng nhập
+                    </label>
                     <button class="mt-2">Đăng Nhập</button>
                     <button class="ghost for-mobbile signUp" type="button">Đăng Ký Ngay</button>
                 </form>
