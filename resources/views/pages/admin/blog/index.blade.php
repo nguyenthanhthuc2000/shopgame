@@ -2,42 +2,39 @@
 
 @section('content')
     <div class="container">
-        <h2 class="mb-4">Blog Đã Tạo Thành Công</h2>
         <div class="page-body">
             <div class="container-xl">
                 <div class="row row-deck row-cards">
+                    <h2 class="mb-4">Bài viết</h2>
                     <div class="col-12">
                         <div class="card">
-                            <div class="card-header" style="justify-content: space-between; gap:8px;">
-                                <h3 class="card-title">Danh sách</h3>
-                                <div class="my-2 my-md-0 flex-grow-1 flex-md-grow-0 order-first order-md-last">
-                                    <form action="{{ route('admin.blog.index') }}" method="get" autocomplete="off"
-                                        novalidate>
-                                        <div class="input-icon">
-                                            <span class="input-icon-addon">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
-                                                    height="24" viewBox="0 0 24 24" stroke-width="2"
-                                                    stroke="currentColor" fill="none" stroke-linecap="round"
-                                                    stroke-linejoin="round">
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                    <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
-                                                    <path d="M21 21l-6 -6" />
-                                                </svg>
-                                            </span>
-                                            <input type="text" name="id" value="{{ request('id') }}"
-                                                class="form-control" placeholder="Tìm kiếm tài khoản..." aria-label="">
+                            <div class="d-flex justify-content-end my-3 gap-3">
+                                <div class="d-flex">
+                                    <form action="{{ route('admin.blog.index') }}" method="GET">
+                                        <div class="input-group w-100">
+                                            <input type="text" for="username" id="username" name="username"
+                                                class="form-control" placeholder="Tìm kiếm bài viết..." aria-label="Search"
+                                                aria-describedby="searchIcon" value="{{ request('title') }}">
+                                            <button type="submit" class="input-group-text" id="searchIcon">
+                                                <i class="fas fa-search"></i>
+                                            </button>
                                         </div>
                                     </form>
                                 </div>
+                                <a href="{{ route('admin.blog.create') }}" class="btn btn-primary col-xs-12 btn4"
+                                    style="display: flex; align-items: center; gap: 6px;">
+                                    <i class="fa-solid fa-plus"></i>
+                                    Thêm Mới
+                                </a>
                             </div>
                             <div class="table-responsive">
                                 <table class="table card-table table-vcenter text-nowrap datatable">
                                     <thead>
                                         <tr>
                                             <th class="w-1">ID</th>
-                                            <th>Tài khoản</th>
                                             <th>Tiêu đề</th>
-                                            <th>Nội dung</th>
+                                            <th>Tài khoản</th>
+                                            <th>Slug</th>
                                             <th>Ngày tạo</th>
                                             <th>Trạng thái</th>
                                             <th>Hành động</th>
@@ -47,15 +44,16 @@
                                         @forelse ($blogs as $blog)
                                             <tr>
                                                 <td>{{ $blog->id }}</td>
-                                                <td>{{ $blog->slug }}</td>
                                                 <td>{{ $blog->title }}</td>
-                                                <td>{{ $blog->content }}</td>
+                                                <td>{{ $blog->user_id }}</td>
+                                                <td>{{ $blog->slug }}</td>
                                                 <td>{{ $blog->created_at->format('d/m/Y') }}</td>
+                                                {{-- <td class='badge'>{{ $blog->status_name }}</td> --}}
                                                 <td>
-                                                    @if ($blog->status === 1)
+                                                    @if ($blog->status_name === 'Hiện')
                                                         <span class="badge bg-success">Hoạt động</span>
                                                     @else
-                                                        <span class="badge bg-warning">Đã khóa</span>
+                                                        <span class="badge">Đã khóa</span>
                                                     @endif
                                                 </td>
                                                 <td>
@@ -63,8 +61,7 @@
                                                         <button type="button" class="btn btn-danger btn-delete"
                                                             data-id="{{ $blog->id }}"
                                                             data-url="{{ route('admin.blog.delete', $blog->id) }}">Xóa</button>
-                                                        <a href="{{ route('account.edit', $blog->id ?? '#') }}"
-                                                            class="btn btn-warning">Sửa</a>
+                                                        <a href="" class="btn btn-warning">Sửa</a>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -86,6 +83,7 @@
                 </div>
             </div>
         </div>
-        <a href="{{ route('admin.blog.create') }}" class="btn btn-secondary mt-3">Tạo Blog Mới</a>
+
     </div>
 @endsection
+@vite(['resources/js/pages-exclusive/blog-manage.js'])

@@ -15,8 +15,14 @@ class BlogController extends Controller
 {
     public function index(request $request)
     {
-        $blogs = Blog::filterById($request->input('id'))
-            ->paginate(10)
+        $blogs = Blog::orderBy('id', 'DESC');
+
+        if ($request->username) {
+            $blogs = $blogs->filterByTitle($request->username);
+        }
+
+
+        $blogs = $blogs->paginate(10)
             ->withQueryString();
 
         return view('pages.admin.blog.index', compact('blogs'));
@@ -30,13 +36,11 @@ class BlogController extends Controller
     public function store(BlogRequest $request)
     {
         // dd($request->all());
-        $validatedData = $request->validated();
-
-        $slug = str::slug($validatedData['title'], '-');
+        $slug = Str::slug($request->title, '-'); //carbon YMDHis
 
         $blog = new Blog();
-        $blog->title = $validatedData['title'];
-        $blog->content = $validatedData['content'];
+        $blog->title = $request->title;
+        $blog->content = $request->content;
         $blog->slug = $slug;
         $blog->save();
 
@@ -47,25 +51,20 @@ class BlogController extends Controller
 
     public function destroy($id)
     {
-        // $blog = Blog::where('id', Auth::id())
-        //     ->where('id', $id)
-        //     ->first();
+        $deleted = Blog::find($id);
 
-        // if (!$blog) {
-        //     return redirect()->route('admin.blog.index')->with('error', 'Không tìm thấy bài viết.');
-        // }
+        if (!$deleted) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Không tìm thấy bài viết.'
+            ], 404);
+        }
 
-        // if ($blog->status !== Blog::STATUS_AVAILABLE) {
-        //     $blog->delete();
-        //     return response()->json([
-        //         'status' => 'success',
-        //         'message' => 'Xóa thành công!'
-        //     ]);
-        // }
+        $deleted->delete();
 
-        // return response()->json([
-        //     'status' => 'error',
-        //     'message' => 'Bài viết đang hoạt động, không thể xóa.'
-        // ]);
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Xóa thành công!'
+        ]);
     }
 }

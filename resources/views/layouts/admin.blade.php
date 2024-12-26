@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="csrf_token" content="{{ csrf_token() }}" />
     <title>Admin - nickdaoquan.vn</title>
     <link href="{{ asset('assets/dist/css/tabler.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/dist/css/tabler-flags.min') }}" rel="stylesheet" />
@@ -15,6 +16,7 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/favicon.ico') }}">
     {{-- CKEditor --}}
     <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/44.1.0/ckeditor5.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.ckeditor.com/ckeditor5/44.1.0/ckeditor5.umd.js"></script>
 
     <style>
@@ -26,6 +28,16 @@
             font-feature-settings: "cv03", "cv04", "cv11";
         }
     </style>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
+            }
+        });
+    </script>
 </head>
 
 <body>
@@ -1234,7 +1246,7 @@
             Paragraph
         } = CKEDITOR;
 
-        const LICENSE_KEY = '{{ config("app.ckeditor.key") }}';
+        const LICENSE_KEY = '{{ config('app.ckeditor.key') }}';
     </script>
 </body>
 

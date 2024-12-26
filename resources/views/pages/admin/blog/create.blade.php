@@ -11,15 +11,10 @@
             </div>
             <div class="form-group mb-2">
                 <label for="content">Nội dung</label>
-                <textarea name="content" id="content" class="form-control" rows="10"></textarea>
+                <textarea name="content" id="content" class="form-control ckeditor-box" rows="10"></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Lưu</button>
         </form>
     </div>
-
-    <script src="https://cdn.ckeditor.com/4.20.2/standard/ckeditor.js"></script>
-    <script>
-        CKEDITOR.replace('content');
-    </script>
-    {{-- @vite(['resources/js/pages-exclusive/ckeditor.js']) --}}
+    @vite(['resources/js/pages-exclusive/ckeditor.js'])
 @endsection
