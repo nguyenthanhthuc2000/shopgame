@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Admin\Category;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 
 class Account extends Model
 {
@@ -226,12 +227,25 @@ class Account extends Model
         return $this->gallery;
     }
 
+    public function findByUuid($uuid)
+    {
+        return $this->byUuid($uuid)->first();
+    }
+
     /**
      * Check record can be edited
      */
     public function canEdit(): bool
     {
         return $this->status === self::STATUS_AVAILABLE;
+    }
+
+    /**
+     * Check record can be deleted
+     */
+    public function canDelete(): bool
+    {
+        return $this->author->id === Auth::id() && $this->status === self::STATUS_AVAILABLE;
     }
 
     /**

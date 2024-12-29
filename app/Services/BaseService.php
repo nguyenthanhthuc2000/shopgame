@@ -2,13 +2,54 @@
 
 namespace App\Services;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Log;
 
 class BaseService
 {
-    public function logWritter($channel, $message, $context = [], $level = 'debug')
+    protected $logChannel = '';
+
+    /**
+     * @var Model
+     */
+    protected $model;
+
+    /**
+     * Method to set model
+     */
+    public function setModel($model): self
     {
-        $log = Log::channel($channel);
+        $this->model = $model;
+
+        return $this;
+    }
+
+    /**
+     * Get this model
+     */
+    public function getModel(): Model
+    {
+        return $this->model;
+    }
+
+    /**
+     * Get this log channel
+     */
+    public function getLogChannel(): string
+    {
+        return $this->logChannel;
+    }
+
+    /**
+     * Method to write log
+     */
+    public function logWritter($message, $context = [], $level = 'debug'): void
+    {
+        if (!$this->logChannel) {
+            return;
+        }
+
+        $log = Log::channel($this->logChannel);
 
         if (!is_array($context)) {
             $context = [$context];

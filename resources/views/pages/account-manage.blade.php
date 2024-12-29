@@ -147,12 +147,13 @@
                     });
                     setTimeout(() => {
                         window.location.reload();
-                    }, 1000);
+                    }, 2000);
                 },
                 error: function(error) {
                     Swal.fire({
-                        text: response.message,
-                        icon: response.status,
+                        title: 'Thông báo!',
+                        text: error.message || '{{ __("messages.common_error") }}',
+                        icon: error.status || 'error',
                         confirmButtonColor: '#3085d6',
                         confirmButtonText: 'OK',
                     });

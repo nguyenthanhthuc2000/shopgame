@@ -11,7 +11,7 @@ class AccountService extends BaseService
     /**
      * @var string $logChannel
      */
-    protected $logChannel;
+    protected $logChannel = 'account_transactions';
 
     /**
      * @var GoogleDriveService $googleDriveService
@@ -25,9 +25,9 @@ class AccountService extends BaseService
 
     public function __construct(GoogleDriveService $googleDriveService, ImageService $imageService)
     {
-        $this->logChannel = 'account_transactions';
         $this->googleDriveService = $googleDriveService;
         $this->imageService = $imageService;
+        $this->setModel(new Account);
     }
 
     /**
@@ -85,7 +85,7 @@ class AccountService extends BaseService
 
             return true;
         } catch (Exception $e) {
-            $this->logWritter($this->logChannel, $e->getMessage(), $e);
+            $this->logWritter($e->getMessage(), $e);
             return false;
         }
     }
@@ -163,7 +163,26 @@ class AccountService extends BaseService
 
             return true;
         } catch (Exception $e) {
-            $this->logWritter($this->logChannel, $e->getMessage(), $e);
+            $this->logWritter($e->getMessage(), $e);
+            return false;
+        }
+    }
+
+    /**
+     * Delete account
+     */
+    public function delete(string $uuid): bool
+    {
+        try {
+            $account = $this->model->findByUuid($uuid);
+
+            if (empty($account) || !$account->canDelete()) {
+                return false;
+            }
+
+            return $account->delete();
+        } catch (Exception $e) {
+            $this->logWritter($e->getMessage(), $e);
             return false;
         }
     }
