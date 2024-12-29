@@ -58,7 +58,6 @@ a.meanmenu-reveal {
         font-size: 16px;
         text-indent: -9999em;
         line-height: 22px;
-        font-size: 1px;
         display: block;
         font-family: $font-family_1;
         font-weight: 700;
@@ -202,6 +201,7 @@ a.meanmenu-reveal {
                     font-weight: 700;
                     display: block;
                     padding: 8px;
+                    text-transform: uppercase;
                 }
                 &:last-child {
                     a,
@@ -238,16 +238,12 @@ a.meanmenu-reveal {
                 li {
                     display: block;
                     text-align: left;
-                    display: block;
                     a {
                         color: $color_4;
                         font-weight: 600;
                         padding: 7px 10px;
                         font-size: 13px;
-                        color: $color_4;
-                        padding: 8px;
-                        font-size: 13px;
-                        font-weight: 600;
+                        text-transform: uppercase;
                     }
                 }
             }

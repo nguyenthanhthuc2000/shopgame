@@ -130,9 +130,6 @@
             </div>
         </div>
     </div>
-    <button type="button" class="btn btn-primary showPopup" data-toggle="modal" data-target="#exampleModal"hidden>
-        Launch demo modal
-    </button>
 
     <div class="modal fade modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">

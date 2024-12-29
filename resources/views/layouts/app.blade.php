@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang={{ config('app.locale') }} class="mdl-js">
+<html lang="{{ config('app.locale') }}" class="mdl-js">
 
 <head>
     <base href={{ config('app.url') }}>

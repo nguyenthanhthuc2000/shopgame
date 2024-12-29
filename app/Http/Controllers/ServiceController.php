@@ -2,16 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Account;
-use App\Http\Requests\AccountRequest;
-use App\Models\Category;
-use App\Services\AccountService;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\DB;
+use App\Models\Service;
+use App\Services\ServiceCustomerService;
 
 class ServiceController extends Controller
 {
+    /**
+     * @var ServiceCustomerService
+     */
+    protected $serviceCustomerService;
+    public function __construct(ServiceCustomerService $serviceCustomerService)
+    {
+        $this->serviceCustomerService = $serviceCustomerService;
+    }
 
+
+    public function index()
+    {
+        $services = $this->serviceCustomerService->getAll();
+
+        return view('pages.service.index', compact('services'));
+    }
 }
