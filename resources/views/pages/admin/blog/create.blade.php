@@ -13,6 +13,12 @@
                 <label for="content">Nội dung</label>
                 <textarea name="content" id="content" class="form-control ckeditor-box" rows="10"></textarea>
             </div>
+            <div class="form-group mb-2">
+                <label for="is_public">
+                    <input type="checkbox" name="is_public" id="is_public">
+                    Hiện
+                </label>
+            </div>
             <button type="submit" class="btn btn-primary">Lưu</button>
         </form>
     </div>

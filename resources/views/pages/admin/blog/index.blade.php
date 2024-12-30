@@ -51,9 +51,9 @@
                                                 {{-- <td class='badge'>{{ $blog->status_name }}</td> --}}
                                                 <td>
                                                     @if ($blog->status_name === 'Hiện')
-                                                        <span class="badge bg-success">Hoạt động</span>
+                                                        <span class="badge bg-success">Hiện</span>
                                                     @else
-                                                        <span class="badge">Đã khóa</span>
+                                                        <span class="badge">Ẩn</span>
                                                     @endif
                                                 </td>
                                                 <td>
@@ -61,7 +61,8 @@
                                                         <button type="button" class="btn btn-danger btn-delete"
                                                             data-id="{{ $blog->id }}"
                                                             data-url="{{ route('admin.blog.delete', $blog->id) }}">Xóa</button>
-                                                        <a href="" class="btn btn-warning">Sửa</a>
+                                                        <a href="{{ route('admin.blog.edit', $blog->id) }}"
+                                                            class="btn btn-warning">Sửa</a>
                                                     </div>
                                                 </td>
                                             </tr>

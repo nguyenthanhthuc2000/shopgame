@@ -4,12 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BlogRequest;
-use App\Models\Account;
 use App\Models\Blog;
 use Google\Service\Blogger\Resource\Blogs;
-use Google\Service\ServiceControl\Auth;
+use Google\Service\ServiceControl\Auth as GoogleAuth;
+use Illuminate\Support\Facades\Auth as LaravelAuth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class BlogController extends Controller
 {
@@ -35,13 +36,18 @@ class BlogController extends Controller
 
     public function store(BlogRequest $request)
     {
-        // dd($request->all());
-        $slug = Str::slug($request->title, '-'); //carbon YMDHis
+        if (empty($request->title)) {
+            return back()->withErrors(['title' => 'Tiêu đề không được để trống.']);
+        }
+
+        $slug = Carbon::now()->format('YmdHis');
 
         $blog = new Blog();
         $blog->title = $request->title;
         $blog->content = $request->content;
         $blog->slug = $slug;
+        $blog->status = $request->has('is_public') && $request->is_public ? 1 : 0;
+        $blog->user_id = LaravelAuth::id();
         $blog->save();
 
         return redirect()->route('admin.blog.index')->with([
@@ -66,5 +72,24 @@ class BlogController extends Controller
             'status' => 'success',
             'message' => 'Xóa thành công!'
         ]);
+    }
+
+    public function edit($id)
+    {
+        $blog = Blog::findOrFail($id);
+
+        return view('pages.admin.blog.edit', compact('blog'));
+    }
+
+    public function update(BlogRequest $request, $id)
+    {
+        $blog = Blog::findOrFail($id);
+        $blog->title = $request->title;
+        $blog->content = $request->content;
+        $blog->status = $request->has('is_public') && $request->is_public ? 1 : 0;
+        $blog->user_id = LaravelAuth::id();
+        $blog->save();
+
+        return redirect()->route('admin.blog.index')->with('success', 'Bài viết đã được cập nhật thành công.');
     }
 }
