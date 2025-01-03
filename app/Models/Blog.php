@@ -37,9 +37,13 @@ class Blog extends Model
         $query->where('status', 1);
     }
 
-    public function scopeFilterByTitle($query, $title)
+    public function scopeFilterByKey($query, $filters)
     {
-        $query->where('title', 'LIKE', "%{$title}%");
+        $query->when(!empty($filters['username']), function ($query) use ($filters) {
+            $query->whereHas('user', function ($query) use ($filters) {
+                $query->where('name', 'LIKE', "%{$filters['username']}%");
+            });
+        });
     }
 
     public function getStatusNameAttribute()
@@ -52,4 +56,9 @@ class Blog extends Model
     //     // Chỉ người dùng sở hữu bài viết mới có thể chỉnh sửa/xóa
     //     return $this->user_id === Auth::id();
     // }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -14,7 +14,8 @@
                                         <div class="input-group w-100">
                                             <input type="text" for="username" id="username" name="username"
                                                 class="form-control" placeholder="Tìm kiếm bài viết..." aria-label="Search"
-                                                aria-describedby="searchIcon" value="{{ request('title') }}">
+                                                aria-describedby="searchIcon"
+                                                value="{{ request('username') ?? old('username') }}">
                                             <button type="submit" class="input-group-text" id="searchIcon">
                                                 <i class="fas fa-search"></i>
                                             </button>
@@ -45,10 +46,9 @@
                                             <tr>
                                                 <td>{{ $blog->id }}</td>
                                                 <td>{{ $blog->title }}</td>
-                                                <td>{{ $blog->user_id }}</td>
+                                                <td>{{ $blog->user->name ?? 'Không xác định' }}</td>
                                                 <td>{{ $blog->slug }}</td>
                                                 <td>{{ $blog->created_at->format('d/m/Y') }}</td>
-                                                {{-- <td class='badge'>{{ $blog->status_name }}</td> --}}
                                                 <td>
                                                     @if ($blog->status_name === 'Hiện')
                                                         <span class="badge bg-success">Hiện</span>

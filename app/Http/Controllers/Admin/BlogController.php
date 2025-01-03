@@ -16,14 +16,12 @@ class BlogController extends Controller
 {
     public function index(request $request)
     {
-        $blogs = Blog::orderBy('id', 'DESC');
+        $filters = $request->only(['username']);
 
-        if ($request->username) {
-            $blogs = $blogs->filterByTitle($request->username);
-        }
-
-
-        $blogs = $blogs->paginate(10)
+        $blogs = Blog::with('user')
+            ->filterByKey($filters)
+            ->orderBy('id', 'DESC')
+            ->paginate(10)
             ->withQueryString();
 
         return view('pages.admin.blog.index', compact('blogs'));
@@ -49,6 +47,8 @@ class BlogController extends Controller
         $blog->status = $request->has('is_public') && $request->is_public ? 1 : 0;
         $blog->user_id = LaravelAuth::id();
         $blog->save();
+
+        $userName = $blog->user->name;
 
         return redirect()->route('admin.blog.index')->with([
             'success' => 'Bài viết đã được lưu thành công.',
