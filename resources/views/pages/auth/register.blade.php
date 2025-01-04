@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>Đăng Nhập NickDaoQuan.vn - Shop Nick Ngọc Rồng Uy Tín Chất Lượng</title>
+        <title>Đăng Ký NickDaoQuan.vn - Shop Nick Ngọc Rồng Uy Tín Chất Lượng</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
         <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/favicon.ico') }}">
@@ -35,10 +35,10 @@
                                 </div>
                                 
                                 <div class="text-center auth-logo-text">
-                                    <h1 class="mb-3 mt-5">Đăng Nhập</h1>
+                                    <h1 class="mb-3 mt-5">Đăng Ký</h1>
                                     <p class="text-muted mb-0">Chào mừng bạn đến shop nick game uy tín giá rẻ.</p>  
                                 </div>
-                                <form class="form-horizontal auth-form my-4" action="{{ route('auth.login') }}" id="login-form" method="POST">
+                                <form class="form-horizontal auth-form my-4" action="{{ route('auth.register') }}" id="register-form" method="POST">
                                     @include('components.admin.alert')
                                     @csrf
                                     <div class="form-group">
@@ -52,6 +52,19 @@
                                         @error('email')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror                                
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="name">Tên</label>                                            
+                                        <div class="input-group mb-3"> 
+                                            <span class="auth-form-icon">
+                                                <i class="dripicons-lock"></i> 
+                                            </span>                                                       
+                                            <input type="name" name="name" class="form-control" id="name" placeholder="Nhập tên của bạn">
+                                        </div>        
+                                        @error('name')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror                       
                                     </div>
         
                                     <div class="form-group">
@@ -67,25 +80,29 @@
                                         @enderror                       
                                     </div>
         
-                                    <div class="form-group row mt-4">
-                                        <div class="col-sm-6">
-                                            <div class="custom-control custom-switch switch-success">
-                                                <input type="checkbox" class="custom-control-input" id="remember" name="remember">
-                                                <label class="custom-control-label text-muted" for="remember">Ghi nhớ</label>
-                                            </div>
-                                        </div>
+                                    <div class="form-group">
+                                        <label for="password_confirmation">Mật khẩu Xác Nhận</label>                                            
+                                        <div class="input-group mb-3"> 
+                                            <span class="auth-form-icon">
+                                                <i class="dripicons-lock"></i> 
+                                            </span>                                                       
+                                            <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" placeholder="Nhập mật khẩu xác nhận">
+                                        </div>        
+                                        @error('password')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror                       
                                     </div>
         
                                     <div class="form-group mb-0 row">
                                         <div class="col-12 mt-2">
-                                            <button class="btn btn-gradient-primary btn-round btn-block waves-effect waves-light" type="submit">Đăng Nhập <i class="fas fa-sign-in-alt ml-1"></i></button>
+                                            <button class="btn btn-gradient-primary btn-round btn-block waves-effect waves-light" type="submit">Đăng Ký <i class="fas fa-sign-in-alt ml-1"></i></button>
                                         </div>
                                     </div>
                                 </form>
                             </div>
                             
                             <div class="m-3 text-center text-muted">
-                                <p class="">Bạn chưa có tài khoản?  <a href="/dang-ky" class="text-primary ml-2">Đăng Kí Ngay</a></p>
+                                <p class="">Bạn đã có tài khoản?  <a href="/dang-nhap" class="text-primary ml-2">Đăng Nhập Ngay</a></p>
                             </div>
                         </div>
                     </div>

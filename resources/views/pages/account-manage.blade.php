@@ -45,7 +45,6 @@
                                                         <th scope="col">Mã Nick</th>
                                                         <th scope="col" style="min-width: 150px;">Tài Khoản</th>
                                                         <th scope="col" style="min-width: 70px;">Giá</th>
-                                                        <th scope="col" style="min-width: 70px;">Giá KM</th>
                                                         <th scope="col" style="min-width: 60px;">Trạng Thái</th>
                                                         <th scope="col" style="min-width: 60px;">Ngày Tạo</th>
                                                         <th scope="col" style="min-width: 60px;">Hành Động</th>
@@ -54,11 +53,18 @@
                                                 <tbody>
                                                     @forelse($accounts as $account)
                                                         <tr>
-                                                            <td>#{{ $account->id }}</td>
+                                                            <td><a href="{{ route('account.show', ['categorySlug' => $account->category->slug,'accountUuid' => $account->uuid]) }}">#{{ $account->id }}</a></td>
                                                             <td>{{ $account->username }}</td>
                                                             <td>{{ getPrice($account->price) }}</td>
-                                                            <td>{{ getPrice($account->discount_price) }}</td>
-                                                            <td>{{ config('account.account_status.' . $account->status) }}</td>
+                                                            <td>
+                                                                @if ($account->status === \App\Models\Account::STATUS_SOLD)
+                                                                <span class="acccount-status acccount-status--sold">{{ config('account.account_status.' . $account->status) }}</span>
+                                                                @elseif ($account->status === \App\Models\Account::STATUS_AVAILABLE)
+                                                                <span class="acccount-status acccount-status--avaiable">{{ config('account.account_status.' . $account->status) }}</span>
+                                                                @else
+                                                                <span class="acccount-status acccount-status--hide">{{ config('account.account_status.' . $account->status) }}</span>
+                                                                @endif
+                                                            </td>
                                                             <td>{{ date('d/m/Y H:i', strtotime($account->created_at)) }}</td>
                                                             <td>
                                                                 @if ($account->canEdit())

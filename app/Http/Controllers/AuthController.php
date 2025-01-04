@@ -25,6 +25,16 @@ class AuthController extends Controller
     }
 
     /**
+     * showRegisterForm
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function showRegisterForm()
+    {
+        return view("pages.auth.register");
+    }
+
+    /**
      * Summary of changePassword
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
@@ -63,22 +73,17 @@ class AuthController extends Controller
         if (Auth::attempt($credentials, $remember)) {
             if (Auth::user()->status !== User::ACTIVE_STATUS) {
                 Auth::logout();
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Tài khoản của bạn đã bị khóa.',
-                ], 401);
+                return back()->withErrors([
+                    'error' => 'Tài khoản của bạn đã bị khóa!',
+                ]);
             }
 
-            return response()->json([
-                'success' => true,
-                'message' => 'Đăng nhập thành công',
-            ]);
+            return redirect()->route('home');
         }
 
-        return response()->json([
-            'success' => false,
-            'message' => 'Thông tin không chính xác.',
-        ], 401);
+        return back()->withErrors([
+            'error' => 'Thông tin không chính xác!',
+        ]);
     }
 
 
@@ -102,11 +107,8 @@ class AuthController extends Controller
         $user->save();
 
         Auth::login($user);
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Đăng ký thành công!',
-        ]);
+        
+        return redirect()->route('home');
     }
 
     /**

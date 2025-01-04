@@ -39,8 +39,8 @@
                                                 <thead>
                                                     <tr>
                                                         <th scope="col" style="min-width: 50px;">Mã Nick</th>
+                                                        <th scope="col" style="min-width: 150px;">Tài Khoản</th>
                                                         <th scope="col" style="min-width: 150px;">Danh Mục</th>
-                                                        <th scope="col" style="min-width: 70px;">Giá</th>
                                                         <th scope="col" style="min-width: 70px;">Thực Nhận</th>
                                                         <th scope="col" style="min-width: 60px;">Chiếc Khấu</th>
                                                         <th scope="col" style="min-width: 60px;">Trước GD</th>
@@ -51,9 +51,9 @@
                                                 <tbody>
                                                     @forelse($accounts as $account)
                                                         <tr>
-                                                            <td>#{{ $account->account_id }}</td>
+                                                            <td><a href="{{ route('account.show', ['categorySlug' => $account->account->category->slug,'accountUuid' => $account->account->uuid]) }}">#{{ $account->account_id }}</a></td>
+                                                            <td>{{ $account->account->username }}</td>
                                                             <td>{{ $account->account->category->name }}</td>
-                                                            <td>{{ getPrice($account->price) }}</td>
                                                             <td>{{ getPrice($account->seller_profit) }}</td>
                                                             <td>{{ $account->profit_rate }}%</td>
                                                             <td>{{ getPrice($account->seller_vnd_before) }}</td>

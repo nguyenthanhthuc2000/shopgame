@@ -28,6 +28,7 @@ Route::middleware(['throttle:300,1'])->group(function () {
     Route::get('/nap-the-cao', [CardController::class, 'index'])->name('card.index');
     Route::get('/dich-vu', [ServiceController::class, 'index'])->name('serivce.index');
     Route::get('/nap-tien', [HomeController::class, 'deposit'])->name('home.deposit');
+    Route::get('/dang-ky', [AuthController::class, 'showRegisterForm'])->name('register');
     Route::get('/dang-nhap', [AuthController::class, 'showLoginForm'])->name('login');
     Route::post('/dang-nhap', [AuthController::class, 'login'])->name('auth.login');
     Route::post('/dang-ky', [AuthController::class, 'register'])->name('auth.register');
