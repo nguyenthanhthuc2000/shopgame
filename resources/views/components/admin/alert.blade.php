@@ -1,7 +1,7 @@
 <!-- Hiển thị thông báo thành công -->
 @if(session('success'))
 <div class="alert alert-success" role="alert">
-    <div class="d-flex">
+    <div class="d-flex" style="align-items: center;">
         <div>
             <!-- Icon thành công -->
             <svg xmlns="http://www.w3.org/2000/svg" class="icon alert-icon" width="24" height="24" viewBox="0 0 24 24"
@@ -20,7 +20,7 @@
 <!-- Hiển thị thông báo lỗi -->
 @if($errors->has('error'))
 <div class="alert alert-danger" role="alert">
-    <div class="d-flex">
+    <div class="d-flex" style="align-items: center;">
         <div>
             <!-- Icon lỗi -->
             <svg xmlns="http://www.w3.org/2000/svg" class="icon alert-icon" width="24" height="24" viewBox="0 0 24 24"

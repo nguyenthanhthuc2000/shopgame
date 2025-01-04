@@ -52,11 +52,7 @@
                                                                 style="color:#e74c3c"><span style="font-size:20px">NẠP
                                                                     TIỀN QUA ATM, MOMO CỘNG THÊM 20%<br>
                                                                     Nạp 100k được 120k</span></span></strong></p>
-                                                    <b>Nội dung thanh toán: nap tien nickdaoquan - "tài khoản đăng nhập của
-                                                        bạn"</b>
-                                                    <br>
-                                                    <b>Ví dụ: <span style="color: #e74c3c;">nap tien nickdaoquan -
-                                                            thuc@gmail.com</span></b>
+                                                    <b>Nội dung thanh toán: <span style="color: #e74c3c;">nickdaoquan</span></b>
                                                     <br>
                                                     <b>Chuyển xong chụp lại màn hình và liên hệ zalo để được hổ trợ nhanh
                                                         nhất: <a href="https://zalo.me/0389946423"
