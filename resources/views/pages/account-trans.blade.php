@@ -43,7 +43,7 @@
                                                 <tbody>
                                                     @forelse($accountTrans as $index => $accountTran)
                                                         <tr>
-                                                            <td>#{{ $accountTran->account_id }}</td>
+                                                            <td><a href="{{ route('account.show', ['categorySlug' => $accountTran->account->category->slug,'accountUuid' => $accountTran->account->uuid]) }}">#{{ $accountTran->account_id }}</a></td>
                                                             <td style="min-width: 200px;">
                                                                 {{ $accountTran->account->username }}</td>
                                                             <td style="min-width: 100px;">
