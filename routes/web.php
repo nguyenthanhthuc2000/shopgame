@@ -47,7 +47,6 @@ Route::middleware(['throttle:300,1'])->group(function () {
             Route::get('/', [AccountController::class, 'index'])->name('account.manage.index');
             Route::post('/', [AccountController::class, 'store'])->name('account.create.post');
             Route::get('/them-moi', [AccountController::class, 'create'])->name('account.create');
-            Route::put('/{uuid}', [AccountController::class, 'update'])->name('account.edit.post');
             Route::get('/{uuid}/chinh-sua', [AccountController::class, 'edit'])->name('account.edit');
             Route::patch('/{uuid}/chinh-sua', [AccountController::class, 'update'])->name('account.edit.post');
             Route::delete('/{uuid}', [AccountController::class, 'destroy'])->name('account.delete');

@@ -1,0 +1,42 @@
+/*********************************
+ *          LOGIN PAGE
+ *********************************/
+@font-face {
+    font-family: "dripicons-v2";
+    src: url("@/fonts/dripicons-v2.eot");
+    src:
+        url("@/fonts/dripicons-v2.eot?#iefix") format("embedded-opentype"),
+        url("@/fonts/dripicons-v2.woff") format("woff"),
+        url("@/fonts/dripicons-v2.ttf") format("truetype"),
+        url("@/fonts/dripicons-v2.svg#dripicons-v2") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Font Awesome 6 Free";
+    font-style: normal;
+    font-weight: 900;
+    font-display: auto;
+    src: url("@/fonts/fa-solid-900.eot");
+    src:
+        url("@/fonts/fa-solid-900.eot?#iefix") format("embedded-opentype"),
+        url("@/fonts/fa-solid-900.woff2") format("woff2"),
+        url("@/fonts/fa-solid-900.woff") format("woff"),
+        url("@/fonts/fa-solid-900.ttf") format("truetype"),
+        url("@/fonts/fa-solid-900.svg#fontawesome") format("svg");
+}
+
+/* MaterialDesignIcons.com */
+@font-face {
+    font-family: "Material Design Icons";
+    src: url("@/fonts/materialdesignicons-webfont.eot?v=3.2.89");
+    src:
+        url("@/fonts/materialdesignicons-webfont.eot?#iefix&v=3.2.89") format("embedded-opentype"),
+        url("@/fonts/materialdesignicons-webfont.woff2?v=3.2.89") format("woff2"),
+        url("@/fonts/materialdesignicons-webfont.woff?v=3.2.89") format("woff"),
+        url("@/fonts/materialdesignicons-webfont.ttf?v=3.2.89") format("truetype"),
+        url("@/fonts/materialdesignicons-webfont.svg?v=3.2.89#materialdesigniconsregular") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
