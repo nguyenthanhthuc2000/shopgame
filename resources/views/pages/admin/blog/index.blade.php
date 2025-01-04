@@ -8,9 +8,10 @@
                     <h2 class="mb-4">Bài viết</h2>
                     <div class="col-12">
                         <div class="card">
-                            <div class="d-flex justify-content-end my-3 gap-3">
-                                <div class="d-flex">
-                                    <form action="{{ route('admin.blog.index') }}" method="GET">
+                            <div class="card-header justify-content-between">
+                                <h3 class="card-title">Danh sách</h3>
+                                <div class="d-flex justify-content-end my-3 gap-3">
+                                    <form action="{{ route('admin.blog.index') }}" method="GET" class="mb-0">
                                         <div class="input-group w-100">
                                             <input type="text" for="username" id="username" name="username"
                                                 class="form-control" placeholder="Tìm kiếm bài viết..." aria-label="Search"
@@ -21,12 +22,11 @@
                                             </button>
                                         </div>
                                     </form>
+                                    <a href="{{ route('admin.blog.create') }}" class="btn btn-primary">
+                                        <i class="fa-solid fa-plus"></i>
+                                        &nbsp;Thêm Mới
+                                    </a>
                                 </div>
-                                <a href="{{ route('admin.blog.create') }}" class="btn btn-primary col-xs-12 btn4"
-                                    style="display: flex; align-items: center; gap: 6px;">
-                                    <i class="fa-solid fa-plus"></i>
-                                    Thêm Mới
-                                </a>
                             </div>
                             <div class="table-responsive">
                                 <table class="table card-table table-vcenter text-nowrap datatable">
@@ -35,7 +35,6 @@
                                             <th class="w-1">ID</th>
                                             <th>Tiêu đề</th>
                                             <th>Tài khoản</th>
-                                            <th>Slug</th>
                                             <th>Ngày tạo</th>
                                             <th>Trạng thái</th>
                                             <th>Hành động</th>
@@ -47,14 +46,10 @@
                                                 <td>{{ $blog->id }}</td>
                                                 <td>{{ $blog->title }}</td>
                                                 <td>{{ $blog->user->name ?? 'Không xác định' }}</td>
-                                                <td>{{ $blog->slug }}</td>
                                                 <td>{{ $blog->created_at->format('d/m/Y') }}</td>
                                                 <td>
-                                                    @if ($blog->status_name === 'Hiện')
-                                                        <span class="badge bg-success">Hiện</span>
-                                                    @else
-                                                        <span class="badge">Ẩn</span>
-                                                    @endif
+                                                    <span
+                                                        class="badge {{ $blog->status_color }}">{{ $blog->status_name }}</span>
                                                 </td>
                                                 <td>
                                                     <div class="d-flex gap-3">
@@ -76,7 +71,7 @@
                             </div>
                             <div class="card-footer d-flex align-items-center">
                                 <div class="ms-auto">
-                                    {{-- {{ $blogs->links('pagination::bootstrap-5') }} --}}
+                                    {{ $blogs->links('pagination::bootstrap-5') }}
                                 </div>
                             </div>
                         </div>

@@ -24,11 +24,15 @@ class Blog extends Model
             'name' => 'Ẩn',
             'value' => 0,
             'is_default' => false,
+            'color' => 'text-light',
+            'background' => 'bg-secondary'
         ],
         [
             'name' => 'Hiện',
             'value' => 1,
             'is_default' => true,
+            'color' => 'text-light',
+            'background' => 'bg-success'
         ],
     ];
 
@@ -51,11 +55,12 @@ class Blog extends Model
         $status = collect(self::STATUS)->firstWhere('value', $this->status);
         return $status ? $status['name'] : null;
     }
-    //     public function canEdit(): bool
-    // {
-    //     // Chỉ người dùng sở hữu bài viết mới có thể chỉnh sửa/xóa
-    //     return $this->user_id === Auth::id();
-    // }
+
+    public function getStatusColorAttribute()
+    {
+        $status = collect(self::STATUS)->firstWhere('value', $this->status);
+        return $status ? $status['color'] . ' ' . $status['background'] : null;
+    }
 
     public function user()
     {

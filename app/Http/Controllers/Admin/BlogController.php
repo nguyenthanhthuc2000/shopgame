@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BlogRequest;
 use App\Models\Blog;
-use Google\Service\Blogger\Resource\Blogs;
-use Google\Service\ServiceControl\Auth as GoogleAuth;
 use Illuminate\Support\Facades\Auth as LaravelAuth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -21,7 +19,7 @@ class BlogController extends Controller
         $blogs = Blog::with('user')
             ->filterByKey($filters)
             ->orderBy('id', 'DESC')
-            ->paginate(10)
+            ->paginate()
             ->withQueryString();
 
         return view('pages.admin.blog.index', compact('blogs'));
@@ -34,11 +32,7 @@ class BlogController extends Controller
 
     public function store(BlogRequest $request)
     {
-        if (empty($request->title)) {
-            return back()->withErrors(['title' => 'Tiêu đề không được để trống.']);
-        }
-
-        $slug = Carbon::now()->format('YmdHis');
+        $slug = Str::slug($request->title) . '-' . Carbon::now()->format('YmdHis');
 
         $blog = new Blog();
         $blog->title = $request->title;
@@ -47,8 +41,6 @@ class BlogController extends Controller
         $blog->status = $request->has('is_public') && $request->is_public ? 1 : 0;
         $blog->user_id = LaravelAuth::id();
         $blog->save();
-
-        $userName = $blog->user->name;
 
         return redirect()->route('admin.blog.index')->with([
             'success' => 'Bài viết đã được lưu thành công.',
