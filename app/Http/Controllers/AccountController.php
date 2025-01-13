@@ -6,7 +6,6 @@ use App\Models\Account;
 use App\Http\Requests\AccountRequest;
 use App\Models\Category;
 use App\Services\AccountService;
-use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -124,18 +123,14 @@ class AccountController extends Controller
         ];
 
         DB::transaction(function () use ($request, $accountData) {
-            if ($request->hasFile('banner')) {
-                $banner = $request->file('banner');
-            }
-
-            if ($request->hasFile('gallery')) {
-                $imagesDetail = $request->file('gallery');
-            }
-
-            $this->accountService->storeAccount($accountData, $banner, $imagesDetail ?? []);
+            $this->accountService->storeAccount(
+                $accountData, 
+                $request->file('banner'), 
+                $request->file('gallery', [])
+            );
         });
 
-        return redirect()->route('account.manage.index')->with('success', "Thêm nick thành công");
+        return redirect()->route('account.manage.index')->with('success', 'Thêm nick thành công');
     }
 
     /**

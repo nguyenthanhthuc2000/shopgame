@@ -12,6 +12,8 @@ class Image extends Model
 
     const IS_BANNER = 1;
 
+    const IS_IMAGE_DETAIL = 0;
+
     const IMAGE_SIZE = 1000;
 
     protected $primaryKey = 'id';

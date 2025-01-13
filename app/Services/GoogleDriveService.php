@@ -7,6 +7,7 @@ use Google\Client;
 use Google\Service\Drive;
 use Google\Service\Drive\DriveFile;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class GoogleDriveService
 {
@@ -132,19 +133,12 @@ class GoogleDriveService
      */
     protected function makeFilePublic($fileId)
     {
-        try {
-            $permission = new \Google\Service\Drive\Permission([
-                'type' => 'anyone',
-                'role' => 'reader', // Can be 'reader' for public access
-            ]);
+        $permission = new \Google\Service\Drive\Permission([
+            'type' => 'anyone',
+            'role' => 'reader', // Can be 'reader' for public access
+        ]);
 
-            $this->driveService->permissions->create($fileId, $permission);
-        } catch (\Exception $e) {
-            Log::channel($this->logChannel ?? 'stack')->error(
-                'Error setting public permission: ' . $e->getMessage(),
-                ['fileId' => $fileId]
-            );
-        }
+        $this->driveService->permissions->create($fileId, $permission);
     }
 
 
@@ -199,5 +193,51 @@ class GoogleDriveService
     {
         // Deleting a folder works the same as deleting a file
         return $this->deleteFile($folderId);
+    }
+
+    /**
+     * Upload File
+     * 
+     * @param mixed $filePath
+     * @param mixed $folderId
+     * @return array|null
+     */
+    public function uploadFile($filePath, $folderId = null)
+    {
+        try {
+            $fileMetadata['name'] = basename($filePath);
+            $googleFile = new DriveFile($fileMetadata);
+
+            if ($folderId) {
+                $fileMetadata['parents'] = [$folderId];
+            }
+
+            $uploadedFile = $this->driveService->files->create(
+                $googleFile,
+                [
+                    'data' => Storage::get($filePath),
+                    'mimeType' => Storage::mimeType($filePath),
+                    'uploadType' => 'multipart',
+                ]
+            );
+
+            $fileId = $uploadedFile->id;
+            $this->makeFilePublic($fileId);
+            $fileInfo = $this->driveService->files->get($fileId, ['fields' => 'id, name, webViewLink, webContentLink']);
+
+            return [
+                'id' => $fileInfo->id,
+                'name' => $fileInfo->name,
+                'public_url' => $fileInfo->webViewLink,
+                'src_url' => 'https://drive.google.com/thumbnail?id=' . $fileInfo->id,
+            ];
+        } catch (Exception $e) {
+            Log::channel($this->logChannel ?? 'stack')->error(
+                'Google Drive Upload Error: ' . $e->getMessage(),
+                ['filePath' => $filePath]
+            );
+
+            return null;
+        }
     }
 }

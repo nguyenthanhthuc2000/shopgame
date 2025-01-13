@@ -3,8 +3,9 @@
 namespace App\Services;
 
 use App\Models\Account;
+use App\Jobs\UploadToGoogleDrive;
+use App\Models\Image;
 use Exception;
-use Illuminate\Support\Facades\Auth;
 
 class AccountService extends BaseService
 {
@@ -40,47 +41,15 @@ class AccountService extends BaseService
     public function storeAccount(array $account, $banner, $gallery = [])
     {
         try {
+            $folderId = config('google.accounts_folder_id');
             $accountCreated = Account::create($account);
 
-            if (!$accountCreated) {
-                return false;
+            if (!empty($banner)) {
+                UploadToGoogleDrive::dispatch($banner->store('temp'), $accountCreated->id, Image::IS_BANNER, $folderId);
             }
 
-            $folderId = config('google.accounts_folder_id');
-
-            if ($banner) {
-                $bannerUploaded = $this->googleDriveService->uploadSingleFile($banner, $folderId);
-            }
-
-            if (!empty($gallery)) {
-                $imagesUploaded = $this->googleDriveService->uploadMultipleFiles($gallery, $folderId);
-            }
-
-            if (!empty($bannerUploaded['src_url']) && !empty($bannerUploaded['id'])) {
-                $bannerData = [
-                    'account_id' => $accountCreated->id,
-                    'image_link' => $bannerUploaded['src_url'],
-                    'is_banner' => 1,
-                    'file_id' => $bannerUploaded['id'],
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ];
-                $this->imageService->createGallery($bannerData);
-            }
-            if (!empty($imagesUploaded)) {
-                $galleryData = array_map(function ($img) use ($accountCreated) {
-                    if (!empty($img['src_url']) && !empty($img['id'])) {
-                        return [
-                            'account_id' => $accountCreated->id,
-                            'image_link' => $img['src_url'],
-                            'file_id' => $img['id'],
-                            'is_banner' => 0,
-                            'created_at' => now(),
-                            'updated_at' => now(),
-                        ];
-                    }
-                }, $imagesUploaded);
-                $this->imageService->createGallery($galleryData);
+            foreach ($gallery as $file) {
+                UploadToGoogleDrive::dispatch($file->store('temp'), $accountCreated->id, Image::IS_IMAGE_DETAIL, $folderId);
             }
 
             return true;
