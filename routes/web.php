@@ -79,8 +79,9 @@ Route::middleware(['throttle:300,1'])->group(function () {
             Route::get('/blog/create', [AdminBlogController::class, 'create'])->name('admin.blog.create');
             Route::post('/blog', [AdminBlogController::class, 'store'])->name('admin.blog.store');
             Route::delete('/{id}', [AdminBlogController::class, 'destroy'])->name('admin.blog.delete');
-            Route::get('/admin/blog/{id}/chinh-sua', [AdminBlogController::class, 'edit'])->name('admin.blog.edit');
-            Route::put('/admin/blog/{id}', [AdminBlogController::class, 'update'])->name('admin.blog.update');
+            Route::get('/blog/{id}/chinh-sua', [AdminBlogController::class, 'edit'])->name('admin.blog.edit');
+            Route::put('/blog/{id}', [AdminBlogController::class, 'update'])->name('admin.blog.update');
+            Route::patch('/blogs/{blog}/toggle-status', [AdminBlogController::class, 'toggleStatus'])->name('admin.blog.toggle');
         });
     });
 });

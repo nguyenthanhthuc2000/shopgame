@@ -1248,6 +1248,8 @@
 
         const LICENSE_KEY = '{{ config('app.ckeditor.key') }}';
     </script>
+
+    @stack('js')
 </body>
 
 </html>

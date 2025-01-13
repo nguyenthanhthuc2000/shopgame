@@ -32,10 +32,11 @@
                                 <table class="table card-table table-vcenter text-nowrap datatable">
                                     <thead>
                                         <tr>
-                                            <th class="w-1">ID</th>
+                                            <th class="w-1">Stt</th>
                                             <th>Tiêu đề</th>
                                             <th>Tài khoản</th>
                                             <th>Ngày tạo</th>
+                                            <th>Ngày sửa</th>
                                             <th>Trạng thái</th>
                                             <th>Hành động</th>
                                         </tr>
@@ -43,13 +44,17 @@
                                     <tbody>
                                         @forelse ($blogs as $blog)
                                             <tr>
-                                                <td>{{ $blog->id }}</td>
+                                                <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $blog->title }}</td>
-                                                <td>{{ $blog->user->name ?? 'Không xác định' }}</td>
+                                                <td>{{ $blog->user->email }}</td>
                                                 <td>{{ $blog->created_at->format('d/m/Y') }}</td>
+                                                <td>{{ $blog->slug}}</td>
                                                 <td>
-                                                    <span
-                                                        class="badge {{ $blog->status_color }}">{{ $blog->status_name }}</span>
+                                                    <button class="badge {{ $blog->status_color }} btn-toggle-status"
+                                                        data-url="{{ route('admin.blog.toggle', $blog->id) }}"
+                                                        data-status="{{ $blog->status }}">
+                                                        {{ $blog->status_name }}
+                                                    </button>
                                                 </td>
                                                 <td>
                                                     <div class="d-flex gap-3">
@@ -79,7 +84,34 @@
                 </div>
             </div>
         </div>
-
+        @vite(['resources/js/pages-exclusive/blog-manage.js'])
     </div>
 @endsection
-@vite(['resources/js/pages-exclusive/blog-manage.js'])
+@push('js')
+    <script>
+        $(document).ready(function() {
+            $(document).on('click', '.btn-toggle-status', function() {
+                var button = $(this);
+                var url = button.data('url');
+                var currentStatus = button.data('status');
+                var newStatus = currentStatus == 1 ? 0 : 1;
+                $.ajax({
+                    url: url,
+                    type: 'PATCH',
+                    data: {
+                        is_public: newStatus,
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            button.data('status', newStatus);
+                            button.text(newStatus ? 'Hiện' : 'Ẩn');
+                            button.text(response.status_name);
+                            button.removeClass('bg-secondary bg-success')
+                                .addClass(response.status_color);
+                        }
+                    },
+                });
+            });
+        });
+    </script>
+@endpush

@@ -23,4 +23,5 @@
             <button type="submit" class="btn btn-primary">Cập Nhật</button>
         </form>
     </div>
+    @vite(['resources/js/pages-exclusive/ckeditor.js'])
 @endsection

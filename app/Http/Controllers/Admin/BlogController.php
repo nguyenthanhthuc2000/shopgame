@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\BlogRequest;
+use App\Http\Requests\Admin\Blog\StoreRequest;
+use App\Http\Requests\Admin\Blog\ToggleRequest;
 use App\Models\Blog;
-use Illuminate\Support\Facades\Auth as LaravelAuth;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
@@ -30,16 +31,16 @@ class BlogController extends Controller
         return view('pages.admin.blog.create');
     }
 
-    public function store(BlogRequest $request)
+    public function store(StoreRequest $request)
     {
-        $slug = Str::slug($request->title) . '-' . Carbon::now()->format('YmdHis');
+        $slug = Str::slug($request->title, '-') . '-' . Carbon::now()->format('d-m-Y');
 
         $blog = new Blog();
         $blog->title = $request->title;
         $blog->content = $request->content;
         $blog->slug = $slug;
         $blog->status = $request->has('is_public') && $request->is_public ? 1 : 0;
-        $blog->user_id = LaravelAuth::id();
+        $blog->user_id = Auth::id();
         $blog->save();
 
         return redirect()->route('admin.blog.index')->with([
@@ -73,15 +74,32 @@ class BlogController extends Controller
         return view('pages.admin.blog.edit', compact('blog'));
     }
 
-    public function update(BlogRequest $request, $id)
+    public function update(StoreRequest $request, $id)
     {
         $blog = Blog::findOrFail($id);
         $blog->title = $request->title;
         $blog->content = $request->content;
         $blog->status = $request->has('is_public') && $request->is_public ? 1 : 0;
-        $blog->user_id = LaravelAuth::id();
+        $blog->user_id = Auth::id();
         $blog->save();
 
         return redirect()->route('admin.blog.index')->with('success', 'Bài viết đã được cập nhật thành công.');
+    }
+
+    public function toggleStatus(ToggleRequest $request, $id)
+    {
+        $blog = Blog::findOrFail($id);
+
+        $newStatus = filter_var($request->is_public, FILTER_VALIDATE_BOOLEAN);
+
+        $blog->status = $newStatus;
+        $blog->save();
+
+        return response()->json([
+            'success' => true,
+            'new_status' => $blog->status,
+            'status_name' => $blog->status_name,
+            'status_color' => $blog->status_color
+        ]);
     }
 }
