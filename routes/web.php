@@ -35,8 +35,8 @@ Route::middleware(['throttle:300,1'])->group(function () {
 
     Route::group(['prefix' => 'nick-game'], function () {
         Route::get('/', [CategoryController::class, 'list'])->name('category.list');
-        Route::get('/{slug}', [CategoryController::class, 'index'])->name('category.index');
-        Route::get('/{categorySlug}/{accountUuid}', [AccountController::class, 'show'])->name('account.show');
+        Route::get('/{category}', [CategoryController::class, 'index'])->name('category.index');
+        Route::get('/{category}/{account}', [AccountController::class, 'show'])->name('account.show');
     });
 
     Route::middleware([LogRequestMiddleware::class])->group(function () {
@@ -47,10 +47,10 @@ Route::middleware(['throttle:300,1'])->group(function () {
             Route::get('/', [AccountController::class, 'index'])->name('account.manage.index');
             Route::post('/', [AccountController::class, 'store'])->name('account.create.post');
             Route::get('/them-moi', [AccountController::class, 'create'])->name('account.create');
-            Route::put('/{uuid}', [AccountController::class, 'update'])->name('account.edit.post');
-            Route::get('/{uuid}/chinh-sua', [AccountController::class, 'edit'])->name('account.edit');
-            Route::patch('/{uuid}/chinh-sua', [AccountController::class, 'update'])->name('account.edit.post');
-            Route::delete('/{uuid}', [AccountController::class, 'destroy'])->name('account.delete');
+            Route::put('/{account}', [AccountController::class, 'update'])->name('account.edit.post');
+            Route::get('/{account}/chinh-sua', [AccountController::class, 'edit'])->name('account.edit');
+            Route::patch('/{account}/chinh-sua', [AccountController::class, 'update'])->name('account.edit.post');
+            Route::delete('/{account}', [AccountController::class, 'destroy'])->name('account.delete');
         });
 
         Route::group(['middleware' => ['auth']], function () {
@@ -59,7 +59,7 @@ Route::middleware(['throttle:300,1'])->group(function () {
             Route::get('/thong-tin-tai-khoan', [UserController::class, 'index'])->name('profile.index');
             Route::get('/tai-khoan-da-mua', [AccountTransactionController::class, 'index'])->name('account.tran.index');
             Route::post('/nap-the-cao/gui-the', [CardController::class, 'postCard'])->name('postCard');
-            Route::get('/mua-nick/{accountUuid}', [AccountTransactionController::class, 'buyNick'])->name('account.buy');
+            Route::get('/mua-nick/{account}', [AccountTransactionController::class, 'buyNick'])->name('account.buy');
         });
 
         Route::group(['prefix' => 'admin', 'middleware' => [IsAdmin::class, 'auth']], function () {

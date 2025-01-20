@@ -34,27 +34,26 @@ class AccountController extends Controller
         $accounts = Account::orderBy('id', 'DESC')
             ->where('user_id', Auth::id())
             ->paginate();
-
+            
         return view('pages.account-manage', compact('accounts'));
     }
 
     /**
      * Summary of show
      *
-     * @param mixed $categorySlug
-     * @param mixed $accountUuid
+     * @param Category $category
+     * @param Account $account
      * @return mixed|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
      */
-    public function show($categorySlug, $accountUuid)
+    public function show(Category $category, Account $account)
     {
-        $category = Category::where('slug', $categorySlug)->first();
-        $account = Account::select(['uuid', 'price', 'discount_price', 'user_id', 'category_id', 'note', 'status', 'server', 'class', 'earring', 'regis_type', 'id'])
-            ->with('images')
-            ->whereIn('status', [Account::STATUS_SOLD, Account::STATUS_AVAILABLE])
-            ->where('uuid', $accountUuid)
-            ->first();
+        if ($account->status === Account::STATUS_HIDE) {
+            flash()->error('Tài khoản này hiện không hoạt động!');
+            return redirect()->route('home');
+        }
 
-        if (empty($category) || !empty($category) && $category->status !== Category::ACTIVE_STATUS || empty($account)) {
+        if ($category->status !== Category::ACTIVE_STATUS) {
+            flash()->error('Danh mục game hiện không hoạt động!');
             return redirect()->route('home');
         }
 
@@ -98,7 +97,6 @@ class AccountController extends Controller
         return view('pages.create-account',  $data);
     }
 
-
     /**
      * Summary of store
      *
@@ -130,16 +128,17 @@ class AccountController extends Controller
             );
         });
 
-        return redirect()->route('account.manage.index')->with('success', 'Thêm nick thành công');
+        flash()->success('Thêm tài khoản thành công, hình ảnh của nick sẽ được cập nhật trong giây lát.');
+        return redirect()->route('account.manage.index');
     }
 
     /**
      * Summary of edit
      *
-     * @param mixed $uuid
+     * @param Account $account
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function edit($uuid)
+    public function edit(Account $account)
     {
         $categories = Category::isActive()->get();
         $classes = Account::CLASSES;
@@ -147,9 +146,8 @@ class AccountController extends Controller
         $earring = Account::EARRING;
         $servers = Account::SERVER;
         $statuses = Account::STATUS;
-        $account = Account::with(['banner', 'images'])->whereUuid($uuid)->first();
 
-        if (!$account || !$account->canEdit()) {
+        if (!$account->canEdit()) {
             return redirect()->route('account.manage.index');
         }
 
@@ -166,11 +164,16 @@ class AccountController extends Controller
         return view('pages.edit-account', $data);
     }
 
-    public function update(Request $request, $uuid)
+    /**
+     * Update account
+     * 
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Account $account
+     * @return mixed|\Illuminate\Http\RedirectResponse
+     */
+    public function update(Request $request, Account $account)
     {
-        $account = Account::whereUuid($uuid)->first();
-
-        if (!$account || !$account->canEdit()) {
+        if (!$account->canEdit()) {
             return redirect()->back()->with('error', 'Tài khoản không hợp lệ');
         }
 
@@ -189,7 +192,7 @@ class AccountController extends Controller
 
         $accountData = array_filter($accountData, fn($value) => $value !== '' && $value !== null);
 
-        DB::transaction(function () use ($request, $accountData, $uuid) {
+        DB::transaction(function () use ($request, $accountData, $account) {
             if ($request->hasFile('banner')) {
                 $banner = $request->file('banner');
             }
@@ -202,21 +205,23 @@ class AccountController extends Controller
                 $accountData['removed_image'] = explode(';', $accountData['removed_image']);
             }
 
-            $this->accountService->updateAccount($uuid, $accountData, $banner ?? null, $imagesDetail ?? []);
+            $this->accountService->updateAccount($account, $accountData, $banner ?? null, $imagesDetail ?? []);
         });
 
-        return redirect()->route('account.manage.index')->with('success', "Thêm nick thành công");
+        flash()->success('Cập nhật tài khoản thành công, hình ảnh của nick sẽ được cập nhật trong giây lát.');
+        return redirect()->route('account.manage.index');
     }
 
     /**
-     * Summary of destroy
+     * Destroy account
      *
-     * @param mixed $uuid
+     * @param \App\Models\Account $account
+     * 
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($uuid)
+    public function destroy(Account $account)
     {
-        $deleted = $this->accountService->delete($uuid);
+        $deleted = $this->accountService->delete($account);
 
         if ($deleted) {
             return response()->json([

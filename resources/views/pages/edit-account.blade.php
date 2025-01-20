@@ -119,7 +119,7 @@
                                             <h1 style="font-size: 26px;">Chỉnh sửa nick Ngọc Rồng</h1>
                                         </div>
                                         <br>
-                                        <form action="{{ route('account.edit.post', $account->uuid ?? '') }}" method="post"
+                                        <form action="{{ route('account.edit.post', ['account' => $account->uuid]) }}" method="post"
                                             enctype="multipart/form-data" class="row">
                                             @csrf
                                             @method('patch')

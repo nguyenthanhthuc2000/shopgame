@@ -61,7 +61,7 @@
                               <a href="#">{{ $account->user->email }}</a>
                             </td>
                             <td>{{ $account->account_id }}</td>
-                            <td><a href="{{ route('category.index', ['slug' => $account->account->category->slug]) }}">{{ $account->account->category->name }}</a></td>
+                            <td><a href="{{ route('category.index', ['category' => $account->account->category->slug]) }}">{{ $account->account->category->name }}</a></td>
                             <td>{{ number_format($account->price, 0, ',', '.') }}</td>
                             <td>{{ number_format($account->seller_profit, 0, ',', '.') }}</td>
                             <td>{{ $account->profit_rate }}%</td>

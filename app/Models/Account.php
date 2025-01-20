@@ -21,6 +21,13 @@ class Account extends Model
 
     protected $primaryKey = 'id';
 
+    protected $hidden = ['password'];
+
+    public function getRouteKeyName()
+    {
+        return 'uuid';
+    }
+
     /**
      * Indicates if the model should be timestamped.
      *
@@ -135,6 +142,10 @@ class Account extends Model
         [
             'name' => 'Server 12',
             'value' => '12',
+        ],
+        [
+            'name' => 'Server 13',
+            'value' => '13',
         ],
     ];
 
@@ -270,28 +281,38 @@ class Account extends Model
 
     public function scopeByCode($query, $code)
     {
-        return $query->where('id', $code);
+        if (!empty($code)) {
+            return $query->where('id', $code);
+        }
     }
 
     public function scopeByPrice($query, $price)
     {
-        $priceRange = explode(' ', $price);
-        return $query->whereBetween('price', $priceRange);
+        if (!empty($price)) {
+            $priceRange = explode(' ', $price);
+            return $query->whereBetween('price', $priceRange);
+        }
     }
 
     public function scopeByStatus($query, $status)
     {
-        return $query->where('status', $status);
+        if (!empty($status)) {
+            return $query->where('status', $status);
+        }
     }
 
     public function scopeByServer($query, $server)
     {
-        return $query->where('server', $server);
+        if (!empty($server)) {
+            return $query->where('server', $server);
+        }
     }
 
     public function scopeByClass($query, $class)
     {
-        return $query->where('class', $class);
+        if (!empty($class)) {
+            return $query->where('class', $class);
+        }
     }
 
     public function scopeByUuid($query, $uuid)

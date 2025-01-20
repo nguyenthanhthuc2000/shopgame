@@ -484,7 +484,7 @@ ul.navbar-nav {
 }
 .top-header-area {
     position: absolute;
-    z-index: 999;
+    z-index: 1;
     width: 100%;
     padding: 25px 0;
     -webkit-transition: 0.3s;
@@ -634,7 +634,7 @@ nav.mean-nav {
     left: 0;
     top: 0;
     width: 100%;
-    z-index: 999 !important;
+    z-index: 2 !important;
 }
 .sticky-wrapper {
     .top-header-area {

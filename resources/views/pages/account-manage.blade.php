@@ -73,7 +73,7 @@
                                                 <tbody>
                                                     @forelse($accounts as $account)
                                                         <tr>
-                                                            <td><a href="{{ route('account.show', ['categorySlug' => $account->category->slug,'accountUuid' => $account->uuid]) }}">#{{ $account->id }}</a></td>
+                                                            <td><a href="{{ route('account.show', ['category' => $account->category->slug, 'account' => $account->uuid]) }}">#{{ $account->id }}</a></td>
                                                             <td>{{ $account->username }}</td>
                                                             <td>{{ getPrice($account->price) }}</td>
                                                             <td>
@@ -91,8 +91,8 @@
                                                                     <div class="d-flex gap-3">
                                                                         <button type="button" class="btn btn-danger btn-delete"
                                                                             data-id="{{ $account->uuid }}"
-                                                                            data-url="{{ route('account.delete', $account->uuid) }}">Xóa</button>
-                                                                        <a href="{{ route('account.edit', $account->uuid ?? '#') }}"
+                                                                            data-url="{{ route('account.delete', ['account' => $account->uuid]) }}">Xóa</button>
+                                                                        <a href="{{ route('account.edit', ['account' => $account->uuid]) }}"
                                                                             class="btn btn-warning">Sửa</a>
                                                                     </div>
                                                                 @endif

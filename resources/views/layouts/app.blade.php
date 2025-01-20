@@ -2,7 +2,6 @@
 <html lang={{ config('app.locale') }} class="mdl-js">
 
 <head>
-    <base href={{ config('app.url') }}>
     <meta charset="utf-8">
     <title>@yield('title', 'NickDaoQuan.VN | Shop Nick Ngọc Rồng Online Giá Rẻ, Uy Tín')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

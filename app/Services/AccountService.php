@@ -33,23 +33,27 @@ class AccountService extends BaseService
 
     /**
      * Create new account
-     * @param array $account
+     * 
+     * @param array $accountData
      * @param mixed $banner
      * @param mixed $gallery
      * @return bool
      */
-    public function storeAccount(array $account, $banner, $gallery = [])
+    public function storeAccount(array $accountData, $banner, $gallery = [])
     {
         try {
             $folderId = config('google.accounts_folder_id');
-            $accountCreated = Account::create($account);
+            $accountCreated = Account::create($accountData);
+            $delay = now()->addMilliseconds(100);
 
             if (!empty($banner)) {
-                UploadToGoogleDrive::dispatch($banner->store('temp'), $accountCreated->id, Image::IS_BANNER, $folderId);
+                $delay = now()->addMilliseconds(100);
+                UploadToGoogleDrive::dispatch($banner->store('temp'), $accountCreated->id, Image::IS_BANNER, $folderId)->delay($delay);
             }
 
-            foreach ($gallery as $file) {
-                UploadToGoogleDrive::dispatch($file->store('temp'), $accountCreated->id, Image::IS_IMAGE_DETAIL, $folderId);
+            foreach ($gallery as $index => $file) {
+                $delay = now()->addMilliseconds(($index + 1) * 100);
+                UploadToGoogleDrive::dispatch($file->store('temp'), $accountCreated->id, Image::IS_IMAGE_DETAIL, $folderId)->delay($delay);
             }
 
             return true;
@@ -61,29 +65,21 @@ class AccountService extends BaseService
 
     /**
      * Update new account
-     * @param string $uuid
-     * @param array $account
+     * 
+     * @param \App\Models\Account $account
+     * @param array $accountData
      * @param mixed $banner
      * @param mixed $gallery
      * @return bool
      */
-    public function updateAccount($uuid, array $account, $banner = null, $gallery = [])
+    public function updateAccount($account, $accountData, $banner = null, $gallery = [])
     {
         try {
-            $findAccount = Account::getByUuid($uuid);
-
-            if (empty($findAccount)) {
-                throw new Exception("Cannot find account $uuid to update!");
-            }
-
-            $accountUpdated = $findAccount?->update($account);
-            if (!$accountUpdated) {
-                throw new Exception("Cannot update account $$uuid!");
-            }
+            $account->update($accountData);
 
             if (!empty($account['removed_image'])) {
                 foreach ($account['removed_image'] as $imageId) {
-                    $this->imageService->delete($imageId ?? '', $findAccount->banner->account_id ?? '');
+                    $this->imageService->delete($imageId ?? '', $account->banner->account_id ?? '');
                 }
             }
 
@@ -96,10 +92,10 @@ class AccountService extends BaseService
             // Add banner image
             if (!empty($bannerUploaded['src_url']) && !empty($bannerUploaded['id'])) {
                 // remove old banner
-                $this->imageService->deleteBanner($findAccount->banner->account_id ?? '');
+                $this->imageService->deleteBanner($account->banner->account_id ?? '');
 
                 $bannerData = [
-                    'account_id' => $findAccount->id,
+                    'account_id' => $account->id,
                     'image_link' => $bannerUploaded['src_url'],
                     'is_banner' => 1,
                     'file_id' => $bannerUploaded['id'],
@@ -115,10 +111,10 @@ class AccountService extends BaseService
             }
 
             if (!empty($imagesUploaded)) {
-                $galleryData = array_map(function ($img) use ($findAccount) {
+                $galleryData = array_map(function ($img) use ($account) {
                     if (!empty($img['src_url']) && !empty($img['id'])) {
                         return [
-                            'account_id' => $findAccount->id,
+                            'account_id' => $account->id,
                             'image_link' => $img['src_url'],
                             'file_id' => $img['id'],
                             'is_banner' => 0,
@@ -139,16 +135,15 @@ class AccountService extends BaseService
 
     /**
      * Delete account
+     * 
+     * @param \App\Models\Account $account
      */
-    public function delete(string $uuid): bool
+    public function delete(Account $account): bool
     {
         try {
-            $account = $this->model->findByUuid($uuid);
-
-            if (empty($account) || !$account->canDelete()) {
+            if (!$account->canDelete()) {
                 return false;
             }
-
             return $account->delete();
         } catch (Exception $e) {
             $this->logWritter($e->getMessage(), $e);
