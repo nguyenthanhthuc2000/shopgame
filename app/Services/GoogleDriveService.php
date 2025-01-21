@@ -160,7 +160,7 @@ class GoogleDriveService
         try {
             $folder = $this->driveService->files->create(new Drive\DriveFile($fileMetadata));
             return $folder->id; // Return the folder ID
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             Log::channel($this->logChannel)->error('Google Drive Folder Creation Error: ' . $e->getMessage());
             return null;
         }
@@ -177,7 +177,7 @@ class GoogleDriveService
         try {
             $this->driveService->files->delete($fileId);
             return true; // Successfully deleted
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             Log::channel($this->logChannel)->error('Google Drive File Deletion Error: ' . $e->getMessage());
             return false; // Failed to delete
         }

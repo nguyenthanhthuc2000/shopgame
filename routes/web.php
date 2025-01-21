@@ -6,7 +6,6 @@ use App\Http\Controllers\CardController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\Admin\BankTransactionController as AdminBankTransactionController;
 use App\Http\Controllers\Admin\CardTransactionController as AdminCardTransactionController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
@@ -17,7 +16,8 @@ use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\IsAdmin;
 use App\Http\Middleware\IsAdminOrSeller;
-use \App\Http\Middleware\LogRequestMiddleware;
+use App\Http\Middleware\LogRequestMiddleware;
+use Rap2hpoutre\LaravelLogViewer\LogViewerController;
 
 Route::middleware([LogRequestMiddleware::class])->group(function () {
     Route::match(['get', 'post'], '/nap-the-cao/callback-the', [CardController::class, 'callbackCard'])->name('callbackCard');
@@ -25,7 +25,6 @@ Route::middleware([LogRequestMiddleware::class])->group(function () {
 Route::middleware(['throttle:300,1'])->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/nap-the-cao', [CardController::class, 'index'])->name('card.index');
-    Route::get('/dich-vu', [ServiceController::class, 'index'])->name('serivce.index');
     Route::get('/nap-tien', [HomeController::class, 'deposit'])->name('home.deposit');
     Route::get('/dang-ky', [AuthController::class, 'showRegisterForm'])->name('register');
     Route::get('/dang-nhap', [AuthController::class, 'showLoginForm'])->name('login');
@@ -64,7 +63,7 @@ Route::middleware(['throttle:300,1'])->group(function () {
 
         Route::group(['prefix' => 'admin', 'middleware' => [IsAdmin::class, 'auth']], function () {
             Route::get('/', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
-            Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);
+            Route::get('logs', [LogViewerController::class, 'index']);
             Route::get('/users', [AdminUserController::class, 'index'])->name('users.index');
             Route::get('/categories', [AdminCategoryController::class, 'index'])->name('categories.index');
             Route::get('/bank-transactions', [AdminBankTransactionController::class, 'index'])->name('banks.tran.index');

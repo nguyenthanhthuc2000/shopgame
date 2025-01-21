@@ -60,6 +60,8 @@ class AccountController extends Controller
         $accountRefs = Account::with(relations: 'banner')
             ->whereNotIn('id', [$account->id])
             ->where('server', $account->server)
+            ->where('status', Account::STATUS_AVAILABLE)
+            ->where('category_id', $category->id)
             ->limit(8)
             ->get();
 
@@ -85,16 +87,14 @@ class AccountController extends Controller
         $servers = Account::SERVER;
         $statuses = Account::STATUS;
 
-        $data = compact(
+        return view('pages.create-account',  compact([
             'categories',
             'classes',
             'regisTypes',
             'earring',
             'servers',
             'statuses',
-        );
-
-        return view('pages.create-account',  $data);
+        ]));
     }
 
     /**
@@ -151,7 +151,7 @@ class AccountController extends Controller
             return redirect()->route('account.manage.index');
         }
 
-        $data = compact(
+        return view('pages.edit-account', compact([
             'categories',
             'classes',
             'regisTypes',
@@ -159,9 +159,7 @@ class AccountController extends Controller
             'servers',
             'account',
             'statuses',
-        );
-
-        return view('pages.edit-account', $data);
+        ]));
     }
 
     /**

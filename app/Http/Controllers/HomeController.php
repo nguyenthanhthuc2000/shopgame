@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Service;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -14,7 +13,6 @@ class HomeController extends Controller
      * @return void
      */
     public function __construct() {}
-
 
     /**
      * Summary of index

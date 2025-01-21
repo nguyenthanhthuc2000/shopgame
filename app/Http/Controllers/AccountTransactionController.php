@@ -21,7 +21,8 @@ class AccountTransactionController extends Controller
     {
         $accountTrans = AccountTransaction::with(['account.category'])
             ->orderBy('id', 'DESC')
-            ->where('user_id', Auth::id())->get();
+            ->where('user_id', Auth::id())
+            ->get();
 
         return view('pages.account-trans', compact(['accountTrans']));
     }
@@ -114,6 +115,12 @@ class AccountTransactionController extends Controller
         return true;
     }
 
+    /**
+     * Summary of sellHistory
+     * 
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Contracts\View\View
+     */
     public function sellHistory(Request $request)
     {
         $accounts = AccountTransaction::with(['account.category'])
