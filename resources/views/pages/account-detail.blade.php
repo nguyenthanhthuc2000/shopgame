@@ -40,7 +40,7 @@
                                     <div class="game-detail_top">
                                         <div class="game-detail_category">
                                             Danh Mục: <a
-                                                href="{{ route('category.index', ['slug' => $category->slug]) }}">{{ $category->name }}</a>
+                                                href="{{ route('category.index', ['category' => $category->slug]) }}">{{ $category->name }}</a>
                                         </div>
                                     </div>
                                     <div class="game-detail_bottom">
@@ -84,7 +84,7 @@
                                             </a>
 
                                             @if ($account->status === \App\Models\Account::STATUS_AVAILABLE)
-                                                <a href="{{ route('account.buy', ['accountUuid' => $account->uuid]) }}"
+                                                <a href="{{ route('account.buy', ['account' => $account->uuid]) }}"
                                                     class="game-detail_button game-detail_button--secondary col-md-6 mb-2">
                                                     Mua ngay
                                                 </a>
@@ -137,7 +137,7 @@
                                                         <a href="#" class="card-btn card-btn--book">
                                                             {{ number_format($account->price_atm, 0, ',', '.') }} đ
                                                         </a>
-                                                        <a href="{{ route('account.show', ['categorySlug' => $category->slug,'accountUuid' => $account->uuid]) }}" class="card-btn card-btn--more">
+                                                        <a href="{{ route('account.show', ['category' => $category->slug, 'account' => $account->uuid]) }}" class="card-btn card-btn--more">
                                                             Chi Tiết
                                                         </a>
                                                     </div>

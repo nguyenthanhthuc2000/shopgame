@@ -1,4 +1,4 @@
-<form id="accountSearch" class="mb-4" action="{{ url()->current() }}">
+<form id="accountSearch" class="mb-4" action="{{ route('category.index', ['category' => $category->slug]) }}">
     {{-- @csrf --}}
     <div class="content_post">
         <div class="row g-3 align-items-end">
@@ -27,7 +27,6 @@
             <div class="col-md-2 col-6">
                 <label for="status" class="form-label">Trạng thái</label>
                 <select id="status" name="status" class="form-select">
-                    <option value="">Tất cả</option>
                     @foreach ($status as $stt)
                         <option value="{{ $stt['value'] }}" {{ $stt['value'] == request('status') ? 'selected' : '' }}>
                             {{ $stt['name'] }}

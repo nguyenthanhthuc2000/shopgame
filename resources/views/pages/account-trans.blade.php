@@ -43,13 +43,13 @@
                                                 <tbody>
                                                     @forelse($accountTrans as $index => $accountTran)
                                                         <tr>
-                                                            <td><a href="{{ route('account.show', ['categorySlug' => $accountTran->account->category->slug,'accountUuid' => $accountTran->account->uuid]) }}">#{{ $accountTran->account_id }}</a></td>
+                                                            <td><a href="{{ route('account.show', ['category' => $accountTran->account->category->slug, 'account' => $accountTran->account->uuid]) }}">#{{ $accountTran->account_id }}</a></td>
                                                             <td style="min-width: 200px;">
                                                                 {{ $accountTran->account->username }}</td>
                                                             <td style="min-width: 100px;">
                                                                 {{ $accountTran->account->password }}</td>
                                                             <td style="min-width: 200px;">
-                                                                <a href="{{ route('category.index', ['slug' => $accountTran->account->category->slug]) }}">{{ $accountTran->account->category->name }}</a>
+                                                                <a href="{{ route('category.index', ['category' => $accountTran->account->category->slug]) }}">{{ $accountTran->account->category->name }}</a>
                                                             </td>
                                                             <td style="min-width: 100px;">
                                                                 {{ number_format($accountTran->price, 0, ',', '.') }}

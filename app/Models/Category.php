@@ -7,8 +7,12 @@ use Illuminate\Database\Query\Builder;
 
 class Category extends Model
 {
-
     protected $primaryKey = 'id';
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 
     /**
      * Indicates if the model should be timestamped.

@@ -3,49 +3,6 @@
 @section('title', 'Trang Chủ | NickDaoQuan.VN Shop Nick Ngọc Rồng Online Giá Rẻ, Uy Tín')
 
 @section('content')
-
-    {{-- feature list section --}}
-    <div class="list-section pt-80 pb-80">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-                    <div class="list-box d-flex align-items-center">
-                        <div class="list-icon">
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <div class="content">
-                            <h3>Uy Tín</h3>
-                            <p>Shop NickDaoQuan.vn luôn đặt uy tín và sự tin tưởng của khách hàng lên hàng đầu.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-                    <div class="list-box d-flex align-items-center">
-                        <div class="list-icon">
-                            <i class="fas fa-smile-beam"></i>
-                        </div>
-                        <div class="content">
-                            <h3>Hài Lòng</h3>
-                            <p>Các sản phẩm của Shop đều cam kết cho khách hàng sự hài lòng.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="list-box d-flex justify-content-start align-items-center">
-                        <div class="list-icon">
-                            <i class="fas fa-bolt"></i>
-                        </div>
-                        <div class="content">
-                            <h3>Nhanh Chóng</h3>
-                            <p>Giao dịch nhanh chóng không làm mất thời gian của khách hàng.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    {{-- end feature list section --}}
-
     {{-- product section --}}
     <div class="product-section mt-80 mb-80">
         <div class="container">
@@ -63,15 +20,14 @@
                     <div class="col-lg-3 col-md-4 col-6 text-center">
                         <div class="single-card-item">
                             <div class="category__banner mb-2">
-                                <a href="{{ route('category.index', ['slug' => $category->slug ?? '#']) }}">
+                                <a href="{{ route('category.index', ['category' => $category->slug]) }}">
                                     <img src="{{ asset($category->image) }}" alt="{{ $category->title }}" loading="lazy">
                                 </a>
                             </div>
                             <h2 class="category__title mb-0">{{ $category['name'] ?? '' }}</h2>
                             <p class="mb-1 category-total">Đang bán: <b>{{ $category->sold_count }}</b></p>
-                            {{-- <p class="mb-2 category-total">Đã bán: <b>{{ $category->unsold_count }}</b></p> --}}
                             <div class="mb-3 buy-btn">
-                                <a href="{{ route('category.index', ['slug' => $category->slug ?? '#']) }}">
+                                <a href="{{ route('category.index', ['category' => $category->slug]) }}">
                                     <img src="{{ asset('assets/images/buy-now.png') }}" class="buy-img" alt="Mua ngay"
                                         loading="lazy">
                                 </a>
@@ -116,7 +72,49 @@
         </div>
     </div>
 
-    <div class="latest-news mt-80 mb-80">
+    {{-- feature list section --}}
+    <div class="list-section pt-80 pb-80">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                    <div class="list-box d-flex align-items-center">
+                        <div class="list-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="content">
+                            <h3>Uy Tín</h3>
+                            <p>Shop NickDaoQuan.vn luôn đặt uy tín và sự tin tưởng của khách hàng lên hàng đầu.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                    <div class="list-box d-flex align-items-center">
+                        <div class="list-icon">
+                            <i class="fas fa-smile-beam"></i>
+                        </div>
+                        <div class="content">
+                            <h3>Hài Lòng</h3>
+                            <p>Các sản phẩm của Shop đều cam kết cho khách hàng sự hài lòng.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="list-box d-flex justify-content-start align-items-center">
+                        <div class="list-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div class="content">
+                            <h3>Nhanh Chóng</h3>
+                            <p>Giao dịch nhanh chóng không làm mất thời gian của khách hàng.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- end feature list section --}}
+
+    {{-- <div class="latest-news mt-80 mb-80">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 offset-lg-2 text-center">
@@ -130,6 +128,10 @@
             </div>
         </div>
     </div>
+    </div> --}}
+    <button type="button" class="btn btn-primary showPopup" data-toggle="modal" data-target="#exampleModal"hidden>
+        Launch demo modal
+    </button>
 
     <div class="modal fade modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">

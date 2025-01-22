@@ -32,4 +32,3 @@ class CheckUserLocked
         return $next($request);
     }
 }
-

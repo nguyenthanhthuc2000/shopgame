@@ -6,7 +6,6 @@ use App\Http\Controllers\CardController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\Admin\BankTransactionController as AdminBankTransactionController;
 use App\Http\Controllers\Admin\CardTransactionController as AdminCardTransactionController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
@@ -17,7 +16,8 @@ use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\IsAdmin;
 use App\Http\Middleware\IsAdminOrSeller;
-use \App\Http\Middleware\LogRequestMiddleware;
+use App\Http\Middleware\LogRequestMiddleware;
+use Rap2hpoutre\LaravelLogViewer\LogViewerController;
 
 Route::middleware([LogRequestMiddleware::class])->group(function () {
     Route::match(['get', 'post'], '/nap-the-cao/callback-the', [CardController::class, 'callbackCard'])->name('callbackCard');
@@ -35,8 +35,8 @@ Route::middleware(['throttle:300,1'])->group(function () {
 
     Route::group(['prefix' => 'nick-game'], function () {
         Route::get('/', [CategoryController::class, 'list'])->name('category.list');
-        Route::get('/{slug}', [CategoryController::class, 'index'])->name('category.index');
-        Route::get('/{categorySlug}/{accountUuid}', [AccountController::class, 'show'])->name('account.show');
+        Route::get('/{category}', [CategoryController::class, 'index'])->name('category.index');
+        Route::get('/{category}/{account}', [AccountController::class, 'show'])->name('account.show');
     });
 
     Route::middleware([LogRequestMiddleware::class])->group(function () {
@@ -47,9 +47,10 @@ Route::middleware(['throttle:300,1'])->group(function () {
             Route::get('/', [AccountController::class, 'index'])->name('account.manage.index');
             Route::post('/', [AccountController::class, 'store'])->name('account.create.post');
             Route::get('/them-moi', [AccountController::class, 'create'])->name('account.create');
-            Route::get('/{uuid}/chinh-sua', [AccountController::class, 'edit'])->name('account.edit');
-            Route::patch('/{uuid}/chinh-sua', [AccountController::class, 'update'])->name('account.edit.post');
-            Route::delete('/{uuid}', [AccountController::class, 'destroy'])->name('account.delete');
+            Route::put('/{account}', [AccountController::class, 'update'])->name('account.edit.post');
+            Route::get('/{account}/chinh-sua', [AccountController::class, 'edit'])->name('account.edit');
+            Route::patch('/{account}/chinh-sua', [AccountController::class, 'update'])->name('account.edit.post');
+            Route::delete('/{account}', [AccountController::class, 'destroy'])->name('account.delete');
         });
 
         Route::group(['middleware' => ['auth']], function () {
@@ -58,12 +59,12 @@ Route::middleware(['throttle:300,1'])->group(function () {
             Route::get('/thong-tin-tai-khoan', [UserController::class, 'index'])->name('profile.index');
             Route::get('/tai-khoan-da-mua', [AccountTransactionController::class, 'index'])->name('account.tran.index');
             Route::post('/nap-the-cao/gui-the', [CardController::class, 'postCard'])->name('postCard');
-            Route::get('/mua-nick/{accountUuid}', [AccountTransactionController::class, 'buyNick'])->name('account.buy');
+            Route::get('/mua-nick/{account}', [AccountTransactionController::class, 'buyNick'])->name('account.buy');
         });
 
         Route::group(['prefix' => 'admin', 'middleware' => [IsAdmin::class, 'auth']], function () {
             Route::get('/', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
-            Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);
+            Route::get('logs', [LogViewerController::class, 'index']);
             Route::get('/users', [AdminUserController::class, 'index'])->name('users.index');
             Route::get('/categories', [AdminCategoryController::class, 'index'])->name('categories.index');
             Route::get('/bank-transactions', [AdminBankTransactionController::class, 'index'])->name('banks.tran.index');

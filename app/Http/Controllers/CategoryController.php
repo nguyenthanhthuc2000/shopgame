@@ -10,15 +10,16 @@ use App\Models\Account;
 class CategoryController extends Controller
 {
     /**
-     * Trang danh mục game
-     *
-     * @param Request $request
+     * Summary of index
+     * 
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Category $category
+     * @return mixed|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
      */
-    public function index(Request $request, $slug)
+    public function index(Request $request, Category $category)
     {
-        $category = Category::IsActive()->whereSlug($slug)->first();
-
-        if (empty($category) || !empty($category) && $category->status == 0) {
+        if ($category->status !== Category::ACTIVE_STATUS) {
+            flash()->error('Danh mục game không còn hoạt động!');
             return redirect()->route('home');
         }
 
@@ -33,25 +34,12 @@ class CategoryController extends Controller
         $accounts = Account::select('server', 'earring', 'price', 'class', 'regis_type', 'id', 'uuid')
             ->with(['banner'])
             ->where('category_id', $category->id)
-            ->where('status', Account::STATUS_AVAILABLE);
-
-        if ($request->code) {
-            $accounts = $accounts->byCode($request->code);
-        }
-
-        if ($request->price) {
-            $accounts = $accounts->byPrice($request->price);
-        }
-
-        if ($request->server_game) {
-            $accounts = $accounts->byServer($request->server_game);
-        }
-
-        if ($request->class) {
-            $accounts = $accounts->byClass($request->class);
-        }
-
-        $accounts = $accounts->orderBy('id', 'DESC')
+            ->ByServer($request->input('server_game', null))
+            ->ByCode($request->input('code', null))
+            ->ByStatus($request->input('status', Account::STATUS_AVAILABLE))
+            ->ByPrice($request->input('price', null))
+            ->ByClass($request->input('class', null))
+            ->orderBy('id', 'DESC')
             ->paginate()
             ->withQueryString();
 
@@ -66,14 +54,6 @@ class CategoryController extends Controller
             'status',
             'selected'
         ]));
-    }
-
-    public function show($slug)
-    {
-        $category = Category::whereSlug($slug)->first()->accounts;
-        $accounts = $category->accounts;
-
-        return view('pages.product', compact('accounts', 'category'));
     }
 
     /**

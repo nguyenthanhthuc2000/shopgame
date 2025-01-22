@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Service;
-use Illuminate\Http\Request;
+use App\Models\AccountTransaction;
 
 class HomeController extends Controller
 {
@@ -14,7 +14,6 @@ class HomeController extends Controller
      * @return void
      */
     public function __construct() {}
-
 
     /**
      * Summary of index
@@ -29,8 +28,12 @@ class HomeController extends Controller
         ])->orderBy('id', 'DESC')->get();
 
         $services = Service::get();
+        $accounts = AccountTransaction::with(['user', 'account.category'])
+            ->orderBy('id', 'DESC')
+            ->limit(5)
+            ->get();
 
-        return view('pages.home', compact('categories', 'services'));
+        return view('pages.home', compact(['categories', 'services', 'accounts']));
     }
 
     public function deposit()

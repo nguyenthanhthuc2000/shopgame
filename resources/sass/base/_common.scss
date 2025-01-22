@@ -416,7 +416,6 @@ ul.navbar-nav {
     }
     margin: 0 auto;
 }
-
 .site-logo {
     float: left;
     max-width: 300px;
@@ -430,7 +429,6 @@ ul.sub-menu {
         &:hover {
             a {
                 color: $main-color;
-                color: $main-color !important;
             }
         }
         a {
@@ -506,7 +504,6 @@ nav.mean-nav {
         padding: 10px;
     }
 }
-
 .search-area {
     position: fixed;
     left: 0;
@@ -713,8 +710,6 @@ h2.widget-title {
         .latest-news-bg {
             opacity: 0.8;
         }
-        -webkit-box-shadow: 0 0 0;
-        box-shadow: 0 0 0;
         -webkit-box-shadow: none;
         box-shadow: none;
     }
@@ -813,7 +808,6 @@ div.owl-controls {
                 background-color: $background-color_12;
                 display: inline-block;
                 padding: 8px 14px;
-                border-radius: 5px;
                 margin: 3px;
                 font-weight: 600;
                 border-radius: 50px;
@@ -2097,8 +2091,6 @@ table.order-details {
             }
         }
         text-align: center;
-        // position: absolute;
-        // z-index: 999;
     }
     .mean-container {
         .mean-bar {
@@ -2329,8 +2321,6 @@ table.order-details {
         margin-left: 0;
         margin-top: 15px;
         h3 {
-            font-size: 20px;
-            line-height: 1.5;
             font-size: 20px;
             line-height: 1.5;
         }

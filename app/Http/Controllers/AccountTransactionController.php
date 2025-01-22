@@ -21,7 +21,8 @@ class AccountTransactionController extends Controller
     {
         $accountTrans = AccountTransaction::with(['account.category'])
             ->orderBy('id', 'DESC')
-            ->where('user_id', Auth::id())->get();
+            ->where('user_id', Auth::id())
+            ->get();
 
         return view('pages.account-trans', compact(['accountTrans']));
     }
@@ -33,30 +34,25 @@ class AccountTransactionController extends Controller
      * @param mixed $accountUuid
      * @return mixed|\Illuminate\Http\RedirectResponse
      */
-    public function buyNick(Request $request, $accountUuid)
+    public function buyNick(Request $request, Account $account)
     {
-        $account = Account::with('author')->where('status', Account::STATUS_AVAILABLE)->where('uuid', $accountUuid)->first();
-
-        if (empty($account)) {
+        if ($account->status !== Account::STATUS_AVAILABLE) {
+            flash()->error('Tài khoản đã có người mua!');
             return redirect()->route('home');
         }
 
-        $category = Category::find($account->category_id);
+        $category = $account->category;
 
         if (empty($category) || !empty($category) && $category->status !== Category::ACTIVE_STATUS) {
+            flash()->error('Danh mục game hiện không hoạt động!');
             return redirect()->route('home');
-        }
-
-        if ($account->status !== Account::STATUS_AVAILABLE) {
-            return redirect()->route('account.show', ['categorySlug' => $category->slug,'accountUuid' => $account->uuid]);
         }
 
         $buyer = User::find(Auth::id());
 
         if ($account->price > $buyer->buyer_vnd) {
-            return redirect()->route('card.index')->withErrors([
-                'error' => 'Tài khoản bạn không đủ tiền, vui lòng nạp thêm để tiếp tục giao dịch!',
-            ]);
+            flash()->error('Tài khoản bạn không đủ tiền, vui lòng nạp thêm để tiếp tục giao dịch!');
+            return redirect()->route('card.index');
         }
 
         if ($this->checkAccoutAvailabel()) {
@@ -100,12 +96,13 @@ class AccountTransactionController extends Controller
                 $accTran->save();
             });
 
-            return redirect()->route('account.tran.index')->with(['success' => 'Mua tài khoản thành công, bạn vui lòng tiến hành đổi mật khẩu!']);
+            flash()->success('Mua tài khoản thành công, bạn vui lòng tiến hành đổi mật khẩu!');
+            return redirect()->route('account.tran.index');
         }
 
-        return back()->withErrors([
-            'error' => 'Tài khoản đã bán!',
-        ]);
+        flash()->error('Thông tin nick game không chính xác!');
+        // Thêm trạng thái sai mật khẩu cho account
+        return redirect()->route('home');
     }
 
     /**
@@ -118,6 +115,12 @@ class AccountTransactionController extends Controller
         return true;
     }
 
+    /**
+     * Summary of sellHistory
+     * 
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Contracts\View\View
+     */
     public function sellHistory(Request $request)
     {
         $accounts = AccountTransaction::with(['account.category'])
