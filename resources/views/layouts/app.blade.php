@@ -41,8 +41,7 @@
 </head>
 
 <body>
-    <div class="snow-container"></div>
-    <div class="loader" style="display: none;">
+    <div class="loader">
         <div class="loader-inner">
         </div>
     </div>
