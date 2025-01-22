@@ -141,9 +141,13 @@
                     <h5 class="modal-title" id="exampleModalLabel">Thông báo</h5>
                 </div>
                 <div class="modal-body">
-                    <p><strong><span>ZALO 0389946423 NHẬP NICK NGỌC RỒNG GIÁ CAO <img src="{{ asset('assets/images/hot.gif') }}" alt="nickdaoquan.vn"></span></strong></p>
+                    <p><strong>SĂN ĐỆ TỬ THUÊ SERVER 1 - 11 GIÁ 20K, SĂN CHO NICK SƠ SINH 30K <img src="{{ asset('assets/images/hot.gif') }}" alt="nickdaoquan.vn"></strong></p>
 
-                    <p><strong>NẠP ATM/MOMO 100K = 120K SHOP <a href="{{ route('home.deposit') }}">tại đây <img src="{{ asset('assets/images/hot.gif') }}" alt="nickdaoquan.vn"></a></strong></p>
+                    <p><strong><span>NHẬP NICK NGỌC RỒNG GIÁ CAO <img src="{{ asset('assets/images/hot.gif') }}" alt="nickdaoquan.vn"></span></strong></p>
+
+                    <p><strong>NẠP ATM/MOMO 100K = 115K SHOP <a href="{{ route('home.deposit') }}">tại đây <img src="{{ asset('assets/images/hot.gif') }}" alt="nickdaoquan.vn"></a></strong></p>
+
+                    <p><strong>ZALO: <a href="https://zalo.me/0389946423">038.9946.423</a></strong></p>
 
                     <p><strong>LƯU Ý: NẠP SAI MỆNH GIÁ THẺ SẼ BỊ TRỪ 50% TIỀN</strong></p>
                 </div>
