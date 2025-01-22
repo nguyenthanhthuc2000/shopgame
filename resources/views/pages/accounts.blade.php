@@ -16,7 +16,7 @@
             <div class="alert-custom alert alert-success">
                 <p class="mb-0"><strong>Nạp từ ATM/MOMO vào shop cộng thêm 20% giá trị</strong> <a
                         href="{{ route('home.deposit') }}">tại đây <img src="{{ asset('assets/images/hot.gif') }}"
-                            alt="nickdaoquan.vn"></a> (nạp 100k nhận 120k)</p>
+                            alt="nickdaoquan.vn"></a> (nạp 100k nhận 115k)</p>
 
                 <p class="mb-0"><strong>Chú ý:&nbsp;Sau khi mua tài khoản thành công, bạn hãy thực hiện đổi mật
                         khẩu</strong></p>
