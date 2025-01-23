@@ -36,7 +36,8 @@
     </script>
     @include('components.style')
     @vite(['resources/sass/app.scss'])
-    @stack('css')
+    @stack('css')    
+    @stack('head')
 </head>
 
 <body>

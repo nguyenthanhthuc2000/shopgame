@@ -40,6 +40,10 @@ class PostCardRequest extends FormRequest
                 'required',
                 'max:100',
             ],
+            'g-recaptcha-response' => [
+                'required',
+                'captcha',
+            ],
         ];
     }
 
