@@ -1,5 +1,6 @@
 <?php
 
+use Rap2hpoutre\LaravelLogViewer\LogViewerController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AccountTransactionController;
 use App\Http\Controllers\CardController;
@@ -17,7 +18,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\IsAdmin;
 use App\Http\Middleware\IsAdminOrSeller;
 use App\Http\Middleware\LogRequestMiddleware;
-use Rap2hpoutre\LaravelLogViewer\LogViewerController;
+use App\Http\Controllers\GoogleController;
+
+Route::get('/dang-nhap/google', [GoogleController::class, 'redirectToGoogle'])->name('redirectToGoogle');
+Route::get('/dang-nhap/google/callback', [GoogleController::class, 'handleGoogleCallback'])->name('handleGoogleCallback');
+
+Route::get('/chinh-sach', [GoogleController::class, 'index']);
+Route::get('/dieu-khoan', [GoogleController::class, 'index']);
 
 Route::middleware([LogRequestMiddleware::class])->group(function () {
     Route::match(['get', 'post'], '/nap-the-cao/callback-the', [CardController::class, 'callbackCard'])->name('callbackCard');

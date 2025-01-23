@@ -82,6 +82,16 @@
                                         </div>
                                     </div>
                                 </form>
+
+                                <div class="account-social text-center mt-4">
+                                    <h6 class="my-4">Or Login With</h6>
+                                        <li class="list-inline-item">
+                                            <a href="{{ route('redirectToGoogle') }}" class="">
+                                                <i class="fab fa-google google"></i>
+                                            </a>                                    
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                             
                             <div class="m-3 text-center text-muted">
