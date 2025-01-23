@@ -47,7 +47,25 @@ class User extends Authenticatable
         ];
     }
 
-    const ACTIVE_STATUS = 1;
+    public const ACTIVE_STATUS = 1;
+    public const ROLE_ADMIN = 'admin';
+    public const ROLE_SELLER = 'seller';
+    public const ROLE_BUYER = 'buyer';
+
+    public function isAdmin(): bool
+    {
+        return $this->role === self::ROLE_ADMIN;
+    }
+
+    public function isSeller(): bool
+    {
+        return $this->role === self::ROLE_SELLER || $this->role === self::ROLE_ADMIN;
+    }
+
+    public function isBuyer(): bool
+    {
+        return $this->role === self::ROLE_BUYER;
+    }
 
     /**
      * Scope để lọc theo email.

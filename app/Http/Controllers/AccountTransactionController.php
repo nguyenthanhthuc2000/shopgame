@@ -24,7 +24,7 @@ class AccountTransactionController extends Controller
             ->where('user_id', Auth::id())
             ->get();
 
-        return view('pages.account-trans', compact(['accountTrans']));
+        return view('pages.account.account-trans', compact(['accountTrans']));
     }
 
     /**
@@ -117,7 +117,7 @@ class AccountTransactionController extends Controller
 
     /**
      * Summary of sellHistory
-     * 
+     *
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Contracts\View\View
      */

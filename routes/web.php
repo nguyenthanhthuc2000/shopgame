@@ -5,6 +5,7 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AccountTransactionController;
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\BankTransactionController as AdminBankTransactionController;
@@ -48,7 +49,7 @@ Route::middleware(['throttle:300,1'])->group(function () {
 
     Route::middleware([LogRequestMiddleware::class])->group(function () {
         Route::group(['middleware' => ['auth', IsAdminOrSeller::class]], function () {
-            Route::get('/lich-su-ban-nick', [AccountTransactionController::class, 'sellHistory'])->name('account.sell.history');
+            Route::get('/tai-khoan-da-ban', [AccountTransactionController::class, 'sellHistory'])->name('account.sell.history');
         });
         Route::group(['prefix' => 'quan-ly-nick-ngoc-rong', 'middleware' => ['auth', IsAdminOrSeller::class]], function () {
             Route::get('/', [AccountController::class, 'index'])->name('account.manage.index');

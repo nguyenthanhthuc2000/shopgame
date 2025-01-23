@@ -3,22 +3,6 @@
 @section('title', 'Tài Khoản Ngọc Rồng | NickDaoQuan.Vn')
 
 @section('content')
-    {{-- <style>
-        .pagination {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 10px;
-            /* khoảng cách phía dưới */
-        }
-
-        .page-info {
-            text-align: center;
-            margin-top: 10px;
-            /* khoảng cách phía trên */
-            font-size: 14px;
-            color: #555;
-        }
-    </style> --}}
     <div class="list-section app-sub-menu" style="padding-top: 130px; padding-bottom: 100px;">
         <div class="container">
             <div class="row">
@@ -35,22 +19,15 @@
                                 <div class="col-sm-12 text-center">
                                     <h1 style="font-size: 26px;">TÀI KHOẢN NGỌC RỒNG</h1>
                                 </div>
-                                <div class="d-flex justify-content-end my-3 gap-3">
+                                <div class="d-flex justify-content-between my-3 gap-3">
+                                    <div class="search-container">
+                                        @include('pages.account.account-search')
+                                    </div>
                                     <a href="{{ route('account.create') }}" class="btn btn-primary col-xs-12 btn4"
                                         style="display: flex; align-items: center; gap: 6px;">
                                         <i class="fa-solid fa-plus"></i>
                                         Thêm Mới
                                     </a>
-                                    <div class="d-flex justify-content-end">
-                                        <div class="input-group w-100">
-                                            <input type="text" id="searchInput" class="form-control"
-                                                placeholder="Tìm kiếm tài khoản..." aria-label="Search"
-                                                aria-describedby="searchIcon">
-                                            <span class="input-group-text" id="searchIcon">
-                                                <i class="fas fa-search"></i>
-                                            </span>
-                                        </div>
-                                    </div>
                                 </div>
                                 <div>
                                     @auth
@@ -69,17 +46,14 @@
                                                 <tbody>
                                                     @forelse($accounts as $account)
                                                         <tr>
-                                                            <td><a href="{{ route('account.show', ['category' => $account->category->slug, 'account' => $account->uuid]) }}">#{{ $account->id }}</a></td>
+                                                            <td><a
+                                                                    href="{{ route('account.show', ['category' => $account->category->slug, 'account' => $account->uuid]) }}">#{{ $account->id }}</a>
+                                                            </td>
                                                             <td>{{ $account->username }}</td>
-                                                            <td>{{ getPrice($account->price) }}</td>
+                                                            <td>{{ $account->price_formated }}</td>
                                                             <td>
-                                                                @if ($account->status === \App\Models\Account::STATUS_SOLD)
-                                                                <span class="acccount-status acccount-status--sold">{{ config('account.account_status.' . $account->status) }}</span>
-                                                                @elseif ($account->status === \App\Models\Account::STATUS_AVAILABLE)
-                                                                <span class="acccount-status acccount-status--avaiable">{{ config('account.account_status.' . $account->status) }}</span>
-                                                                @else
-                                                                <span class="acccount-status acccount-status--hide">{{ config('account.account_status.' . $account->status) }}</span>
-                                                                @endif
+                                                                <span
+                                                                    class="acccount-status acccount-status--{{ $account->status_bg_color }}">{{ $account->status_name }}</span>
                                                             </td>
                                                             <td>{{ date('d/m/Y H:i', strtotime($account->created_at)) }}</td>
                                                             <td>
@@ -158,7 +132,7 @@
                 error: function(error) {
                     Swal.fire({
                         title: 'Thông báo!',
-                        text: error.message || '{{ __("messages.common_error") }}',
+                        text: error.message || '{{ __('messages.common_error') }}',
                         icon: error.status || 'error',
                         confirmButtonColor: '#3085d6',
                         confirmButtonText: 'OK',

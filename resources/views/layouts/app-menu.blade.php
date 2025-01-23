@@ -1,6 +1,7 @@
 @php
-    $menu = config('page.main_menu', []);
+    $menu = config('menu.main_menu', []);
     $sticking = isHomePage() ? '' : ' is-sticky-menu';
+    $userMenu = config('menu.user_menu', []);
 @endphp
 
 <div id="sticker-sticky-wrapper" class="sticky-wrapper {{ $sticking }}">
@@ -49,7 +50,36 @@
                     </ul>
                     <div class="ps-3 ps-lg-0 d-lg-flex user-action" style="display: flex; gap: 16px;">
                         @auth
-                            <a href="{{ route('home.deposit') }}" class="d-block btn-auth" style="max-width: fit-content;">
+                            <div class="dropdown user-menu-dropdown">
+                                <button class="btn-auth bg-transparent text-light dropdown-toggle" type="button" id="userMenuDropdown"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M2 14C2 10.2288 2 8.34315 3.17157 7.17157C4.34315 6 6.22876 6 10 6H14C17.7712 6 19.6569 6 20.8284 7.17157C22 8.34315 22 10.2288 22 14C22 17.7712 22 19.6569 20.8284 20.8284C19.6569 22 17.7712 22 14 22H10C6.22876 22 4.34315 22 3.17157 20.8284C2 19.6569 2 17.7712 2 14Z"
+                                            stroke="#FFFFFF" stroke-width="1.5" />
+                                        <path
+                                            d="M16 6C16 4.11438 16 3.17157 15.4142 2.58579C14.8284 2 13.8856 2 12 2C10.1144 2 9.17157 2 8.58579 2.58579C8 3.17157 8 4.11438 8 6"
+                                            stroke="#FFFFFF" stroke-width="1.5" />
+                                        <path
+                                            d="M12 17.3333C13.1046 17.3333 14 16.5871 14 15.6667C14 14.7462 13.1046 14 12 14C10.8954 14 10 13.2538 10 12.3333C10 11.4129 10.8954 10.6667 12 10.6667M12 17.3333C10.8954 17.3333 10 16.5871 10 15.6667M12 17.3333V18M12 10V10.6667M12 10.6667C13.1046 10.6667 14 11.4129 14 12.3333"
+                                            stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" />
+                                    </svg> {{ number_format(auth()->user()->buyer_vnd, 0, ',', '.') }} | {{ auth()->user()->name }}
+                                </button>
+                                <ul class="dropdown-menu user-menu" aria-labelledby="userMenuDropdown">
+                                    @foreach ($userMenu as $menuItem)
+                                        @if (isset($menuItem['divider']) && $menuItem['divider'])
+                                            <hr class="m-0" />
+                                        @endif
+                                        @if ($menuItem['is_seller'] && auth()->user()->isSeller())
+                                            <li><a class="dropdown-item" href="{{ $menuItem['route_name'] ? route($menuItem['route_name']) : '#' }}"><i class="{{ $menuItem['icon_class'] }}"></i> {{ $menuItem['name'] }}</a></li>
+                                        @else
+                                            <li><a class="dropdown-item" href="{{ $menuItem['route_name'] ? route($menuItem['route_name']) : '#' }}"><i class="{{ $menuItem['icon_class'] }}"></i> {{ $menuItem['name'] }}</a></li>
+                                        @endif
+                                    @endforeach
+                                </ul>
+                            </div>
+                            {{-- <a href="{{ route('home.deposit') }}" class="d-block btn-auth" style="max-width: fit-content;">
                                 <span class="d-flex align-items-center gap-2">
                                     <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -78,7 +108,7 @@
                                             d="M16 5V4.5V4.5C16 3.67157 15.3284 3 14.5 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H14.5C15.3284 21 16 20.3284 16 19.5V19.5V19"
                                             stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"
                                             stroke-linejoin="round" />
-                                    </svg> ĐĂNG XUẤT</span></a>
+                                    </svg> ĐĂNG XUẤT</span></a> --}}
                         @endauth
                         @guest
                             <a href="{{ route('login') }}" class="btn-auth">
@@ -92,8 +122,9 @@
                                         fill="#FFFFFF" />
                                 </svg>
                                 ĐĂNG NHẬP</a>
-                            <a href="{{ route('register') }}" class="btn-auth btn-register"><svg style="margin-bottom: 6px;" width="20px" height="20px" viewBox="0 0 24 24"
-                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <a href="{{ route('register') }}" class="btn-auth btn-register"><svg style="margin-bottom: 6px;"
+                                    width="20px" height="20px" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M20 18L17 18M17 18L14 18M17 18V15M17 18V21M11 21H4C4 17.134 7.13401 14 11 14C11.695 14 12.3663 14.1013 13 14.2899M15 7C15 9.20914 13.2091 11 11 11C8.79086 11 7 9.20914 7 7C7 4.79086 8.79086 3 11 3C13.2091 3 15 4.79086 15 7Z"
                                         stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />

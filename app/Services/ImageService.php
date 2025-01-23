@@ -12,6 +12,11 @@ class ImageService extends BaseService
      */
     protected $logChannel = 'images_save';
 
+    public function setModel()
+    {
+        $this->model = new Image();
+    }
+
     /**
      * Insert gallery to Google Drive
      * @param array $fileData
