@@ -19,15 +19,16 @@
                                 <div class="col-sm-12 text-center">
                                     <h1 style="font-size: 26px;">TÀI KHOẢN NGỌC RỒNG</h1>
                                 </div>
-                                <div class="d-flex justify-content-between my-3 gap-3">
-                                    <div class="search-container">
+                                <div class="d-flex flex-wrap-reverse justify-content-between">
+                                    <div class="search-container mb-3 col-12 col-md-8">
                                         @include('pages.account.account-search')
                                     </div>
-                                    <a href="{{ route('account.create') }}" class="btn btn-primary col-xs-12 btn4"
-                                        style="display: flex; align-items: center; gap: 6px;">
-                                        <i class="fa-solid fa-plus"></i>
-                                        Thêm Mới
-                                    </a>
+                                    <div class="search-container mb-3 col-12 col-md-4 text-end">
+                                        <a href="{{ route('account.create') }}" class="btn btn-primary">
+                                            <i class="fa-solid fa-plus"></i>
+                                            Thêm Mới
+                                        </a>
+                                    </div>
                                 </div>
                                 <div>
                                     @auth

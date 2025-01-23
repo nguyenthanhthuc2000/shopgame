@@ -260,8 +260,6 @@ a.meanmenu-reveal {
     top: 0;
     width: 100%;
     z-index: 999 !important;
-    background-color: $main-black-color;
-    box-shadow: rgb(99 99 99 / 30%) 0px 2px 8px 0px;
 
     &.is-sticky,
     &.is-sticky-menu {
@@ -271,9 +269,9 @@ a.meanmenu-reveal {
     }
 
     .top-header-area {
-        background-color: transparent;
+        background-color: $main-black-color;
+        box-shadow: rgb(99 99 99 / 30%) 0px 2px 8px 0px;
         padding: 5px 0;
-        box-shadow: none;
     }
 
     .navbar-toggler {
