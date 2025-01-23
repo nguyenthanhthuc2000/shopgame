@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('title', 'Nạp thẻ cào | NickDaoQuan.Vn')
-
+@push('head')
+{!! NoCaptcha::renderJs() !!}
+@endpush
 @section('content')
     <div class="list-section app-sub-menu" style="padding-top: 130px; padding-bottom: 100px;">
         <div class="container">
@@ -97,6 +99,17 @@
                                                                     value="{{ old('code') }}" class="form-control t14"
                                                                     placeholder="Nhập mã số sau lớp bạc mỏng">
                                                                 @error('code')
+                                                                    <div class="text-danger">{{ $message }}</div>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 mb-3">
+                                                        <div class="form-group row">
+                                                            <div class="col-md-2"></div>
+                                                            <div class="col-md-10">
+                                                                {!! NoCaptcha::display() !!}
+                                                                @error('g-recaptcha-response')
                                                                     <div class="text-danger">{{ $message }}</div>
                                                                 @enderror
                                                             </div>
