@@ -69,8 +69,9 @@ return [
 
     'sub_menu' => [
         [
-            'title' => 'TÀI KHOẢN',
+            'title' => 'NICK GAME',
             'is_seller' => true,
+            'is_login' => false,
             'is_show' => true,
             'menu_item' => [
                 [
@@ -82,17 +83,48 @@ return [
         [
             'title' => 'GIAO DỊCH',
             'is_seller' => false,
+            'is_login' => true,
             'is_show' => true,
             'menu_item' => [
                 [
                     'name' => 'Tài khoản đã mua',
+                    'is_seller' => false,
                     'route_name' => 'account.tran.index',
                 ],
                 [
                     'name' => 'Tài khoản đã bán',
+                    'is_seller' => false,
                     'route_name' => 'account.sell.history',
                 ]
             ],
-        ]
+        ],
+        [
+            'title' => 'TÀI KHOẢN',
+            'is_seller' => false,
+            'is_login' => true,
+            'is_show' => true,
+            'menu_item' => [
+                [
+                    'name' => 'Thông tin tài khoản',
+                    'route_name' => 'profile.index',
+                ],
+                [
+                    'name' => 'Nạp thẻ cào',
+                    'route_name' => 'card.index',
+                ],
+                [
+                    'name' => 'Nạp ATM - Ví điện tử',
+                    'route_name' => 'home.deposit',
+                ],
+                [
+                    'name' => 'Đổi mật khẩu',
+                    'route_name' => 'auth.change.password',
+                ],
+                [
+                    'name' => 'Đăng xuất',
+                    'route_name' => 'auth.logout',
+                ]
+            ],
+        ],
     ],
 ];

@@ -32,9 +32,9 @@ Route::middleware([LogRequestMiddleware::class])->group(function () {
 });
 Route::middleware(['throttle:300,1'])->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
-    Route::get('/nap-the-cao', [CardController::class, 'index'])->name('card.index');
+    Route::get('/nap-the-cao', [CardController::class, 'index'])->name('card.index')->middleware('auth');
     Route::get('/dich-vu', [ServiceController::class, 'index'])->name('service.index');
-    Route::get('/nap-tien', [HomeController::class, 'deposit'])->name('home.deposit');
+    Route::get('/nap-tien', [HomeController::class, 'deposit'])->name('home.deposit')->middleware('auth');
     Route::get('/dang-ky', [AuthController::class, 'showRegisterForm'])->name('register');
     Route::get('/dang-nhap', [AuthController::class, 'showLoginForm'])->name('login');
     Route::post('/dang-nhap', [AuthController::class, 'login'])->name('auth.login');

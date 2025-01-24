@@ -36,9 +36,10 @@
                                             <table class="table">
                                                 <thead>
                                                     <tr>
-                                                        <th scope="col">Mã Nick</th>
+                                                        <th scope="col">#</th>
                                                         <th scope="col" style="min-width: 150px;">Tài Khoản</th>
                                                         <th scope="col" style="min-width: 70px;">Giá</th>
+                                                        <th scope="col" style="min-width: 70px;">Hành tinh</th>
                                                         <th scope="col" style="min-width: 60px;">Trạng Thái</th>
                                                         <th scope="col" style="min-width: 60px;">Ngày Tạo</th>
                                                         <th scope="col" class="text-end" style="min-width: 60px;">Hành Động
@@ -53,6 +54,7 @@
                                                             </td>
                                                             <td>{{ $account->username }}</td>
                                                             <td>{{ $account->price_formated }}</td>
+                                                            <td>{{ $account->class_name }}</td>
                                                             <td>
                                                                 <span
                                                                     class="acccount-status acccount-status--{{ $account->status_bg_color }}">{{ $account->status_name }}</span>
