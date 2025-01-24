@@ -41,14 +41,15 @@
                                                         <th scope="col" style="min-width: 70px;">Giá</th>
                                                         <th scope="col" style="min-width: 60px;">Trạng Thái</th>
                                                         <th scope="col" style="min-width: 60px;">Ngày Tạo</th>
-                                                        <th scope="col" style="min-width: 60px;">Hành Động</th>
+                                                        <th scope="col" class="text-end" style="min-width: 60px;">Hành Động
+                                                        </th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     @forelse($accounts as $account)
                                                         <tr>
-                                                            <td><a
-                                                                    href="{{ route('account.show', ['category' => $account->category->slug, 'account' => $account->uuid]) }}">#{{ $account->id }}</a>
+                                                            <td>
+                                                                {{ $loop->iteration }}
                                                             </td>
                                                             <td>{{ $account->username }}</td>
                                                             <td>{{ $account->price_formated }}</td>
@@ -58,15 +59,20 @@
                                                             </td>
                                                             <td>{{ date('d/m/Y H:i', strtotime($account->created_at)) }}</td>
                                                             <td>
-                                                                @if ($account->canEdit())
-                                                                    <div class="d-flex gap-3">
+                                                                <div class="d-flex gap-3 justify-content-end">
+                                                                    <a class="btn btn-primary"
+                                                                        href="{{ route('account.show', ['category' => $account->category->slug, 'account' => $account->uuid]) }}"><i
+                                                                            class="far fa-eye"></i></a>
+                                                                    @if ($account->canEdit())
+                                                                        <a href="{{ route('account.edit', ['account' => $account->uuid]) }}"
+                                                                            class="btn btn-warning"><i
+                                                                                class="fas fa-edit"></i></a>
                                                                         <button type="button" class="btn btn-danger btn-delete"
                                                                             data-id="{{ $account->uuid }}"
-                                                                            data-url="{{ route('account.delete', ['account' => $account->uuid]) }}">Xóa</button>
-                                                                        <a href="{{ route('account.edit', ['account' => $account->uuid]) }}"
-                                                                            class="btn btn-warning">Sửa</a>
-                                                                    </div>
-                                                                @endif
+                                                                            data-url="{{ route('account.delete', ['account' => $account->uuid]) }}"><i
+                                                                                class="far fa-trash-alt"></i></button>
+                                                                    @endif
+                                                                </div>
                                                             </td>
                                                         </tr>
                                                     @empty

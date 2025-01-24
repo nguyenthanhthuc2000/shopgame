@@ -38,8 +38,14 @@
         .sub-menu-list {
             .c-menu {
                 padding: 0;
+                display: flex;
 
-                & > li {
+                &-item {
+                    margin-bottom: 0;
+                    width: 100%;
+                    padding: 0;
+
+                    & > li {
                     position: relative;
                     border-right: 1px solid #cccccc60;
                     border-left: 1px solid #cccccc60;
@@ -65,7 +71,7 @@
                             color: #afd275;
                         }
                     }
-                }
+                }}
             }
         }
     }
