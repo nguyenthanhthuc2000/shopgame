@@ -41,9 +41,14 @@ class CardTransaction extends Model
     ];
 
     const CARD_TYPES = [
-        'VIETTEL' => 'Viettel',
+        // 'VIETTEL' => 'Viettel',
+        'VCOIN' => 'VCOIN',
+        'ZING' => 'ZING',
+        'GATE' => 'GATE',
+        'GARENA' => 'GARENA',
+        'SCOIN' => 'SCOIN',
         'VINAPHONE' => 'Vinaphone',
-        // 'MOBIFONE' => 'Mobifone',
+        'MOBIFONE' => 'Mobifone',
     ];
     const IS_SUCCESS_TRANSACTION = 1;
     const IS_ERROR_TRANSACTION = 2;
