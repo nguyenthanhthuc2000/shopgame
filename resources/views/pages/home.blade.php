@@ -140,7 +140,7 @@
                     <h5 class="modal-title" id="exampleModalLabel">Thông báo</h5>
                 </div>
                 <div class="modal-body">
-                    <p><strong class="text-danger">KHI NẠP THẺ CÀO CẦN LƯU Ý: MỌI NGƯỜI ƯU TIÊN MUA THẺ ZING, GARENA, VCOIN, SCOIN, GATE GIÚP EM NHA CÁC THẺ NÀY SẼ XỬ LÍ TỰ ĐỘNG NHANH HƠN, SAU ĐÓ MỚI TỚI VINA VÀ MOBI HIỆN CỔNG VIETTEL MÌNH ĐANG ĐÓNG ANH EM THÔNG CẢM Ạ <img src="{{ asset('assets/images/hot.gif') }}" alt="nickdaoquan.vn"></strong></p>
+                    <p><strong class="text-danger">KHI NẠP THẺ CÀO CẦN LƯU Ý: MỌI NGƯỜI ƯU TIÊN MUA THẺ ZING, GARENA, VCOIN, SCOIN GIÚP EM NHA CÁC THẺ NÀY SẼ XỬ LÍ TỰ ĐỘNG NHANH HƠN, SAU ĐÓ MỚI TỚI VIETTEL, GATE và VINA. <img src="{{ asset('assets/images/hot.gif') }}" alt="nickdaoquan.vn"></strong></p>
                     
                     <p><strong>SĂN ĐỆ TỬ THUÊ SERVER 1 - 11 GIÁ 20K, SĂN CHO NICK SƠ SINH 30K <img src="{{ asset('assets/images/hot.gif') }}" alt="nickdaoquan.vn"></strong></p>
 
