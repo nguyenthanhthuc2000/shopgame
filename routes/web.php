@@ -5,6 +5,7 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AccountTransactionController;
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\BankTransactionController as AdminBankTransactionController;
@@ -31,8 +32,9 @@ Route::middleware([LogRequestMiddleware::class])->group(function () {
 });
 Route::middleware(['throttle:300,1'])->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
-    Route::get('/nap-the-cao', [CardController::class, 'index'])->name('card.index');
-    Route::get('/nap-tien', [HomeController::class, 'deposit'])->name('home.deposit');
+    Route::get('/nap-the-cao', [CardController::class, 'index'])->name('card.index')->middleware('auth');
+    Route::get('/dich-vu', [ServiceController::class, 'index'])->name('service.index');
+    Route::get('/nap-tien', [HomeController::class, 'deposit'])->name('home.deposit')->middleware('auth');
     Route::get('/dang-ky', [AuthController::class, 'showRegisterForm'])->name('register');
     Route::get('/dang-nhap', [AuthController::class, 'showLoginForm'])->name('login');
     Route::post('/dang-nhap', [AuthController::class, 'login'])->name('auth.login');
@@ -47,7 +49,7 @@ Route::middleware(['throttle:300,1'])->group(function () {
 
     Route::middleware([LogRequestMiddleware::class])->group(function () {
         Route::group(['middleware' => ['auth', IsAdminOrSeller::class]], function () {
-            Route::get('/lich-su-ban-nick', [AccountTransactionController::class, 'sellHistory'])->name('account.sell.history');
+            Route::get('/tai-khoan-da-ban', [AccountTransactionController::class, 'sellHistory'])->name('account.sell.history');
         });
         Route::group(['prefix' => 'quan-ly-nick-ngoc-rong', 'middleware' => ['auth', IsAdminOrSeller::class]], function () {
             Route::get('/', [AccountController::class, 'index'])->name('account.manage.index');

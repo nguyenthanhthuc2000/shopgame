@@ -127,6 +127,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div> --}}
     <button type="button" class="btn btn-primary showPopup" data-toggle="modal" data-target="#exampleModal"hidden>
         Launch demo modal

@@ -1,13 +1,5 @@
 @charset "UTF-8";
-/*
- * Theme: Metrica - Responsive Bootstrap 4 Admin Dashboard
- * Author: Mannatthemes
- * File: Icons
- */
-/*!
- * Font Awesome Free 5.8.2 by @fontawesome - https://fontawesome.com
- * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
- */
+
 .fa,
 .fas,
 .far,
@@ -5718,56 +5710,17 @@ readers do not read off random characters that represent icons */
   width: auto;
 }
 
-@font-face {
-  font-family: 'Font Awesome 5 Brands';
-  font-style: normal;
-  font-weight: normal;
-  font-display: auto;
-  src: url("../fonts/fa-brands-400.eot");
-  src: url("../fonts/fa-brands-400.eot?#iefix") format("embedded-opentype"), url("../fonts/fa-brands-400.woff2") format("woff2"), url("../fonts/fa-brands-400.woff") format("woff"), url("../fonts/fa-brands-400.ttf") format("truetype"), url("../fonts/fa-brands-400.svg#fontawesome") format("svg");
-}
-
-.fab {
-  font-family: 'Font Awesome 5 Brands';
-}
-
-@font-face {
-  font-family: 'Font Awesome 5 Free';
-  font-style: normal;
-  font-weight: 400;
-  font-display: auto;
-  src: url("../fonts/fa-regular-400.eot");
-  src: url("../fonts/fa-regular-400.eot?#iefix") format("embedded-opentype"), url("../fonts/fa-regular-400.woff2") format("woff2"), url("../fonts/fa-regular-400.woff") format("woff"), url("../fonts/fa-regular-400.ttf") format("truetype"), url("../fonts/fa-regular-400.svg#fontawesome") format("svg");
-}
-
 .far {
-  font-family: 'Font Awesome 5 Free';
+  font-family: 'Font Awesome 6 Free';
   font-weight: 400;
-}
-
-@font-face {
-  font-family: 'Font Awesome 5 Free';
-  font-style: normal;
-  font-weight: 900;
-  font-display: auto;
-  src: url("../fonts/fa-solid-900.eot");
-  src: url("../fonts/fa-solid-900.eot?#iefix") format("embedded-opentype"), url("../fonts/fa-solid-900.woff2") format("woff2"), url("../fonts/fa-solid-900.woff") format("woff"), url("../fonts/fa-solid-900.ttf") format("truetype"), url("../fonts/fa-solid-900.svg#fontawesome") format("svg");
 }
 
 .fa,
 .fas {
-  font-family: 'Font Awesome 5 Free';
+  font-family: 'Font Awesome 6 Free';
   font-weight: 900;
 }
 
-/* MaterialDesignIcons.com */
-@font-face {
-  font-family: "Material Design Icons";
-  src: url("../fonts/materialdesignicons-webfont.eot?v=3.2.89");
-  src: url("../fonts/materialdesignicons-webfont.eot?#iefix&v=3.2.89") format("embedded-opentype"), url("../fonts/materialdesignicons-webfont.woff2?v=3.2.89") format("woff2"), url("../fonts/materialdesignicons-webfont.woff?v=3.2.89") format("woff"), url("../fonts/materialdesignicons-webfont.ttf?v=3.2.89") format("truetype"), url("../fonts/materialdesignicons-webfont.svg?v=3.2.89#materialdesigniconsregular") format("svg");
-  font-weight: normal;
-  font-style: normal;
-}
 
 .mdi:before,
 .mdi-set {
@@ -19185,8 +19138,8 @@ readers do not read off random characters that represent icons */
 }
 @font-face {
   font-family: 'themify';
-  src: url("../fonts/themify.eot?-fvbane");
-  src: url("../fonts/themify.eot?#iefix-fvbane") format("embedded-opentype"), url("../fonts/themify.woff?-fvbane") format("woff"), url("../fonts/themify.ttf?-fvbane") format("truetype"), url("../fonts/themify.svg?-fvbane#themify") format("svg");
+  src: url("@/fonts/themify.eot?-fvbane");
+  src: url("@/fonts/themify.eot?#iefix-fvbane") format("embedded-opentype"), url("@/fonts/themify.woff?-fvbane") format("woff"), url("@/fonts/themify.ttf?-fvbane") format("truetype"), url("@/fonts/themify.svg?-fvbane#themify") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -20612,14 +20565,6 @@ readers do not read off random characters that represent icons */
   content: "\e75f";
 }
 
-@font-face {
-  font-family: "dripicons-v2";
-  src: url("../fonts/dripicons-v2.eot");
-  src: url("../fonts/dripicons-v2.eot?#iefix") format("embedded-opentype"), url("../fonts/dripicons-v2.woff") format("woff"), url("../fonts/dripicons-v2.ttf") format("truetype"), url("../fonts/dripicons-v2.svg#dripicons-v2") format("svg");
-  font-weight: normal;
-  font-style: normal;
-}
-
 [data-icon]:before {
   font-family: "dripicons-v2" !important;
   content: attr(data-icon);
@@ -21449,8 +21394,8 @@ readers do not read off random characters that represent icons */
   font-family: 'typicons';
   font-weight: normal;
   font-style: normal;
-  src: url("../fonts/typicons.eot");
-  src: url("../fonts/typicons.eot?#iefix") format("embedded-opentype"), url("../fonts/typicons.woff") format("woff"), url("../fonts/typicons.ttf") format("truetype"), url("../fonts/typicons.svg#typicons") format("svg");
+  src: url("@/fonts/typicons.eot");
+  src: url("@/fonts/typicons.eot?#iefix") format("embedded-opentype"), url("@/fonts/typicons.woff") format("woff"), url("@/fonts/typicons.ttf") format("truetype"), url("@/fonts/typicons.svg#typicons") format("svg");
 }
 
 /* :before psuedo-selector inserts and styles icon */
@@ -37263,4 +37208,3 @@ readers do not read off random characters that represent icons */
   background: url("https://twemoji.maxcdn.com/2/72x72/1f4a4.png");
   background-image: url("https://twemoji.maxcdn.com/2/svg/1f4a4.svg"), none;
 }
-/*# sourceMappingURL=icons.css.map */

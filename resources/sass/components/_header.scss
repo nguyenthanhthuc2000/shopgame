@@ -58,7 +58,6 @@ a.meanmenu-reveal {
         font-size: 16px;
         text-indent: -9999em;
         line-height: 22px;
-        font-size: 1px;
         display: block;
         font-family: $font-family_1;
         font-weight: 700;
@@ -179,7 +178,102 @@ a.meanmenu-reveal {
     display: none !important;
 }
 
+.user-menu-dropdown {
+    .user-menu {
+        background-color: $main-black-color;
+        border: solid 1px #c3c3c35d;
+
+        & > li {
+            width: 100%;
+            a {
+                font-size: 0.9rem;
+                padding: 8px 15px !important;
+                transition: none !important;
+
+                &:hover {
+                    background: transparent;
+                }
+
+                i[class^="fa-"],
+                i[class^="fas-"],
+                i[class^="fad-"] {
+                    margin-right: 5px;
+                }
+            }
+        }
+    }
+}
+
+.top-header-area {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    padding: 25px 0;
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+    .header-icons {
+        a {
+            -webkit-transition: 0.3s;
+            -o-transition: 0.3s;
+            transition: 0.3s;
+            &:hover {
+                color: $main-color;
+            }
+        }
+    }
+
+    &.white {
+        ul.navbar-nav {
+            li.nav-item {
+                a.nav-link {
+                    color: $color_2;
+                }
+            }
+            li.nav-item.active {
+                a.nav-link {
+                    color: $color_2;
+                }
+            }
+        }
+    }
+
+    &.sepherate-header {
+        ul {
+            li {
+                > a {
+                    color: $color_3;
+                }
+            }
+        }
+        .header-icons {
+            a {
+                color: $color_3;
+            }
+        }
+    }
+}
+
 .sticky-wrapper {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 2 !important;
+
+    &.is-sticky,
+    &.is-sticky-menu {
+        .top-header-area {
+            padding: 0;
+        }
+    }
+
+    .top-header-area {
+        background-color: $main-black-color;
+        box-shadow: rgb(99 99 99 / 30%) 0px 2px 8px 0px;
+        padding: 5px 0;
+    }
+
     .navbar-toggler {
         color: rgba(255, 255, 255, 0.55);
         border-color: rgba(255, 255, 255, 0.1);
@@ -202,6 +296,7 @@ a.meanmenu-reveal {
                     font-weight: 700;
                     display: block;
                     padding: 8px;
+                    text-transform: uppercase;
                 }
                 &:last-child {
                     a,
@@ -238,16 +333,12 @@ a.meanmenu-reveal {
                 li {
                     display: block;
                     text-align: left;
-                    display: block;
                     a {
                         color: $color_4;
                         font-weight: 600;
                         padding: 7px 10px;
                         font-size: 13px;
-                        color: $color_4;
-                        padding: 8px;
-                        font-size: 13px;
-                        font-weight: 600;
+                        text-transform: uppercase;
                     }
                 }
             }
@@ -277,5 +368,11 @@ a.meanmenu-reveal {
                 padding: 15px;
             }
         }
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .top-header-area {
+        padding: 15px 0;
     }
 }

@@ -7,7 +7,6 @@ html {
 html,
 body {
     cursor: url("@/images/mouse/mouse-f1.png"), auto;
-
     font-family: $body-font-family;
     font-weight: 400;
     font-size: 1rem;
@@ -46,7 +45,6 @@ h1,
     margin: 0 0 1.25rem 0;
     color: #051922;
     font-size: 4rem;
-    font-weight: 700;
     line-height: 4rem;
     &:last-child {
         margin: 0;
@@ -60,7 +58,6 @@ h2 {
     margin: 0 0 1.25rem 0;
     color: #051922;
     font-size: 3rem;
-    font-weight: 700;
     line-height: 3.25rem;
     &:last-child {
         margin: 0;
@@ -74,7 +71,6 @@ h3 {
     margin: 0 0 1.25rem 0;
     color: #051922;
     font-size: 2rem;
-    font-weight: 700;
     line-height: 2.25rem;
     &:last-child {
         margin: 0;
@@ -88,7 +84,6 @@ h4 {
     margin: 0 0 1.25rem 0;
     color: #051922;
     font-size: 1.5rem;
-    font-weight: 700;
     line-height: 1.75rem;
     &:last-child {
         margin: 0;
@@ -102,7 +97,6 @@ h5 {
     margin: 0 0 1.25rem 0;
     color: #051922;
     font-size: 1.25rem;
-    font-weight: 700;
     line-height: 1.5rem;
     &:last-child {
         margin: 0;
@@ -116,7 +110,6 @@ h6 {
     margin: 0 0 1.25rem 0;
     color: #051922;
     font-size: 1rem;
-    font-weight: 700;
     line-height: 1.5rem;
     &:last-child {
         margin: 0;
@@ -134,6 +127,10 @@ p {
     &:last-child {
         margin: 0;
     }
+}
+
+ul li {
+    list-style: none;
 }
 
 @media only screen and (max-width: 767.96px) {

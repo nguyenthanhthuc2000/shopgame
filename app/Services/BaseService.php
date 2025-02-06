@@ -5,7 +5,7 @@ namespace App\Services;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Log;
 
-class BaseService
+abstract class BaseService
 {
     protected $logChannel = '';
 
@@ -15,14 +15,17 @@ class BaseService
     protected $model;
 
     /**
+     * BaseService constructor.
+     */
+    public function __construct()
+    {
+        $this->setModel();
+    }
+
+    /**
      * Method to set model
      */
-    public function setModel($model): self
-    {
-        $this->model = $model;
-
-        return $this;
-    }
+    abstract public function setModel();
 
     /**
      * Get this model

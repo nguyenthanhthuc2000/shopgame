@@ -16,10 +16,7 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/favicon.ico') }}">
 
         <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css"/>
-        <link href="{{ asset('assets/css/icons.css') }}" rel="stylesheet" type="text/css"/>
-        <link href="{{ asset('assets/css/metisMenu.min.css') }}" rel="stylesheet" type="text/css"/>
-        <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" type="text/css"/>
-
+        @vite('resources/sass/pages-exclusive/login/index.scss')
     </head>
 
     <body class="account-body accountbg">
@@ -33,10 +30,10 @@
                                 <div class="auth-logo-box">
                                     <a href="/" class="logo logo-admin"><img src="{{ asset('assets/images/avatar.jpg') }}" height="55" alt="logo" class="auth-logo"></a>
                                 </div>
-                                
+
                                 <div class="text-center auth-logo-text">
                                     <h1 class="mb-3 mt-5">Đăng Ký</h1>
-                                    <p class="text-muted mb-0">Chào mừng bạn đến shop nick game uy tín giá rẻ.</p>  
+                                    <p class="text-muted mb-0">Chào mừng bạn đến shop nick game uy tín giá rẻ.</p>
                                 </div>
                                 <form class="form-horizontal auth-form my-4" action="{{ route('auth.register') }}" id="register-form" method="POST">
                                     @include('components.admin.alert')
@@ -45,54 +42,54 @@
                                         <label for="email">Tài khoản</label>
                                         <div class="input-group mb-3">
                                             <span class="auth-form-icon">
-                                                <i class="dripicons-user"></i> 
-                                            </span>                                                                                                              
+                                                <i class="dripicons-user"></i>
+                                            </span>
                                             <input type="text" class="form-control" id="email" name="email" placeholder="Nhập tài khoản">
-                                        </div>    
+                                        </div>
                                         @error('email')
                                             <div class="text-danger">{{ $message }}</div>
-                                        @enderror                                
+                                        @enderror
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="name">Tên</label>                                            
-                                        <div class="input-group mb-3"> 
+                                        <label for="name">Tên</label>
+                                        <div class="input-group mb-3">
                                             <span class="auth-form-icon">
-                                                <i class="dripicons-lock"></i> 
-                                            </span>                                                       
+                                                <i class="dripicons-lock"></i>
+                                            </span>
                                             <input type="name" name="name" class="form-control" id="name" placeholder="Nhập tên của bạn">
-                                        </div>        
+                                        </div>
                                         @error('name')
                                             <div class="text-danger">{{ $message }}</div>
-                                        @enderror                       
+                                        @enderror
                                     </div>
-        
+
                                     <div class="form-group">
-                                        <label for="password">Mật khẩu</label>                                            
-                                        <div class="input-group mb-3"> 
+                                        <label for="password">Mật khẩu</label>
+                                        <div class="input-group mb-3">
                                             <span class="auth-form-icon">
-                                                <i class="dripicons-lock"></i> 
-                                            </span>                                                       
+                                                <i class="dripicons-lock"></i>
+                                            </span>
                                             <input type="password" name="password" class="form-control" id="password" placeholder="Nhập mật khẩu">
-                                        </div>        
+                                        </div>
                                         @error('password')
                                             <div class="text-danger">{{ $message }}</div>
-                                        @enderror                       
+                                        @enderror
                                     </div>
-        
+
                                     <div class="form-group">
-                                        <label for="password_confirmation">Mật khẩu Xác Nhận</label>                                            
-                                        <div class="input-group mb-3"> 
+                                        <label for="password_confirmation">Mật khẩu Xác Nhận</label>
+                                        <div class="input-group mb-3">
                                             <span class="auth-form-icon">
-                                                <i class="dripicons-lock"></i> 
-                                            </span>                                                       
+                                                <i class="dripicons-lock"></i>
+                                            </span>
                                             <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" placeholder="Nhập mật khẩu xác nhận">
-                                        </div>        
+                                        </div>
                                         @error('password')
                                             <div class="text-danger">{{ $message }}</div>
-                                        @enderror                       
+                                        @enderror
                                     </div>
-        
+
                                     <div class="form-group mb-0 row">
                                         <div class="col-12 mt-2">
                                             <button class="btn btn-gradient-primary btn-round btn-block waves-effect waves-light" type="submit">Đăng Ký <i class="fas fa-sign-in-alt ml-1"></i></button>
@@ -110,14 +107,14 @@
                                     </ul>
                                 </div>
                             </div>
-                            
+
                             <div class="m-3 text-center text-muted">
                                 <p class="">Bạn đã có tài khoản?  <a href="/dang-nhap" class="text-primary ml-2">Đăng Nhập Ngay</a></p>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>     
+            </div>
         </div>
 
         <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
@@ -126,6 +123,6 @@
         <script src="{{ asset('assets/js/waves.min.js') }}"></script>
         <script src="{{ asset('assets/js/jquery.slimscroll.min.js') }}"></script>
 
-        <script src="{{ asset('assets/js/app.js') }}"></script>
+        @vite('resources/js/pages-exclusive/login.js')
     </body>
 </html>

@@ -1,55 +1,3 @@
-/*
- * Theme: Metrica - Responsive Bootstrap 4 Admin Dashboard
- * Author: Mannatthemes
- * File: Main Css File
- */
-/*
-1. Menu
-2. Common
-3. Helper
-4. Bootstrap Reset
-5. Waves Effect
-6. Card
-7. Buttons
-8. Ribbons
-9. Popovers and Tooltips
-10. Checkbox & Radio
-11. Alerts
-12. Modal
-13. Spinners
-14. Widgets
-15. Tabs
-16. Progress
-17. Sweet Alert
-18. Charts
-19. Email
-20. Form Elements
-21. Form Advanced
-22. Form Validation
-23. Form Pickers
-24. Form Wizard
-25. Summernote
-26. Wysiwig
-27. Form Uploads
-28. Tables
-29. Maps
-30. Calendar
-31. Tickets
-32. taskboards
-33. Projects
-34. Companies
-35. File Manager
-36. Timeline
-37. Profile
-38. Print
-39. FAQ
-40. Pricing
-41. Account-Pages
-42. Search Results
-43. Gallery
-44. Coming Soon
-45. Responsive
-*/
 @import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700");
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,500,700");
 html {
@@ -1286,10 +1234,10 @@ small {
 
 /*!
  * Waves v0.7.6
- * http://fian.my.id/Waves 
- * 
- * Copyright 2014-2018 Alfiana E. Sibuea and other contributors 
- * Released under the MIT license 
+ * http://fian.my.id/Waves
+ *
+ * Copyright 2014-2018 Alfiana E. Sibuea and other contributors
+ * Released under the MIT license
  * https://github.com/fians/Waves/blob/master/LICENSE */
 .waves-effect {
   position: relative;
@@ -9047,13 +8995,13 @@ hr.thick {
   color: #9ba7ca;
 }
 
-.account-body.accountbg {
-  background-image: url("../images/acount-page.jpg");
-  background-size: cover;
-  background-position: center center;
-  width: 100%;
-  height: 100vh;
-}
+// .account-body.accountbg {
+//   background-image: url("../images/acount-page.jpg");
+//   background-size: cover;
+//   background-position: center center;
+//   width: 100%;
+//   height: 100vh;
+// }
 
 .account-body.accountbg .account-title {
   width: 500px;
@@ -9230,4 +9178,3 @@ body.dark-topbar .app-search a {
     display: none;
   }
 }
-/*# sourceMappingURL=style.css.map */

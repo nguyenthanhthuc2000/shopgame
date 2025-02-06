@@ -18,7 +18,7 @@ export default defineConfig({
                 'resources/sass/app.scss',
                 'resources/js/app.js',
                 ...getFiles('resources/js/pages-exclusive', '.js'),
-                ...getFiles('resources/sass/pages-exclusive', '.scss'),
+                ...getFiles('resources/sass/pages-exclusive', 'index.scss'),
             ],
             refresh: true,
         }),
@@ -38,4 +38,11 @@ export default defineConfig({
             },
         },
     },
+    css: {
+        preprocessorOptions: {
+          scss: {
+            api: 'modern-compiler' // or "modern"
+          }
+        }
+      }
 });

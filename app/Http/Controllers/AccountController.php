@@ -31,11 +31,18 @@ class AccountController extends Controller
      */
     public function index(Request $request)
     {
+        $class = $request->input('class');
+        $accountName = $request->input('account_name');
+
         $accounts = Account::orderBy('id', 'DESC')
             ->where('user_id', Auth::id())
+            ->byClass($class)
+            ->byUserName($accountName)
             ->paginate();
-            
-        return view('pages.account-manage', compact('accounts'));
+
+        $classes = Account::CLASSES;
+
+        return view('pages.account.account-manage', compact('accounts', 'classes'));
     }
 
     /**
@@ -65,7 +72,7 @@ class AccountController extends Controller
             ->limit(8)
             ->get();
 
-        return view('pages.account-detail', compact([
+        return view('pages.account.account-detail', compact([
             'account',
             'category',
             'accountRefs',
@@ -122,8 +129,8 @@ class AccountController extends Controller
 
         DB::transaction(function () use ($request, $accountData) {
             $this->accountService->storeAccount(
-                $accountData, 
-                $request->file('banner'), 
+                $accountData,
+                $request->file('banner'),
                 $request->file('gallery', [])
             );
         });
@@ -151,7 +158,7 @@ class AccountController extends Controller
             return redirect()->route('account.manage.index');
         }
 
-        return view('pages.edit-account', compact([
+        return view('pages.account.edit-account', compact([
             'categories',
             'classes',
             'regisTypes',
@@ -164,7 +171,7 @@ class AccountController extends Controller
 
     /**
      * Update account
-     * 
+     *
      * @param \Illuminate\Http\Request $request
      * @param \App\Models\Account $account
      * @return mixed|\Illuminate\Http\RedirectResponse
@@ -214,7 +221,7 @@ class AccountController extends Controller
      * Destroy account
      *
      * @param \App\Models\Account $account
-     * 
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Account $account)

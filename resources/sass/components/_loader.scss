@@ -1,0 +1,43 @@
+@keyframes l21 {
+    50% {
+        box-shadow:
+            19px 0 0 3px,
+            38px 0 0 7px,
+            57px 0 0 3px;
+    }
+    100% {
+        box-shadow:
+            19px 0 0 0,
+            38px 0 0 3px,
+            57px 0 0 7px;
+    }
+}
+
+.loader {
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 1111;
+    background: #ffffff;
+    overflow-x: hidden;
+}
+.loader-inner {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    height: 4px;
+    color: #000;
+    width: 4px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    box-shadow: 19px 0 0 7px, 38px 0 0 3px, 57px 0 0 0;
+    transform: translateX(-38px);
+    animation: l21 .5s infinite alternate linear;
+}

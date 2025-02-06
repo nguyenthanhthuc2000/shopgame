@@ -28,7 +28,16 @@ class AccountService extends BaseService
     {
         $this->googleDriveService = $googleDriveService;
         $this->imageService = $imageService;
-        $this->setModel(new Account);
+    }
+
+    /**
+     * Set model
+     */
+    public function setModel(): self
+    {
+        $this->model = new Account;
+
+        return $this;
     }
 
     /**

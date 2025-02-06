@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Admin\Category;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
@@ -152,17 +155,20 @@ class Account extends Model
     const STATUS = [
         [
             'name' => 'Ẩn',
-            'value' => 0,
+            'value' => self::STATUS_HIDE,
+            'bg_color' => 'hide',
             'is_default' => false,
         ],
         [
             'name' => 'Đang bán',
-            'value' => 1,
+            'value' => self::STATUS_AVAILABLE,
+            'bg_color' => 'avaiable',
             'is_default' => true,
         ],
         [
             'name' => 'Đã bán',
-            'value' => 2,
+            'value' => self::STATUS_SOLD,
+            'bg_color' => 'sold',
             'is_default' => false,
         ],
     ];
@@ -170,6 +176,42 @@ class Account extends Model
     public function category()
     {
         return $this->hasOne(Category::class, 'id', 'category_id');
+    }
+
+    /**
+     * Get the status name.
+     */
+    protected function statusName(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => collect(self::STATUS)->where('value', $this->status)->first()['name'],
+        );
+    }
+
+    /**
+     * Get the status background color.
+     */
+    protected function statusBgColor(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => collect(self::STATUS)->where('value', $this->status)->first()['bg_color'],
+        );
+    }
+
+    /**
+     * Get the price formated.
+     */
+    protected function priceFormated(): Attribute
+    {
+        return Attribute::make(
+            get: function() {
+                if ($this->price === 0) {
+                    return 0;
+                }
+
+                return number_format($this->price, 0, ',', '.');
+            },
+        );
     }
 
     public function getPriceAtmAttribute()
@@ -202,15 +244,12 @@ class Account extends Model
         return $this->hasMany(Image::class)->where('is_banner', false);
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function images()
+    public function images(): HasMany
     {
         return $this->hasMany(Image::class);
     }
 
-    public function author()
+    public function author(): HasOne
     {
         return $this->hasOne(User::class, 'id', 'user_id');
     }
@@ -238,11 +277,6 @@ class Account extends Model
         return $this->gallery;
     }
 
-    public function findByUuid($uuid)
-    {
-        return $this->byUuid($uuid)->first();
-    }
-
     /**
      * Check record can be edited
      */
@@ -259,16 +293,6 @@ class Account extends Model
         return $this->author->id === Auth::id() && $this->status === self::STATUS_AVAILABLE;
     }
 
-    /**
-     * Get a account by uuid
-     * @param string $uuid
-     * @return Model|null
-     */
-    public static function getByUuid($uuid)
-    {
-        return self::byUuid($uuid)->first();
-    }
-
     public function hasGallery(): bool
     {
         return $this->gallery?->count() > 0;
@@ -277,6 +301,18 @@ class Account extends Model
     public function hasBanner(): bool
     {
         return $this->banner?->count() > 0;
+    }
+
+    public function scopeIsAvailable($query)
+    {
+        $query->where('status', self::STATUS_AVAILABLE);
+    }
+
+    public function scopeByUserName($query, $username)
+    {
+        if (!empty($username)) {
+            $query->where('username', 'like', "%$username%");
+        }
     }
 
     public function scopeByCode($query, $code)

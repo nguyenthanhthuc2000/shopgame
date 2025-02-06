@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang={{ config('app.locale') }} class="mdl-js">
+<html lang="{{ config('app.locale') }}" class="mdl-js">
 
 <head>
     <meta charset="utf-8">
@@ -14,6 +14,11 @@
     <meta property="og:image" content="{{ asset('assets/images/avatar.jpg') }}">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta name="csrf_token" content="{{ csrf_token() }}" />
+    {{-- CKEditor --}}
+    <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/44.1.0/ckeditor5.css" />
+    <script src="https://cdn.ckeditor.com/ckeditor5/44.1.0/ckeditor5.umd.js"></script>
+
+    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5V70YRDLZB"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -36,8 +41,7 @@
 </head>
 
 <body>
-    <div class="snow-container"></div>
-    <div class="loader" style="display: none;">
+    <div class="loader">
         <div class="loader-inner">
         </div>
     </div>
