@@ -18,7 +18,7 @@ export default defineConfig({
                 'resources/sass/app.scss',
                 'resources/js/app.js',
                 ...getFiles('resources/js/pages-exclusive', '.js'),
-                ...getFiles('resources/sass/pages-exclusive', 'index.scss'),
+                ...getFiles('resources/sass/pages-exclusive/login', '.scss'),
             ],
             refresh: true,
         }),
