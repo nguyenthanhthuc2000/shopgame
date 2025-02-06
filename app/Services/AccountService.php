@@ -2,10 +2,10 @@
 
 namespace App\Services;
 
+use Exception;
 use App\Models\Account;
 use App\Jobs\UploadToGoogleDrive;
 use App\Models\Image;
-use Exception;
 
 class AccountService extends BaseService
 {

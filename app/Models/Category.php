@@ -30,7 +30,7 @@ class Category extends Model
      */
     protected $guarded = ['id'];
 
-    const ACTIVE_STATUS = 1;
+    public const ACTIVE_STATUS = 1;
 
     /**
      * The attributes that should be cast.

@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Account;
-use App\Http\Requests\AccountRequest;
-use App\Models\Category;
-use App\Services\AccountService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use App\Models\Account;
+use App\Http\Requests\AccountRequest;
+use App\Models\Category;
+use App\Services\AccountService;
 
 class AccountController extends Controller
 {
@@ -124,7 +124,7 @@ class AccountController extends Controller
             'earring' => $request->input('earring', 0),
             'note' => $request->input('description', 0),
             'user_id' => Auth::id(),
-            'status' => 1,
+            'status' => Account::STATUS_AVAILABLE,
         ];
 
         DB::transaction(function () use ($request, $accountData) {

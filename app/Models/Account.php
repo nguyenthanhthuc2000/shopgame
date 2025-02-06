@@ -56,11 +56,11 @@ class Account extends Model
      */
     protected $casts = [];
 
-    const STATUS_AVAILABLE = 1;
-    const STATUS_HIDE = 0;
-    const STATUS_SOLD = 2;
+    public const STATUS_AVAILABLE = 1;
+    public const STATUS_HIDE = 0;
+    public const STATUS_SOLD = 2;
 
-    const CLASSES = [
+    public const CLASSES = [
         [
             'name' => 'Xayda',
             'value' => '1',
@@ -70,12 +70,12 @@ class Account extends Model
             'value' => '2',
         ],
         [
-            'name' => 'Namec',
+            'name' => 'Namek',
             'value' => '3',
         ],
     ];
 
-    const REGIS_TYPE = [
+    public const REGIS_TYPE = [
         [
             'name' => 'Ảo',
             'value' => '0',
@@ -86,7 +86,7 @@ class Account extends Model
         ],
     ];
 
-    const EARRING = [
+    public const EARRING = [
         [
             'name' => 'Có',
             'value' => '1',
@@ -97,7 +97,7 @@ class Account extends Model
         ],
     ];
 
-    const SERVER = [
+    public const SERVER = [
         [
             'name' => 'Server 1',
             'value' => '1',
@@ -152,7 +152,7 @@ class Account extends Model
         ],
     ];
 
-    const STATUS = [
+    public const STATUS = [
         [
             'name' => 'Ẩn',
             'value' => self::STATUS_HIDE,

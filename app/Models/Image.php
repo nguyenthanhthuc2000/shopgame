@@ -10,11 +10,11 @@ class Image extends Model
 {
     use SoftDeletes;
 
-    const IS_BANNER = 1;
+    public const IS_BANNER = 1;
 
-    const IS_IMAGE_DETAIL = 0;
+    public const IS_IMAGE_DETAIL = 0;
 
-    const IMAGE_SIZE = 1000;
+    public const IMAGE_SIZE = 1000;
 
     protected $primaryKey = 'id';
 

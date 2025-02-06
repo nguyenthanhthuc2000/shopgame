@@ -18,14 +18,6 @@ class CheckUserLocked
     {
         if (Auth::check() && Auth::user()->is_locked) {
             Auth::logout();
-
-            if ($request->ajax() || $request->expectsJson()) {
-                return response()->json([
-                    'error' => __('messages.user_locked'),
-                    'redirect' => route('home'),
-                ], 403);
-            }
-
             return redirect()->route('home')->with('error', __('messages.user_locked'));
         }
 

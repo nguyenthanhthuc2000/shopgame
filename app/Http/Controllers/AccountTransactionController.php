@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Account;
-use App\Models\AccountTransaction;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
-use App\Models\Category;
-use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use App\Models\Account;
+use App\Models\AccountTransaction;
+use App\Models\Category;
+use App\Models\User;
 
 class AccountTransactionController extends Controller
 {

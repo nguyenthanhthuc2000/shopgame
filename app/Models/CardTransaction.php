@@ -40,7 +40,7 @@ class CardTransaction extends Model
     protected $casts = [
     ];
 
-    const CARD_TYPES = [
+    public const CARD_TYPES = [
         'VIETTEL' => 'Viettel',
         'VCOIN' => 'VCOIN',
         'ZING' => 'ZING',
@@ -50,17 +50,17 @@ class CardTransaction extends Model
         'VINAPHONE' => 'Vinaphone',
         // 'MOBIFONE' => 'Mobifone',
     ];
-    const IS_SUCCESS_TRANSACTION = 1;
-    const IS_ERROR_TRANSACTION = 2;
-    const IS_PROCESSING_TRANSACTION = 0;
+    public const IS_SUCCESS_TRANSACTION = 1;
+    public const IS_ERROR_TRANSACTION = 2;
+    public const IS_PROCESSING_TRANSACTION = 0;
 
-    const IS_SUCCESSFUL_CARD = 1;
-    const IS_SUCCESSFUL_CARD_WRONG_DENOMINATION = 2;
-    const IS_ERROR_CARD = 3;
-    const IS_MAINTENANCE_CARD = 4;
-    const IS_PENDING_CARD = 99;
+    public const IS_SUCCESSFUL_CARD = 1;
+    public const IS_SUCCESSFUL_CARD_WRONG_DENOMINATION = 2;
+    public const IS_ERROR_CARD = 3;
+    public const IS_MAINTENANCE_CARD = 4;
+    public const IS_PENDING_CARD = 99;
     
-    const CARD_STATUS = [
+    public const CARD_STATUS = [
         self::IS_SUCCESSFUL_CARD => 'Thẻ thành công',
         self::IS_SUCCESSFUL_CARD_WRONG_DENOMINATION => 'Thẻ thành công sai mệnh giá',
         self::IS_ERROR_CARD => 'Thẻ lỗi',
@@ -68,13 +68,13 @@ class CardTransaction extends Model
         self::IS_PENDING_CARD => 'Thẻ chờ xử lý',
     ];
 
-    const TRANSACTION_STATUS = [
+    public const TRANSACTION_STATUS = [
         self::IS_PROCESSING_TRANSACTION => 'Đang xử lý',
         self::IS_SUCCESS_TRANSACTION => 'Thành công',
         self::IS_ERROR_TRANSACTION => 'Thất bại',
     ];
 
-    const HISTORY_PERPAGE = 15;
+    public const HISTORY_PERPAGE = 15;
 
     public function user()
     {
@@ -84,7 +84,7 @@ class CardTransaction extends Model
     public function scopeFilterBySerial($query, $serial)
     {
         if (!empty($serial)) {
-            $query->where('serial', 'like', '%' . $serial . '%');
+            $query->where('serial', 'like', "%{$serial}%");
         }
     }
 }

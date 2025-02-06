@@ -10,11 +10,9 @@
                     <section id="cardbody" class="section">
                         <div class="row">
 
-                            {{-- LEFT MENU --}}
                             <div class="col-xs-12 col-md-3">
                                 @include('components.app-sub-menu')
                             </div>
-                            {{-- END LEFT MENU --}}
 
                             <div class="col-xs-12 col-md-9">
                                 <div class="panel">
@@ -50,8 +48,8 @@
                                                 <div style=" padding: 20px 15px 20px 15px;background: #AFD275;">
                                                     <p class="mb-0" style="text-align:center"><strong><span
                                                                 style="color:#e74c3c"><span style="font-size:20px">NẠP
-                                                                    TIỀN QUA ATM, MOMO CỘNG THÊM 15%<br>
-                                                                    Nạp 100k được 115k</span></span></strong></p>
+                                                                    TIỀN QUA ATM, MOMO CỘNG THÊM 20%<br>
+                                                                    Nạp 100k được 120k</span></span></strong></p>
                                                     <b>Nội dung thanh toán: <span style="color: #e74c3c;">nickdaoquan</span></b>
                                                     <br>
                                                     <b>Chuyển xong chụp lại màn hình và liên hệ zalo để được hổ trợ nhanh
