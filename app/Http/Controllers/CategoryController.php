@@ -43,7 +43,7 @@ class CategoryController extends Controller
             ->paginate()
             ->withQueryString();
 
-        return view('pages.accounts', compact([
+        return view('pages.account.accounts', compact([
             'category',
             'accounts',
             'classes',

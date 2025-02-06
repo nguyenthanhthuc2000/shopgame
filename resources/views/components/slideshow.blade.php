@@ -16,7 +16,7 @@
                             </div>
                             <div class="purchase-history__body card-body">
                                 @foreach ($accounts as $account)
-                                    <div class="purchase-history__item p-2 font-bold w-100 mb-2">
+                                    <div class="purchase-history__item p-2 font-bold w-100 mb-2" style="border: 1px solid green; border-radius: 10px;">
                                         <div class="d-flex justify-content-between">
                                             <strong>{{ $account->user->name }}</strong>
                                             <span>{{ \Carbon\Carbon::parse($account->created_at)->diffForhumans() }}</span>
