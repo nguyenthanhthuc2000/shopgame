@@ -42,6 +42,11 @@ class CardTransaction extends Model
 
     const CARD_TYPES = [
         'VIETTEL' => 'Viettel',
+        'VCOIN' => 'VCOIN',
+        'ZING' => 'ZING',
+        'GATE' => 'GATE',
+        'GARENA' => 'GARENA',
+        'SCOIN' => 'SCOIN',
         'VINAPHONE' => 'Vinaphone',
         // 'MOBIFONE' => 'Mobifone',
     ];
