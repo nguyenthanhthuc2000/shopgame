@@ -10,10 +10,15 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
+use LaravelWakeUp\FilterSort\Traits\FilterTrait;
+use LaravelWakeUp\FilterSort\Traits\SortTrait;
 
 class Account extends Model
 {
     use SoftDeletes;
+    use FilterTrait, SortTrait;
+
+    protected array $allowedFilters = ['id', 'server', 'class', 'earring', 'price', 'status'];
 
     /**
      * The table associated with the model.
@@ -313,46 +318,5 @@ class Account extends Model
         if (!empty($username)) {
             $query->where('username', 'like', "%$username%");
         }
-    }
-
-    public function scopeByCode($query, $code)
-    {
-        if (!empty($code)) {
-            return $query->where('id', $code);
-        }
-    }
-
-    public function scopeByPrice($query, $price)
-    {
-        if (!empty($price)) {
-            $priceRange = explode(' ', $price);
-            return $query->whereBetween('price', $priceRange);
-        }
-    }
-
-    public function scopeByStatus($query, $status)
-    {
-        if (!empty($status)) {
-            return $query->where('status', $status);
-        }
-    }
-
-    public function scopeByServer($query, $server)
-    {
-        if (!empty($server)) {
-            return $query->where('server', $server);
-        }
-    }
-
-    public function scopeByClass($query, $class)
-    {
-        if (!empty($class)) {
-            return $query->where('class', $class);
-        }
-    }
-
-    public function scopeByUuid($query, $uuid)
-    {
-        return $query->whereUuid($uuid);
     }
 }

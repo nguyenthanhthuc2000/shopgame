@@ -49,9 +49,7 @@
                                                 <tbody>
                                                     @forelse($accounts as $account)
                                                         <tr>
-                                                            <td>
-                                                                {{ $loop->iteration }}
-                                                            </td>
+                                                            <td><a href="{{ route('account.show', ['category' => $account->category->slug, 'account' => $account->uuid]) }}">#{{ $account->id }}</a></td>
                                                             <td>{{ $account->username }}</td>
                                                             <td>{{ $account->price_formated }}</td>
                                                             <td>{{ $account->class_name }}</td>

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c73ae70d2244c09c13ed345e2091c9c2",
+    "content-hash": "77128072458dff0d83909475e9f76e23",
     "packages": [
         {
             "name": "anhskohbo/no-captcha",
@@ -1963,6 +1963,58 @@
                 "source": "https://github.com/laravel/tinker/tree/v2.10.0"
             },
             "time": "2024-09-23T13:32:56+00:00"
+        },
+        {
+            "name": "laravelwakeup/filter-sort",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nguyenthanhthuc2000/laravel-filter-sort.git",
+                "reference": "4ea6af799e73e851f30cd51b13e61fdd83eaef26"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nguyenthanhthuc2000/laravel-filter-sort/zipball/4ea6af799e73e851f30cd51b13e61fdd83eaef26",
+                "reference": "4ea6af799e73e851f30cd51b13e61fdd83eaef26",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^11.0|^10.0|^9.0|^8.0|^12.0",
+                "php": "^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "LaravelWakeUp\\FilterSort\\Providers\\FilterSortServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "LaravelWakeUp\\FilterSort\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Thức Nguyễn",
+                    "email": "nguyenthanhthuc.2k@gmail.com"
+                }
+            ],
+            "description": "Filter Sort is a powerful Laravel package that supports searching and filtering saving your development time.",
+            "keywords": [
+                "Filter sort package",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/nguyenthanhthuc2000/laravel-filter-sort/issues",
+                "source": "https://github.com/nguyenthanhthuc2000/laravel-filter-sort/tree/v1.0.0"
+            },
+            "time": "2025-03-12T14:54:56+00:00"
         },
         {
             "name": "league/commonmark",

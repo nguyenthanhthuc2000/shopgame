@@ -34,12 +34,13 @@ class CategoryController extends Controller
         $accounts = Account::select('server', 'earring', 'price', 'class', 'regis_type', 'id', 'uuid')
             ->with(['banner'])
             ->where('category_id', $category->id)
-            ->ByServer($request->input('server_game', null))
-            ->ByCode($request->input('code', null))
-            ->ByStatus($request->input('status', Account::STATUS_AVAILABLE))
-            ->ByPrice($request->input('price', null))
-            ->ByClass($request->input('class', null))
-            ->orderBy('id', 'DESC')
+            ->filter(request());
+        
+        if (!request()->has('status')) {
+            $accounts->where('status', Account::STATUS_AVAILABLE);
+        }
+
+        $accounts = $accounts->orderBy('id', 'DESC')
             ->paginate()
             ->withQueryString();
 

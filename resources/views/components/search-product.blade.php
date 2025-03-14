@@ -4,12 +4,13 @@
         <div class="row g-3 align-items-end">
 
             <div class="col-md-2 col-6">
-                <label for="code" class="form-label">Mã Số</label>
-                <input type="text" id="code" name="code" class="form-control" placeholder="Nhập Mã Số">
+                <label for="id" class="form-label">Mã Số</label>
+                <input type="text" id="id" name="id" class="form-control" placeholder="Nhập Mã Số" value="{{ request('id', '') }}">
             </div>
 
             <div class="col-md-2 col-6">
                 <label for="price" class="form-label">Giá</label>
+                <input type="hidden" name="price_op" value="between">
                 <select id="price" name="price" class="form-select">
                     <option value="" selected>Tất cả</option>
                     @if (!empty($prices))
@@ -20,7 +21,6 @@
                             </option>
                         @endforeach
                     @endif
-
                 </select>
             </div>
 
@@ -28,7 +28,7 @@
                 <label for="status" class="form-label">Trạng thái</label>
                 <select id="status" name="status" class="form-select">
                     @foreach ($status as $stt)
-                        <option value="{{ $stt['value'] }}" {{ $stt['value'] == request('status') ? 'selected' : '' }}>
+                        <option value="{{ $stt['value'] }}" {{ $stt['value'] == request('status', 1) ? 'selected' : '' }}>
                             {{ $stt['name'] }}
                         </option>
                     @endforeach
@@ -36,12 +36,12 @@
             </div>
 
             <div class="col-md-2 col-6">
-                <label for="server-game" class="form-label">Máy chủ</label>
-                <select id="server-game" name="server_game" class="form-select">
+                <label for="server" class="form-label">Máy chủ</label>
+                <select id="server" name="server" class="form-select">
                     <option value="">Tất cả</option>
                     @foreach ($servers as $server)
                         <option value="{{ $server['value'] }}"
-                            {{ $server['value'] == request('server_game') ? 'selected' : '' }}>
+                            {{ $server['value'] == request('server') ? 'selected' : '' }}>
                             {{ $server['name'] }}
                         </option>
                     @endforeach

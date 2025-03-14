@@ -31,14 +31,15 @@ class AccountController extends Controller
      */
     public function index(Request $request)
     {
-        $class = $request->input('class');
         $accountName = $request->input('account_name');
 
-        $accounts = Account::orderBy('id', 'DESC')
+        $accounts = Account::with(['category'])
+            ->orderBy('id', 'DESC')
             ->where('user_id', Auth::id())
-            ->byClass($class)
+            ->filter(request())
             ->byUserName($accountName)
-            ->paginate();
+            ->paginate()
+            ->withQueryString();
 
         $classes = Account::CLASSES;
 
