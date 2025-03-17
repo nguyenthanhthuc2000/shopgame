@@ -1,6 +1,7 @@
 <?php
 
 use Rap2hpoutre\LaravelLogViewer\LogViewerController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AccountTransactionController;
 use App\Http\Controllers\CardController;
@@ -8,18 +9,17 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\Admin\BankTransactionController as AdminBankTransactionController;
 use App\Http\Controllers\Admin\CardTransactionController as AdminCardTransactionController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\AccountTransactionController as AdminAccountTransactionController;
-use App\Http\Controllers\CategoryController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\IsAdmin;
 use App\Http\Middleware\IsAdminOrSeller;
 use App\Http\Middleware\LogRequestMiddleware;
-use App\Http\Controllers\GoogleController;
 
 Route::get('/dang-nhap/google', [GoogleController::class, 'redirectToGoogle'])->name('redirectToGoogle');
 Route::get('/dang-nhap/google/callback', [GoogleController::class, 'handleGoogleCallback'])->name('handleGoogleCallback');

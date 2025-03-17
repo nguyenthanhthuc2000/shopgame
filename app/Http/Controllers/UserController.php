@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 class UserController extends Controller
 {
     /**
-     * Summary of index
+     * Profile page
      * 
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */

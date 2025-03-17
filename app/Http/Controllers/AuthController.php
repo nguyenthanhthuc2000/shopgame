@@ -13,7 +13,7 @@ use App\Http\Requests\ChangePasswordRequest;
 class AuthController extends Controller
 {
     /**
-     * ShowLoginForm
+     * Show login form
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
@@ -23,7 +23,7 @@ class AuthController extends Controller
     }
 
     /**
-     * showRegisterForm
+     * Show register form
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
@@ -33,7 +33,7 @@ class AuthController extends Controller
     }
 
     /**
-     * Summary of changePassword
+     * Show change password form
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
@@ -43,7 +43,7 @@ class AuthController extends Controller
     }
 
     /**
-     * Summary of updatePassword
+     * Update password
      *
      * @param ChangePasswordRequest $request
      * @return \Illuminate\Http\RedirectResponse
@@ -110,18 +110,14 @@ class AuthController extends Controller
     }
 
     /**
-     * Đăng xuất người dùng.
+     * Logout
      *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function logout()
     {
         Auth::logout();
-
-        // Hủy bỏ tất cả các session liên quan đến người dùng
         session()->invalidate();
-
-        // Tạo lại session token để bảo mật
         session()->regenerateToken();
 
         return redirect()->route('login');

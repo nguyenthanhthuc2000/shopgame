@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Carbon;
+use App\Http\Controllers\Controller;
 use App\Models\AccountTransaction;
 use App\Models\CardTransaction;
 use App\Models\Admin\BankTransaction;
 use App\Models\User;
 use App\Models\Account;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Carbon;
 
 class DashboardController extends Controller
 {
     /**
-     * Trang dashboard
+     * Dashboard page
      * 
      * @param Request $request
      */

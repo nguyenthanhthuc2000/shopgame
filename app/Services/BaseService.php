@@ -46,7 +46,7 @@ abstract class BaseService
     /**
      * Method to write log
      */
-    public function logWritter($message, $context = [], $level = 'debug'): void
+    public function logWritter(string $message, array $context = [], string $level = 'debug'): void
     {
         if (!$this->logChannel) {
             return;
@@ -54,20 +54,13 @@ abstract class BaseService
 
         $log = Log::channel($this->logChannel);
 
-        if (!is_array($context)) {
-            $context = [$context];
-        }
+        $logMethods = [
+            'debug' => 'debug',
+            'error' => 'error',
+            'info' => 'info',
+        ];
 
-        switch ($level) {
-            case 'debug':
-                $log->debug($message, $context);
-                break;
-            case 'error':
-                $log->error($message, $context);
-                break;
-            default:
-                $log->info($message, $context);
-                break;
-        }
+        $logMethod = $logMethods[$level] ?? 'info';
+        $log->$logMethod($message, $context);
     }
 }

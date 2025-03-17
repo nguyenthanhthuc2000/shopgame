@@ -55,11 +55,11 @@ class Category extends Model
 
     public function soldAccounts()
     {
-        return $this->hasMany(Account::class, 'category_id')->where('status', 1);
+        return $this->hasMany(Account::class, 'category_id')->where('status', Account::STATUS_AVAILABLE);
     }
 
     public function unsoldAccounts()
     {
-        return $this->hasMany(Account::class, 'category_id')->where('status', 2);
+        return $this->hasMany(Account::class, 'category_id')->where('status', Account::STATUS_SOLD);
     }
 }

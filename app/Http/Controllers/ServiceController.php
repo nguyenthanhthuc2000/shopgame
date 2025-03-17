@@ -2,21 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Service;
 use App\Services\ServiceCustomerService;
 
 class ServiceController extends Controller
 {
+
     /**
-     * @var ServiceCustomerService
+     * @param \App\Services\ServiceCustomerService $serviceCustomerService
      */
-    protected $serviceCustomerService;
-    public function __construct(ServiceCustomerService $serviceCustomerService)
+    public function __construct(private ServiceCustomerService $serviceCustomerService)
     {
-        $this->serviceCustomerService = $serviceCustomerService;
     }
 
-
+    /**
+     * Show service list
+     * 
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function index()
     {
         $services = $this->serviceCustomerService->getAll();

@@ -15,16 +15,13 @@ class AccountController extends Controller
 {
     /**
      * @var AccountService $accountService
-     */
-    protected $accountService;
-
-    public function __construct(AccountService $accountService)
+    */
+    public function __construct(private AccountService $accountService)
     {
-        $this->accountService = $accountService;
     }
 
     /**
-     * Summary of index
+     * Account management page
      *
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
@@ -47,7 +44,7 @@ class AccountController extends Controller
     }
 
     /**
-     * Summary of show
+     * Show account detail
      *
      * @param Category $category
      * @param Account $account
@@ -81,7 +78,7 @@ class AccountController extends Controller
     }
 
     /**
-     * Summary of create
+     * Create new account
      *
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
@@ -106,7 +103,7 @@ class AccountController extends Controller
     }
 
     /**
-     * Summary of store
+     * Create new account
      *
      * @param \App\Http\Requests\AccountRequest $request
      * @return \Illuminate\Http\RedirectResponse
@@ -141,7 +138,7 @@ class AccountController extends Controller
     }
 
     /**
-     * Summary of edit
+     * Edit account
      *
      * @param Account $account
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View

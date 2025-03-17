@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Models\User;
 
 class UserController extends Controller
 {
     /**
-     * Trang dashboard
+     * User management page
      * 
      * @param Request $request
      */

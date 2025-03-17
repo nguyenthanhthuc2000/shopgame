@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Admin\BankTransaction;
-use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\Admin\BankTransactionRequest;
+use App\Http\Controllers\Controller;
+use App\Models\Admin\BankTransaction;
+use App\Models\User;
 
 class BankTransactionController extends Controller
 {
     /**
-     * Danh sách cộng / trừ tiền
+     * List of add / subtract money
      * 
      * @param Request $request
      */
@@ -26,7 +26,7 @@ class BankTransactionController extends Controller
     }
 
     /**
-     * Màn hình cộng / trừ tiền
+     * Add / subtract money page
      * 
      * @param Request $request
      */
@@ -36,7 +36,7 @@ class BankTransactionController extends Controller
     }
 
     /**
-     * Tạo giao dịch trừ công tiền
+     * Create a transaction to subtract money
      * 
      * @param Request $request
     */

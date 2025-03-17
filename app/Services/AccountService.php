@@ -15,19 +15,11 @@ class AccountService extends BaseService
     protected $logChannel = 'account_transactions';
 
     /**
+     * @var ImageService $imageService
      * @var GoogleDriveService $googleDriveService
      */
-    protected $googleDriveService;
-
-    /**
-     * @var ImageService $imageService
-     */
-    protected $imageService;
-
-    public function __construct(GoogleDriveService $googleDriveService, ImageService $imageService)
+    public function __construct(private GoogleDriveService $googleDriveService, private ImageService $imageService)
     {
-        $this->googleDriveService = $googleDriveService;
-        $this->imageService = $imageService;
     }
 
     /**
@@ -46,9 +38,10 @@ class AccountService extends BaseService
      * @param array $accountData
      * @param mixed $banner
      * @param mixed $gallery
+     * 
      * @return bool
      */
-    public function storeAccount(array $accountData, $banner, $gallery = [])
+    public function storeAccount(array $accountData, $banner, $gallery = []): bool
     {
         try {
             $folderId = config('google.accounts_folder_id');
@@ -81,7 +74,7 @@ class AccountService extends BaseService
      * @param mixed $gallery
      * @return bool
      */
-    public function updateAccount($account, $accountData, $banner = null, $gallery = [])
+    public function updateAccount($account, $accountData, $banner = null, $gallery = []): bool
     {
         try {
             $account->update($accountData);

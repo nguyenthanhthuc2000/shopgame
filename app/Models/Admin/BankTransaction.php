@@ -7,7 +7,6 @@ use App\Models\User;
 
 class BankTransaction extends Model
 {
-
     /**
      * The table associated with the model.
      *
@@ -39,8 +38,8 @@ class BankTransaction extends Model
     protected $casts = [
     ];
 
-    const INCREASE_TYPE = 1; // Cộng tiền
-    const DECREASE_TYPE = 0; // Trừ tiền
+    public const INCREASE_TYPE = 1; // Add money
+    public const DECREASE_TYPE = 0; // Subtract money
 
     public function user()
     {

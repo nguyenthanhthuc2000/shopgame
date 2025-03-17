@@ -16,7 +16,7 @@ class HomeController extends Controller
     public function __construct() {}
 
     /**
-     * Summary of index
+     * Home page
      * 
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
@@ -36,6 +36,11 @@ class HomeController extends Controller
         return view('pages.home', compact(['categories', 'services', 'accounts']));
     }
 
+    /**
+     * Deposit page
+     * 
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function deposit()
     {
         return view('pages.deposit');

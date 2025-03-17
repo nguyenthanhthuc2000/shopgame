@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Models\CardTransaction;
 
 class CardTransactionController extends Controller
 {
     /**
-     * Danh sách nạp thẻ cào
+     * List of card recharge
      * 
      * @param Request $request
      */

@@ -14,7 +14,8 @@ use App\Models\User;
 class AccountTransactionController extends Controller
 {
     /**
-     * Summary of index
+     * Account transaction management page
+     * 
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
@@ -28,7 +29,7 @@ class AccountTransactionController extends Controller
     }
 
     /**
-     * Summary of buyNick
+     * Buy account
      *
      * @param \Illuminate\Http\Request $request
      * @param mixed $accountUuid
@@ -101,12 +102,12 @@ class AccountTransactionController extends Controller
         }
 
         flash()->error('Thông tin nick game không chính xác!');
-        // Thêm trạng thái sai mật khẩu cho account
+
         return redirect()->route('home');
     }
 
     /**
-     * Summary of checkAccoutAvailabel
+     * Check account available
      *
      * @return bool
      */
@@ -116,7 +117,7 @@ class AccountTransactionController extends Controller
     }
 
     /**
-     * Summary of sellHistory
+     * Sell account history
      *
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Contracts\View\View

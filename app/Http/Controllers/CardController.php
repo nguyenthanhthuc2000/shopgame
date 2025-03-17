@@ -16,7 +16,7 @@ use App\Models\User;
 class CardController extends Controller
 {
     /**
-     * Hiển thị màn hình nạp card
+     * Show card recharge page
      * 
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
@@ -57,7 +57,7 @@ class CardController extends Controller
     }
 
     /**
-     *  Người dùng thực hiện nạp thẻ
+     * User performs card recharge
      * 
      * @param \App\Http\Requests\PostCardRequest $request
      * @return \Illuminate\Http\RedirectResponse
@@ -144,7 +144,7 @@ class CardController extends Controller
     }
 
     /**
-     * Xử lí callbackCard
+     * Process callbackCard
      * 
      * @param \Illuminate\Http\Request $request
      * @return mixed|\Illuminate\Http\JsonResponse

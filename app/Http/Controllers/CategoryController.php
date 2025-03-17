@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 class CategoryController extends Controller
 {
     /**
-     * Summary of index
+     * Show category detail
      * 
      * @param \Illuminate\Http\Request $request
      * @param \App\Models\Category $category
@@ -58,7 +58,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * Summary of list
+     * Show category list
      *
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View

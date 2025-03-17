@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Admin\Category;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -12,6 +11,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use LaravelWakeUp\FilterSort\Traits\FilterTrait;
 use LaravelWakeUp\FilterSort\Traits\SortTrait;
+use App\Models\Admin\Category;
 
 class Account extends Model
 {
