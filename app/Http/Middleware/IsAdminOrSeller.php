@@ -17,7 +17,7 @@ class IsAdminOrSeller
     public function handle(Request $request, Closure $next): Response
     {
         if (Auth::check() && !in_array(Auth::user()->role, ['admin', 'seller'])) {
-            abort(403);
+            abort(Response::HTTP_FORBIDDEN);
         }
 
         return $next($request);

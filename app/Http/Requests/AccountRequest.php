@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class AccountRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class AccountRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return Auth::check();
     }
 
     /**
@@ -22,15 +23,49 @@ class AccountRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "category_id" => "bail|required|exists:categories,id",
-            "class_id" => "bail|required|in:1,2,3",
-            "regis_type_id" => "bail|required|in:0,1,2",
-            "earring" => "bail|required|in:0,1",
-            "server_id" => "bail|required",
-            "username" => "bail|required",
-            "password" => "bail|required",
-            "price_account" => "bail|required|integer",
-            "banner" => "bail|required|mimes:png,jpg",
+            "category_id" => [
+                'bail',
+                'required',
+                'exists:categories,id',
+            ],
+            "class_id" => [
+                'bail',
+                'required',
+                'in:1,2,3',
+            ],
+            "regis_type_id" => [
+                'bail',
+                'required',
+                'in:0,1,2',
+            ],
+            "earring" => [
+                'bail',
+                'required',
+                'in:0,1',
+            ],
+            "server_id" => [
+                'bail',
+                'required',
+            ],
+            "password" => [
+                'bail',
+                'required',
+            ],
+            "price_account" => [
+                'bail',
+                'required',
+                'integer',
+            ],
+            "banner" => [
+                'bail',
+                'required',
+                'image',
+                'mimes:png,jpg',
+            ],
+            "username" => [
+                'bail',
+                'required',
+            ],
         ];
     }
 

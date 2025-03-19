@@ -5,6 +5,7 @@ namespace App\Http\Requests\Admin;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use App\Models\Admin\BankTransaction;
+use Illuminate\Support\Facades\Auth;
 
 class BankTransactionRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class BankTransactionRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return Auth::check();
     }
 
     /**

@@ -2,10 +2,9 @@
 
 namespace App\Services;
 
-use App\Models\Service;
-use Exception;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Collection;
+use Exception;
+use App\Models\Service;
 
 class ServiceCustomerService extends BaseService
 {

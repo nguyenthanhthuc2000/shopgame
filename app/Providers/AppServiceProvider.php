@@ -22,8 +22,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Paginator::defaultView('pagination.default');
-        Paginator::defaultSimpleView('pagination.default');
+        Paginator::useBootstrap();
         Gate::define('viewPulse', function (User $user) {
             return $user->role === 'admin';
         });

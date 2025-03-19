@@ -14,7 +14,7 @@
             </div>
 
             <div class="alert-custom alert alert-success">
-                <p class="mb-0"><strong>Nạp từ ATM/MOMO vào shop cộng thêm 215% giá trị</strong> <a
+                <p class="mb-0"><strong>Nạp từ ATM/MOMO vào shop cộng thêm 15% giá trị</strong> <a
                         href="{{ route('home.deposit') }}">tại đây <img src="{{ asset('assets/images/hot.gif') }}"
                             alt="nickdaoquan.vn"></a> (nạp 100k nhận 115k)</p>
 
@@ -74,7 +74,7 @@
                 @endforeach
             </div>
             <div class="ms-auto">
-                {{ $accounts->links('pagination::bootstrap-5') }}
+                {{ $accounts->links() }}
             </div>
         </div>
     </div>

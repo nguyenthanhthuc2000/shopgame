@@ -21,17 +21,6 @@
                                             @endif
                                         </div>
                                     </div>
-                                    {{-- <div class="game-images_thumb" id="detail-avatar_thumb">
-                                        <div class="owl-carousel owl-theme">
-                                            @foreach ($account->images as $key => $image)
-                                                <div class="item">
-                                                    <img src="{{ $image->image_link }}&sz=w1000"
-                                                        class="img-fluid object-fit-cover thumb-image {{ $key === 0 ? 'active' : '' }}" alt="Nick Ngọc Rồng Online VIP giá rẻ, NickDaoquan.Vn, Shop Nick Ngọc Rồng"
-                                                        loading="lazy">
-                                                </div>
-                                            @endforeach
-                                        </div>
-                                    </div> --}}
                                 </div>
                             </div>
 
@@ -78,19 +67,18 @@
                                         </div>
                                         @endif
                                         <div class="game-detail_buttons d-flex">
-                                            <a href="{{ route('card.index') }}"
-                                                class="game-detail_button game-detail_button--primary col-md-6 mb-2">
-                                                Nạp thẻ cào
-                                            </a>
-
                                             @if ($account->status === \App\Models\Account::STATUS_AVAILABLE)
+                                                <a href="{{ route('card.index') }}"
+                                                    class="game-detail_button game-detail_button--primary col-md-6 mb-2">
+                                                    Nạp thẻ cào
+                                                </a>
                                                 <a href="{{ route('account.buy', ['account' => $account->uuid]) }}"
                                                     class="game-detail_button game-detail_button--secondary col-md-6 mb-2">
                                                     Mua ngay
                                                 </a>
                                             @else
                                                 <a href="#"
-                                                    class="game-detail_button game-detail_button--secondary col-md-6 mb-2">
+                                                    class="game-detail_button game-detail_button--primary col-12 mb-2">
                                                     Đã bán
                                                 </a>
                                             @endif
