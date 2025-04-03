@@ -77,6 +77,9 @@
                                             <li><a class="dropdown-item" href="{{ $menuItem['route_name'] ? route($menuItem['route_name']) : '#' }}"><i class="{{ $menuItem['icon_class'] }}"></i> {{ $menuItem['name'] }}</a></li>
                                         @endif
                                     @endforeach
+                                    @if (in_array(auth()->user()->role, ['admin']) )
+                                        <li><a class="dropdown-item" href="{{  route('admin.dashboard') }}"> Quản lí</a></li>
+                                    @endif
                                 </ul>
                             </div>
                             {{-- <a href="{{ route('home.deposit') }}" class="d-block btn-auth" style="max-width: fit-content;">
