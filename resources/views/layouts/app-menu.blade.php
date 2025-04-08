@@ -67,6 +67,9 @@
                                     </svg> {{ number_format(auth()->user()->buyer_vnd, 0, ',', '.') }} | {{ auth()->user()->name }}
                                 </button>
                                 <ul class="dropdown-menu user-menu" aria-labelledby="userMenuDropdown">
+                                    @if (in_array(auth()->user()->role, ['admin']) )
+                                        <li><a class="dropdown-item" href="{{  route('admin.dashboard') }}"><i class="fa-solid fa-list"></i> Quản lí</a></li>
+                                    @endif
                                     @foreach ($userMenu as $menuItem)
                                         @if (isset($menuItem['divider']) && $menuItem['divider'])
                                             <hr class="m-0" />
@@ -77,9 +80,6 @@
                                             <li><a class="dropdown-item" href="{{ $menuItem['route_name'] ? route($menuItem['route_name']) : '#' }}"><i class="{{ $menuItem['icon_class'] }}"></i> {{ $menuItem['name'] }}</a></li>
                                         @endif
                                     @endforeach
-                                    @if (in_array(auth()->user()->role, ['admin']) )
-                                        <li><a class="dropdown-item" href="{{  route('admin.dashboard') }}"> Quản lí</a></li>
-                                    @endif
                                 </ul>
                             </div>
                             {{-- <a href="{{ route('home.deposit') }}" class="d-block btn-auth" style="max-width: fit-content;">

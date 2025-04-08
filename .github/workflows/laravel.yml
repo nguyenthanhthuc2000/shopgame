@@ -9,25 +9,36 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
       - name: Deploy to VPS
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
-          port: 24700
+          port: ${{ secrets.VPS_SSH_PORT }}
           script: |
             cd /var/www/shopgame
             
             # Fetch latest changes
             git reset --hard
             git pull origin master
+
+            echo "📦 Installing PHP dependencies..."
+            composer install --no-interaction --prefer-dist --optimize-autoloader
+
+            echo "⚡ Optimizing Laravel..."
+            php artisan optimize:clear
+            php artisan config:cache
+            php artisan route:cache
+            php artisan view:cache
+
+            echo "🛠️ Running migrations..."
+            php artisan migrate --force
             
             # Install dependencies
             npm install
             
             # Build frontend
             npm run build
+
+            echo "✅ Deployment Done!"
