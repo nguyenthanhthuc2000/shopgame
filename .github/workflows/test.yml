@@ -64,3 +64,6 @@ jobs:
 
       - name: Run tests
         run: php artisan test --env=testing
+
+      - name: View Laravel logs
+        run: cat storage/logs/laravel.log
