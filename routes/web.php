@@ -51,6 +51,7 @@ Route::middleware(['throttle:300,1'])->group(function () {
         Route::group(['middleware' => ['auth', IsAdminOrSeller::class]], function () {
             Route::get('/tai-khoan-da-ban', [AccountTransactionController::class, 'sellHistory'])->name('account.sell.history');
         });
+
         Route::group(['prefix' => 'quan-ly-nick-ngoc-rong', 'middleware' => ['auth', IsAdminOrSeller::class]], function () {
             Route::get('/', [AccountController::class, 'index'])->name('account.manage.index');
             Route::post('/', [AccountController::class, 'store'])->name('account.create.post');
