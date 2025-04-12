@@ -19,7 +19,6 @@ jobs:
         ports:
           - 3306:3306
         options: >-
-          --health-cmd="mysqladmin ping -uroot -proot"
           --health-interval=10s
           --health-timeout=5s
           --health-retries=3
@@ -63,9 +62,9 @@ jobs:
           DB_HOST: 127.0.0.1
           DB_PORT: 3306
           DB_DATABASE: laravel_test
-          DB_USERNAME: root
-          DB_PASSWORD: root
-          CACHE_DRIVER: file
+          DB_USERNAME: laravel
+          DB_PASSWORD: secret
+          CACHE_DRIVER: database
           SESSION_DRIVER: file
           QUEUE_CONNECTION: sync
           APP_ENV: testing
@@ -81,9 +80,9 @@ jobs:
           DB_HOST: 127.0.0.1
           DB_PORT: 3306
           DB_DATABASE: laravel_test
-          DB_USERNAME: root
-          DB_PASSWORD: root
-          CACHE_DRIVER: file
+          DB_USERNAME: laravel
+          DB_PASSWORD: secret
+          CACHE_DRIVER: database
           SESSION_DRIVER: file
           QUEUE_CONNECTION: sync
           APP_ENV: testing
