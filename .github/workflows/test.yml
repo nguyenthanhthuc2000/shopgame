@@ -48,7 +48,7 @@ jobs:
           npm install && npm run build
 
       - name: Prepare Laravel application
-        run:
+        run: |
           cp .env.example .env.testing
           php artisan key:generate --env=testing
           php artisan migrate --env=testing --force
