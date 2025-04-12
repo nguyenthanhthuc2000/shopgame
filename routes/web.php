@@ -48,6 +48,7 @@ Route::middleware(['throttle:300,1'])->group(function () {
     });
 
     Route::middleware([LogRequestMiddleware::class])->group(function () {
+
         Route::group(['middleware' => ['auth', IsAdminOrSeller::class]], function () {
             Route::get('/tai-khoan-da-ban', [AccountTransactionController::class, 'sellHistory'])->name('account.sell.history');
         });
