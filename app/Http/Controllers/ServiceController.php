@@ -6,7 +6,6 @@ use App\Services\ServiceCustomerService;
 
 class ServiceController extends Controller
 {
-
     /**
      * @param \App\Services\ServiceCustomerService $serviceCustomerService
      */
