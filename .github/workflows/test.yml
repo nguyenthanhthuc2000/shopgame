@@ -19,7 +19,7 @@ jobs:
         ports:
           - 3306:3306
         options: >-
-          --health-cmd="mysqladmin ping"
+          --health-cmd="mysqladmin ping -uroot -proot"
           --health-interval=10s
           --health-timeout=5s
           --health-retries=3
@@ -53,19 +53,41 @@ jobs:
         run: |
           cp .env.example .env.testing
           php artisan key:generate --env=testing
+          php artisan config:clear
+          php artisan cache:clear
           php artisan migrate --env=testing --force
           chmod -R 775 storage/logs
+          php artisan optimize
         env:
           DB_CONNECTION: mysql
           DB_HOST: 127.0.0.1
           DB_PORT: 3306
           DB_DATABASE: laravel_test
-          DB_USERNAME: laravel
-          DB_PASSWORD: secret
+          DB_USERNAME: root
+          DB_PASSWORD: root
+          CACHE_DRIVER: file
+          SESSION_DRIVER: file
+          QUEUE_CONNECTION: sync
+          APP_ENV: testing
+          APP_DEBUG: true
 
       - name: Run tests
-        run: php artisan test --env=testing
-        continue-on-error: true
+        run: |
+          php artisan config:clear
+          php artisan cache:clear
+          php artisan test --env=testing
+        env:
+          DB_CONNECTION: mysql
+          DB_HOST: 127.0.0.1
+          DB_PORT: 3306
+          DB_DATABASE: laravel_test
+          DB_USERNAME: root
+          DB_PASSWORD: root
+          CACHE_DRIVER: file
+          SESSION_DRIVER: file
+          QUEUE_CONNECTION: sync
+          APP_ENV: testing
+          APP_DEBUG: true
 
       - name: View Laravel logs
         run: cat storage/logs/laravel.log
