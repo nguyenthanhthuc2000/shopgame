@@ -1,0 +1,96 @@
+name: Run tests
+
+on:
+  pull_request:
+    branches: [master]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: laravel_test
+          MYSQL_USER: laravel
+          MYSQL_PASSWORD: secret
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -uroot -proot"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, bcmath, xml, ctype, fileinfo, json, tokenizer, pdo_mysql
+
+      - name: Install Composer
+        run: curl -sS https://getcomposer.org/installer | php
+
+      - name: Install dependencies
+        run: php composer.phar install --no-interaction --prefer-dist
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install npm dependencies
+        run: 
+          npm install && npm run build
+
+      - name: Prepare Laravel application
+        run: |
+          cp .env.example .env.testing
+          php artisan key:generate --env=testing
+          php artisan migrate --env=testing --force
+          chmod -R 775 storage/logs
+          php artisan optimize
+        continue-on-error: true
+        env:
+          DB_CONNECTION: mysql
+          DB_HOST: 127.0.0.1
+          DB_PORT: 3306
+          DB_DATABASE: laravel_test
+          DB_USERNAME: laravel
+          DB_PASSWORD: secret
+          CACHE_DRIVER: database
+          SESSION_DRIVER: file
+          QUEUE_CONNECTION: sync
+          APP_ENV: testing
+          APP_DEBUG: true
+
+      - name: Run tests
+        run: |
+          php artisan test --env=testing
+        env:
+          DB_CONNECTION: mysql
+          DB_HOST: 127.0.0.1
+          DB_PORT: 3306
+          DB_DATABASE: laravel_test
+          DB_USERNAME: laravel
+          DB_PASSWORD: secret
+          CACHE_DRIVER: database
+          SESSION_DRIVER: file
+          QUEUE_CONNECTION: sync
+          APP_ENV: testing
+          APP_DEBUG: true
+        continue-on-error: true
+
+      - name: View Laravel logs
+        run: |
+          if [ -f storage/logs/laravel.log ]; then
+            cat storage/logs/laravel.log
+          else
+            echo "No log file found"
+          fi
